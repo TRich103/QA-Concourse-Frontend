@@ -1,0 +1,39 @@
+
+ul.nav.nav-tabs {
+    border-bottom: 0px solid #dee2e6;
+    padding-left: 10%;
+}
+.QASearchBar{
+    padding-top:15px;
+    padding-left:10px;
+}
+
+.QATabs{
+    padding-top: 5%;
+    padding-bottom: 5%;
+    margin: 0 auto;
+}
+
+.QATabs .nav-link{
+    background-color: aliceblue;
+}
+
+.nav{
+    width:80%;
+}
+
+
+.table-hover>tbody>tr:nth-child(odd),
+.table-hover>tbody>tr:nth-child(odd) {
+    background-color: aliceblue;
+}
+
+.table-hover>tbody>tr:nth-child(odd):hover,
+.table-hover>tbody>tr:nth-child(odd):hover {
+    background-color: #c6e4ff;
+}
+
+.table-hover>tbody>tr:nth-child(even):hover,
+.table-hover>tbody>tr:nth-child(even):hover {
+    background-color: #c6e4ff;
+}

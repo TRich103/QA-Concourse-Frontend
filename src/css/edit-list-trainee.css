@@ -1,0 +1,132 @@
+.edit-form{
+	background-color:white;
+	width:80%;
+	margin-left: auto;
+	margin-right: auto;
+	border-radius: 4px;
+}
+
+.QATable{
+	margin-top: 5%;
+}
+
+.form-group{
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.all-edit-box{
+	padding-top:5%;
+	padding-bottom:5%;
+	text-align: center;
+}
+
+#bursaryDates{
+    height: 1%;
+    width: 90%;
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 1%;
+    padding-bottom: 1%;
+} 
+
+#WorkingDays{
+	height: 1%;
+    width: 50%;
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+
+#updateBtn {
+	font-family: "Roboto", sans-serif;
+	font-size: 18px;
+	border:1px solid white;
+	background-color: #004050;
+	color: white;
+	border-radius: 0.25rem;
+	opacity: 0.8;
+}
+
+#cancelBtn{
+	width: 125px;
+	height: 45px;
+	position: relative;
+	left: 40%;
+	font-family: "Roboto", sans-serif;
+	font-size: 22px;
+	border:1px solid white;
+	background-color: #004050;
+	color: white;
+	border-radius: 0.25rem;
+	opacity: 0.8;
+}
+
+#cancelBtn:hover{
+	background-color: white;
+	color: #004050;
+	border: 1px solid #004050;
+}
+
+.updateBtn:hover {
+	opacity: 1;
+	background-color: white;
+	color: #457581;
+}
+
+#accountnumber {
+	width: 100%;
+}
+
+#sortcode {
+	width: 100%;
+}
+
+.validated-field-container {
+	display: inline-flex;
+	min-width: 40%;
+	justify-content: center;
+}
+
+#accountImg {
+	min-width: 48px;
+	visibility: hidden;
+}
+
+#sortImg {
+	min-width: 48px;
+	visibility: hidden;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+#settings{
+	margin-top: 5%;
+}
+
+.adminSettings{
+	height:500px;
+}
+
+.settingTitle {
+	padding: 2%;
+}
+
+.formSettings{
+	width: 60%;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 2%;
+}
+
+#updateBtn:hover {
+	background-color: white;
+	color: #004050;
+	border: 1px solid #004050;
+}
