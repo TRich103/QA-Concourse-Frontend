@@ -273,7 +273,6 @@ export default class EditTrainee extends Component {
                                 className="form-control"
                                 value={this.state.trainee_fname}
                                 onChange={this.onChangeTraineeFname}
-                                disabled
                                 />
                     </div>
                      <div className="form-group"> 
@@ -282,7 +281,6 @@ export default class EditTrainee extends Component {
                                 className="form-control"
                                 value={this.state.trainee_lname}
                                 onChange={this.onChangeTraineeLname}
-                                disabled
                                 />
                     </div>           
                     <div className="form-group">
@@ -292,7 +290,6 @@ export default class EditTrainee extends Component {
                                 className="form-control"
                                 value={this.state.trainee_email}
                                 onChange={this.onChangeTraineeEmail}
-                                disabled
                                 />
                     </div>
                     <br />

@@ -71,6 +71,16 @@ export default class CreateUser extends Component {
           .map(word => word.charAt(0).toUpperCase() + word.slice(1))
           .join(' ');
     };
+
+    emailHandle(email) {
+        let split = email.split("@");
+        if(split[1] === 'qa.com'){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
     
     onSubmit(e) {
         e.preventDefault();
@@ -80,7 +90,7 @@ export default class CreateUser extends Component {
         console.log(`User role: ${this.state.user_role}`)
         
         // var setStatus = "Active";
-
+        if(this.emailHandle(this.state.user_email.toLowerCase())){
         var newUser = {
             email: this.state.user_email.toLowerCase(),
             fname: this.toTitleCase(this.state.user_fname),
@@ -112,6 +122,9 @@ export default class CreateUser extends Component {
                                  }
             })
         }
+    } else{
+        window.alert('Please use an QA email address');
+    }
     }
     
    render() {

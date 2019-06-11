@@ -47,7 +47,8 @@ export default class CreateTrainee extends Component {
             bursary_amount: 0,
             open: false,
             default_bursary: 0,
-            bankHolidays: true
+            bankHolidays: true,
+            form_cancel: false
         }
     }
 	
@@ -166,23 +167,27 @@ export default class CreateTrainee extends Component {
           .map(word => word.charAt(0).toUpperCase() + word.slice(1))
           .join(' ');
     };
-	
+    
+    
     onSubmit(e) {
         e.preventDefault();
 
         var alertDeterminer;
         
-        if(this.state.trainee_start_date === '' || this.state.trainee_end_date === ''){
-            alertDeterminer = "blankdates";
-        }
-        else if(moment(this.state.trainee_end_date).isBefore(this.state.trainee_start_date)){
-            alertDeterminer = "dateswrongorder";
-        }
-        else if(moment(this.state.trainee_end_date).diff(this.state.trainee_start_date, 'days') < 14 || moment(this.state.trainee_end_date).diff(this.state.trainee_start_date, 'days') > 84 ){
-            alertDeterminer = "tooloworhigh";
-        }
-        else if(this.state.bursary_amount > 100){
-            alertDeterminer = "toomuchbursary"
+        if (this.state.form_cancel === false) {
+
+            if (this.state.trainee_start_date === '' || this.state.trainee_end_date === '') {
+                alertDeterminer = "blankdates";
+            }
+            else if (moment(this.state.trainee_end_date).isBefore(this.state.trainee_start_date)) {
+                alertDeterminer = "dateswrongorder";
+            }
+            else if (moment(this.state.trainee_end_date).diff(this.state.trainee_start_date, 'days') < 14 || moment(this.state.trainee_end_date).diff(this.state.trainee_start_date, 'days') > 84) {
+                alertDeterminer = "tooloworhigh";
+            }
+            else if (this.state.bursary_amount > 100) {
+                alertDeterminer = "toomuchbursary"
+            }
         }
 
         switch (alertDeterminer){
@@ -266,7 +271,7 @@ export default class CreateTrainee extends Component {
             <div className="createTrainee" style={{marginLeft: 200, marginRight: 200}}>
                 <form className="createTraineeForm" onSubmit={this.onSubmit}>
                     <h3 className="title">Add Trainee</h3>
-                    <div><center><button id="cancelBtn" onClick={() => { document.location.href = "/"; }}>Cancel</button></center></div>
+                    <div><center><button id="cancelBtn" onClick={() => {this.state.form_cancel = true; document.location.href = "/"; }}>Cancel</button></center></div>
                     <div className="text-input-fields">
                         <div className="form-group"> 
                             <label>First Name: </label>
