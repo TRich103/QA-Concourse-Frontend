@@ -9,7 +9,6 @@ import "react-datepicker/dist/react-datepicker.css";
 import '@y0c/react-datepicker/assets/styles/calendar.scss';
 import '../css/add-trainee.css';
 import Collapse from 'react-bootstrap/Collapse'
-import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
 import MomentLocaleUtils, {
@@ -31,7 +30,9 @@ export default class CreateTrainee extends Component {
         this.onChangeBenchEndDate = this.onChangeBenchEndDate.bind(this);
         this.onClickBursary = this.onClickBursary.bind(this);
         this.onChangeBursaryAmount = this.onChangeBursaryAmount.bind(this);
-        this.toggle = this.toggle.bind(this);
+        this.toggleShow = this.toggleShow.bind(this);
+        this.hide = this.hide.bind(this);
+
 
         this.state = {
             trainee_fname: '',
@@ -50,7 +51,7 @@ export default class CreateTrainee extends Component {
             open: false,
             default_bursary: 0,
             bankHolidays: true,
-            dropdownOpen: false
+            show: false
         }
     }
 
@@ -80,10 +81,15 @@ export default class CreateTrainee extends Component {
             });
     }
 
-    toggle() {
-        this.setState({
-            dropdownOpen: !this.state.dropdownOpen
-        });
+    toggleShow() {
+        this.setState({ show: !this.state.show });
+    }
+
+    hide(e) {
+        if (e && e.relatedTarget) {
+            e.relatedTarget.click();
+        }
+        this.setState({ show: false });
     }
 
     onChangeTraineeFname(e) {
@@ -146,20 +152,30 @@ export default class CreateTrainee extends Component {
     }
 
     onClickBursary(e) {
-        if (this.state.bursary === "False") {
-            this.setState({
-                bursary: "True",
-                bursary_amount: this.state.default_bursary,
-                open: true
-            });
+        e.preventDefault();
+        if (e.target.innerHTML === "Bursary"){
+            if (this.state.bursary === "False") {
+                this.setState({
+                    bursary: "True",
+                    bursary_amount: this.state.default_bursary,
+                    open: true
+                });
+            }
+            else {
+                this.setState({
+                    bursary: "False",
+                    bursary_amount: 0,
+                    open: false
+                });
+            }
         }
-        else {
+        else if (e.target.innerHTML === "Apartment") {
             this.setState({
                 bursary: "False",
                 bursary_amount: 0,
                 open: false
             });
-        }
+        };
     }
 
     onChangeBursaryAmount(e) {
@@ -309,19 +325,25 @@ export default class CreateTrainee extends Component {
                         </div>
 
                         <div className="form-group">
-                            <label> Bursary: </label>
-                            &nbsp;&nbsp;
-                        <input type="checkbox" id="bursaryValue" onClick={this.onClickBursary} />
-
-                            <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-                                <DropdownToggle caret>
-                                    Button Dropdown
-                                </DropdownToggle>
-                                <DropdownMenu>
-                                    <DropdownItem>Bursary</DropdownItem>
-                                    <DropdownItem>Apartment</DropdownItem>
-                                </DropdownMenu>
-                            </ButtonDropdown>
+                            <label>Apartment or Bursary: </label>
+                            <div className="dropdown">
+                                <button id="btn-dropdown"
+                                    className="btn btn-primary dropdown-toggle"
+                                    type="button"
+                                    onClick={this.toggleShow}
+                                    onBlur={this.hide}
+                                     >
+                                    Please Select
+                                </button>
+                                {this.state.show &&
+                                    (
+                                        <ul id="btn-dropdown-menu" className="dropdown-menu">
+                                            <li><a onClick={this.onClickBursary} href="">Bursary</a></li>
+                                            <li><a onClick={this.onClickBursary} href="">Apartment</a></li>
+                                        </ul>
+                                    )
+                                }
+                            </div>
                         </div>
 
                         <Collapse in={this.state.open}>
