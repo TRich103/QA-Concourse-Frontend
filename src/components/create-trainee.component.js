@@ -161,13 +161,6 @@ export default class CreateTrainee extends Component {
                     open: true
                 });
             }
-            else {
-                this.setState({
-                    bursary: "False",
-                    bursary_amount: 0,
-                    open: false
-                });
-            }
         }
         else if (e.target.innerHTML === "Apartment") {
             this.setState({
