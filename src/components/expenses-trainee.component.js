@@ -22,19 +22,21 @@ export default class TraineeExpenses extends Component {
             expArray: [],
             monthly_expenses: 0,
             expenseType: '',
-            other: false
+            other: false,
+            disabled : false
         }
     }
     
     onSave = () => {
-    
+        this.state.disabled = true;
+        console.log(this.state.disabled);
         axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/admin/expenses/'+this.props.match.params.id, {expenseType: this.state.expenseType, amount: this.state.monthly_expenses, addedBy: this.state.currentUser.token._id })
         .then(res => {
             console.log(res.data);
             window.location.reload();
         });
     }
-
+    
     onChange = (e) => this.setState({ monthly_expenses: e.target.value });
 
 
@@ -150,7 +152,7 @@ export default class TraineeExpenses extends Component {
                                     <option value="Taxi Fares">Taxi Fares</option>
                                     <option value="Training Materials">Training Materials</option>
                                 </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <ButtonGroup>  <Button type="submit" id="createExpenseBtn" onClick={this.onSave}>Add</Button> </ButtonGroup>
+                                <ButtonGroup>  <Button type="submit" id="createExpenseBtn" onClick={this.onSave} disabled={this.state.disabled}>Add</Button> </ButtonGroup>
                                 {other ? 
                                 <div id="OtherInput">
                                     <label>Expense Type :</label>&nbsp;
