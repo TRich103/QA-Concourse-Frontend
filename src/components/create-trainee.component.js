@@ -324,7 +324,7 @@ export default class CreateTrainee extends Component {
                             </div>
                         </div>
 
-                        <div className="form-group">
+                        <div id="dropdown-container" className="form-group">
                             <label>Apartment or Bursary: </label>
                             <div className="dropdown">
                                 <button id="btn-dropdown"
