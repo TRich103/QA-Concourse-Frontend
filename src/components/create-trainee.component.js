@@ -154,6 +154,7 @@ export default class CreateTrainee extends Component {
     onClickBursary(e) {
         e.preventDefault();
         if (e.target.innerHTML === "Bursary"){
+            document.getElementById('btn-dropdown').innerHTML = "Bursary";
             if (this.state.bursary === "False") {
                 this.setState({
                     bursary: "True",
@@ -163,6 +164,7 @@ export default class CreateTrainee extends Component {
             }
         }
         else if (e.target.innerHTML === "Apartment") {
+            document.getElementById('btn-dropdown').innerHTML = "Apartment";
             this.setState({
                 bursary: "False",
                 bursary_amount: 0,
