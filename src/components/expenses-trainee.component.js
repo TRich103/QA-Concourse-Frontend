@@ -28,8 +28,7 @@ export default class TraineeExpenses extends Component {
     
     onSave = () => {
     
-    
-        axios.post('http://' + process.env.REACT_APP_AWS_IP + ':4000/admin/expenses/'+this.props.match.params.id, {expenseType: this.state.expenseType, amount: this.state.monthly_expenses })
+        axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/admin/expenses/'+this.props.match.params.id, {expenseType: this.state.expenseType, amount: this.state.monthly_expenses, addedBy: this.state.currentUser.token._id })
         .then(res => {
             console.log(res.data);
             window.location.reload();
