@@ -42,8 +42,9 @@ h2{
 }
 
 #OtherInput{
-    margin-right: 28%;
-    float: right;
+    display: inline-table;
+    padding: 3%;
+    margin-right: 65%; 
     padding-top: 2%;
     padding-bottom: 2%;
 }

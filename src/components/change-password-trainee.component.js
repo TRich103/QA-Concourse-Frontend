@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import '../css/changePasswordTrainee.css';
+import PWStrengthMeterTrainee from './password-strength-trainee.component';
+
+
 
 export default class ChangePassword extends Component {
     
@@ -85,8 +88,7 @@ export default class ChangePassword extends Component {
     }
     
     render() {
-        
-        const {password, error} = this.state;
+        const { password,error, trainee_password} = this.state;
         if (error) {
             return (
                 <div>
@@ -97,31 +99,50 @@ export default class ChangePassword extends Component {
         }
         return (
             <div className="changePassword">
-                
                 <form className="changeForm" onSubmit={this.onSubmit}>
                     <h3 align="center">Update Password</h3>
                     <div className="form-group">
                         <label>Email: </label>
-                        <input type="text" 
-                               className="form-control"
-                               readOnly value={this.state.trainee_email}
+                        <input type="text"
+                            className="form-control"
+                            readOnly value={this.state.email}
                         />
                     </div>
-                    <div className="form-group"> 
-                        <label>New Password: </label>
+
+                    <div className="form-group">
+                        <label>New Password:</label>
+                        <input className="form-control"
+                            autoComplete="off"
+                            type="password"
+                            onChange={this.onChangeTraineePassword}
+                            minLength={6}
+                            maxLength={20}
+                            pattern='(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[~?<>"!@#-$£|\/.,-()%^+=])'
+                            required
+
+                        />
+                        <br />
+                        <PWStrengthMeterTrainee className="form-group" trainee_password={trainee_password}/> <br />
+                        <label style={{ textAlign: 'left' }}>
+                            <h6>Requirements :</h6>
+
+                            - Include at least 1 uppercase letter <br />
+                            - Include at least 1 lowercase letter <br />
+                            - Include at least 1 number <br />
+                            - Include at least 1 special character (i.e. !,£,$,%,) <br />
+                        </label>
+                    </div>
+
+
+                    <div className="form-group">
+                        <label>Confirm Password: </label>
                         <input type="password"
-                               className="form-control"
-                               onChange={this.onChangeTraineePassword}
+                            className="form-control"
+                            onChange={this.onChangeConfirmPassword}
+                            required
                         />
                     </div>
-					<div className="form-group">
-					   <label>Confirm Password: </label>
-					   <input type ="password"
-						      className="form-control"
-						      onChange={this.onChangeConfirmPassword}
-						/>
-					</div>
-					
+
                     <br />
                     <div className="form-group">
                         <input id="updatePasswordBtn" type="submit" value="Update Password" className="btn btn-primary" />
@@ -130,5 +151,5 @@ export default class ChangePassword extends Component {
             </div>
         )
 
-  }
+    }
 }

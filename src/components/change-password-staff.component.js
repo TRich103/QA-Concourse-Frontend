@@ -2,99 +2,103 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { codes } from "../secrets/secrets.js";
 import '../css/changePasswordTrainee.css';
+import PWStrengthMeter from './password-strength.component.js';
+
+
 
 export default class ChangePasswordStaff extends Component {
-    
+
     constructor(props) {
         super(props);
-		
+
         this.onChangeUserPassword = this.onChangeUserPassword.bind(this);
         this.onChangeConfirmPassword = this.onChangeConfirmPassword.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
-            id:'',
+            id: '',
             email: '',
             password: '',
             error: true
         }
     }
-    
+
     async componentDidMount() {
-        await axios.get('http://'+process.env.REACT_APP_AWS_IP+':4000/admin/reset-staff/'+this.props.match.params.token)
+        await axios.get('http://' + process.env.REACT_APP_AWS_IP + ':4000/admin/reset-staff/' + this.props.match.params.token)
             .then(response => {
-                    console.log(response.data.message);
-                    if (response.data.message === 'password reset link a-ok') {
-                        console.log(response.data.staff_id);
-                        this.setState({
-                            id: response.data.staff_id,
-                            error: false
-                        })
-                    }
+                console.log(response.data.message);
+                if (response.data.message === 'password reset link a-ok') {
+                    console.log(response.data.staff_id);
+                    this.setState({
+                        id: response.data.staff_id,
+                        error: false
+                    })
+                }
             })
             .catch((error) => {
-                    console.log(error.response.data);
-                    this.setState({
-                        error: true
-                    });
+                console.log(error.response.data);
+                this.setState({
+                    error: true
+                });
             })
-        axios.get('http://'+process.env.REACT_APP_AWS_IP+':4000/admin/staff/'+this.state.id)
+        axios.get('http://' + process.env.REACT_APP_AWS_IP + ':4000/admin/staff/' + this.state.id)
             .then(response => {
                 this.setState({
                     email: response.data.email,
                     password: response.data.password
-                })   
+                })
             })
             .catch((error) => {
-                    console.log(error);
-                    this.setState({
-                        error: true
-                    });
+                console.log(error);
+                this.setState({
+                    error: true
+                });
             })
     }
-    
+
     onChangeUserPassword(e) {
         this.setState({
             password: e.target.value
         });
     }
-	
-	onChangeConfirmPassword(e) {
-		this.setState({
-			confirmPassword: e.target.value,
-		});
-	}
-    
+
+    onChangeConfirmPassword(e) {
+        this.setState({
+            confirmPassword: e.target.value,
+        });
+    }
+
     onSubmit(e) {
         e.preventDefault();
-		const {password, confirmPassword} = this.state;
-		if (password !== confirmPassword){
+        const { password, confirmPassword } = this.state;
+        if (password !== confirmPassword) {
             alert("Password does not match");
-		} 
+        }
         else {
             const obj = {
                 password: this.state.password
             };
             console.log(obj);
-            axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/admin/update-password-staff/'+this.props.match.params.token, obj)
-            .then(res => {axios.get('http://'+process.env.REACT_APP_AWS_IP+':4000/admin/removeToken/'+this.props.match.params.token)
-                          console.log(res.data);
-                         })
-            .then(res => {console.log(res);
-                          this.props.history.push('/');
-                         })             
-        
-       }
+            axios.post('http://' + process.env.REACT_APP_AWS_IP + ':4000/admin/update-password-staff/' + this.props.match.params.token, obj)
+                .then(res => {
+                    axios.get('http://' + process.env.REACT_APP_AWS_IP + ':4000/admin/removeToken/' + this.props.match.params.token)
+                    console.log(res.data);
+                })
+                .then(res => {
+                    console.log(res);
+                    this.props.history.push('/');
+                })
+        }
     }
-    
+
+
     render() {
-        
-        const {password, error} = this.state;
+
+        const { password, error } = this.state;
         if (error) {
             return (
                 <div>
                     <h3>Problem resetting password. Link is invalid or expired</h3>
-
                 </div>
             );
         }
@@ -104,26 +108,48 @@ export default class ChangePasswordStaff extends Component {
                     <h3 align="center">Update Password</h3>
                     <div className="form-group">
                         <label>Email: </label>
-                        <input type="text" 
-                               className="form-control"
-                               readOnly value={this.state.email}
+                        <input type="text"
+                            className="form-control"
+                            readOnly value={this.state.email}
                         />
                     </div>
-                    <div className="form-group"> 
-                        <label>New Password: </label>
+
+                    <div className="form-group">
+                        <label>New Password:</label>
+                        <input className="form-control"
+                            autoComplete="off"
+                            type="password"
+                            onChange={this.onChangeUserPassword}
+                            minLength={6}
+                            maxLength={20}
+                            pattern='(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[~?<>"!@#-$£|\/.,-()%^+=])'
+                            required
+                        />
+
+                        <br />
+                        <PWStrengthMeter className="form-group" password={password} /> <br />
+                        <label style={{ textAlign: 'left' }}>
+                            <h6>Requirements :</h6>
+
+                            - Include at least 1 uppercase letter <br />
+                            - Include at least 1 lowercase letter <br />
+                            - Include at least 1 number <br />
+                            - Include at least 1 special character (i.e. !,£,$,%,) <br />
+                        </label>
+                    </div>
+
+
+                    <div className="form-group">
+                        <label>Confirm Password: </label>
                         <input type="password"
-                               className="form-control"
-                               onChange={this.onChangeUserPassword}
+                            className="form-control"
+                            onChange={this.onChangeConfirmPassword}
+                            required
                         />
                     </div>
-					<div className="form-group">
-					   <label>Confirm Password: </label>
-					   <input type ="password"
-						      className="form-control"
-						      onChange={this.onChangeConfirmPassword}
-						/>
-					</div>
-					
+
+
+
                     <br />
                     <div className="form-group">
                         <input id="updatePasswordBtn" type="submit" value="Update Password" className="btn btn-primary" />
@@ -132,5 +158,5 @@ export default class ChangePasswordStaff extends Component {
             </div>
         )
 
-  }
+    }
 }
