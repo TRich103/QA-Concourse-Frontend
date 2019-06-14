@@ -28,17 +28,18 @@ export default class TraineeExpenses extends Component {
     }
     
     onSave = () => {
-        this.state.disabled = true;
-        console.log(this.state.disabled);
-        axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/admin/expenses/'+this.props.match.params.id, {expenseType: this.state.expenseType, amount: this.state.monthly_expenses, addedBy: this.state.currentUser.token._id })
-        .then(res => {
-            console.log(res.data);
-            window.location.reload();
-        });
+        this.setState({
+            disabled: true
+          });
+          axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/admin/expenses/'+this.props.match.params.id, {expenseType: this.state.expenseType, amount: this.state.monthly_expenses, addedBy: this.state.currentUser.token._id })
+          .then(res => {
+              console.log(res.data);
+              window.location.reload();
+            });
     }
     
     onChange = (e) => this.setState({ monthly_expenses: e.target.value });
-
+    
 
     onSelect = (e) => {
         if(e.target.value === "Other"){
