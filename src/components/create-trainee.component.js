@@ -8,7 +8,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import "react-datepicker/dist/react-datepicker.css";
 import '@y0c/react-datepicker/assets/styles/calendar.scss';
 import '../css/add-trainee.css';
-import Collapse from 'react-bootstrap/Collapse'
+import Collapse from 'react-bootstrap/Collapse';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
 import MomentLocaleUtils, {
