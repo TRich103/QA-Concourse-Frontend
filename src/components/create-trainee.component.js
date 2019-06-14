@@ -9,6 +9,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import '@y0c/react-datepicker/assets/styles/calendar.scss';
 import '../css/add-trainee.css';
 import Collapse from 'react-bootstrap/Collapse';
+import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
 import MomentLocaleUtils, {
@@ -32,6 +33,7 @@ export default class CreateTrainee extends Component {
         this.onChangeBursaryAmount = this.onChangeBursaryAmount.bind(this);
         this.toggleShow = this.toggleShow.bind(this);
         this.hide = this.hide.bind(this);
+        this.toggle = this.toggle.bind(this);
 
 
         this.state = {
@@ -51,7 +53,8 @@ export default class CreateTrainee extends Component {
             open: false,
             default_bursary: 0,
             bankHolidays: true,
-            show: false
+            show: false,
+            dropdownOpen: false,
         }
     }
 
@@ -84,6 +87,13 @@ export default class CreateTrainee extends Component {
     toggleShow() {
         this.setState({ show: !this.state.show });
     }
+
+    toggle() {
+        this.setState({
+            dropdownOpen: !this.state.dropdownOpen
+        });
+    }
+
 
     hide(e) {
         if (e && e.relatedTarget) {
@@ -153,7 +163,7 @@ export default class CreateTrainee extends Component {
 
     onClickBursary(e) {
         e.preventDefault();
-        if (e.target.innerHTML === "Bursary"){
+        if (e.target.innerHTML === "Bursary") {
             document.getElementById('btn-dropdown').innerHTML = "Bursary";
             if (this.state.bursary === "False") {
                 this.setState({
@@ -279,7 +289,7 @@ export default class CreateTrainee extends Component {
                     );
         }
     }
-
+    
     render() {
         if (this.state.currentUser.token.role !== 'recruiter' && this.state.currentUser.token.role !== 'admin') {
             return (
@@ -321,13 +331,13 @@ export default class CreateTrainee extends Component {
 
                         <div id="dropdown-container" className="form-group">
                             <label>Apartment or Bursary: </label>
-                            <div className="dropdown">
+                            {/* <div className="dropdown">
                                 <button id="btn-dropdown"
                                     className="btn btn-primary dropdown-toggle"
                                     type="button"
                                     onClick={this.toggleShow}
                                     onBlur={this.hide}
-                                     >
+                                >
                                     Please Select
                                 </button>
                                 {this.state.show &&
@@ -338,7 +348,17 @@ export default class CreateTrainee extends Component {
                                         </ul>
                                     )
                                 }
-                            </div>
+                            </div> */}
+
+                            <ButtonDropdown  isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+                                <DropdownToggle id="btn-dropdown"  caret>
+                                    Please Select
+                                </DropdownToggle>
+                                <DropdownMenu id="btn-dropdown-menu">
+                                    <DropdownItem onClick={this.onClickBursary}>Bursary</DropdownItem>
+                                    <DropdownItem onClick={this.onClickBursary}>Apartment</DropdownItem>
+                                </DropdownMenu>
+                            </ButtonDropdown>
                         </div>
 
                         <Collapse in={this.state.open}>
