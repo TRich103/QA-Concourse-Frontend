@@ -381,13 +381,13 @@ export default class ListTrainee extends Component {
                         {trainees.map(t => {
                             return (
                                 <tr>
-                                    <td> {t.trainee_fname}</td>
-                                    <td> {t.trainee_lname}</td>
-                                    <td id="email"> <a href={"mailto:"+t.trainee_email}>{t.trainee_email}</a></td>
-                                    <td> <center>{t.status}</center></td>
-                                    <td> {t.added_By}</td>
-                                    <td> <center>{t.bursary}</center></td>
-                                    <td> <center>{moment(t.trainee_start_date).format('MMMM Do YYYY')}</center></td>
+                                    <td onClick={() => window.location.href = "/editDates/" + t._id}> {t.trainee_fname}</td>
+                                    <td onClick={() => window.location.href = "/editDates/" + t._id}> {t.trainee_lname}</td>
+                                    <td onClick={() => window.location.href = "/editDates/" + t._id} id="email"> <a href={"mailto:"+t.trainee_email}>{t.trainee_email}</a></td>
+                                    <td onClick={() => window.location.href = "/editDates/" + t._id}> <center>{t.status}</center></td>
+                                    <td onClick={() => window.location.href = "/editDates/" + t._id}> {t.added_By}</td>
+                                    <td onClick={() => window.location.href = "/editDates/" + t._id}> <center>{t.bursary}</center></td>
+                                    <td onClick={() => window.location.href = "/editDates/" + t._id}> <center>{moment(t.trainee_start_date).format('MMMM Do YYYY')}</center></td>
                                 </tr>
                             );
                         })}
@@ -481,13 +481,13 @@ export default class ListTrainee extends Component {
                             {trainees.map(t => {
                                 return (
                                     <tr>
-                                        <td> {t.trainee_fname}</td>
-                                        <td> {t.trainee_lname}</td>
-                                        <td id="email"> <a href={"mailto:" + t.trainee_email}>{t.trainee_email}</a></td>
-                                        <td> <center>{t.status}</center></td>
-                                        <td> {t.added_By}</td>
-                                        <td> <center>{t.bursary}</center></td>
-                                        <td> <center>{moment(t.trainee_start_date).format('MMMM Do YYYY')}</center></td>
+                                        <td onClick={() => window.location.href = "/trainee-details/" + t._id}> {t.trainee_fname}</td>
+                                        <td onClick={() => window.location.href = "/trainee-details/" + t._id}> {t.trainee_lname}</td>
+                                        <td onClick={() => window.location.href = "/trainee-details/" + t._id} id="email"> <a href={"mailto:" + t.trainee_email}>{t.trainee_email}</a></td>
+                                        <td onClick={() => window.location.href = "/trainee-details/" + t._id}> <center>{t.status}</center></td>
+                                        <td onClick={() => window.location.href = "/trainee-details/" + t._id}> {t.added_By}</td>
+                                        <td onClick={() => window.location.href = "/trainee-details/" + t._id}> <center>{t.bursary}</center></td>
+                                        <td onClick={() => window.location.href = "/trainee-details/" + t._id}> <center>{moment(t.trainee_start_date).format('MMMM Do YYYY')}</center></td>
                                     </tr>
                                 );
                             })}
