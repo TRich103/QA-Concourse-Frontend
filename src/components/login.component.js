@@ -94,7 +94,6 @@ export default class Login extends Component {
         return (
             <div className="Login">
                 <form className="form" onSubmit={this.onSubmit}>
-                    {/* <p className="h5 text-center mb-4" >Sign in</p> */}
                     <label className="uname" bsSize="large"><b>Email</b></label>
                     <input type="text" placeholder="Enter Email" name="email" onChange={this.handleUsername} required />
                     <br/>
@@ -102,7 +101,6 @@ export default class Login extends Component {
                     <input type="password" placeholder="Enter Password" name="psw" onChange={this.handlePassword} required />
                     <br />
                     <br/>
-                    {/* <input type="submit" className="btn" value="Login"/> */}
                     <Button id="loginBtn" type="submit" className="btn" value="Login">
                   Login
                     </Button>

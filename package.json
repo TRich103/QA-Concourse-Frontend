@@ -59,6 +59,7 @@
     "@babel/preset-react": "^7.0.0",
     "axios-mock-adapter": "^1.16.0",
     "babel-polyfill": "^6.26.0",
+    "enzyme": "^3.10.0",
     "identity-obj-proxy": "^3.0.0",
     "react-currency-input-field": "0.0.45",
     "react-test-renderer": "^16.8.6"

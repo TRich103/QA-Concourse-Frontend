@@ -1,18 +1,17 @@
 import { BehaviorSubject } from 'rxjs';
-
-import { handleResponse } from './handle-response';
+import decode from "jwt-decode";
+import axios from 'axios';
 
 const items = localStorage.getItem('currentUser');
 const currentUserSubject = new BehaviorSubject(JSON.parse(items));
 
 export const authService = {
-    login,
+//	login,
     logout,
     currentUser: currentUserSubject.asObservable(),
     get currentUserValue () { return currentUserSubject.value }
 };
-
-function login(email, password) {
+/*function login(email, password) {
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -28,7 +27,7 @@ function login(email, password) {
 
             return user;
         });
-}
+}*/
 
 function logout() {
     // remove user from local storage to log user out
