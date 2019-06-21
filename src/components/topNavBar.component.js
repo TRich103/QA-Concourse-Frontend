@@ -34,11 +34,8 @@ export default class topNavBar extends React.Component {
             <ul>
                 <li><a className="sidebar_btn" onClick={() => { document.location.href = "/"; }}>Home</a></li>
                 <li><a id="HelperGuide" target="_new" className="sidebar_btn" href="https://docs.google.com/document/d/1AXQ9NMtyfb5IkY0sDhafANRjIISliqCThlpj8kq99LA/edit">User Guide</a></li>
-                {show_server_logs ?
-                    <li><a className="sidebar_btn" onClick={() => { document.location.href = "/system_logs"; }}>
-                        System Logs
-				</a></li>
-                    : ""}
+                <li><a className="sidebar_btn" onClick={() => { document.location.href = "/user-profile/"+this.state.currentUser.token._id; }}>My Profile</a></li>
+				
                 </ul>
             </div>
         );

@@ -26,6 +26,9 @@ import ForgotPass from "./components/forgot-password.component";
 import UserRecord from "./components/user-history.component";
 import Privacy from "./components/priv-notice.component";
 import TraineeExpenses from "./components/expenses-trainee.component";
+import UserDetails from "./components/user-details.component";
+import EditUserDetails from "./components/user-details-edit.component";
+
 import "./css/Login.css";
 
 
@@ -64,6 +67,8 @@ class App extends Component {
          <Route path="/create" component={CreateTrainee} />
          <Route path="/changePassword/:token" component={ChangePassword} />
          <Route path="/trainee-details/:id" component={TraineeDetails} />
+		 <Route path="/user-profile" component={UserDetails} />
+		 <Route path="/user-edit/:id" component={EditUserDetails} />
          <Route path="/login" component={Login} />
          <Route path="/" exact component={TabList} />
          <Route path="/addUser" component={AddUser} />
@@ -89,9 +94,11 @@ class App extends Component {
         <Route path="/create" component={CreateTrainee} />
         <Route path="/changePassword/:token" component={ChangePassword} />
         <Route path="/trainee-details/:id" component={TraineeDetails} />
-		    <Route path="/login" component={Login} />
+		<Route path="/user-profile" component={UserDetails} />
+		<Route path="/user-edit/:id" component={EditUserDetails} />
+		<Route path="/login" component={Login} />
         <Route path="/" exact component={ListTrainee} />
-		    <Route path="/addUser" component={AddUser} />
+		<Route path="/addUser" component={AddUser} />
         <Route path="/changePasswordStaff/:token" component={ChangePasswordStaff} />
         <Route path="/editDates/:id" component={EditDates} />
         <div data-keyboard="false">
@@ -112,6 +119,8 @@ class App extends Component {
          <Route path="/changePassword/:token" component={ChangePassword} />
          <Route path="/trainee-details/:id" component={TraineeDetails} />
          <Route path="/login" component={Login} />
+		 <Route path="/user-profile" component={UserDetails} />
+		 <Route path="/user-edit/:id" component={EditUserDetails} />
          <Route path="/" exact component={TabFinance} />
          <Route path="/addUser" component={AddUser} />
          <Route path="/changePasswordStaff/:token" component={ChangePasswordStaff} />
