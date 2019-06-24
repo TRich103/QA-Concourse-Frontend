@@ -94,10 +94,10 @@ export default class Login extends Component {
         return (
             <div className="Login">
                 <form className="form" onSubmit={this.onSubmit}>
-                    <label className="uname" bsSize="large"><b>Email</b></label>
+                    <label className="uname" bssize="large"><b>Email</b></label>
                     <input type="text" placeholder="Enter Email" name="email" onChange={this.handleUsername} required />
                     <br/>
-                    <label className="psw" bsSize="large"><b>Password</b></label>
+                    <label className="psw" bssize="large"><b>Password</b></label>
                     <input type="password" placeholder="Enter Password" name="psw" onChange={this.handlePassword} required />
                     <br />
                     <br/>
