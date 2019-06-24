@@ -1,17 +1,18 @@
 import React from "react";
 import { authService } from './modules/authService';
 import { slide as Menu } from "react-burger-menu";
-
+import { BrowserRouter as Router, Route ,NavLink} from "react-router-dom";
 
 export default class sideBar extends React.Component {
 	constructor(props) {
         super(props);
 			this.state = {
-				show_server_logs: false,
+				show_server_logs: true,
 				currentUser: authService.currentUserValue
 		}
 	}
-	componentDidMount(){
+	
+componentDidMount(){
 		if(this.state.currentUser.token.role === 'admin'){
 			this.setState({
 				show_server_logs: true,
@@ -22,6 +23,7 @@ export default class sideBar extends React.Component {
 			})
 		}
 	}
+	
 	 showSettings (event) {
 		event.preventDefault();
 		}
@@ -31,15 +33,19 @@ export default class sideBar extends React.Component {
 	return (
 		// Pass on our props
 		<Menu>
-			<a className="sidebar_btn" onClick={() => { document.location.href = "/"; }}>Home</a>
+			<Router>
 
+			<NavLink to="/" className="sidebar_btn" >Home</NavLink>
+			<br/><br/>
 			<a className="sidebar_btn" href="https://docs.google.com/document/d/1AXQ9NMtyfb5IkY0sDhafANRjIISliqCThlpj8kq99LA/edit" target="_blank" > User Guide</a>
-
+			<br/><br/>
 			{show_server_logs ? 
-			<a className="sidebar_btn" onClick={() => { document.location.href = "/system_logs"; }}>System Logs</a>
+			<NavLink className="sidebar_btn" to="/system_logs">System Logs</NavLink>
 				: ""}
-
-			<a className="sidebar_btn" onClick={() => { document.location.href = "/settings"; }}>Universal Settings</a>
+			<br/><br/>
+			<NavLink className="sidebar_btn" to="/settings"> Universal Settings </NavLink>
+			<br/><br/>
+			</Router>
 		</Menu>
 		);
 	};
