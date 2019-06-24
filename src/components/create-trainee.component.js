@@ -11,7 +11,7 @@ import '../css/add-trainee.css';
 import Collapse from 'react-bootstrap/Collapse'
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
-import MomentLocaleUtils, {
+import {
     formatDate,
   } from 'react-day-picker/moment';
 
@@ -56,7 +56,7 @@ export default class CreateTrainee extends Component {
     componentDidMount(){
         axios.get('http://' + process.env.REACT_APP_AWS_IP + ':4000/admin/staff/' + this.state.currentUser.token._id)
         .then(response => {
-          if(response.data == null){
+          if(response.data === null){
             authService.logout();
             if (!authService.currentUserValue) {
               document.location.href = 'http://' + process.env.REACT_APP_AWS_IP + ':3000/login';
@@ -172,7 +172,7 @@ export default class CreateTrainee extends Component {
     onSubmit(e) {
         e.preventDefault();
 
-        var alertDeterminer;
+        var alertDeterminer ="defaultOption";
         
         if (this.state.form_cancel === false) {
 
@@ -186,7 +186,7 @@ export default class CreateTrainee extends Component {
                 alertDeterminer = "tooloworhigh";
             }
             else if (this.state.bursary_amount > 100) {
-                alertDeterminer = "toomuchbursary"
+                alertDeterminer = "toomuchbursary";
             }
         }
 
@@ -200,13 +200,13 @@ export default class CreateTrainee extends Component {
             case "tooloworhigh":
                 var dateWarning = window.confirm("The dates you have entered are unusually high or low. Are you sure you want to proceed?");
                 
-				if (dateWarning == false){
+				if (dateWarning === false){
                 break;
                 }
             case "toomuchbursary":
                 var dateWarning = window.confirm("Are you sure you want to give this trainee a bursary of more than £100 daily?");
     
-                if(dateWarning == false){
+                if(dateWarning === false){
                     break;
                 }
             default:

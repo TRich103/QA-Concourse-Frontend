@@ -122,7 +122,7 @@ export default class EditTrainee extends Component {
                 document.getElementById("accountnumber").style.borderWidth = "thick";
                 document.getElementById("accountImg").src = ok;
                 document.getElementById("accountImg").style.visibility = "visible"
-                if( sortcodelen!= undefined){
+                if( sortcodelen!== undefined){
                     if(sortcodelen.length  === 6){
                         document.getElementById("updateBtn").disabled = false;
                     }
@@ -144,13 +144,13 @@ export default class EditTrainee extends Component {
         })
         if(e.target.value.length > 5){
             let sortcode = e.target.value;
-            if(sortcode.charAt(0) == 0){
+            if(sortcode.charAt(0) === 0){
                 sortcode = sortcode.slice(1);
                 console.log(sortcode);
             }
             axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/findBank', {sort_code: sortcode})
             .then(res => {
-                if(res.data.Match == true){
+                if(res.data.Match === true){
                     console.log(res.data.BankName)
                     this.setState({
                         trainee_bank_name: res.data.BankName,
@@ -186,7 +186,7 @@ export default class EditTrainee extends Component {
                 document.getElementById("sortcode").style.borderWidth = "thick";
                 document.getElementById("sortImg").src = ok;
                 document.getElementById("sortImg").style.visibility = "visible";
-                if( accountlen!= undefined){
+                if( accountlen!== undefined){
                     if(accountlen.length === 8){
                         document.getElementById("updateBtn").disabled = false;
                     }
@@ -214,7 +214,7 @@ export default class EditTrainee extends Component {
             trainee_sort_code: this.state.trainee_sort_code
         };
         if(this.state.trainee_bursary==="True"){
-            if(this.state.trainee_sort_code.charAt(0) == 0){
+            if(this.state.trainee_sort_code.charAt(0) === 0){
                 formatted_sort_code = this.state.trainee_sort_code.slice(1);
             }
             else{
@@ -226,7 +226,7 @@ export default class EditTrainee extends Component {
                 BankName: this.state.trainee_bank_name.toUpperCase(),
                 Branch: this.state.trainee_bank_branch.toUpperCase()
             }
-            if(this.state.show_non_matching_bank == true){
+            if(this.state.show_non_matching_bank === true){
                 axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/update/'+this.props.match.params.id, updated_trainee)
                 .then(res => {
                     console.log(res.data);
@@ -344,7 +344,7 @@ export default class EditTrainee extends Component {
                                     onChange={this.onChangeTraineeSort}
                                     required minLength = {6}
                                     />
-                            <img id="sortImg"></img>
+                            <img id="sortImg" alt="Sort"></img>
                         </div>
                         
                     </div>

@@ -169,7 +169,8 @@ export default class EditDates extends Component {
     }
     
     onSubmit(e) {
-	  e.preventDefault();
+      e.preventDefault();
+      var alertDeterminer;
 		if(this.state.trainee_start_date === '' || this.state.trainee_end_date === ''){
             alert('Please select the training start/end dates');
         }
@@ -185,7 +186,7 @@ export default class EditDates extends Component {
 		else if(this.state.trainee_days_worked > 31 ){
             alertDeterminer = "HighWorkingDays";
         }
-		var alertDeterminer;
+		
 		 switch (alertDeterminer){
             case "HighWorkingDays":
                 var dateWarning = window.confirm("The Amount of working days to be paid for is higher than the amount of working days within the Month. Are you sure you want to proceed?");

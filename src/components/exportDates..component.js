@@ -68,7 +68,7 @@ export default class ListTrainee extends Component {
             });
             axios.get('http://' + process.env.REACT_APP_AWS_IP + ':4000/admin/staff/' + this.state.currentUser.token._id)
             .then(response => {
-              if(response.data == null){
+              if(response.data === null){
                 authService.logout();
                 if (!authService.currentUserValue) {
                   document.location.href = 'http://' + process.env.REACT_APP_AWS_IP + ':3000/login';
@@ -199,9 +199,9 @@ export default class ListTrainee extends Component {
                 }
             })
         }
-        if(filter.status != 'All'){
+        if(filter.status !== 'All'){
             trainees = trainees.filter(function(trainee){
-                if(trainee.status == filter.status){
+                if(trainee.status === filter.status){
                     console.log(trainee);
                     return trainee;
                 }
@@ -209,9 +209,9 @@ export default class ListTrainee extends Component {
             })
         }
 
-        if(filter.bursary != 'All'){
+        if(filter.bursary !== 'All'){
             trainees = trainees.filter(function(trainee){
-                if(trainee.bursary == filter.bursary){
+                if(trainee.bursary === filter.bursary){
                     return trainee;
                 }
 
@@ -233,8 +233,8 @@ export default class ListTrainee extends Component {
             })
         }
 
-        if(from != undefined){
-            if(to == undefined){
+        if(from !== undefined){
+            if(to === undefined){
                 trainees = trainees.filter(function(trainee){
                     let start = new Date(Date.parse(trainee.trainee_start_date));
                     if(DateUtils.isSameDay(start, from)){
@@ -242,7 +242,7 @@ export default class ListTrainee extends Component {
                     }
                 })
             }
-            else if(to!= undefined){
+            else if(to!== undefined){
                 trainees = trainees.filter(function(trainee){
                     let start = new Date(Date.parse(trainee.trainee_start_date));
                     if(DateUtils.isDayInRange(start, range)){
@@ -313,7 +313,7 @@ export default class ListTrainee extends Component {
                     className="filter-btn"
                     >
                     Filters
-                    <img src={filterIcon}></img>
+                    <img src={filterIcon} alt="Filter"></img>
                     </button>
                     <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} className="dateModal">
                         <ModalHeader toggle={this.toggle} cssModule={{'modal-title':'w-100 text-center'}}>Select Start Dates</ModalHeader>
@@ -415,7 +415,7 @@ export default class ListTrainee extends Component {
                         className="filter-btn"
                         >
                         Filters
-                        <img src={filterIcon}></img>
+                        <img src={filterIcon} alt="Filter"></img>
                         </button>
                         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} className="dateModal">
                             <ModalHeader toggle={this.toggle} cssModule={{'modal-title':'w-100 text-center'}}>Select Start Dates</ModalHeader>

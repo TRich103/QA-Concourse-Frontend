@@ -14,8 +14,6 @@ import settings from './icons/settings.svg';
 import addmoney from './icons/add.svg';
 import mail from './icons/envelope.svg';
 
-import { Button, ButtonGroup } from 'reactstrap';
-
 export default class ListTrainee extends Component {
     
     constructor(props) {
@@ -57,7 +55,7 @@ export default class ListTrainee extends Component {
 
             axios.get('http://' + process.env.REACT_APP_AWS_IP + ':4000/admin/staff/' + this.state.currentUser.token._id)
             .then(response => {
-              if(response.data == null){
+              if(response.data === null){
                 authService.logout();
                 if (!authService.currentUserValue) {
                   document.location.href = 'http://' + process.env.REACT_APP_AWS_IP + ':3000/login';
@@ -150,18 +148,18 @@ export default class ListTrainee extends Component {
                 }
             })
         }
-        if(filter.status != 'All'){
+        if(filter.status !== 'All'){
             trainees = trainees.filter(function(trainee){
-                if(trainee.status == filter.status){
+                if(trainee.status === filter.status){
                     return trainee;
                 }
 
             })
         }
 
-        if(filter.bursary != 'All'){
+        if(filter.bursary !== 'All'){
             trainees = trainees.filter(function(trainee){
-                if(trainee.bursary == filter.bursary){
+                if(trainee.bursary === filter.bursary){
                     return trainee;
                 }
 
@@ -247,11 +245,11 @@ export default class ListTrainee extends Component {
                     className="filter-btn"
                     >
                     Filters
-                    <img src={filterIcon}></img>
+                    <img src={filterIcon} alt="Filter Icon"></img>
                     </button>
                     <div id="addUser">
-                       <Link className="link" to={"/create"}> <button className="qabtn">Add Trainee <img src={add}></img></button></Link>
-                       <Link className="link" to={"/trainee-settings"}><button className="qabtn">Settings <img src={settings}></img></button></Link>                              
+                       <Link className="link" to={"/create"}> <button className="qabtn">Add Trainee <img src={add} alt="Add Trainee"></img></button></Link>
+                       <Link className="link" to={"/trainee-settings"}><button className="qabtn">Settings <img src={settings} alt="Adjust Settings"></img></button></Link>                              
                     </div>
                     <Collapse in={this.state.open}>
                     <p>
@@ -314,11 +312,11 @@ export default class ListTrainee extends Component {
                                                                 if (window.confirm('Are you sure you wish to '+deleteToggle.toLowerCase()+' this trainee?'))
                                                                 axios.get('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/'+deleteRoute+'/'+t._id).then(() => window.location.reload()) } }>
                                                                 {deleteToggle}
-                                                                <img src={close}></img>
+                                                                <img src={close} alt="Close Window"></img>
                                                 </button>&nbsp;
-                                                <button className="actionBtn" value={t._id} onClick={this.handleHistoryClick}>View History <img src={history}></img></button>&nbsp;
-                                                <button className="actionBtn" value={t._id} onClick={this.handleExpensesClick}> Expenses <img src={addmoney}></img></button>&nbsp;
-                                                <a href={"mailto:"+t.trainee_email}><button className="actionBtn">Email <img src={mail}></img></button> </a>
+                                                <button className="actionBtn" value={t._id} onClick={this.handleHistoryClick}>View History <img src={history} alt="View History"></img></button>&nbsp;
+                                                <button className="actionBtn" value={t._id} onClick={this.handleExpensesClick}> Expenses <img src={addmoney} alt="Expenses"></img></button>&nbsp;
+                                                <a href={"mailto:"+t.trainee_email}><button className="actionBtn">Email <img src={mail} alt="Send Email"></img></button> </a>
                                                 </center>
                                            </td>
                                         </tr>
@@ -348,7 +346,7 @@ export default class ListTrainee extends Component {
                     className="filter-btn"
                     >
                     Filters
-                    <img src={filterIcon}></img>
+                    <img src={filterIcon} alt="Filer Icon"></img>
                     </button>
                     <Collapse in={this.state.open}>
                     <p>
@@ -384,7 +382,7 @@ export default class ListTrainee extends Component {
                     <tbody>
                         {trainees.map(t => {
 							if(this.state.currentUser.token.role === 'finance'){
-                                if(t.status != "Suspended"){
+                                if(t.status !== "Suspended"){
                                     return (
                                         <tr className="trainees">
                                             <td onClick={() => window.location.href = "/trainee-details/" + t._id}> {t.trainee_fname}</td>
@@ -394,8 +392,8 @@ export default class ListTrainee extends Component {
                                             <td onClick={() => window.location.href = "/trainee-details/" + t._id}> <center>{t.bursary_amount * t.trainee_days_worked}</center></td>
                                             <td> 
                                                 <center>
-                                                <button className="actionBtn" onClick={() => window.location.href = "/trainee-details/" + t._id}> View Details <img src={eye}></img></button>&nbsp;
-                                                <a href={"mailto:"+t.trainee_email}><button className="actionBtn">Email <img src={mail}></img></button> </a>
+                                                <button className="actionBtn" onClick={() => window.location.href = "/trainee-details/" + t._id}> View Details <img src={eye} alt="View Details"></img></button>&nbsp;
+                                                <a href={"mailto:"+t.trainee_email}><button className="actionBtn">Email <img src={mail} alt="Send Email"></img></button> </a>
                                                 </center>
                                             </td>
                                         </tr>
