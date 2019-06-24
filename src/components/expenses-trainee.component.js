@@ -101,8 +101,7 @@ export default class TraineeExpenses extends Component {
             response.data.monthly_expenses.map(expenses=>
                 {
                     let nextExpense = {"amount":expenses.amount,"type":expenses.expenseType};
-            
-                    this.state.expArray.push(nextExpense);
+                    return this.state.expArray.push(nextExpense);
                 }
                 )
             console.log(response)
