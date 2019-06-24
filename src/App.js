@@ -4,14 +4,14 @@ import React, { Component } from 'react';
 import './App.css';
 import Nav from './Navigation.js'
 import { BrowserRouter as Router, Route} from "react-router-dom";
-
 import CreateTrainee from "./components/create-trainee.component";
 import EditTrainee from "./components/edit-trainee.component";
 import ListTrainee from "./components/list-trainee.component";
 import TabFinance from "./components/tab-finance.component";
 import SystemLogs from "./components/SystemLogs.component";
 import TraineeSettings from "./components/TraineeSettings.component";
-
+import UserDetails from "./components/user-details.component"; 
+import EditUserDetails from "./components/user-details-edit.component"; 
 import ChangePassword from "./components/change-password-trainee.component";
 import TraineeDetails from "./components/trainee-details.component";
 import Login from "./components/login.component";
@@ -27,6 +27,7 @@ import UserRecord from "./components/user-history.component";
 import Privacy from "./components/priv-notice.component";
 import TraineeExpenses from "./components/expenses-trainee.component";
 import "./css/Login.css";
+
 
 
 class App extends Component {
@@ -72,6 +73,8 @@ class App extends Component {
          <Route path="/history/:id" component={UserRecord} />
          <Route path="/trainee-settings" component={TraineeSettings}/>
          <Route path="/expenses/:id" component={TraineeExpenses} />
+		 <Route path="/user-profile" component={UserDetails} />
+		 <Route path="/user-edit/:id" component={EditUserDetails} />
          <div data-keyboard="false">
            <Privacy/>
          </div>
@@ -89,11 +92,13 @@ class App extends Component {
         <Route path="/create" component={CreateTrainee} />
         <Route path="/changePassword/:token" component={ChangePassword} />
         <Route path="/trainee-details/:id" component={TraineeDetails} />
-		    <Route path="/login" component={Login} />
+		<Route path="/login" component={Login} />
         <Route path="/" exact component={ListTrainee} />
-		    <Route path="/addUser" component={AddUser} />
+		<Route path="/addUser" component={AddUser} />
         <Route path="/changePasswordStaff/:token" component={ChangePasswordStaff} />
         <Route path="/editDates/:id" component={EditDates} />
+		<Route path="/user-profile" component={UserDetails} />
+		<Route path="/user-edit/:id" component={EditUserDetails} />
         <div data-keyboard="false">
           <Privacy/>
         </div>
@@ -116,6 +121,8 @@ class App extends Component {
          <Route path="/addUser" component={AddUser} />
          <Route path="/changePasswordStaff/:token" component={ChangePasswordStaff} />
          <Route path="/editDates/:id" component={Login} />
+		 <Route path="/user-profile" component={UserDetails} />
+		 <Route path="/user-edit/:id" component={EditUserDetails} />
          <div data-keyboard="false">
            <Privacy/>
          </div>
