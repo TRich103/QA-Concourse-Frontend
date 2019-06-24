@@ -191,10 +191,10 @@ export default class EditDates extends Component {
             case "HighWorkingDays":
                 var dateWarning = window.confirm("The Amount of working days to be paid for is higher than the amount of working days within the Month. Are you sure you want to proceed?");
                 
-				if (dateWarning == false){
+				if (dateWarning === false){
                 break;
                 }
-			default:
+			default:// eslint-disable-line no-fallthrough
 
         const obj = {
             trainee_start_date: this.state.trainee_start_date,

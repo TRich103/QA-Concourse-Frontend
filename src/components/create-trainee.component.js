@@ -198,25 +198,24 @@ export default class CreateTrainee extends Component {
                 alert('The end date is before the start date, please resolve this before creating the trainee');
                 break;
             case "tooloworhigh":
-                var dateWarning = window.confirm("The dates you have entered are unusually high or low. Are you sure you want to proceed?");
+                let dateWarning = window.confirm("The dates you have entered are unusually high or low. Are you sure you want to proceed?");
                 
 				if (dateWarning === false){
                 break;
                 }
-            case "toomuchbursary":
-                var dateWarning = window.confirm("Are you sure you want to give this trainee a bursary of more than £100 daily?");
-    
-                if(dateWarning === false){
+            case "toomuchbursary":// eslint-disable-line no-fallthrough
+                let payoutWarning = window.confirm("Are you sure you want to give this trainee a bursary of more than £100 daily?");
+                if(payoutWarning === false){
                     break;
                 }
-            default:
+            default:// eslint-disable-line no-fallthrough
             console.log(`Form submitted:`);
             console.log(`Trainee Fname: ${this.state.trainee_fname}`);
             console.log(`Trainee Lname: ${this.state.trainee_lname}`);
             console.log(`Trainee Email: ${this.state.trainee_email}`);
             console.log(this.state.bursary);
             console.log("this is the start date of state : "+this.state.trainee_start_date);
-            var newTrainee = {
+            let newTrainee = {
                 trainee_fname: this.toTitleCase(this.state.trainee_fname),
                 trainee_lname: this.toTitleCase(this.state.trainee_lname),
                 trainee_email: this.state.trainee_email,
@@ -237,7 +236,7 @@ export default class CreateTrainee extends Component {
             console.log(newTrainee);
             
             axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/add', newTrainee)
-            .then( (response) => {if(response.status == 205){
+            .then( (response) => {if(response.status === 205){
                                     alert("Email is already in use");
                                 }
                                 else{
@@ -262,6 +261,10 @@ export default class CreateTrainee extends Component {
         }      
     }
     
+   onClickCancel = () =>{
+    this.setState({form_cancel: false}); 
+    document.location.href = "/";
+   } 
    render() {
 	   if(this.state.currentUser.token.role !== 'recruiter' && this.state.currentUser.token.role !== 'admin'){
 		   return (
@@ -271,7 +274,7 @@ export default class CreateTrainee extends Component {
             <div className="createTrainee" style={{marginLeft: 200, marginRight: 200}}>
                 <form className="createTraineeForm" onSubmit={this.onSubmit}>
                     <h3 className="title">Add Trainee</h3>
-                    <div><center><button id="cancelBtn" onClick={() => {this.state.form_cancel = true; document.location.href = "/"; }}>Cancel</button></center></div>
+                    <div><center><button id="cancelBtn" onClick={this.onClickCancel}>Cancel</button></center></div>
                     <div className="text-input-fields">
                         <div className="form-group"> 
                             <label>First Name: </label>

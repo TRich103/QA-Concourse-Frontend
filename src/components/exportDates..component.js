@@ -197,15 +197,16 @@ export default class ListTrainee extends Component {
                    (i.trainee_fname.toLowerCase() + i.trainee_lname.toLowerCase() + i.trainee_email.toLowerCase()).match(searchString)){
                     return i;
                 }
+                return 0;
             })
         }
         if(filter.status !== 'All'){
             trainees = trainees.filter(function(trainee){
                 if(trainee.status === filter.status){
-                    console.log(trainee);
+                    console.log("Trainee: "+ trainee);
                     return trainee;
                 }
-
+                return 0;
             })
         }
 
@@ -214,7 +215,7 @@ export default class ListTrainee extends Component {
                 if(trainee.bursary === filter.bursary){
                     return trainee;
                 }
-
+                return 0;
             })
         }
 
@@ -223,6 +224,7 @@ export default class ListTrainee extends Component {
                 if(trainee.added_By === recruiterName){
                     return trainee;
                 }
+                return 0;
             })
         }
         if(filter.suspended === false){
@@ -230,6 +232,7 @@ export default class ListTrainee extends Component {
                 if(trainee.status !== 'Suspended'){
                     return trainee;
                 }
+                return 0;
             })
         }
 
@@ -240,6 +243,7 @@ export default class ListTrainee extends Component {
                     if(DateUtils.isSameDay(start, from)){
                          return trainee;
                     }
+                    return 0;
                 })
             }
             else if(to!== undefined){
@@ -248,6 +252,7 @@ export default class ListTrainee extends Component {
                     if(DateUtils.isDayInRange(start, range)){
                          return trainee;
                     }
+                    return 0;
                 })
             }
         }
@@ -258,19 +263,20 @@ export default class ListTrainee extends Component {
                 if(t.status === "Active" && t.bursary === "True"){
                     var obj = [t.trainee_sort_code,t.trainee_fname+' '+t.trainee_lname,t.trainee_account_no,t.bursary_amount*t.trainee_days_worked+".00","BURSARY","99"];
                         output.push(obj);
-                }    
+                }
+                return 0;    
                 }
             )
         }else if(role === 'admin'){
             output = [["First Name", "Last Name", "Email", "Start-Date", "End-Date"]];
             trainees.map( t => {
                     var obj = [t.trainee_fname, t.trainee_lname, t.trainee_email, moment(t.trainee_start_date).format('MMMM Do YYYY'), moment(t.trainee_end_date).format('MMMM Do YYYY')];
-                    output.push(obj);
+                    return output.push(obj);
                 }
             )
         }
         
-        console.log(search.length);
+        //console.log(search.length);
         if(search.length > 0){
             if(role === 'finance'){
                  output = [["First Name", "Last Name", "Email", "Bank Name", "Account Number", "Sort Number","Start-Date", "End-Date"]];
@@ -278,22 +284,23 @@ export default class ListTrainee extends Component {
             else if(role === 'admin'){
                  output = [["First Name", "Last Name", "Email", "Start-Date", "End-Date"]];
             }
-            console.log(search);
-            console.log(this.state.splitDays);
+            //console.log(search);
+            //console.log(this.state.splitDays);
             trainees = trainees.filter(function(i){
                 if(splitDays.includes(i.trainee_start_date.split(" ", 4).toString())){
                     if(role === 'finance'){
-                        var obj =  [i.trainee_fname, i.trainee_lname, i.trainee_email, i.trainee_bank_name, i.trainee_account_no, i.trainee_sort_code, moment(i.trainee_start_date).format('MMMM Do YYYY'), moment(i.trainee_end_date).format('MMMM Do YYYY')];
+                        let obj =  [i.trainee_fname, i.trainee_lname, i.trainee_email, i.trainee_bank_name, i.trainee_account_no, i.trainee_sort_code, moment(i.trainee_start_date).format('MMMM Do YYYY'), moment(i.trainee_end_date).format('MMMM Do YYYY')];
                         output.push(obj);
-                        console.log(output);
+                        //console.log(output);
                         return i;
                     } else if(role === 'admin'){
-                        var obj =  [i.trainee_fname, i.trainee_lname, i.trainee_email, moment(i.trainee_start_date).format('MMMM Do YYYY'), moment(i.trainee_end_date).format('MMMM Do YYYY')];
+                        let obj =  [i.trainee_fname, i.trainee_lname, i.trainee_email, moment(i.trainee_start_date).format('MMMM Do YYYY'), moment(i.trainee_end_date).format('MMMM Do YYYY')];
                         output.push(obj);
-                        console.log(output);
+                        //console.log(output);
                         return i;
                     }
                 }
+                return 0;
             })
         }
         if(this.state.currentUser.token.role === 'admin'){
@@ -315,7 +322,7 @@ export default class ListTrainee extends Component {
                     Filters
                     <img src={filterIcon} alt="Filter"></img>
                     </button>
-                    <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} className="dateModal">
+                    <Modal isOpen={this.state.modal} toggle={this.toggle} className="dateModal">
                         <ModalHeader toggle={this.toggle} cssModule={{'modal-title':'w-100 text-center'}}>Select Start Dates</ModalHeader>
                         <ModalBody cssModule={{'modal-body':'w-100 text-center'}}>
                         <div className = "mod-body">
@@ -338,7 +345,7 @@ export default class ListTrainee extends Component {
                         </ModalBody>
                     </Modal>
                     <div id="addUser">
-                        <CSVLink className="link" data={output} filename='CSV-Report.csv'><button className="qabtn">Download CSV <img src={download}></img></button></CSVLink>
+                        <CSVLink className="link" data={output} filename='CSV-Report.csv'><button className="qabtn">Download CSV <img src={download} alt="Download CSV Icon"></img></button></CSVLink>
                     </div>
                     <Collapse in={this.state.filterBoolean}>
                     <p>
@@ -417,7 +424,7 @@ export default class ListTrainee extends Component {
                         Filters
                         <img src={filterIcon} alt="Filter"></img>
                         </button>
-                        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} className="dateModal">
+                        <Modal isOpen={this.state.modal} toggle={this.toggle} className="dateModal">
                             <ModalHeader toggle={this.toggle} cssModule={{'modal-title':'w-100 text-center'}}>Select Start Dates</ModalHeader>
                             <ModalBody cssModule={{'modal-body':'w-100 text-center'}}>
                             <p>
@@ -442,7 +449,7 @@ export default class ListTrainee extends Component {
                             </ModalBody>
                         </Modal>
                         <div id="addUser">
-                            <button className="qabtn"><CSVLink className="link" data={output} filename='CSV-Report.csv'>Download CSV <img src={download}></img></CSVLink></button>
+                            <button className="qabtn"><CSVLink className="link" data={output} filename='CSV-Report.csv'>Download CSV <img src={download} alt="Download CSV"></img></CSVLink></button>
                         </div>
                         <Collapse in={this.state.filterBoolean}>
                         <p>

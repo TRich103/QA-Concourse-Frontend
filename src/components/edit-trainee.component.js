@@ -361,7 +361,7 @@ export default class EditTrainee extends Component {
                                     onChange={this.onChangeTraineeAccount}
                                     required minLength = {8}
                                     />
-                            <img id="accountImg"></img> 
+                            <img id="accountImg" alt="Account Number"></img> 
                         </div>
                     </div>
                     {show_matching_bank ?
