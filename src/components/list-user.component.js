@@ -4,7 +4,7 @@ import { authService } from './modules/authService';
 import { Link } from 'react-router-dom'
 import AccessDenied from './modules/AccessDenied';
 import Collapse from 'react-bootstrap/Collapse'
-import '../css/list-trainee.css';
+import '../css/GlobalCss.css';
 import add from './icons/person-add.svg';
 import history from './icons/history.svg';
 import close from './icons/close2.svg';

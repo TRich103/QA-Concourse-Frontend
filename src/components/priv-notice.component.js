@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { authService } from './modules/authService';
 import axios from 'axios';
-import '../css/privacy-notice.css';
+import '../css/GlobalCss.css';
 
 
 const privText = <div className='priv-text'><h4 id="modal-label" className="priv-notice-title">Privacy Notice</h4><p>The QA group of companies ("QA", "we", "our" or "us") are committed to ensuring that your privacy is protected. This Privacy Notice describes how we use the personal information that we collect from you, or that you provide, when you:</p>

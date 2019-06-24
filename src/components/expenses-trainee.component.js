@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import '../css/history.css';
+import '../css/GlobalCss.css';
 import { authService } from './modules/authService';
 import AccessDenied from './modules/AccessDenied';
 import { Button, ButtonGroup } from 'reactstrap';

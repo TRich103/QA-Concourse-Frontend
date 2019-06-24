@@ -1,6 +1,6 @@
 import React from "react";
 import { authService } from './modules/authService';
-import "../css/navBar.css";
+import '../css/GlobalCss.css';
 
 
 export default class topNavBar extends React.Component {

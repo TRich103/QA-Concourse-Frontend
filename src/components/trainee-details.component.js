@@ -4,7 +4,7 @@ import { CSVLink } from "react-csv";
 import AccessDenied from './modules/AccessDenied';
 import { authService } from './modules/authService';
 import moment from 'moment';
-import '../css/trainee-details.css';
+import '../css/GlobalCss.css';
 
 
 export default class TraineeDetails extends Component {

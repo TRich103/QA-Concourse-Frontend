@@ -2,12 +2,11 @@ import React from 'react';
 import { TabContent, TabPane, Nav, NavItem, NavLink } from 'reactstrap';
 import classnames from 'classnames';
 import { authService } from './modules/authService';
-
 import AccessDenied from './modules/AccessDenied';
 import ListTrainee from './standalone-list-trainee.component.js';
 import ExportDates from './exportDates..component.js';
 import CostReports from './cost-Report.component.js';
-import '../css/tabs.css';
+import '../css/GlobalCss.css';
 
 export default class TabList extends React.Component {
   constructor(props) {

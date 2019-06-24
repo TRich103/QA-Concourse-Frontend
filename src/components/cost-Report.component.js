@@ -4,7 +4,7 @@ import axios from 'axios';
 import AccessDenied from './modules/AccessDenied';
 import { authService } from './modules/authService';
 import Collapse from 'react-bootstrap/Collapse'
-// import '../css/list-trainee-recruiter.css';
+import '../css/GlobalCss.css';
 import moment from 'moment';
 import "react-table/react-table.css";
 import '../css/report.css'

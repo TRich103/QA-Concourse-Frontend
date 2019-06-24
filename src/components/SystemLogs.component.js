@@ -5,7 +5,7 @@ import {FileSaver, blob, saveAs} from 'file-saver';
 import axios from 'axios';
 import { authService } from './modules/authService';
 import AccessDenied from './modules/AccessDenied';
-import '../css/system_logs.css';
+import '../css/GlobalCss.css';
 
 export default class SystemLogs extends Component {
 	constructor(props) {

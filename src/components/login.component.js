@@ -5,7 +5,7 @@ import axios from 'axios';
 import { authService } from "./modules/authService";
 import decode from "jwt-decode";
 import {Button} from 'reactstrap';
-import '../css/navigation.css';
+import '../css/GlobalCss.css';
 
 export default class Login extends Component {
 

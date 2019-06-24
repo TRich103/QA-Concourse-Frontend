@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { codes } from "../secrets/secrets.js";
-import '../css/changePasswordTrainee.css';
+import '../css/GlobalCss.css';
 
 export default class ChangePasswordStaff extends Component {
     

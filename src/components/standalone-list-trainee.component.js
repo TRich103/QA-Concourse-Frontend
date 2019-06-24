@@ -4,7 +4,7 @@ import axios from 'axios';
 import AccessDenied from './modules/AccessDenied';
 import { authService } from './modules/authService';
 import Collapse from 'react-bootstrap/Collapse'
-import '../css/list-trainee-recruiter.css';
+import '../css/GlobalCss.css';
 import add from './icons/person-add.svg';
 import history from './icons/history.svg';
 import close from './icons/close2.svg';
