@@ -115,6 +115,7 @@ export default class ListTrainee extends Component {
                    (i.trainee_fname.toLowerCase() + i.trainee_lname.toLowerCase() + i.trainee_email.toLowerCase()).match(search)){
                     return i;
                 }
+                return 0;
             })
         }
         if(filter.status !== 'All'){
@@ -122,7 +123,7 @@ export default class ListTrainee extends Component {
                 if(trainee.status === filter.status){
                     return trainee;
                 }
-
+                return 0;
             })
         }
 
@@ -131,7 +132,7 @@ export default class ListTrainee extends Component {
                 if(trainee.bursary === filter.bursary){
                     return trainee;
                 }
-
+                return 0;
             })
         }
 
@@ -140,6 +141,7 @@ export default class ListTrainee extends Component {
                 if(trainee.added_By === recruiterName){
                     return trainee;
                 }
+                return 0;
             })
         }
 
@@ -227,6 +229,7 @@ export default class ListTrainee extends Component {
                                     </tr>
                                 );
                             }
+                            return 0;
                         })}
                     </tbody>
 

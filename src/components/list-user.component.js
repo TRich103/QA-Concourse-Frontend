@@ -93,6 +93,7 @@ export default class ListUser extends Component {
                 if(i.email.toLowerCase().match(search) || i.role.toLowerCase().match(search)){
                     return i;
                 }
+                return 0;
             })
         }
 
@@ -101,6 +102,7 @@ export default class ListUser extends Component {
                 if(user.role === filter.role.toLowerCase()){
                     return user;
                 }
+                return 0;
 
             })
         }
@@ -110,6 +112,7 @@ export default class ListUser extends Component {
                 if(user.status !== 'Suspended'){
                     return user;
                 }
+                return 0;
             })
         }
 
@@ -133,10 +136,10 @@ export default class ListUser extends Component {
                     className="filter-btn"
                     >
                     Filters
-                    <img src={filterIcon}></img>
+                    <img src={filterIcon} alt="filter"></img>
                     </button>
                     <div id="addUser">
-                        <Link className="link" to ={"/addUser"}><button className="qabtn">Add User<img src={add}></img></button></Link>
+                        <Link className="link" to ={"/addUser"}><button className="qabtn">Add User<img src={add} alt="Add User"></img></button></Link>
                     </div>
                     <Collapse in={this.state.open}>
                     <p>
@@ -190,16 +193,16 @@ export default class ListUser extends Component {
                                 <td>
                                         <center>{currentStaff ? <button id="fakeBtn">
                                             {deleteToggle}
-                                            <img src={close}></img>
+                                            <img src={close} alt="Close Window"></img>
                                         </button> : <button className="actionBtn" onClick={() => {
                                             if (window.confirm('Are you sure you wish to ' + deleteToggle.toLowerCase() + ' this user?'))
                                                 axios.get('http://' + process.env.REACT_APP_AWS_IP + ':4000/admin/' + deleteRoute + '/' + user._id).then(() => window.location.reload())
                                         }}>
                                                 {deleteToggle}
-                                                <img src={close}></img>
+                                                <img src={close} alt="Close Window"></img>
                                             </button>}&nbsp;
-                                    <button className="actionBtn" value={user._id} onClick={this.handleHistoryClick}>View History <img src={history}></img></button>&nbsp;
-                                    <a href={"mailto:" + user.email}><button className="actionBtn">Email <img src={mail}></img></button> </a>
+                                    <button className="actionBtn" value={user._id} onClick={this.handleHistoryClick}>View History <img src={history} alt="View History"></img></button>&nbsp;
+                                    <a href={"mailto:" + user.email}><button className="actionBtn">Email <img src={mail} alt="Create Email"></img></button> </a>
                                         </center>
                                 </td>
                             </tr>
