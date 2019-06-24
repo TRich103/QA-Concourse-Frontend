@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { codes } from "../secrets/secrets.js";
 import '../css/GlobalCss.css';
 
 export default class ChangePasswordStaff extends Component {
@@ -89,7 +88,7 @@ export default class ChangePasswordStaff extends Component {
     
     render() {
         
-        const {password, error} = this.state;
+        const {error} = this.state;
         if (error) {
             return (
                 <div>

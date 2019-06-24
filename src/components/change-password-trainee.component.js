@@ -86,7 +86,7 @@ export default class ChangePassword extends Component {
     
     render() {
         
-        const {password, error} = this.state;
+        const {error} = this.state;
         if (error) {
             return (
                 <div>

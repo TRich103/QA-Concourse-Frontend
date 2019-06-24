@@ -20,8 +20,6 @@ import {authService} from "./components/modules/authService";
 import AddUser from "./components/create-user.component";
 import ChangePasswordStaff from './components/change-password-staff.component';
 import EditDates from './components/edit-dates.component';
-import { CookieBanner } from '@palmabit/react-cookie-law';
-import {codes} from './secrets/secrets';
 import ForgotPass from "./components/forgot-password.component";
 import UserRecord from "./components/user-history.component";
 import Privacy from "./components/priv-notice.component";
