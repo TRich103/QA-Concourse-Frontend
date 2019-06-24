@@ -4,7 +4,7 @@ import '../css/history.css';
 import { authService } from './modules/authService';
 import AccessDenied from './modules/AccessDenied';
 import { Button, ButtonGroup } from 'reactstrap';
-import close from './icons/close2.svg';
+//import close from './icons/close2.svg';
 
 
 export default class TraineeExpenses extends Component {
@@ -67,6 +67,13 @@ export default class TraineeExpenses extends Component {
     }
 
     componentDidMount() {
+        this.props = {
+            match:{
+                params:{
+                    id : "5d0bb39bd2ba63099c621593"
+                }
+            }
+        }
         axios.get('http://' + process.env.REACT_APP_AWS_IP + ':4000/admin/getRecord/' + this.props.match.params.id)
             .then(response => {
                 this.setState({ record: response.data });
@@ -169,16 +176,16 @@ export default class TraineeExpenses extends Component {
 
                                     </thead>
                                     <tbody>
-                                        {expArray.map(monthly_expenses => {
+                                        {expArray.map((monthly_expenses, index) => {
                                             return (
                                                 <tr>
                                                     <td>{monthly_expenses.type}</td>
                                                     <td>£{monthly_expenses.amount}</td>
                                                     <td><button className="actionBtn" onClick={() => { 
                                                             if (window.confirm('Are you sure you wish to delete this expense?'))
-                                                            axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/admin/removeExpenses/'+this.props.match.params.id, {"expenseType": monthly_expenses.type, "amount": monthly_expenses.amount }).then(() => window.location.reload()) } }>
+                                                            axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/admin/removeExpenses/'+this.props.match.params.id, {"expenseType": monthly_expenses.type, "amount": monthly_expenses.amount, "location": index}).then(() => window.location.reload()) } }>
                                                             Delete
-                                                            <img src={close}></img>
+                                                            {/* <img src={close}></img> */}
                                         </button></td>
                                                 </tr>
                                             );
@@ -187,7 +194,7 @@ export default class TraineeExpenses extends Component {
                                 </table >
                             </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <ButtonGroup>
-                                    <Button type="submit" id="createExpenseBtn" style={{ marginBottom:30}} onClick={() => { document.location.href = "/"; }}>⭠ Back</Button>
+                                    <Button type="submit" id="createExpenseBtn2" style={{ marginBottom:30}} onClick={() => { document.location.href = "/"; }}>⭠ Back</Button>
                             </ButtonGroup>
 
                         </div>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import AccessDenied from './modules/AccessDenied';
 import { authService } from './modules/authService';
-import moment from 'moment';
+import moment, { lang } from 'moment';
 import momentBusinessDays from 'moment-business-days';
 import 'bootstrap/dist/css/bootstrap.css';
 import "react-datepicker/dist/react-datepicker.css";
@@ -14,7 +14,7 @@ import 'react-day-picker/lib/style.css';
 import MomentLocaleUtils, {
     formatDate,
   } from 'react-day-picker/moment';
-
+import CreatableSelect from 'react-select/creatable';
 export default class CreateTrainee extends Component {
     
     constructor(props) {
@@ -30,6 +30,8 @@ export default class CreateTrainee extends Component {
         this.onChangeBenchEndDate = this.onChangeBenchEndDate.bind(this);
         this.onClickBursary = this.onClickBursary.bind(this);
         this.onChangeBursaryAmount = this.onChangeBursaryAmount.bind(this);
+        this.onSelectGender = this.onSelectGender.bind(this);
+        this.onClickUniversity = this.onClickUniversity.bind(this);
 
         this.state = {
             trainee_fname: '',
@@ -39,8 +41,21 @@ export default class CreateTrainee extends Component {
             trainee_start_date: '',
             trainee_end_date: '',
 			trainee_bench_start_date: '',
-			trainee_bench_end_date: '',
-            currentUser: authService.currentUserValue,
+            trainee_bench_end_date: '',
+            gender: '',
+            university:false,
+            uniName:'',
+            degree:'',
+            intake:'',
+            trainee_phone:'',
+            tech:[],
+            chosenTech:'',
+            intakes:[],
+            geoFlex:'Yes',
+            clearance: 'None',
+            currentUser: authService.currentUserValue, //for testing purposes comment this out, and uncomment the one above.
+            languages: '',
+            date_achieved: '',
             recruiterName: '',
 			trainee_days_worked:'',
             bursary: 'False',
@@ -48,7 +63,9 @@ export default class CreateTrainee extends Component {
             open: false,
             default_bursary: 0,
             bankHolidays: true,
-            form_cancel: false
+            form_cancel: false,
+            addTech: false,
+            addIntake: false
         }
     }
 	
@@ -75,6 +92,19 @@ export default class CreateTrainee extends Component {
                 })
             }
         });
+
+        axios.get('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/get/allTech/').then(response => {
+            this.setState({
+                tech: response.data
+            });
+            console.log(response.data);
+        });
+
+        axios.get('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/get/Intakes/').then(response => {
+            this.setState({
+                intakes: response.data
+            });
+        });   
     }
     
     onChangeTraineeFname(e) {
@@ -105,14 +135,15 @@ export default class CreateTrainee extends Component {
 		this.setState({
 			trainee_bench_start_date: benchStartDate,
 			trainee_bench_end_date: momentBusinessDays(benchStartDate, 'DD-MM-YYYY').businessAdd(59)._d ,
-		})
+        })
+        console.log(this.state.trainee_bench_start_date);
 	}
 		
 	onChangeBenchEndDate(benchEndDate) {
 		this.setState({
 			trainee_bench_end_date: benchEndDate
 		})	
-		console.log(this.state.bankHolidays);
+		console.log(this.state.trainee_bench_end_date);
 	}
 
     onChangeStartDate = (startDate) =>{
@@ -120,7 +151,7 @@ export default class CreateTrainee extends Component {
             trainee_start_date: startDate,
 			trainee_end_date: momentBusinessDays(startDate, 'DD-MM-YYYY').businessAdd(59)._d ,
 			trainee_bench_start_date: momentBusinessDays(startDate, 'DD-MM-YYYY').businessAdd(60)._d ,
-			trainee_bench_end_date: momentBusinessDays(startDate, 'DD-MM-YYYY').businessAdd(119)._d ,
+            trainee_bench_end_date: momentBusinessDays(startDate, 'DD-MM-YYYY').businessAdd(119)._d ,
         })
         console.log(startDate);
         console.log(this.state.trainee_start_date);
@@ -133,7 +164,7 @@ export default class CreateTrainee extends Component {
 			trainee_bench_end_date: momentBusinessDays(endDate, 'DD-MM-YYYY').businessAdd(60)._d ,
 
 	   })
-        console.log(this.state.endDate);
+        console.log(this.state.trainee_end_date);
     }
 
     onClickBursary(e) {
@@ -152,6 +183,134 @@ export default class CreateTrainee extends Component {
             });
         }
     }
+
+    onSelectGender = (e) =>{
+        this.setState({
+            gender: e.target.value
+        })
+    }
+    
+    checkIfTechExists() {
+        let chosen = this.state.chosenTech;
+        let techs = this.state.tech;
+        //checks to see if tech value exists
+        for(var i = 0; i < techs.length; i++){
+            if(techs[i].value === chosen){
+                this.setState({
+                    addTech: false
+                })
+            }
+            else{
+                this.setState({
+                    addTech: true
+                });
+                console.log('set as true');
+                break;
+            }
+        }
+    }
+
+    checkIfIntake(){
+        let intake = this.state.intake;
+        let intakes = this.state.intakes;
+        //checks to see if intake value exists
+        for(var i = 0; i < intakes.length; i++){
+            if(intakes[i].value === intake){
+                this.setState({
+                    addIntake: false
+                })
+                console.log('set as false');
+            }
+            else{
+                this.setState({
+                    addIntake: true
+                });
+                console.log('set as true');
+                break;
+            }
+        }
+    }
+
+    onClickUniversity = (e) =>{
+        if(this.state.university === false){
+            this.setState({
+                university: true
+            })
+        }else{
+            this.setState({
+                university: false
+            })
+        }
+    }
+
+    onChangePhone = (e) =>{
+        this.setState({
+            trainee_phone: e.target.value
+        })
+    }
+
+    onChangeGeoFlex = (e) =>{
+        this.setState({
+            geoFlex: e.target.value
+        })
+    }
+
+    onChangeClearance = (e) => {
+        this.setState({
+            clearance: e.target.value
+        })
+    }
+
+    onChangeUniName = (e) => {
+        this.setState({
+            uniName: e.target.value
+        })
+    }
+
+    onChangeDegree = (e) => {
+        this.setState({
+            degree: e.target.value
+        })
+    }
+
+    handleChange = (newValue) => {
+        if(newValue === null){
+            this.setState({
+                chosenTech: ''
+            })
+        }else{
+            this.setState({
+                chosenTech: newValue.value
+            }, ()=>{
+                console.log('CHOSEN TECH');
+                console.log(this.state.chosenTech);  
+            });
+            this.checkIfTechExists();
+        }
+      };
+    handleCohort = (newValue) => {
+        if(newValue === null){
+            this.setState({
+                intake: 'empty'
+            })
+        }else{
+            this.setState({
+                intake: newValue.value
+            }, ()=>{
+                console.log('INPUT INTAKE')
+                console.log(this.state.intake);  
+            });
+            this.checkIfIntake();
+        }
+        console.log(this.state.currentUser);
+        console.log(this.state.recruiterName)
+    }
+
+    // onChangeLanguage = (e) => {
+    //     this.setState({
+    //         languages: e.target.value
+    //     })
+    // }
 
     onChangeBursaryAmount(e){
         this.setState({
@@ -215,11 +374,47 @@ export default class CreateTrainee extends Component {
             console.log(`Trainee Lname: ${this.state.trainee_lname}`);
             console.log(`Trainee Email: ${this.state.trainee_email}`);
             console.log(this.state.bursary);
+            console.log(this.state.gender);
+            console.log(this.state.uniName);
+            console.log(this.state.trainee_phone);
+            console.log(this.state.degree);
+            console.log(this.state.chosenTech);
+            console.log(this.state.intake);
+            console.log(this.state.geoFlex);
+            console.log(this.state.clearance);
             console.log("this is the start date of state : "+this.state.trainee_start_date);
+            if(this.state.addIntake === true){
+                axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/addIntake', {intakeName: this.state.intake}).then( (response) => {
+                    if(response.status === "400"){
+                        console.log("Could not be added successfully");
+                    }
+                    else{
+                        console.log(response);
+                    }
+                })
+            }
+            if(this.state.addTech === true){
+                axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/addTech', {techName: this.state.chosenTech}).then( (response) => {
+                    if(response.status === 400){
+                        console.log("An error has occured");
+                    }
+                    else{
+                        console.log(response);
+                    }
+                })
+            }
             var newTrainee = {
                 trainee_fname: this.toTitleCase(this.state.trainee_fname),
                 trainee_lname: this.toTitleCase(this.state.trainee_lname),
                 trainee_email: this.state.trainee_email,
+                trainee_gender: this.state.gender,
+                trainee_uniName: this.state.uniName,
+                trainee_phone: this.state.trainee_phone,
+                trainee_degree: this.state.degree,
+                trainee_chosenTech: this.state.chosenTech,
+                trainee_intake: this.state.intake,
+                trainee_geo: this.state.geoFlex,
+                trainee_clearance: this.state.clearance,
                 trainee_password: Math.random().toString(36).slice(-8),
                 trainee_start_date: this.state.trainee_start_date.toString(),
                 trainee_end_date: this.state.trainee_end_date.toString(),
@@ -235,30 +430,31 @@ export default class CreateTrainee extends Component {
             console.log("this is the start date of the variable : "+ newTrainee.trainee_start_date);
 			console.log(this.state.bank_holidays);
             console.log(newTrainee);
-            
-            axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/add', newTrainee)
-            .then( (response) => {if(response.status == 205){
-                                    alert("Email is already in use");
-                                }
-                                else{
-									axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/daysToWork', {
-										trainee_email: this.state.trainee_email.toLowerCase()
-										})
-									.then((response) => {
-										console.log(response.data) 
-									});
+            axios.post('http://' + process.env.REACT_APP_AWS_IP + ':4000/trainee/add', newTrainee)
+                    .then((response) => {
+                        if (response.status == 205) {
+                            alert("Email is already in use");
+                        }
+                        else {
+                            axios.post('http://' + process.env.REACT_APP_AWS_IP + ':4000/trainee/daysToWork', {
+                                trainee_email: this.state.trainee_email.toLowerCase()
+                            })
+                                .then((response) => {
+                                    console.log(response.data)
+                                });
 
-                                    axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/send-email', {
-                                        trainee_email: this.state.trainee_email.toLowerCase(),
-                                        trainee_fname: this.toTitleCase(this.state.trainee_fname)
-                                        })
-                                    .then( (response) => {console.log(response.data);
-									                      this.props.history.push('/');
-														  window.location.reload();
-														 });
-                                }
-                    }   
-            );  
+                            axios.post('http://' + process.env.REACT_APP_AWS_IP + ':4000/trainee/send-email', {
+                                trainee_email: this.state.trainee_email.toLowerCase(),
+                                trainee_fname: this.toTitleCase(this.state.trainee_fname)
+                            })
+                                .then((response) => {
+                                    console.log(response.data);
+                                    this.props.history.push('/');
+                                    window.location.reload();
+                                });
+                        }
+                    }
+                    );  
         }      
     }
     
@@ -289,6 +485,14 @@ export default class CreateTrainee extends Component {
                                     onChange={this.onChangeTraineeLname}
                                     required/>
                         </div>
+                        <div className="form-group"> 
+                            <label>Phone Number: </label>
+                            <input  type="number"
+                                    className="form-control"
+                                    value={this.state.trainee_phone}
+                                    onChange={this.onChangePhone}
+                                    required/>
+                        </div>
                         <div className="form-group">
                             <label>Email: </label>
                             <input 
@@ -298,8 +502,75 @@ export default class CreateTrainee extends Component {
                                     onChange={this.onChangeTraineeEmail}
                                     required/>
                         </div>
+                        <div className="form-group">
+                            <label>Gender: </label>
+                            <select className="form-control" value={this.state.gender} onChange={this.onSelectGender} required>
+                                <option selected value="">Select gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                        <div className="form-group">
+                            <label>University: </label>
+                            &nbsp;&nbsp;
+                            <input type="checkbox" onClick={this.onClickUniversity}/>
+                            <Collapse in={this.state.university}>
+                            <div>
+                                    <label>University Name:</label>
+                                    &nbsp;&nbsp;
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        value={this.state.uniName}
+                                        onChange={this.onChangeUniName}
+                                        />
+                                    &nbsp;&nbsp;
+                                    <label>Degree Name:</label>
+                                    &nbsp;&nbsp;
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        value={this.state.degree}
+                                        onChange={this.onChangeDegree}
+                                        />
+                                </div>
+                            </Collapse>
+                        </div>
+                        <div className="form-group">
+                            <label>Geo-Flex :</label>
+                            <select className="form-control" value={this.state.geoFlex} onChange={this.onChangeGeoFlex} required>
+                                <option selected value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                        <div className="form-group">
+                            <label>Security Clearance :</label>
+                            <select className="form-control" value={this.state.clearance} onChange={this.onChangeClearance} required>
+                                <option selected value="None">None</option>
+                                <option value="BPSS">BPSS</option>
+                                <option value="SC">SC</option>
+                                <option value="DV">DV</option>
+                                <option value="NPPV3">NPPV3</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>Technology :</label>
+                            &nbsp;&nbsp;
+                            <CreatableSelect
+                            placeholder="Select technology"
+                            onChange={this.handleChange}
+                            options={this.state.tech}
+                            />
+                            <label>Cohort / Intake :</label>
+                            &nbsp;&nbsp;
+                            <CreatableSelect
+                            placeholder="Select or Create a new Intake"
+                            onChange={this.handleCohort}
+                            options={this.state.intakes}
+                            />
+                        </div>
                     </div>
-					
+					&nbsp;&nbsp;
                     <div className="form-group">
                         <label> Bursary: </label>
 						&nbsp;&nbsp;

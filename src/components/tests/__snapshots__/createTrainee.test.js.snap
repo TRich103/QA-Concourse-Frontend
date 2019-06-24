@@ -1,0 +1,493 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly when there are no items 1`] = `
+<div
+  className="createTrainee"
+  style={
+    Object {
+      "marginLeft": 200,
+      "marginRight": 200,
+    }
+  }
+>
+  <form
+    className="createTraineeForm"
+    onSubmit={[Function]}
+  >
+    <h3
+      className="title"
+    >
+      Add Trainee
+    </h3>
+    <div>
+      <center>
+        <button
+          id="cancelBtn"
+          onClick={[Function]}
+        >
+          Cancel
+        </button>
+      </center>
+    </div>
+    <div
+      className="text-input-fields"
+    >
+      <div
+        className="form-group"
+      >
+        <label>
+          First Name: 
+        </label>
+        <input
+          className="form-control"
+          onChange={[Function]}
+          required={true}
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        className="form-group"
+      >
+        <label>
+          Last Name: 
+        </label>
+        <input
+          className="form-control"
+          onChange={[Function]}
+          required={true}
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        className="form-group"
+      >
+        <label>
+          Phone Number: 
+        </label>
+        <input
+          className="form-control"
+          onChange={[Function]}
+          required={true}
+          type="number"
+          value=""
+        />
+      </div>
+      <div
+        className="form-group"
+      >
+        <label>
+          Email: 
+        </label>
+        <input
+          className="form-control"
+          onChange={[Function]}
+          required={true}
+          type="email"
+          value=""
+        />
+      </div>
+      <div
+        className="form-group"
+      >
+        <label>
+          Gender: 
+        </label>
+        <select
+          className="form-control"
+          onChange={[Function]}
+          required={true}
+          value=""
+        >
+          <option
+            selected={true}
+            value=""
+          >
+            Select gender
+          </option>
+          <option
+            value="Male"
+          >
+            Male
+          </option>
+          <option
+            value="Female"
+          >
+            Female
+          </option>
+        </select>
+      </div>
+      <div
+        className="form-group"
+      >
+        <label>
+          University: 
+        </label>
+          
+        <input
+          onClick={[Function]}
+          type="checkbox"
+        />
+        <Collapse
+          appear={false}
+          dimension="height"
+          getDimensionValue={[Function]}
+          in={false}
+          mountOnEnter={false}
+          timeout={300}
+          unmountOnExit={false}
+        >
+          <div>
+            <label>
+              University Name:
+            </label>
+              
+            <input
+              className="form-control"
+              onChange={[Function]}
+              type="text"
+              value=""
+            />
+              
+            <label>
+              Degree Name:
+            </label>
+              
+            <input
+              className="form-control"
+              onChange={[Function]}
+              type="text"
+              value=""
+            />
+          </div>
+        </Collapse>
+      </div>
+      <div
+        className="form-group"
+      >
+        <label>
+          Geo-Flex :
+        </label>
+        <select
+          className="form-control"
+          onChange={[Function]}
+          required={true}
+          value="Yes"
+        >
+          <option
+            selected={true}
+            value="Yes"
+          >
+            Yes
+          </option>
+          <option
+            value="No"
+          >
+            No
+          </option>
+        </select>
+      </div>
+      <div
+        className="form-group"
+      >
+        <label>
+          Security Clearance :
+        </label>
+        <select
+          className="form-control"
+          onChange={[Function]}
+          required={true}
+          value="None"
+        >
+          <option
+            selected={true}
+            value="None"
+          >
+            None
+          </option>
+          <option
+            value="BPSS"
+          >
+            BPSS
+          </option>
+          <option
+            value="SC"
+          >
+            SC
+          </option>
+          <option
+            value="DV"
+          >
+            DV
+          </option>
+          <option
+            value="NPPV3"
+          >
+            NPPV3
+          </option>
+        </select>
+      </div>
+      <div>
+        <label>
+          Technology :
+        </label>
+          
+        <StateManager
+          defaultInputValue=""
+          defaultMenuIsOpen={false}
+          defaultValue={null}
+          onChange={[Function]}
+          options={Array []}
+          placeholder="Select technology"
+        />
+        <label>
+          Cohort / Intake :
+        </label>
+          
+        <StateManager
+          defaultInputValue=""
+          defaultMenuIsOpen={false}
+          defaultValue={null}
+          onChange={[Function]}
+          options={Array []}
+          placeholder="Select or Create a new Intake"
+        />
+      </div>
+    </div>
+      
+    <div
+      className="form-group"
+    >
+      <label>
+         Bursary: 
+      </label>
+        
+      <input
+        id="bursaryValue"
+        onClick={[Function]}
+        type="checkbox"
+      />
+    </div>
+    <Collapse
+      appear={false}
+      dimension="height"
+      getDimensionValue={[Function]}
+      in={false}
+      mountOnEnter={false}
+      timeout={300}
+      unmountOnExit={false}
+    >
+      <div
+        className="form-group"
+      >
+        <label>
+          Bursary Amount:
+        </label>
+        <br />
+          
+        <input
+          onChange={[Function]}
+          required={true}
+          type="number"
+          value={0}
+        />
+      </div>
+    </Collapse>
+    <div
+      className="form-group"
+    >
+      <label>
+         Training Start Date
+      </label>
+      <div
+        style={
+          Object {
+            "height": "50px",
+          }
+        }
+      >
+        <DayPickerInput
+          classNames={
+            Object {
+              "container": "DayPickerInput",
+              "overlay": "DayPickerInput-Overlay",
+              "overlayWrapper": "DayPickerInput-OverlayWrapper",
+            }
+          }
+          clickUnselectsDay={false}
+          component="input"
+          dayPickerProps={
+            Object {
+              "disabledDays": Object {
+                "daysOfWeek": Array [
+                  0,
+                  6,
+                ],
+              },
+              "month": undefined,
+              "selectedDays": "",
+            }
+          }
+          format="DD/MM/YYYY"
+          formatDate={[Function]}
+          hideOnDayClick={true}
+          inputProps={Object {}}
+          keepFocus={true}
+          onDayChange={[Function]}
+          overlayComponent={[Function]}
+          parseDate={[Function]}
+          placeholder="DD/MM/YYYY"
+          showOverlay={false}
+          value=""
+        />
+      </div>
+      <label>
+         Training End Date 
+      </label>
+      <div
+        style={
+          Object {
+            "height": "50px",
+          }
+        }
+      >
+        <DayPickerInput
+          classNames={
+            Object {
+              "container": "DayPickerInput",
+              "overlay": "DayPickerInput-Overlay",
+              "overlayWrapper": "DayPickerInput-OverlayWrapper",
+            }
+          }
+          clickUnselectsDay={false}
+          component="input"
+          dayPickerProps={
+            Object {
+              "disabledDays": Object {
+                "daysOfWeek": Array [
+                  0,
+                  6,
+                ],
+              },
+              "month": "",
+              "selectedDays": "",
+            }
+          }
+          format="DD/MM/YYYY"
+          formatDate={[Function]}
+          hideOnDayClick={true}
+          inputProps={Object {}}
+          keepFocus={true}
+          onDayChange={[Function]}
+          overlayComponent={[Function]}
+          parseDate={[Function]}
+          placeholder="DD/MM/YYYY"
+          showOverlay={false}
+          value=""
+        />
+      </div>
+      <label>
+         Bench Start Date 
+      </label>
+      <div
+        style={
+          Object {
+            "height": "50px",
+          }
+        }
+      >
+        <DayPickerInput
+          classNames={
+            Object {
+              "container": "DayPickerInput",
+              "overlay": "DayPickerInput-Overlay",
+              "overlayWrapper": "DayPickerInput-OverlayWrapper",
+            }
+          }
+          clickUnselectsDay={false}
+          component="input"
+          dayPickerProps={
+            Object {
+              "disabledDays": Object {
+                "daysOfWeek": Array [
+                  0,
+                  6,
+                ],
+              },
+              "month": "",
+              "selectedDays": "",
+            }
+          }
+          format="DD/MM/YYYY"
+          formatDate={[Function]}
+          hideOnDayClick={true}
+          inputProps={Object {}}
+          keepFocus={true}
+          onDayChange={[Function]}
+          overlayComponent={[Function]}
+          parseDate={[Function]}
+          placeholder="DD/MM/YYYY"
+          showOverlay={false}
+          value=""
+        />
+      </div>
+      <label>
+         Bench End Date 
+      </label>
+      <div
+        style={
+          Object {
+            "height": "50px",
+          }
+        }
+      >
+        <DayPickerInput
+          classNames={
+            Object {
+              "container": "DayPickerInput",
+              "overlay": "DayPickerInput-Overlay",
+              "overlayWrapper": "DayPickerInput-OverlayWrapper",
+            }
+          }
+          clickUnselectsDay={false}
+          component="input"
+          dayPickerProps={
+            Object {
+              "disabledDays": Object {
+                "daysOfWeek": Array [
+                  0,
+                  6,
+                ],
+              },
+              "month": "",
+              "selectedDays": "",
+            }
+          }
+          format="DD/MM/YYYY"
+          formatDate={[Function]}
+          hideOnDayClick={true}
+          inputProps={Object {}}
+          keepFocus={true}
+          onDayChange={[Function]}
+          overlayComponent={[Function]}
+          parseDate={[Function]}
+          placeholder="DD/MM/YYYY"
+          showOverlay={false}
+          value=""
+        />
+      </div>
+    </div>
+    <div
+      className="form-group"
+    >
+      <input
+        className="btn btn-primary"
+        id="createTraineeBtn"
+        type="submit"
+        value="Add Trainee"
+      />
+    </div>
+  </form>
+</div>
+`;
