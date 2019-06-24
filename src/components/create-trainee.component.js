@@ -324,13 +324,13 @@ export default class CreateTrainee extends Component {
                         <div style={{height: '50px'}}>
                         <DayPickerInput
                             placeholder="DD/MM/YYYY"
-							disabled="{true}"
+			    inputProps={{ readOnly: true }}
                             format="DD/MM/YYYY"
                             formatDate={formatDate}
                             value={this.state.trainee_start_date}
                             onDayChange={this.onChangeStartDate}
                             dayPickerProps={{
-								month:this.trainee_start_date,
+				month:this.trainee_start_date,
                                 selectedDays: this.state.trainee_start_date,
                                 disabledDays: {
                                 daysOfWeek: [0, 6],
@@ -342,7 +342,7 @@ export default class CreateTrainee extends Component {
                         <div style={{height: '50px'}}>
                             <DayPickerInput
                                 placeholder="DD/MM/YYYY"
-								disabled="{true}"
+				inputProps={{ readOnly: true }}
                                 format="DD/MM/YYYY"
                                 formatDate={formatDate}
                                 value={this.state.trainee_end_date}
@@ -360,7 +360,7 @@ export default class CreateTrainee extends Component {
 						<div style={{height: '50px'}}>
                             <DayPickerInput
                                 placeholder="DD/MM/YYYY"
-								disabled="{true}"
+				inputProps={{ readOnly: true }}
                                 format="DD/MM/YYYY"
                                 formatDate={formatDate}
                                 value={this.state.trainee_bench_start_date}
@@ -378,7 +378,7 @@ export default class CreateTrainee extends Component {
 						<div style={{height: '50px'}}>
                             <DayPickerInput
                                 placeholder="DD/MM/YYYY"
-								disabled="{true}"
+				inputProps={{ readOnly: true }}
                                 format="DD/MM/YYYY"
                                 formatDate={formatDate}
                                 value={this.state.trainee_bench_end_date}
