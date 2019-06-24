@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 import React, { Component } from 'react';
 import ReactTable from "react-table";
 import axios from 'axios';
@@ -146,7 +147,7 @@ export default class CostReport extends Component {
 
             axios.get('http://' + process.env.REACT_APP_AWS_IP + ':4000/admin/staff/' + this.state.currentUser.token._id)
             .then(response => {
-              if(response.data == null){
+              if(response.data === null){
                 authService.logout();
                 if (!authService.currentUserValue) {
                   document.location.href = 'http://' + process.env.REACT_APP_AWS_IP + ':3000/login';
@@ -357,7 +358,7 @@ export default class CostReport extends Component {
 
         axios.get('http://' + process.env.REACT_APP_AWS_IP + ':4000/admin/staff/' + this.state.currentUser.token._id)
         .then(response => {
-          if(response.data == null){
+          if(response.data === null){
             authService.logout();
             if (!authService.currentUserValue) {
               document.location.href = 'http://' + process.env.REACT_APP_AWS_IP + ':3000/login';
@@ -403,12 +404,12 @@ export default class CostReport extends Component {
         let button;
 
         if(this.state.currentUser.token.role === "finance"){
-            if(this.state.values.status == "Admin Approved"){
+            if(this.state.values.status === "Admin Approved"){
                 button = <button className="actionBtn" onClick={this.updateReport}>Approve</button> 
             }
         }
         else if(this.state.currentUser.token.role === "admin"){
-            if(this.state.values.status == "Pending Approval"){
+            if(this.state.values.status === "Pending Approval"){
                 button = <button className="actionBtn" onClick={this.updateReport}>Approve</button> 
             }
         }
@@ -451,9 +452,9 @@ export default class CostReport extends Component {
             })
         }
 
-        if(filter.status != 'All'){
+        if(filter.status !== 'All'){
             trainees = trainees.filter(function(trainee){
-                if(trainee.status == filter.status){
+                if(trainee.status === filter.status){
                     console.log(trainee);
                     return trainee;
                 }
@@ -469,8 +470,8 @@ export default class CostReport extends Component {
             })
         }
 
-        if(from != undefined){
-            if(to == undefined){
+        if(from !== undefined){
+            if(to === undefined){
                 trainees = trainees.filter(function(trainee){
                     let start = new Date(Date.parse(trainee.start));
                     if(DateUtils.isSameDay(start, from)){
@@ -478,7 +479,7 @@ export default class CostReport extends Component {
                     }
                 })
             }
-            else if(to!= undefined){
+            else if(to!== undefined){
                 trainees = trainees.filter(function(trainee){
                     let start = new Date(Date.parse(trainee.start));
                     if(DateUtils.isDayInRange(start, range)){
@@ -547,7 +548,7 @@ export default class CostReport extends Component {
                     >
                     Filters
                     </button>
-                    <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} className="dateModal">
+                    <Modal isOpen={this.state.modal} toggle={this.toggle} className="dateModal">
                         <ModalHeader toggle={this.toggle} cssModule={{'modal-title':'w-100 text-center'}}>Select Start Dates</ModalHeader>
                         <ModalBody cssModule={{'modal-body':'w-100 text-center'}}>
                         <div className = "mod-body">

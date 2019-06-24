@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { CSVLink } from "react-csv";
 import AccessDenied from './modules/AccessDenied';
 import { authService } from './modules/authService';
 import moment from 'moment';
@@ -42,7 +41,7 @@ export default class TraineeDetails extends Component {
                     trainee_sort_code: response.data.trainee_sort_code,
                     trainee_account_no: response.data.trainee_account_no,
                     trainee_bursary: response.data.bursary,
-                    csv: [["Trainee/Payee Name", "Account Number", "Sort Code", "Total Value", "DecimalPlace", "Append", "Data to Copy to Notepad"],[response.data.trainee_fname +" "+ response.data.trainee_lname, response.data.trainee_account_no, response.data.trainee_sort_code, "0.00", "2","000",response.data.trainee_sort_code+','+response.data.trainee_fname+' '+response.data.trainee_lname+','+response.data.trainee_account_no+','+"0"+".00"+','+"BURSARY"+','+"99"]]
+                    csv: [["Trainee/Payee Name", "Account Number", "Sort Code", "Total Value", "DecimalPlace", "Append", "Data to Copy to Notepad"],[response.data.trainee_fname +" "+ response.data.trainee_lname, response.data.trainee_account_no, response.data.trainee_sort_code, "0.00", "2","000",response.data.trainee_sort_code + "," +response.data.trainee_fname+" "+response.data.trainee_lname+","+response.data.trainee_account_no+",0.00,BURSARY,99"]]
                 });
                 console.log(this.state.trainee_start_date);
                 console.log(this.state.trainee_end_date);

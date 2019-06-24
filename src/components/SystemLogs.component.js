@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import fileReader from 'react-file-reader'; 
-import { render } from 'react-dom';
-import {FileSaver, blob, saveAs} from 'file-saver';
 import axios from 'axios';
 import { authService } from './modules/authService';
 import AccessDenied from './modules/AccessDenied';
