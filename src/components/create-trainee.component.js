@@ -324,6 +324,7 @@ export default class CreateTrainee extends Component {
                         <div style={{height: '50px'}}>
                         <DayPickerInput
                             placeholder="DD/MM/YYYY"
+							disabled="{true}"
                             format="DD/MM/YYYY"
                             formatDate={formatDate}
                             value={this.state.trainee_start_date}
@@ -341,6 +342,7 @@ export default class CreateTrainee extends Component {
                         <div style={{height: '50px'}}>
                             <DayPickerInput
                                 placeholder="DD/MM/YYYY"
+								disabled="{true}"
                                 format="DD/MM/YYYY"
                                 formatDate={formatDate}
                                 value={this.state.trainee_end_date}
@@ -358,6 +360,7 @@ export default class CreateTrainee extends Component {
 						<div style={{height: '50px'}}>
                             <DayPickerInput
                                 placeholder="DD/MM/YYYY"
+								disabled="{true}"
                                 format="DD/MM/YYYY"
                                 formatDate={formatDate}
                                 value={this.state.trainee_bench_start_date}
@@ -375,6 +378,7 @@ export default class CreateTrainee extends Component {
 						<div style={{height: '50px'}}>
                             <DayPickerInput
                                 placeholder="DD/MM/YYYY"
+								disabled="{true}"
                                 format="DD/MM/YYYY"
                                 formatDate={formatDate}
                                 value={this.state.trainee_bench_end_date}
