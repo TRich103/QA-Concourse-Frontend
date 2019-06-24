@@ -118,18 +118,18 @@ export default class ListTrainee extends Component {
                 }
             })
         }
-        if(filter.status != 'All'){
+        if(filter.status !== 'All'){
             trainees = trainees.filter(function(trainee){
-                if(trainee.status == filter.status){
+                if(trainee.status === filter.status){
                     return trainee;
                 }
 
             })
         }
 
-        if(filter.bursary != 'All'){
+        if(filter.bursary !== 'All'){
             trainees = trainees.filter(function(trainee){
-                if(trainee.bursary == filter.bursary){
+                if(trainee.bursary === filter.bursary){
                     return trainee;
                 }
 
@@ -167,10 +167,10 @@ export default class ListTrainee extends Component {
                     className="filter-btn"
                     >
                     Filters
-                    <img src={filterIcon}></img>
+                    <img src={filterIcon} alt="Filter Icon"></img>
                     </button>
                     <div id="addUser">
-                        <Link className="link" to={"/create"}><button className="qabtn">Add Trainee <img src={add}></img></button></Link>
+                        <Link className="link" to={"/create"}><button className="qabtn">Add Trainee <img src={add} alt="Add Icon"></img></button></Link>
                     </div>
                     <Collapse in={this.state.open}>
                     <p>
@@ -207,7 +207,7 @@ export default class ListTrainee extends Component {
                     </thead>               
                     <tbody>
                         {trainees.map(t => {
-                            if(t.status != "Suspended"){
+                            if(t.status !== "Suspended"){
                                 return (
                                     <tr className="trainees">
                                         <td onClick={() => window.location.href = "/editDates/" + t._id}> {t.trainee_fname}</td>
@@ -220,9 +220,9 @@ export default class ListTrainee extends Component {
                                                             if (window.confirm('Are you sure you wish to delete this trainee?'))
                                                             axios.get('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/delete/'+t._id).then(() => window.location.reload()) } }>
                                                             Delete
-                                                            <img src={close}></img>
+                                                            <img src={close} alt="Close Window"></img>
                                         </button>&nbsp;
-                                        <a href={"mailto:"+t.trainee_email}><button className="actionBtn">Email <img src={mail}></img></button> </a>
+                                        <a href={"mailto:"+t.trainee_email}><button className="actionBtn">Email <img src={mail} alt="Email Icon"></img></button> </a>
                                         </center>
                                         </td>
                                     </tr>

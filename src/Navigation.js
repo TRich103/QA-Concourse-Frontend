@@ -8,8 +8,7 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  Button,
-  NavLink
+  Button
 } from 'reactstrap';
 import { authService } from "./components/modules/authService";
 import axios from 'axios';
@@ -118,7 +117,7 @@ export default class Navigation extends React.Component {
       return (
         <div id="navigation-bar">
           <Navbar color="light" light expand="md">
-            <NavbarBrand href="/"><img src={logo} width="60px" />
+            <NavbarBrand href="/"><img src={logo} alt="Company Logo" width="60px" />
 			</NavbarBrand>
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
