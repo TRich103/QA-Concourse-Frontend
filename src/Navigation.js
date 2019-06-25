@@ -1,5 +1,6 @@
 import React from 'react';
 import logo from './QA_logo.png';
+import { BrowserRouter as Router, Route ,NavLink} from "react-router-dom";
 
 import {
   Collapse,
@@ -122,8 +123,10 @@ export default class Navigation extends React.Component {
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className="ml-auto" navbar>
-                <Button id="loginBtn" onClick={this.login} href='/login'>
-                  Login
+                <Button id="loginBtn">
+                <NavLink to="/login">
+                    Login
+                </NavLink>
                 </Button>
               </Nav>
             </Collapse> 
