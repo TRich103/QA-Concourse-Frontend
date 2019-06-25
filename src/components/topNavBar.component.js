@@ -1,7 +1,7 @@
 import React from "react";
 import { authService } from './modules/authService';
 import '../css/GlobalCss.css';
-
+import { BrowserRouter as Router, Route ,NavLink} from "react-router-dom";
 
 export default class topNavBar extends React.Component {
     constructor(props) {
@@ -32,12 +32,12 @@ export default class topNavBar extends React.Component {
             // Pass on our props
             <div id="top-nav-bar">
             <ul>
-                <li><a className="sidebar_btn" onClick={() => { document.location.href = "/"; }}>Home</a></li>
+                <li><NavLink className="sidebar_btn" to="/">Home</NavLink></li>
                 <li><a id="HelperGuide" target="_new" className="sidebar_btn" href="https://docs.google.com/document/d/1AXQ9NMtyfb5IkY0sDhafANRjIISliqCThlpj8kq99LA/edit">User Guide</a></li>
                 {show_server_logs ?
-                    <li><a className="sidebar_btn" onClick={() => { document.location.href = "/system_logs"; }}>
+                    <li><NavLink className="sidebar_btn" to="/system_logs">
                         System Logs
-				</a></li>
+				</NavLink></li>
                     : ""}
                 </ul>
             </div>
