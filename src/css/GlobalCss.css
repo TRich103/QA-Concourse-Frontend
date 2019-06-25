@@ -2,7 +2,6 @@
     background-color: white;
     margin-top:5%;
     border-radius: 4px;
-    
 }
 
 .createTraineeForm{
@@ -52,6 +51,13 @@
 
 .form-group {
     text-align: center;
+    width: 20%;   
+}
+
+.form-control {
+    text-align: center;
+    width: 100px;
+    size: 5;
 }
 
 .addForm{
@@ -318,10 +324,9 @@ input[type=number]::-webkit-outer-spin-button {
 	font-family: "Roboto", sans-serif;
 	font-size: 40px;
 	box-shadow: 5px 10px #004050;
-opacity: 0.8;
+	opacity: 0.8;
 	border-radius: 5px;
 	width: 50%;
-	
 }
 
 #gS{
@@ -586,6 +591,18 @@ a:hover{
     color : #004050;
     border-radius: 0.25rem;
     border: 1px solid #004050;
+}
+
+.traineessmall{
+    font-size: 12px;
+}
+
+.traineesmedium{
+    font-size: 16px;
+}
+
+.traineeslarge{
+    font-size: 20px;
 }
 
 .trainees:hover{
@@ -930,4 +947,9 @@ ul.nav.nav-tabs {
 .table-hover>tbody>tr:nth-child(even):hover,
 .table-hover>tbody>tr:nth-child(even):hover {
     background-color: #c6e4ff;
+}
+
+
+.tabletext{
+    font-size: 16px;
 }
