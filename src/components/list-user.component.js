@@ -23,6 +23,7 @@ export default class ListUser extends Component {
         super(props);
 		
         this.state = {
+        fontsize:"medium",
 			users: [], 
 			searchString:"",
             currentUser: authService.currentUserValue,
@@ -51,6 +52,15 @@ export default class ListUser extends Component {
                 console.log(error);
             })
 		}
+
+        setFontSize = (e) => {
+            console.log(e.value);
+            var x = document.getElementById("dropdown2").value;
+            console.log(x);
+            this.setState({
+                fontsize:x,
+            });
+    }
 
     onChangeSearch(e) {
         this.setState({
@@ -139,6 +149,12 @@ export default class ListUser extends Component {
                     <img src={filterIcon} alt="filter"></img>
                     </button>
                     <div id="addUser">
+                    <select id = "dropdown2" className="qabtn" value={this.state.value} onChange={this.setFontSize}>
+                    <option hidden value="Medium" selected> TextSize</option>
+                    <option value="small" > Small</option>
+                    <option value="medium">Medium</option>
+                    <option value="large">Large</option>
+                    </select>
                         <Link className="link" to ={"/addUser"}><button className="qabtn">Add User<img src={add} alt="Add User"></img></button></Link>
                     </div>
                     <Collapse in={this.state.open}>
@@ -149,7 +165,6 @@ export default class ListUser extends Component {
                             <option value="All">All</option>
                             <option value="Admin">Admin</option>
                             <option value="Recruiter">Recruiter</option>
-                            <option value="Finance">Finance</option>
                         </select>&nbsp;&nbsp;
                         <label>Show Suspended</label> &nbsp;
                         <input type="checkbox" value="Suspended" onClick={this.onChangeSuspendedFilter}/> &nbsp;&nbsp;
@@ -160,9 +175,9 @@ export default class ListUser extends Component {
                 <table className="table table-hover" style={{ marginTop: 20}} >
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Role</th>
-                            <th>Status</th>
+                            <th className="tabletext">Name</th>
+                            <th className="tabletext">Role</th>
+                            <th className="tabletext">Status</th>
                             <th className="action"><center>Action</center></th>
                         </tr>
                     </thead>
@@ -186,7 +201,7 @@ export default class ListUser extends Component {
                                 currentStaff = false;
                             }                           
                             return (
-                                <tr>
+                                <tr className={"trainees"+this.state.fontsize}>
                                 <td>{user.fname} {user.lname}</td>
                                 <td className="userRole">{user.role}</td>
                                 <td>{user.status}</td>

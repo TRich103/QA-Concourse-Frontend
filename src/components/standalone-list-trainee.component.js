@@ -14,12 +14,14 @@ import settings from './icons/settings.svg';
 import addmoney from './icons/add.svg';
 import mail from './icons/envelope.svg';
 
+
 export default class ListTrainee extends Component {
-    
+
     constructor(props) {
         super(props);
 			
         this.state = {
+            fontsize:"medium",
             trainees: [],
             record: [],
 			searchString: "",
@@ -68,6 +70,15 @@ export default class ListTrainee extends Component {
               }
             });
     }
+
+      setFontSize = (e) => {
+        console.log(e.value);
+        var x = document.getElementById("dropdown").value;
+        console.log(x);
+        this.setState({
+            fontsize:x,
+        });
+      }
 
     // Added onChangeSearch(e) function. Needed for the search filter
     onChangeSearch(e) {
@@ -130,7 +141,7 @@ export default class ListTrainee extends Component {
     render() {
         //Declared variables in order to read input from search function
         let trainees = this.state.trainees;
-        let search = this.state.searchString.trim().toLowerCase().replace(/\s+/g, '');
+        let search = this.state.searchString.trim().toLowerCase().replace(/"\"/g, '');
         let filter = this.state.filter;
         let staffName = this.state.staffName;
         const {open} = this.state;
@@ -201,6 +212,12 @@ export default class ListTrainee extends Component {
                         placeholder="Find trainee..."
                     />
                     <div id="addUser">
+                    <select id = "dropdown" className="qabtn" value={this.state.value} onChange={this.setFontSize}>
+                    <option hidden value="Medium" selected> TextSize</option>
+                    <option value="small" > Small</option>
+                    <option value="medium">Medium</option>
+                    <option value="large">Large</option>
+                    </select>
                         <button className="qabtn"><Link className="link" to={"/create"}>Add Trainee</Link></button>            
                     </div>
                 </div>
@@ -208,9 +225,9 @@ export default class ListTrainee extends Component {
                 <table className="table table-striped" style={{ marginTop: 20 }} >
                     <thead>
                         <tr>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Email</th>
+                            <th className="tabletext">First Name</th>
+                            <th className="tabletext">Last Name</th>
+                            <th className="tabletext">Email</th>
                         </tr>
                     </thead>               
                     <tbody>
@@ -251,6 +268,12 @@ export default class ListTrainee extends Component {
                     <img src={filterIcon} alt="Filter Icon"></img>
                     </button>
                     <div id="addUser">
+                    <select id = "dropdown" name="TextSize" className="qabtn" value={this.state.value} onChange={this.setFontSize}>
+                    <option hidden value="medium" selected> Text Size</option>
+                    <option value="small"> Small</option>
+                    <option value="medium">Medium</option>
+                    <option value="large">Large</option>
+                    </select>
                        <Link className="link" to={"/create"}> <button className="qabtn">Add Trainee <img src={add} alt="Add Trainee"></img></button></Link>
                        <Link className="link" to={"/trainee-settings"}><button className="qabtn">Settings <img src={settings} alt="Adjust Settings"></img></button></Link>                              
                     </div>
@@ -281,13 +304,13 @@ export default class ListTrainee extends Component {
                     <table className="table table-hover" style={{ marginTop: 20 }} >
                         <thead>
                             <tr>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th><center>Status</center></th>
-                                <th>Recruited By</th>
-                                <th><center>Bursary</center></th>
-                                <th><center>Payment This Month (£)</center></th>
-                                <th><center>Action</center></th>
+                                <th className="tabletext">First Name</th>
+                                <th className="tabletext">Last Name</th>
+                                <th className="tabletext"><center>Status</center></th>
+                                <th className="tabletext">Recruited By</th>
+                                <th className="tabletext"><center>Bursary</center></th>
+                                <th className="tabletext"><center>Payment This Month (£)</center></th>
+                                <th className="tabletext"><center>Action</center></th>
                             </tr>
                         </thead>               
                         <tbody>
@@ -303,7 +326,7 @@ export default class ListTrainee extends Component {
                                     deleteRoute = "delete";
                                 }
                                 return (
-                                    <tr className="trainees">
+                                    <tr className={"trainees"+this.state.fontsize}>
                                         <td onClick={() => window.location.href = "/editDates/" + t._id}> {t.trainee_fname}</td>
                                         <td onClick={() => window.location.href = "/editDates/" + t._id}> {t.trainee_lname}</td>
                                         <td onClick={() => window.location.href = "/editDates/" + t._id}> <center>{t.status}</center></td>
@@ -370,6 +393,7 @@ export default class ListTrainee extends Component {
                     </p>
                     </Collapse>
                 </div>
+                
                 <div id="resultsTable">
                 <table className="table table-hover" style={{ marginTop: 20 }} >
                     <thead>

@@ -106,13 +106,13 @@ export default class ListTrainee extends Component {
         
         if(search.length > 0){
             trainees = trainees.filter(function(i){
-                if(i.trainee_fname.toLowerCase().match(search) ||
-                   i.status.toLowerCase().match(search)        ||
-                   i.added_By.toLowerCase().match(search)      ||
-                   i.bursary.toLowerCase().match(search)       ||
-                   i.trainee_lname.toLowerCase().match(search) ||
-                   i.trainee_email.toLowerCase().match(search) ||
-                   (i.trainee_fname.toLowerCase() + i.trainee_lname.toLowerCase() + i.trainee_email.toLowerCase()).match(search)){
+                if(i.trainee_fname.match(search) ||
+                   i.status.match(search)        ||
+                   i.added_By.match(search)      ||
+                   i.bursary.match(search)       ||
+                   i.trainee_lname.match(search) ||
+                   i.trainee_email.match(search) ||
+                   (i.trainee_fname + i.trainee_lname + i.trainee_email).match(search)){
                     return i;
                 }
                 return 0;
@@ -173,6 +173,7 @@ export default class ListTrainee extends Component {
                     <div id="addUser">
                         <Link className="link" to={"/create"}><button className="qabtn">Add Trainee <img src={add} alt="AdD Trainee"></img></button></Link>
                     </div>
+                    
                     <Collapse in={this.state.open}>
                     <p>
                         <br></br>
@@ -201,7 +202,7 @@ export default class ListTrainee extends Component {
                             <th>First Name</th>
                             <th>Last Name</th>
                             <th><center>Status</center></th>
-                            <th>Recruited By</th>
+                            <th>Recruiter</th>
                             <th><center>Bursary</center></th>
                             <th><center>Action</center></th>
                         </tr>
@@ -237,8 +238,7 @@ export default class ListTrainee extends Component {
                 </div>
             </div>
             </div>
-        );
-			
+        );	
 		}
 	}
 }

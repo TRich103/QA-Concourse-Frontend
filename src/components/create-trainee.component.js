@@ -7,7 +7,7 @@ import momentBusinessDays from 'moment-business-days';
 import 'bootstrap/dist/css/bootstrap.css';
 import "react-datepicker/dist/react-datepicker.css";
 import '@y0c/react-datepicker/assets/styles/calendar.scss';
-import '../css/add-trainee.css';
+import '../css/GlobalCss.css';
 import Collapse from 'react-bootstrap/Collapse'
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
@@ -271,7 +271,7 @@ export default class CreateTrainee extends Component {
 		   < AccessDenied />
 	   );} else{
         return (
-            <div className="createTrainee" style={{marginLeft: 200, marginRight: 200}}>
+            <div className="createTrainee" style={{marginLeft: 100, marginRight: 100}}>
                 <form className="createTraineeForm" onSubmit={this.onSubmit}>
                     <h3 className="title">Add Trainee</h3>
                     <div><center><button id="cancelBtn" onClick={this.onClickCancel}>Cancel</button></center></div>
@@ -280,6 +280,7 @@ export default class CreateTrainee extends Component {
                             <label>First Name: </label>
                             <input  type="text"
                                     className="form-control"
+                                    size="5"
                                     value={this.state.trainee_fname}
                                     onChange={this.onChangeTraineeFname}
                                     required/>
