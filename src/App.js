@@ -71,7 +71,7 @@ class App extends Component {
          <Route path="/changePassword/:token" component={ChangePassword} />
          <Route path="/trainee-details/:id" component={TraineeDetails} />
          <Route path="/login" component={Login} />
-         <Route path="/" exact component={TabList} />
+         <Route path="/" exact component={userlist} />
          <Route path="/addUser" component={AddUser} />
          <Route path="/changePasswordStaff/:token" component={ChangePasswordStaff} />
          <Route path="/editDates/:id" component={EditDates} />
@@ -80,6 +80,38 @@ class App extends Component {
          <Route path="/expenses/:id" component={TraineeExpenses} />
          <Route path="/trainees" component={traineeslist} />
          <Route path="/users" component={userlist} />
+         <Route path="/csvreport" component={csvreport} />
+         <Route path="/costreport" component={costreport} />
+         <div data-keyboard="false">
+           <Privacy/>
+         </div>
+       </Router> 
+        
+     );
+  }
+  else if(authService.currentUserValue.token.role === 'finance'){
+    return (
+      <Router>    
+         <div className="App">
+           <Nav/>
+           <SideBar/>
+         </div>
+		 <Route path="/system_logs" component={SystemLogs} />
+         <Route path="/admin" component={costreport} />
+         <Route path="/UserSettings" component={UserSettings} />
+         <Route path="/edit/:id" component={EditTrainee} />
+         <Route path="/create" component={CreateTrainee} />
+         <Route path="/changePassword/:token" component={ChangePassword} />
+         <Route path="/trainee-details/:id" component={TraineeDetails} />
+         <Route path="/login" component={Login} />
+         <Route path="/" exact component={costreport} />
+         <Route path="/addUser" component={AddUser} />
+         <Route path="/changePasswordStaff/:token" component={ChangePasswordStaff} />
+         <Route path="/editDates/:id" component={EditDates} />
+         <Route path="/history/:id" component={UserRecord} />
+         <Route path="/trainee-settings" component={TraineeSettings}/>
+         <Route path="/expenses/:id" component={TraineeExpenses} />
+         <Route path="/trainees" component={traineeslist} />
          <Route path="/csvreport" component={csvreport} />
          <Route path="/costreport" component={costreport} />
          <div data-keyboard="false">
@@ -108,7 +140,6 @@ class App extends Component {
         <Route path="/changePasswordStaff/:token" component={ChangePasswordStaff} />
         <Route path="/editDates/:id" component={EditDates} />
         <Route path="/trainees" component={traineeslist} />
-         <Route path="/users" component={userlist} />
         <div data-keyboard="false">
           <Privacy/>
         </div>
