@@ -108,6 +108,7 @@ class App extends Component {
         <Route path="/changePasswordStaff/:token" component={ChangePasswordStaff} />
         <Route path="/editDates/:id" component={EditDates} />
         <Route path="/trainees" component={traineeslist} />
+         <Route path="/users" component={userlist} />
         <div data-keyboard="false">
           <Privacy/>
         </div>
