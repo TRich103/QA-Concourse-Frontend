@@ -4,6 +4,11 @@ import React, { Component } from 'react';
 import './App.css';
 import Nav from './Navigation.js'
 import { BrowserRouter as Router, Route} from "react-router-dom";
+import SideBar from "./components/sideBar.component";
+import traineeslist from "./components/standalone-list-trainee.component";
+import userlist from "./components/list-user.component";
+import costreport from "./components/cost-Report.component";
+import csvreport from "./components/exportDates..component";
 
 import CreateTrainee from "./components/create-trainee.component";
 import EditTrainee from "./components/edit-trainee.component";
@@ -56,6 +61,7 @@ class App extends Component {
       <Router>    
          <div className="App">
            <Nav/>
+           <SideBar/>
          </div>
 		 <Route path="/system_logs" component={SystemLogs} />
          <Route path="/admin" component={TabList} />
@@ -72,16 +78,22 @@ class App extends Component {
          <Route path="/history/:id" component={UserRecord} />
          <Route path="/trainee-settings" component={TraineeSettings}/>
          <Route path="/expenses/:id" component={TraineeExpenses} />
+         <Route path="/trainees" component={traineeslist} />
+         <Route path="/users" component={userlist} />
+         <Route path="/csvreport" component={csvreport} />
+         <Route path="/costreport" component={costreport} />
          <div data-keyboard="false">
            <Privacy/>
          </div>
-       </Router>  
+       </Router> 
+        
      );
   }else if(authService.currentUserValue.token.role === 'recruiter'){
 	  return (
 	   <Router>    
         <div className="App">
           <Nav/>
+          <SideBar/>
         </div>
 		<Route path="/system_logs" component={ListTrainee} />
         <Route path="/admin" component={ListTrainee} />
@@ -95,6 +107,7 @@ class App extends Component {
 		    <Route path="/addUser" component={AddUser} />
         <Route path="/changePasswordStaff/:token" component={ChangePasswordStaff} />
         <Route path="/editDates/:id" component={EditDates} />
+        <Route path="/trainees" component={traineeslist} />
         <div data-keyboard="false">
           <Privacy/>
         </div>
@@ -105,6 +118,7 @@ class App extends Component {
       <Router>    
          <div className="App">
            <Nav/>
+           <SideBar/>
          </div>
 		 <Route path="/system_logs" component={TabList} />
          <Route path="/admin" component={TabList} />
