@@ -99,7 +99,7 @@ export default class EditDates extends Component {
     render() {
         console.log(this.state.bursary)
         const { bursary } = this.state;
-        if (this.state.currentUser.token.role === 'admin' || this.state.currentUser.token.role === 'recruiter') {
+        if (this.state.currentUser.token.role === 'admin' || this.state.currentUser.token.role === 'recruiter' || this.state.currentUser.token.role === 'finance') {
             this.setState ={
                 trainee_fname:"Jeff",
             }
