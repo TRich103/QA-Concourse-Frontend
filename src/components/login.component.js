@@ -6,6 +6,8 @@ import { authService } from "./modules/authService";
 import decode from "jwt-decode";
 import {Button} from 'reactstrap';
 import '../css/GlobalCss.css';
+import { BrowserRouter as Router, Route ,NavLink} from "react-router-dom";
+
 
 export default class Login extends Component {
 
@@ -106,7 +108,7 @@ export default class Login extends Component {
                     <Button id="loginBtn" type="submit" className="btn" value="Login">
                   Login
                     </Button>
-					<button className="forgotBtn" onClick={this.forgotPassword}>FORGOT PASSWORD?</button> 
+					<NavLink className="forgotBtn" to='/forgotPassword'>FORGOT PASSWORD?</NavLink> 
                 </form>
             </div>
         )
