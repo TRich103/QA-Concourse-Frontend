@@ -102,7 +102,9 @@ export default class Navigation extends React.Component {
                       <TopNavBar pageWrapId={"navigation-bar"} outerContainerId={"bar"} />
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className="ml-auto" navbar>
-                <NavItem className="display_name">Logged in as: {this.state.trainee_fname} {this.state.trainee_lname} {this.state.staff_fname} {this.state.staff_lname}  |  </NavItem>
+                <NavItem className="display_name">  
+                  Logged in as: <NavLink to="/UserSettings">{this.state.trainee_fname} {this.state.trainee_lname} {this.state.staff_fname} {this.state.staff_lname}</NavLink> | 
+                  </NavItem>
                 <NavItem>
                   <Button id="logoutBtn" onClick={this.logout} href='/login'>
                     Logout
