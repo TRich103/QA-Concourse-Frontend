@@ -11,6 +11,7 @@ import ListTrainee from "./components/list-trainee.component";
 import TabFinance from "./components/tab-finance.component";
 import SystemLogs from "./components/SystemLogs.component";
 import TraineeSettings from "./components/TraineeSettings.component";
+import UserSettings from "./components/user-settings.component"
 
 import ChangePassword from "./components/change-password-trainee.component";
 import TraineeDetails from "./components/trainee-details.component";
@@ -58,6 +59,7 @@ class App extends Component {
          </div>
 		 <Route path="/system_logs" component={SystemLogs} />
          <Route path="/admin" component={TabList} />
+         <Route path="/UserSettings" component={UserSettings} />
          <Route path="/edit/:id" component={EditTrainee} />
          <Route path="/create" component={CreateTrainee} />
          <Route path="/changePassword/:token" component={ChangePassword} />
@@ -83,6 +85,7 @@ class App extends Component {
         </div>
 		<Route path="/system_logs" component={ListTrainee} />
         <Route path="/admin" component={ListTrainee} />
+        <Route path="/UserSettings" component={UserSettings} />
         <Route path="/edit/:id" component={EditTrainee} />
         <Route path="/create" component={CreateTrainee} />
         <Route path="/changePassword/:token" component={ChangePassword} />
@@ -105,6 +108,7 @@ class App extends Component {
          </div>
 		 <Route path="/system_logs" component={TabList} />
          <Route path="/admin" component={TabList} />
+         <Route path="/UserSettings" component={UserSettings} />
          <Route path="/edit/:id" component={EditTrainee} />
          <Route path="/create" component={CreateTrainee} />
          <Route path="/changePassword/:token" component={ChangePassword} />
