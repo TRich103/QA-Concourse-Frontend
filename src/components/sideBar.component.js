@@ -33,19 +33,15 @@ componentDidMount(){
 	return (
 		// Pass on our props
 		<Menu>
-			<Router>
-
 			<NavLink to="/" className="sidebar_btn" >Home</NavLink>
-			<br/><br/>
-			<a className="sidebar_btn" href="https://docs.google.com/document/d/1AXQ9NMtyfb5IkY0sDhafANRjIISliqCThlpj8kq99LA/edit" target="_blank" > User Guide</a>
-			<br/><br/>
+			<NavLink to="/trainees" className="sidebar_btn" >Trainees</NavLink>
 			{show_server_logs ? 
-			<NavLink className="sidebar_btn" to="/system_logs">System Logs</NavLink>
+			<NavLink className="sidebar_btn" to="/users">Users</NavLink>
 				: ""}
+			<NavLink to="/csvreport" className="sidebar_btn" >CSV Report</NavLink>
+			<NavLink to="/costreport" className="sidebar_btn" >Cost Report</NavLink>
+			<NavLink className="sidebar_btn" to="/usersettings"> User Settings </NavLink>
 			<br/><br/>
-			<NavLink className="sidebar_btn" to="/settings"> Universal Settings </NavLink>
-			<br/><br/>
-			</Router>
 		</Menu>
 		);
 	};
