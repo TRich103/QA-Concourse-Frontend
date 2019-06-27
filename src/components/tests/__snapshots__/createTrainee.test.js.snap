@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly when there are no items 1`] = `
+exports[`Create trainee render tests renders correctly when there are no items 1`] = `
 <div
   className="createTrainee"
   style={
@@ -139,29 +139,78 @@ exports[`renders correctly when there are no items 1`] = `
           unmountOnExit={false}
         >
           <div>
-            <label>
-              University Name:
-            </label>
-              
-            <input
-              className="form-control"
-              onChange={[Function]}
-              type="text"
-              value=""
-            />
-              
-            <label>
-              Degree Name:
-            </label>
-              
-            <input
-              className="form-control"
-              onChange={[Function]}
-              type="text"
-              value=""
-            />
+            <div
+              id="uniDetails"
+            >
+              <label>
+                University Name:
+              </label>
+                
+              <input
+                className="form-control"
+                onChange={[Function]}
+                type="text"
+                value=""
+              />
+            </div>
+            <div
+              id="uniDetails"
+            >
+              <label>
+                Degree Name:
+              </label>
+              <input
+                className="form-control"
+                onChange={[Function]}
+                type="text"
+                value=""
+              />
+            </div>
+            <div
+              id="uniDetails"
+            >
+              <label>
+                Date Achieved:
+              </label>
+              <DayPickerInput
+                classNames={
+                  Object {
+                    "container": "DayPickerInput",
+                    "overlay": "DayPickerInput-Overlay",
+                    "overlayWrapper": "DayPickerInput-OverlayWrapper",
+                  }
+                }
+                clickUnselectsDay={false}
+                component="input"
+                dayPickerProps={Object {}}
+                format="DD/MM/YYYY"
+                formatDate={[Function]}
+                hideOnDayClick={true}
+                inputProps={Object {}}
+                keepFocus={true}
+                overlayComponent={[Function]}
+                parseDate={[Function]}
+                placeholder="DD/MM/YYYY"
+                showOverlay={false}
+                value=""
+              />
+            </div>
           </div>
         </Collapse>
+      </div>
+      <div
+        className="form-group"
+      >
+        <label>
+          Languages Spoken: 
+        </label>
+        <input
+          className="form-control"
+          onChange={[Function]}
+          required={true}
+          type="text"
+          value=""
+        />
       </div>
       <div
         className="form-group"

@@ -28,7 +28,7 @@ export default class TraineeExpenses extends Component {
     
     onSave = () => {
     
-        axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/admin/expenses/'+this.props.match.params.id, {expenseType: this.state.expenseType, amount: this.state.monthly_expenses, addedBy: this.state.currentUser.token._id })
+        axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/admin/expenses/'+this.props.match.params.id, {expenseType: this.state.expenseType, amount: Number(this.state.monthly_expenses).toFixed(2), addedBy: this.state.currentUser.token._id })
         .then(res => {
             console.log(res.data);
             window.location.reload();
@@ -179,6 +179,7 @@ export default class TraineeExpenses extends Component {
                                                             axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/admin/removeExpenses/'+this.props.match.params.id, {"expenseType": monthly_expenses.type, "amount": monthly_expenses.amount, "location": index}).then(() => window.location.reload()) } }>
                                                             Delete
                                                             <img src={close}></img>
+                                                            <img></img>
                                         </button></td>
                                                 </tr>
                                             );

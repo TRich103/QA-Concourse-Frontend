@@ -8,32 +8,33 @@ import CreateTrainee from '../create-trainee.component';
 
 Enzyme.configure({adapter: new Adapter()})
 
-const testValues = {
-}
+let wrapper;
 
-// it('renders correctly when there are no items', () => {
-// // resolve, status, id
-//     const component = mount(<CreateTrainee/>);
-//     expect(toJson(component)).toMatchSnapshot()
+beforeEach(() => {
+    wrapper = shallow(<CreateTrainee/>);
+});
 
-//     expect(wrapper.state().data).toBe('state1');
-//     wrapper.find('button').simulate('click');
-//     expect(wrapper.state().data).toBe('state2');
-// });
-
-it('renders correctly when there are no items', () => {
-    // resolve, status, id
-        const component = shallow(<CreateTrainee/>);
-        expect(toJson(component)).toMatchSnapshot();
+describe('Create trainee render tests', ()=>{
+    it('renders correctly when there are no items', () => {
+            expect(toJson(wrapper)).toMatchSnapshot();
+        });
+    
+    it('checking that input input are rendered', () => {
+        expect(wrapper.find('input')).toHaveLength(11);
     });
 
-it('checking onChange functions', () => {
-    const mockCallBack = jest.fn("");
-    const component = mount(<CreateTrainee onSubmit={mockCallBack}/>);
+    it('checking that labels are all rendered', () => {
+        expect(wrapper.find('label')).toHaveLength(20);
+    })
 
-    component.find('#createTraineeBtn').simulate('click');
-    expect(mockCallBack.mock.calls.length).toEqual(0);
-});
+    it('checking that button is rendered', () => {
+        expect(wrapper.find('#createTraineeBtn')).toHaveLength(1);
+    })
+
+    it('checking that collapse component is rendered', () => {
+        expect(wrapper.find('Collapse')).toHaveLength(2);
+    })
+})
 
 
 

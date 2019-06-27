@@ -53,6 +53,7 @@ export default class CreateTrainee extends Component {
             intakes:[],
             geoFlex:'Yes',
             clearance: 'None',
+            //currentUser: {token:{_id: "5d0bb39bd2ba63099c621593", role: "admin", status: "Active"}},
             currentUser: authService.currentUserValue, //for testing purposes comment this out, and uncomment the one above.
             languages: '',
             date_achieved: '',
@@ -306,11 +307,13 @@ export default class CreateTrainee extends Component {
         console.log(this.state.recruiterName)
     }
 
-    // onChangeLanguage = (e) => {
-    //     this.setState({
-    //         languages: e.target.value
-    //     })
-    // }
+    onChangeLanguage = (e) => {
+        this.setState({
+            languages: e.target.value
+        })
+        console.log(this.state.languages);
+        console.log(this.state.currentUser);
+    }
 
     onChangeBursaryAmount(e){
         this.setState({
@@ -370,19 +373,7 @@ export default class CreateTrainee extends Component {
                 }
             default:
             console.log(`Form submitted:`);
-            console.log(`Trainee Fname: ${this.state.trainee_fname}`);
-            console.log(`Trainee Lname: ${this.state.trainee_lname}`);
-            console.log(`Trainee Email: ${this.state.trainee_email}`);
-            console.log(this.state.bursary);
-            console.log(this.state.gender);
-            console.log(this.state.uniName);
-            console.log(this.state.trainee_phone);
-            console.log(this.state.degree);
-            console.log(this.state.chosenTech);
-            console.log(this.state.intake);
-            console.log(this.state.geoFlex);
-            console.log(this.state.clearance);
-            console.log("this is the start date of state : "+this.state.trainee_start_date);
+            console.log("this is the bursary amount of state : "+this.state.bursary_amount);
             if(this.state.addIntake === true){
                 axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/addIntake', {intakeName: this.state.intake}).then( (response) => {
                     if(response.status === "400"){
@@ -516,6 +507,7 @@ export default class CreateTrainee extends Component {
                             <input type="checkbox" onClick={this.onClickUniversity}/>
                             <Collapse in={this.state.university}>
                             <div>
+                                    <div id="uniDetails">
                                     <label>University Name:</label>
                                     &nbsp;&nbsp;
                                     <input
@@ -524,18 +516,37 @@ export default class CreateTrainee extends Component {
                                         value={this.state.uniName}
                                         onChange={this.onChangeUniName}
                                         />
-                                    &nbsp;&nbsp;
+                                    </div>
+                                    <div id="uniDetails">
                                     <label>Degree Name:</label>
-                                    &nbsp;&nbsp;
                                     <input
                                         type="text"
                                         className="form-control"
                                         value={this.state.degree}
                                         onChange={this.onChangeDegree}
                                         />
+                                    </div>
+                                    {/* <div id="uniDetails">
+                                    <label>Date Achieved:</label>
+                                    <DayPickerInput
+                                        placeholder="DD/MM/YYYY"
+                                        format="DD/MM/YYYY"
+                                        formatDate={formatDate}
+                                        value={this.state.date_achieved}
+                                        onDayChange={this.onChangeDateAchieved}
+                                    />
+                                    </div> */}
                                 </div>
                             </Collapse>
                         </div>
+                        {/* <div className="form-group"> 
+                            <label>Languages Spoken: </label>
+                            <input  type="text"
+                                    className="form-control"
+                                    value={this.state.languages}
+                                    onChange={this.onChangeLanguage}
+                                    required/>
+                        </div> */}
                         <div className="form-group">
                             <label>Geo-Flex :</label>
                             <select className="form-control" value={this.state.geoFlex} onChange={this.onChangeGeoFlex} required>
