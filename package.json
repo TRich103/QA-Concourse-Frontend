@@ -31,6 +31,7 @@
     "react-dom": "^16.8.6",
     "react-file-reader": "^1.1.4",
     "react-native-crypto-js": "^1.0.0",
+    "react-router-bootstrap": "^0.25.0",
     "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.8",
     "react-sidebar": "^3.0.2",

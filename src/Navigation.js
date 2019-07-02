@@ -15,6 +15,7 @@ import { authService } from "./components/modules/authService";
 import axios from 'axios';
 import './css/navigation.css';
 import TopNavBar from './components/topNavBar.component.js';
+import { IndexLinkContainer } from 'react-router-bootstrap';
 
 export default class Navigation extends React.Component {
   constructor(props) {
@@ -102,7 +103,9 @@ export default class Navigation extends React.Component {
                       <TopNavBar pageWrapId={"navigation-bar"} outerContainerId={"bar"} />
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className="ml-auto" navbar>
-                <NavItem className="display_name">Logged in as: {this.state.trainee_fname} {this.state.trainee_lname} {this.state.staff_fname} {this.state.staff_lname}  |  </NavItem>
+                <IndexLinkContainer to='/user-profile/'>
+                <Button className="display_name">{this.state.trainee_fname} {this.state.trainee_lname} {this.state.staff_fname} {this.state.staff_lname}    </Button>
+                </IndexLinkContainer>
                 <NavItem>
                   <Button id="logoutBtn" onClick={this.logout} href='/login'>
                     Logout

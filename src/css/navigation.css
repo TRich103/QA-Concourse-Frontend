@@ -1,7 +1,15 @@
 .display_name{
-	margin-top:8px;
-	margin-right:5px; 
-}
+  margin-right:5px !important; 
+  border: 1px solid #004050 !important;
+  background-color: #004050 !important;
+  color: white !important;
+  }
+
+.display_name:hover {
+  background-color: white !important;
+  color:#004050 !important;
+  border: 1px solid #004050 !important;
+  } 
 
 .nav-item{
 	color:black;

@@ -5,12 +5,16 @@ import AccessDenied from './modules/AccessDenied';
 import { authService } from './modules/authService';
 import moment from 'moment';
 import '../css/trainee-details.css';
+//import routes from '../../../QA-Concourse-Backend/routes/image_routes';
 export default class UserDetails extends Component {
     
     constructor(props) {
         super(props);
         this.state = {
-            multerImage: DefaultImg,
+            multerImage: axios.get('http://localhost:4000/profile/uploadmulter').then( (res) => {
+                console.log(res.data);
+                return Image((res.data))
+            }),
 			id: '',
 			staff_fname: '',
             staff_lname: '',
@@ -22,9 +26,13 @@ export default class UserDetails extends Component {
 
     setDefaultImage(uploadType) {
         if (uploadType === "multer"){
-            this.setState({
-                multerImage: DefaultImg
-            });
+            //this.setState({
+                //multerImage: routes.DefaultImg
+            //});
+            multerImage: axios.get('http://localhost:4000/profile/uploadmulter').then( (res) => {
+                console.log(res.data);
+                return Image((res.data))
+            })
         }
     }
 
@@ -34,7 +42,7 @@ export default class UserDetails extends Component {
    uploadImage(e,method){
        let imageObj ={};
 
-       if (methid === multer){
+       //if (method === routes.multer){
            let imageFormObj = new FormData();
 
            imageFormObj.append("imageName", "multer-image-" + Date.now());
@@ -46,7 +54,7 @@ export default class UserDetails extends Component {
           this.setState({
               multerImage: URL.createObjectURL(e.target.files[0])
           });
-          axios.post(`${API_URL}/image/uploadmulter`, imageFormObj)
+          axios.post(`${"http://localhost:4000"}/image/uploadmulter`, imageFormObj)
             .then((data) => {
                 if (data.data.success) {
                     alert("Profile image successfully uploaded!");
@@ -58,7 +66,6 @@ export default class UserDetails extends Component {
                 this.setDefaultImage("multer")
             });
        }
-   }
 
     componentDidMount() {
         axios.get('http://'+process.env.REACT_APP_AWS_IP+':4000/admin/staff/'+this.state.currentUser.token._id)
@@ -114,4 +121,5 @@ render() {
 	}
     }
 }
+
 
