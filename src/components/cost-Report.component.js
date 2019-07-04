@@ -7,7 +7,8 @@ import Collapse from 'react-bootstrap/Collapse'
 // import '../css/list-trainee-recruiter.css';
 import moment from 'moment';
 import "react-table/react-table.css";
-import '../css/report.css'
+import '../css/report.css';
+
 import DayPicker, { DateUtils } from 'react-day-picker';
 import DatePicker from "react-datepicker";
 import 'react-day-picker/lib/style.css';
@@ -23,6 +24,12 @@ export default class CostReport extends Component {
             trainee_data: [],
             currentUser: authService.currentUserValue,
             staffEmail: '',
+			approvedBy: '',
+			finApprovedBy:'',
+			approval: '',
+			finApproval:'',
+			ShowApproval: false,
+			form_cancel: false,
             date: '',
             values : {
                 amountPayable: 0,
@@ -60,7 +67,9 @@ export default class CostReport extends Component {
         this.onChangeSearch = this.onChangeSearch.bind(this);
         this.onSubmit = this.onSubmit.bind(this); 
         this.updateReport = this.updateReport.bind(this);
+		this.revertReport = this.revertReport.bind(this);
         this.handleChange = this.handleChange.bind(this);
+		this.finaceUpdate = this.finaceUpdate.bind(this);
     }
     
     componentDidMount() {
@@ -79,6 +88,8 @@ export default class CostReport extends Component {
                         let bench = 0;
                         let pending = 0;
                         this.setState({
+							approvedBy:response.data.approvedBy,
+							finApprovedBy:response.data.financeApprove,
                             date: response.data.month,
                         })
                     response.data.reportTrainees.map(async reportTrainee =>{
@@ -118,6 +129,7 @@ export default class CostReport extends Component {
                         this.setState({
                             trainee_data: data
                         })
+					
                         console.log("DATA")
                         console.log(data)
                         if(reportTrainee.status === 'Training'||reportTrainee.status === 'Bench'){
@@ -131,6 +143,8 @@ export default class CostReport extends Component {
 
                             values:{
                                 amountPayable: totalAmount,
+								approvedBy: response.data.approvedBy,
+								finApprovedBy:response.data.financeApprove,
                                 daysPayable: totalDays,
                                 status: response.data.status.replace(/([A-Z])/g, ' $1').trim(),
                                 bench_number: bench,
@@ -154,7 +168,10 @@ export default class CostReport extends Component {
               }
               else{
                 this.setState({
-                  staffEmail: response.data.email
+                  staffEmail: response.data.email,
+				  approval: response.data.fname + ' ' + response.data.lname,
+				  finApproval:response.data.fname + ' ' + response.data.lname
+				  
                 })
               }
             });
@@ -227,19 +244,36 @@ export default class CostReport extends Component {
             }
         });
     }
+	finaceUpdate(){
+		window.confirm("You are about to Approve this months Report. Are you sure you want to proceed?");	
+		axios.post('http://' + process.env.REACT_APP_AWS_IP + ':4000/trainee/monthlyReport/updateStatus', {
+			month: this.state.date, 
+			user_role: 'finance', 
+			financeApprove: this.state.finApproval})
+            .then(() =>{window.location.reload()})
+	}
+	
+	revertReport(){
+        axios.post('http://' + process.env.REACT_APP_AWS_IP + ':4000/trainee/monthlyReport/updateStatus', {
+			month: this.state.date,
+			user_role: "pending",
+			approvedBy: ' '})
+            .then(() =>{window.location.reload()})
+		}
 
     updateReport(){
         let role = '';
+		
         if (this.state.currentUser.token.role === "admin"){
             role = 'admin'
         }
-        else if(this.state.currentUser.token.role === "finance"){
-            role = 'finance'
-        }
-        axios.post('http://' + process.env.REACT_APP_AWS_IP + ':4000/trainee/monthlyReport/updateStatus', {month: this.state.date, user_role: role})
+        axios.post('http://' + process.env.REACT_APP_AWS_IP + ':4000/trainee/monthlyReport/updateStatus', {
+			month: this.state.date, 
+			user_role: role, 
+			approvedBy: this.state.approval})
             .then(() =>{window.location.reload()})
     }
-
+	
     handleChange(date) {
         this.setState({
             report: true,
@@ -252,6 +286,8 @@ export default class CostReport extends Component {
                 daysPayable: 0,
                 dailyPayments: 0,
                 status: '',
+				approvedBy: this.state.approvedBy,
+				financeApprove: this.state.finApproval,
                 bench_number: '',
                 training_number: '',
                 pending_number: '',
@@ -296,9 +332,13 @@ export default class CostReport extends Component {
                 let training = 0;
                 let bench = 0;
                 let pending = 0;
+				
                 this.setState({
                     date: response.data.month,
                     status: response.data.status,
+					approvedBy:response.data.approvedBy,
+					finApprovedBy:response.data.financeApprove
+					
                 })
                 response.data.reportTrainees.map(async reportTrainee =>{
                     if(reportTrainee.status === 'Pending'|| reportTrainee.status === 'Incomplete'){
@@ -340,7 +380,6 @@ export default class CostReport extends Component {
                         console.log("STATUS"+this.state.values.status)
                     }
                     this.setState({
-
                         values:{
                             amountPayable: totalAmount,
                             daysPayable: totalDays,
@@ -401,16 +440,20 @@ export default class CostReport extends Component {
         const { from, to } = this.state.range;
         const modifiers = { start: from, end: to };
         let button;
+		let revert;
 
         if(this.state.currentUser.token.role === "finance"){
-            if(this.state.values.status == "Admin Approved"){
-                button = <button className="actionBtn" onClick={this.updateReport}>Approve</button> 
+            if(this.state.values.status === "Admin Approved"){
+                button = <button className="actionBtn" onClick={this.finaceUpdate}>Approve</button>
             }
         }
         else if(this.state.currentUser.token.role === "admin"){
-            if(this.state.values.status == "Pending Approval"){
-                button = <button className="actionBtn" onClick={this.updateReport}>Approve</button> 
+            if(this.state.values.status === "Pending Approval"){
+                button = <button className="actionBtn" onClick={this.updateReport}>Approve</button>
             }
+			else if(this.state.values.status === "Admin Approved"){
+				revert = <button className="actionBtn" onClick={this.revertReport}>Revert</button>
+			}
         }
 
 
@@ -514,23 +557,30 @@ export default class CostReport extends Component {
                 <h1 id="cRTitle">&nbsp;Cost Report - {this.state.date}</h1>
                 </div>
                 <br/>
-                <table cellPadding='5'>
+                <table className="Qatable-headers" cellPadding='10'>
                     <tbody>                          
                             <tr>
                                 &nbsp;&nbsp;<th>Status:</th><td>{this.state.values.status}</td>&nbsp;&nbsp;
-                                <th>Amount Payable:</th><td>£{this.state.values.amountPayable}</td>&nbsp;&nbsp;
-                                <th>Trainees in training:</th><td>{this.state.values.training_number}</td>&nbsp;&nbsp;
-                                <th>Trainees on bench:</th><td>{this.state.values.bench_number}</td>&nbsp;&nbsp;
-                                <th>Pending trainees:</th><td>{this.state.values.pending_number}</td>&nbsp;&nbsp;&nbsp;&nbsp;
+								<th>Admin Approved By: </th><td>{this.state.approvedBy}</td>&nbsp;&nbsp;
+								<th>Finance Approved By: </th><td>{this.state.finApprovedBy}</td>&nbsp;&nbsp;
                             </tr>
                     </tbody>
+					<tbody>
+					<tr>
+							&nbsp;&nbsp;<th>Amount Payable:</th><td>£{this.state.values.amountPayable}</td>&nbsp;&nbsp;
+                            <th>Trainees in training:</th><td>{this.state.values.training_number}</td>&nbsp;&nbsp;
+                            <th>Trainees on bench:</th><td>{this.state.values.bench_number}</td>&nbsp;&nbsp;
+                            <th>Pending trainees:</th><td>{this.state.values.pending_number}</td>&nbsp;&nbsp;&nbsp;&nbsp;
+							</tr>
+					</tbody>
                 </table>
                 <br/>
                 <p>&nbsp;&nbsp;&nbsp;Note: Pending trainees are not included in amount payable</p>
                 <br/>
                 </div>
                 <button className="actionBtn" id="individual" onClick={() => this.setState({ open: !open })}>Individual Trainee Breakdown</button>&nbsp;&nbsp; 
-                {button}
+                {button}&nbsp;&nbsp;
+				{revert}
                 <hr />
                 <Collapse in={this.state.open}>
                 <div>
