@@ -199,14 +199,17 @@ export default class EditDates extends Component {
             trainee_start_date: this.state.trainee_start_date,
             trainee_end_date: this.state.trainee_end_date,
 			trainee_bench_start_date:this.state.trainee_bench_start_date,
-			trainee_bench_end_date:this.state.trainee_bench_end_date,
+            trainee_bench_end_date:this.state.trainee_bench_end_date,
+            addedBy: this.state.currentUser.token._id
 		}
 		const workingDays = {
-			trainee_days_worked: this.state.trainee_days_worked,
+            trainee_days_worked: this.state.trainee_days_worked,
+            addedBy: this.state.currentUser.token._id
         }
         const bursary = {
             trainee_bursary: this.state.bursary,
-            trainee_bursary_amount: this.state.bursary_amount
+            trainee_bursary_amount: this.state.bursary_amount,
+            addedBy: this.state.currentUser.token._id
         }
 		
         console.log(obj);
@@ -236,7 +239,7 @@ export default class EditDates extends Component {
             <div className="QATable">
                 <form className="edit-form" onSubmit={this.onSubmit}>
                     <div className="all-edit-box">
-                        <center><button id="cancelBtn" onClick={() => { document.location.href = "/"; }}>Cancel</button></center>
+                        <center><button type="button" id="cancelBtn" onClick={() => { document.location.href = "/"; }}>Cancel</button></center>
 					<div className="form-group"> 
                         <label>First Name: </label>
                         <input  type="text"

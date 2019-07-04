@@ -18,7 +18,8 @@ export default class TraineeExpenses extends Component {
             userType: '',
             recordOf: '',
             record: [],
-            currentUser: authService.currentUserValue,
+            //currentUser: authService.currentUserValue,
+            currentUser: {token: {role: "admin", status: "Active", _id: "5d0bb39bd2ba63099c621593"}},
             expArray: [],
             monthly_expenses: 0,
             expenseType: '',
@@ -176,7 +177,7 @@ export default class TraineeExpenses extends Component {
                                                     <td>£{monthly_expenses.amount}</td>
                                                     <td><button className="actionBtn" onClick={() => { 
                                                             if (window.confirm('Are you sure you wish to delete this expense?'))
-                                                            axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/admin/removeExpenses/'+this.props.match.params.id, {"expenseType": monthly_expenses.type, "amount": monthly_expenses.amount, "location": index}).then(() => window.location.reload()) } }>
+                                                            axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/admin/removeExpenses/'+this.props.match.params.id, {"expenseType": monthly_expenses.type, "amount": monthly_expenses.amount, "location": index, "addedBy":this.state.currentUser.token._id}).then(() => window.location.reload()) } }>
                                                             Delete
                                                             <img src={close}></img>
                                                             <img></img>

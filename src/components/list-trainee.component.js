@@ -218,8 +218,8 @@ export default class ListTrainee extends Component {
                                         <td>
                                         <center><button className="actionBtn" onClick={() => { 
                                                             if (window.confirm('Are you sure you wish to delete this trainee?'))
-                                                            axios.get('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/delete/'+t._id).then(() => window.location.reload()) } }>
-                                                            Delete
+                                                            axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/delete/'+t._id,{addedBy:this.state.currentUser.token._id}).then(() => window.location.reload()) } }>
+                                                            Suspend
                                                             <img src={close}></img>
                                         </button>&nbsp;
                                         <a href={"mailto:"+t.trainee_email}><button className="actionBtn">Email <img src={mail}></img></button> </a>

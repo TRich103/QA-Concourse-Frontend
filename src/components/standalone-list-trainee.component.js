@@ -316,7 +316,7 @@ export default class ListTrainee extends Component {
                                             <td>
                                             <center><button className="actionBtn" onClick={() => { 
                                                                 if (window.confirm('Are you sure you wish to '+deleteToggle.toLowerCase()+' this trainee?'))
-                                                                axios.get('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/'+deleteRoute+'/'+t._id).then(() => window.location.reload()) } }>
+                                                                axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/'+deleteRoute+'/'+t._id, {addedBy:this.state.currentUser.token._id}).then(() => window.location.reload()) } }>
                                                                 {deleteToggle}
                                                                 <img src={close}></img>
                                                 </button>&nbsp;

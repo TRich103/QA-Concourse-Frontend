@@ -75,7 +75,7 @@
   "jest": {
     "moduleNameMapper": {
       "\\^-!.(svg|jpg|png)*$": "_tests_/_mocks_/svgImportMock.js",
-      "\\.(css|less|scss|sass|png)$": "identity-obj-proxy"
+      "\\.(css|less|scss|sass|png|svg|jpg)$": "identity-obj-proxy"
     },
     "setupFiles": [
       "jest-localstorage-mock"
