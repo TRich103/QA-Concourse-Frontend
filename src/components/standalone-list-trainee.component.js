@@ -398,12 +398,12 @@ export default class ListTrainee extends Component {
                 <table className="table table-hover" style={{ marginTop: 20 }} >
                     <thead>
                         <tr>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th><center>Status</center></th>
-                            <th><center>Bursary</center></th>
-                            <th><center>Payment This Month (£)</center></th>
-                            <th><center>Action</center></th>
+                            <th className="tabletext">First Name</th>
+                            <th className="tabletext">Last Name</th>
+                            <th className="tabletext"><center>Status</center></th>
+                            <th className="tabletext"><center>Bursary</center></th>
+                            <th className="tabletext"><center>Payment This Month (£)</center></th>
+                            <th className="tabletext"><center>Action</center></th>
                         </tr>
                     </thead>               
                     <tbody>

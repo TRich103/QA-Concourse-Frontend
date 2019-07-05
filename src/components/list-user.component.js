@@ -5,18 +5,12 @@ import { Link } from 'react-router-dom'
 import AccessDenied from './modules/AccessDenied';
 import Collapse from 'react-bootstrap/Collapse'
 import '../css/GlobalCss.css';
+import useCookie from '@devhammed/use-cookie'
 import add from './icons/person-add.svg';
 import history from './icons/history.svg';
 import close from './icons/close2.svg';
 import filterIcon from './icons/filter.svg';
 import mail from './icons/envelope.svg';
-import sideBar from './sideBar.component';
-
-
-function checkmenu() {
-    console.log("Good");
-}
-
 
 export default class ListUser extends Component {
 
@@ -44,10 +38,6 @@ export default class ListUser extends Component {
         this.onChangeSearch = this.onChangeSearch.bind(this);
         this.onChangeRoleFilter = this.onChangeRoleFilter.bind(this);
         this.onChangeSuspendedFilter = this.onChangeSuspendedFilter.bind(this);
-    }
-
-    componentWillUpdate() {
-        console.log("MENU");
     }
 
     async componentWillMount(){
@@ -180,8 +170,9 @@ export default class ListUser extends Component {
             );
         } else {
             return (
-
+              
                 <div className={"QAtable" + this.state.menuopen}>
+                    
                     <div className="QASearchBar">
                         <input
                             type="text"
@@ -199,14 +190,13 @@ export default class ListUser extends Component {
                     <img src={filterIcon} alt="filter"></img>
                         </button>
                         <div id="addUser">
-                            <select id="dropdown2" className="qabtn" value={this.state.value} onChange={this.setFontSize}>
+                            <select id="dropdown2" className="qabtn" value={this.state.value} onChange={this.setFontSize} >
                                 <option hidden value="Medium" selected> TextSize</option>
                                 <option value="small" > Small</option>
                                 <option value="medium">Medium</option>
                                 <option value="large">Large</option>
                             </select>
                             <Link className="link" to={"/addUser"}><button className="qabtn">Add User<img src={add} alt="Add User"></img></button></Link>
-                            <button onClick={this.setMenuOpen}>OPEN MENU</button>
                         </div>
                         <Collapse in={this.state.open}>
                             <p>

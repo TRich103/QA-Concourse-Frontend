@@ -28,6 +28,8 @@ export default class EditDates extends Component {
         this.state = {
             fontsize:"medium",
             theme:"normal",
+			menustyle:"",
+			menuopen:"",
             user_fname: '',
             user_lname: '',
             user_email: '',
@@ -129,6 +131,19 @@ export default class EditDates extends Component {
                                 <option value="normal" > Normal</option>
                                 <option value="dark"> Dark Mode</option>
                                 <option value="colorblind">Color Blind</option>
+                            </select>
+                            <br /><br />
+                            <select id="dropdown" className="qabtn" value={this.state.value} onChange={this.setMenuStyle}>
+                                <option hidden value="Menu Style" selected> Menu Style</option>
+                                <option value="normal" > Normal</option>
+                                <option value="bubble">Bubble</option>
+                                <option value="elastic">Elastic</option>
+                            </select>
+							<br /><br />
+                            <select id="dropdown" className="qabtn" value={this.state.value} onChange={this.setMenuOpen}>
+                                <option hidden value="Side Menu Open By Default" selected>Side Menu Open By Default</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
                             </select>
                             <br /><br />
                             <div className="form-group">
