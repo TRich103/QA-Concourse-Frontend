@@ -499,6 +499,7 @@ export default class CreateTrainee extends Component {
                                 <option selected value="">Select gender</option>
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
+                                <option value="Prefer Not to Say">Prefer not to say</option>
                             </select>
                         </div>
                         <div className="form-group">
