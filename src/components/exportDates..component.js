@@ -388,6 +388,7 @@ export default class ListTrainee extends Component {
                             <th><center>Status</center></th>
                             <th>Recruited By</th>
                             <th><center>Bursary</center></th>
+							<th><center>Payment This Month</center></th>
                             <th><center>Start Date</center></th>
                         </tr>
                     </thead>               

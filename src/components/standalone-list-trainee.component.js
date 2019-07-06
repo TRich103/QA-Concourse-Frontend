@@ -13,6 +13,14 @@ import eye from './icons/eye.svg';
 import settings from './icons/settings.svg';
 import addmoney from './icons/add.svg';
 import mail from './icons/envelope.svg';
+//new imports
+import "react-datepicker/dist/react-datepicker.css";
+import { CSVLink } from "react-csv";
+import moment from 'moment';
+import DayPicker, { DateUtils } from 'react-day-picker';
+import 'react-day-picker/lib/style.css';
+import { Modal, ModalHeader, ModalBody } from 'reactstrap';
+import download from './icons/download.svg';
 
 import { Button, ButtonGroup } from 'reactstrap';
 
@@ -33,10 +41,24 @@ export default class ListTrainee extends Component {
                 bursary: 'All',
                 suspended: false
             },
-            open: false
+            open: false,
+			csv: '',
+            csvN:'',
+            modal: false,
+            filterBoolean: false,
+            searchString: "",
+			range:{
+                from: undefined,
+                to: undefined,
+            }
 			};
         
-
+		this.onChangeFilterSearch = this.onChangeFilterSearch.bind(this)
+        this.handleDayClick = this.handleDayClick.bind(this);
+        this.toggle = this.toggle.bind(this);
+        this.handleDaysClicked = this.handleDaysClicked.bind(this);
+        this.handleResetClick = this.handleResetClick.bind(this);
+		
         this.handleHistoryClick = this.handleHistoryClick.bind(this);
         this.onChangeSearch = this.onChangeSearch.bind(this);
         this.onChangeBursaryFilter = this.onChangeBursaryFilter.bind(this);
@@ -72,11 +94,17 @@ export default class ListTrainee extends Component {
     }
 
     // Added onChangeSearch(e) function. Needed for the search filter
-    onChangeSearch(e) {
-        this.setState({
-            searchString: e.target.value
-        });
+   onChangeSearch= (e) =>{
+            this.setState({
+                searchString: e,
+                selectedDate: e
+            });
     }
+	toggle() {
+        this.setState(prevState => ({
+          modal: !prevState.modal
+        }));
+      }
     onChangeMyTraineeFilter(e){
         var newVal = !this.state.filter.myTrainees
         console.log(newVal)
@@ -86,7 +114,57 @@ export default class ListTrainee extends Component {
             filter : newFilter
         })
     }
+	
+	handleDayClick(day, { selected }) {
+        const { selectedDays } = this.state;
+        const { splitDays } = this.state;
+        if (selected) {
+          const selectedIndex = selectedDays.findIndex(selectedDay =>
+            DateUtils.isSameDay(selectedDay, day)
+          );
+        selectedDays.splice(selectedIndex, 1);
+        splitDays.splice(selectedIndex, 1);
+        } else {
+          selectedDays.push(day);
+           splitDays.push(day.toString().split(" ", 4).toString());
+        }
+        this.setState({ selectedDays });
+      }
 
+      handleDaysClicked(day) {
+        const range = DateUtils.addDayToRange(day, this.state.range);
+        console.log(range);
+        this.setState({
+            range: range});
+        console.log(this.state.range);
+      }
+	  
+	  handleResetClick() {
+        this.setState({
+            range: {
+                from: undefined,
+                to: undefined
+            }
+        });
+      }
+	  
+	  onChangeFilterSearch(e) {
+        this.setState({
+            searchString: e.target.value
+        });
+    }
+	  
+      onChangeMyTraineeFilter(e){
+        var newVal = !this.state.filter.myTrainees
+        console.log(newVal)
+        var newFilter = this.state.filter
+        newFilter.myTrainees = newVal
+        this.setState({
+            filter : newFilter
+        })
+    }
+	
+	
     onChangeSuspendedFilter(e){
         var newVal = !this.state.filter.suspended
         console.log(newVal)
@@ -130,6 +208,13 @@ export default class ListTrainee extends Component {
       }
 	
     render() {
+        let splitDays = this.state.splitDays;
+        let output = this.state.csv;
+        let out = this.state.csvN;
+        let role = this.state.currentUser.token.role;
+        let range = this.state.range;
+        const { from, to } = this.state.range;
+        const modifiers = { start: from, end: to };
         //Declared variables in order to read input from search function
         let trainees = this.state.trainees;
         let search = this.state.searchString.trim().toLowerCase().replace(/\s+/g, '');
@@ -180,6 +265,82 @@ export default class ListTrainee extends Component {
             trainees = trainees.filter(function(trainee){
                 if(trainee.status !== 'Suspended'){
                     return trainee;
+                }
+            })
+        }
+		if(from != undefined){
+            if(to == undefined){
+                trainees = trainees.filter(function(trainee){
+                    let start = new Date(Date.parse(trainee.trainee_start_date));
+                    if(DateUtils.isSameDay(start, from)){
+                         return trainee;
+                    }
+                })
+            }
+            else if(to!= undefined){
+                trainees = trainees.filter(function(trainee){
+                    let start = new Date(Date.parse(trainee.trainee_start_date));
+                    if(DateUtils.isDayInRange(start, range)){
+                         return trainee;
+                    }
+                })
+            }
+        }
+		
+		if(role === 'finance'){
+            output = [["Trainee/Payee Name", "Account Number", "Sort Code", "Total Value", "Decimal Place", "Append", "Data to Copy to Clipboard"]];
+            out = [];
+            
+            trainees.map( t => {
+                let totalexpenses = 0;
+                t.monthly_expenses.map(expense => {
+                    totalexpenses = +totalexpenses + +Number(expense.amount).toFixed(2);
+                })
+                var obj = [t.trainee_fname+' '+t.trainee_lname, t.trainee_account_no, t.trainee_sort_code,Number(t.bursary_amount*t.trainee_days_worked + totalexpenses).toFixed(2),"2","00","\""+"\""+t.trainee_sort_code+"\""+"\""+','+"\""+"\""+t.trainee_fname+' '+t.trainee_lname+"\""+"\""+','+"\""+"\""+t.trainee_account_no+"\""+"\""+','+"\""+"\""+Number(t.bursary_amount*t.trainee_days_worked + totalexpenses).toFixed(2)+"\""+"\""+','+"\""+"\""+"BURSARY"+"\""+"\""+','+"\""+"\""+"99"+"\""+"\""];
+                var old = [t.trainee_sort_code,t.trainee_fname+' '+t.trainee_lname,t.trainee_account_no,Number(t.bursary_amount*t.trainee_days_worked + totalexpenses).toFixed(2),"BURSARY","99"];
+                if(t.status === 'Active'){
+                    output.push(obj);
+                    out.push(old);
+                }
+                }
+            )
+        }else if(role === 'admin'){
+            output = [["First Name", "Last Name", "Bursary", "Days Worked", "Bursary Amount", "Expenses total for month","Total payment for month", "Start-Date", "End-Date", "Bench start", "Bench end"]];
+            trainees.map( t => {
+                    let totalexpenses = 0;
+                    t.monthly_expenses.map(expense => {
+                        totalexpenses = +totalexpenses + +Number(expense.amount).toFixed(2);
+                    })
+                    var obj = [t.trainee_fname, t.trainee_lname, t.bursary, t.trainee_days_worked,t.bursary_amount, t.monthly_expenses.length, Number((t.bursary_amount*t.trainee_days_worked)+totalexpenses).toFixed(2), moment(t.trainee_start_date).format('MMMM Do YYYY'), moment(t.trainee_end_date).format('MMMM Do YYYY'), moment(t.trainee_bench_start_date).format('MMMM Do YYYY'), moment(t.trainee_bench_end_date).format('MMMM Do YYYY')];
+                    output.push(obj);
+                }
+            )
+        }
+		
+        
+        console.log(search.length);
+        if(search.length > 0){
+            if(role === 'finance'){
+                 output = [["First Name", "Last Name", "Email", "Bank Name", "Account Number", "Sort Number","Start-Date", "End-Date"]];
+            }
+            else if(role === 'admin'){
+                 output = [["First Name", "Last Name", "Email", "Start-Date", "End-Date"]];
+            }
+            console.log(search);
+            console.log(this.state.splitDays);
+            trainees = trainees.filter(function(i){
+                if(splitDays.includes(i.trainee_start_date.split(" ", 4).toString())){
+                    if(role === 'finance'){
+                        var obj =  [i.trainee_fname, i.trainee_lname, i.trainee_email, i.trainee_bank_name, i.trainee_account_no, i.trainee_sort_code, moment(i.trainee_start_date).format('MMMM Do YYYY'), moment(i.trainee_end_date).format('MMMM Do YYYY')];
+                        output.push(obj);
+                        console.log(output);
+                        return i;
+                    } else if(role === 'admin'){
+                        var obj =  [i.trainee_fname, i.trainee_lname, i.trainee_email, moment(i.trainee_start_date).format('MMMM Do YYYY'), moment(i.trainee_end_date).format('MMMM Do YYYY')];
+                        output.push(obj);
+                        console.log(output);
+                        return i;
+                    }
                 }
             })
         }
@@ -249,9 +410,32 @@ export default class ListTrainee extends Component {
                     Filters
                     <img src={filterIcon}></img>
                     </button>
+					<Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} className="dateModal">
+                        <ModalHeader toggle={this.toggle} cssModule={{'modal-title':'w-100 text-center'}}>Select Start Dates</ModalHeader>
+                        <ModalBody cssModule={{'modal-body':'w-100 text-center'}}>
+                        <div className = "mod-body">
+                        <DayPicker
+                            className="Selectable"
+                            numberOfMonths={this.props.numberOfMonths}
+                            selectedDays={[from, { from, to }]}
+                            modifiers={modifiers}
+                            onDayClick={this.handleDaysClicked}
+                        />
+                        <p>
+                            {from &&
+                                to && (
+                                <button className="resetBtn" onClick={this.handleResetClick}>
+                                    Reset
+                                </button>
+                                )}
+                        </p>
+                        </div>
+                        </ModalBody>
+                    </Modal>
                     <div id="addUser">
                        <Link className="link" to={"/create"}> <button className="qabtn">Add Trainee <img src={add}></img></button></Link>
-                       <Link className="link" to={"/trainee-settings"}><button className="qabtn">Settings <img src={settings}></img></button></Link>                              
+                       <Link className="link" to={"/trainee-settings"}><button className="qabtn">Settings <img src={settings}></img></button></Link>
+					   <CSVLink className="link" data={output} filename='CSV-Report.csv'><button className="qabtn">Download CSV <img src={download}></img></button></CSVLink>					   
                     </div>
                     <Collapse in={this.state.open}>
                     <p>
@@ -273,6 +457,7 @@ export default class ListTrainee extends Component {
                         </select>&nbsp;&nbsp;
                         <label>Show Suspended</label> &nbsp;
                         <input type="checkbox" value="Suspended" onClick={this.onChangeSuspendedFilter}/> &nbsp;&nbsp;
+						<button className="resetBtn" onClick={this.toggle}>Select Start Dates</button> &nbsp;&nbsp;
                     </p>
                     </Collapse>
                     </div>
@@ -284,8 +469,10 @@ export default class ListTrainee extends Component {
                                 <th>Last Name</th>
                                 <th><center>Status</center></th>
                                 <th>Recruited By</th>
+								<th>Cohort</th>
                                 <th><center>Bursary</center></th>
                                 <th><center>Payment This Month</center></th>
+								<th><center>Start Date</center></th>
                                 <th><center>Action</center></th>
                             </tr>
                         </thead>               
@@ -311,8 +498,10 @@ export default class ListTrainee extends Component {
                                         <td onClick={() => window.location.href = "/editDates/" + t._id}> {t.trainee_lname}</td>
                                         <td onClick={() => window.location.href = "/editDates/" + t._id}> <center>{t.status}</center></td>
                                         <td onClick={() => window.location.href = "/editDates/" + t._id}> {t.added_By}</td>
+										<td onClick={() => window.location.href = "/editDates/" + t._id}> {t.trainee_intake}</td>
                                         <td onClick={() => window.location.href = "/editDates/" + t._id}> <center>{t.bursary}</center></td>
                                         <td onClick={() => window.location.href = "/editDates/" + t._id}> <center>£{Number(t.bursary_amount * t.trainee_days_worked + expenses).toFixed(2)}</center></td>
+										<td> <center>{moment(t.trainee_start_date).format('MMMM Do YYYY')}</center></td>
                                             <td>
                                             <center><button className="actionBtn" onClick={() => { 
                                                                 if (window.confirm('Are you sure you wish to '+deleteToggle.toLowerCase()+' this trainee?'))
@@ -359,6 +548,34 @@ export default class ListTrainee extends Component {
                     Filters
                     <img src={filterIcon}></img>
                     </button>
+					<Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} className="dateModal">
+                            <ModalHeader toggle={this.toggle} cssModule={{'modal-title':'w-100 text-center'}}>Select Start Dates</ModalHeader>
+                            <ModalBody cssModule={{'modal-body':'w-100 text-center'}}>
+                            <p>
+                            {from &&
+                                to && (
+                                <button className="resetBtn" onClick={this.handleResetClick}>
+                                    Reset
+                                </button>
+                                )}
+                            </p>
+                            <DayPicker
+                                className="Selectable"
+                                numberOfMonths={this.props.numberOfMonths}
+                                selectedDays={[from, { from, to }]}
+                                modifiers={modifiers}
+                                onDayClick={this.handleDaysClicked}
+                            />
+                                {/* <DayPicker
+                                    selectedDays={this.state.selectedDays}
+                                    onDayClick={this.handleDayClick}
+                                /> */}
+                            </ModalBody>
+                        </Modal>
+						<div id="addUser">
+                            <CSVLink className="link" data={output} filename='CSV.csv'><button className="qabtn">CSV template<img src={download}></img></button></CSVLink>
+                            <CSVLink className="link" data={out} filename='CSV.csv'><button className="qabtn">Download CSV<img src={download}></img></button></CSVLink>
+                        </div>
                     <Collapse in={this.state.open}>
                     <p>
                         <br></br>
@@ -375,6 +592,7 @@ export default class ListTrainee extends Component {
                             <option value="True">True</option>
                             <option value="False">False</option>
                         </select>&nbsp;&nbsp;
+						<button className="resetBtn" onClick={this.toggle}>Select Start Dates</button> &nbsp;&nbsp;
                     </p>
                     </Collapse>
                 </div>
@@ -386,6 +604,7 @@ export default class ListTrainee extends Component {
                             <th>Last Name</th>
                             <th><center>Status</center></th>
                             <th><center>Bursary</center></th>
+							<th><center>Start Date</center></th>
                             <th><center>Payment This Month</center></th>
                             <th><center>Action</center></th>
                         </tr>
@@ -404,6 +623,7 @@ export default class ListTrainee extends Component {
                                             <td onClick={() => window.location.href = "/trainee-details/" + t._id}> {t.trainee_lname}</td>
                                             <td onClick={() => window.location.href = "/trainee-details/" + t._id}> <center>{t.status}</center></td>
                                             <td onClick={() => window.location.href = "/trainee-details/" + t._id}> <center>{t.bursary}</center></td>
+											<td onClick={() => window.location.href = "/trainee-details/" + t._id}> <center>{moment(t.trainee_start_date).format('MMMM Do YYYY')}</center></td>
                                             <td onClick={() => window.location.href = "/trainee-details/" + t._id}> <center>£{Number(t.bursary_amount * t.trainee_days_worked + expenses).toFixed(2)}</center></td>
                                             <td> 
                                                 <center>
