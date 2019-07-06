@@ -30,6 +30,7 @@ export default class ListTrainee extends Component {
             splitDays: [],
             currentUser: authService.currentUserValue,
             csv: '',
+            csvN:'',
             modal: false,
             filterBoolean: false,
             searchString: "",
@@ -198,6 +199,7 @@ export default class ListTrainee extends Component {
         let search = this.state.selectedDays;
         let splitDays = this.state.splitDays;
         let output = this.state.csv;
+        let out = this.state.csvN;
         let role = this.state.currentUser.token.role;
         let searchString = this.state.searchString.trim().toLowerCase().replace(/\s+/g, '');
         let filter = this.state.filter;
@@ -272,25 +274,36 @@ export default class ListTrainee extends Component {
             }
         }
 
-        if (role === 'finance') {
-            output = [];
-            trainees.map(t => {
-                if (t.status === "Active" && t.bursary === "True") {
-                    output = [["Sort Code","Payee/Trainee Name", "Account Number", "Bursary Amount", "BURSARY", "99","\r\n"]];
-                    var obj = [t.trainee_sort_code + String.fromCharCode(8203), t.trainee_fname + ' ' + t.trainee_lname, t.trainee_account_no + String.fromCharCode(8203), t.bursary_amount * t.trainee_days_worked + String.fromCharCode(8203), "BURSARY", "99"];
+        if(role === 'finance'){
+            output = [["Trainee/Payee Name", "Account Number", "Sort Code", "Total Value", "Decimal Place", "Append", "Data to Copy to Clipboard"]];
+            out = [];
+            
+            trainees.map( t => {
+                let totalexpenses = 0;
+                t.monthly_expenses.map(expense => {
+                    totalexpenses = +totalexpenses + +Number(expense.amount).toFixed(2);
+                })
+               // output = [["Sort Code","Payee/Trainee Name", "Account Number", "Bursary Amount", "BURSARY", "99","\r\n"]];
+               //var obj = [t.trainee_sort_code + String.fromCharCode(8203), t.trainee_fname + ' ' + t.trainee_lname, t.trainee_account_no + String.fromCharCode(8203), t.bursary_amount * t.trainee_days_worked + String.fromCharCode(8203), "BURSARY", "99"];
+                var obj = [t.trainee_fname+' '+t.trainee_lname, t.trainee_account_no, t.trainee_sort_code,Number(t.bursary_amount*t.trainee_days_worked + totalexpenses).toFixed(2),"2","00","\""+"\""+t.trainee_sort_code+"\""+"\""+','+"\""+"\""+t.trainee_fname+' '+t.trainee_lname+"\""+"\""+','+"\""+"\""+t.trainee_account_no+"\""+"\""+','+"\""+"\""+Number(t.bursary_amount*t.trainee_days_worked + totalexpenses).toFixed(2)+"\""+"\""+','+"\""+"\""+"BURSARY"+"\""+"\""+','+"\""+"\""+"99"+"\""+"\""];
+                var old = [t.trainee_sort_code,t.trainee_fname+' '+t.trainee_lname,t.trainee_account_no,Number(t.bursary_amount*t.trainee_days_worked + totalexpenses).toFixed(2),"BURSARY","99"];
+                if(t.status === 'Active'){
                     output.push(obj);
+                    out.push(old);
                 }
-            }
+                }
             )
-        } else if (role === 'admin') {
-            output = [["First Name", "Last Name", "Bursary", "Days Worked", "Bursary Amount", "Expenses total for month", "Total payment for month", "Start-Date", "End-Date", "Bench start", "Bench end", "Bench or training"]];
-            trainees.map(t => {
-                var obj = [t.trainee_fname, t.trainee_lname, t.bursary, t.trainee_days_worked, t.bursary_amount * t.trainee_days_worked, "0", t.bursary_amount * t.trainee_days_worked + t.monthly_expenses, moment(t.trainee_start_date).format('MMMM Do YYYY'), moment(t.trainee_end_date).format('MMMM Do YYYY'), moment(t.trainee_bench_start_date).format('MMMM Do YYYY'), moment(t.trainee_bench_end_date).format('MMMM Do YYYY'), t.bursary];
-                output.push(obj);
-            }
-            )
-        }
-
+        }else if(role === 'admin'){
+            output = [["First Name", "Last Name", "Bursary", "Days Worked", "Bursary Amount", "Expenses total for month","Total payment for month", "Start-Date", "End-Date", "Bench start", "Bench end"]];
+            trainees.map( t => {
+                    let totalexpenses = 0;
+                    t.monthly_expenses.map(expense => {
+                        totalexpenses = +totalexpenses + +Number(expense.amount).toFixed(2);
+                    })
+                    var obj = [t.trainee_fname, t.trainee_lname, t.bursary, t.trainee_days_worked,t.bursary_amount, t.monthly_expenses.length, Number((t.bursary_amount*t.trainee_days_worked)+totalexpenses).toFixed(2), moment(t.trainee_start_date).format('MMMM Do YYYY'), moment(t.trainee_end_date).format('MMMM Do YYYY'), moment(t.trainee_bench_start_date).format('MMMM Do YYYY'), moment(t.trainee_bench_end_date).format('MMMM Do YYYY')];  
+                  output.push(obj);
+                }
+            })
         console.log(search.length);
         if (search.length > 0) {
             if (role === 'finance') {
@@ -385,23 +398,24 @@ export default class ListTrainee extends Component {
                         <input type="checkbox" value="Suspended" onClick={this.onChangeSuspendedFilter} /> &nbsp;&nbsp;
                         <button className="resetBtn" onClick={this.toggle}>Select Start Dates</button> &nbsp;&nbsp;
                     </p>
-                        </Collapse>
-                    </div>
-                    <div id="resultsTable">
-                        <table className="table table-hover" style={{ marginTop: 20 }} >
-                            <thead>
-                                <tr>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>Email</th>
-                                    <th><center>Status</center></th>
-                                    <th>Recruited By</th>
-                                    <th><center>Bursary</center></th>
-                                    <th><center>Start Date</center></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {trainees.map(t => {
+                    </Collapse>
+                </div>
+                <div id="resultsTable">
+                <table className="table table-hover" style={{ marginTop: 20 }} >
+                    <thead>
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                            <th><center>Status</center></th>
+                            <th>Recruited By</th>
+                            <th><center>Bursary</center></th>
+							<th><center>Payment This Month</center></th>
+                            <th><center>Start Date</center></th>
+                        </tr>
+                    </thead>               
+                    <tbody>
+                     {trainees.map(t => {
                                     return (
                                         <tr>
                                             <td> {t.trainee_fname}</td>
@@ -465,9 +479,8 @@ export default class ListTrainee extends Component {
                             </ModalBody>
                         </Modal>
                         <div id="addUser">
-                            <CSVLink className="link" onClick={() => {
-                                this.$CSVLink.current.link.download = this.getFileNameFinance();
-                            }} ref={this.$CSVLink} data={output} filename={"Finance_report_" + moment().format('MMMM YYYY' + ".csv")} target="_blank" ><button className="qabtn">Download CSV <img src={download}></img></button></CSVLink>
+                            <CSVLink className="link" data={output} filename='CSV.csv'><button className="qabtn">CSV template<img src={download}></img></button></CSVLink>
+                            <CSVLink className="link" data={out} filename='CSV.csv'><button className="qabtn">Download CSV<img src={download}></img></button></CSVLink>
                         </div>
                         <Collapse in={this.state.filterBoolean}>
                             <p>

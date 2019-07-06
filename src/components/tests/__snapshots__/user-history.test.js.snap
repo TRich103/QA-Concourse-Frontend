@@ -1,0 +1,1997 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`User History render tests renders correctly when there are no items 1`] = `
+<UserRecord
+  match={
+    Object {
+      "params": Object {
+        "id": "5d0b629524eb545e4863b83e",
+      },
+    }
+  }
+>
+  <div
+    className="BigBox"
+  >
+    <div
+      className="historyTable"
+    >
+      <div
+        className="QASearchBar"
+      >
+        <h2>
+           History- 
+        </h2>
+        <h3>
+          <center>
+            <button
+              id="cancelBtn"
+              onClick={[Function]}
+            >
+              ⭠ Back
+            </button>
+          </center>
+        </h3>
+        <div
+          id="logbox"
+        >
+          <label
+            id="searchLogs"
+          >
+            Search Logs :
+          </label>
+          <SearchBar
+            search={[Function]}
+          >
+            <div>
+              <form
+                onSubmit={[Function]}
+              >
+                <input
+                  onChange={[Function]}
+                  type="text"
+                  value=""
+                />
+              </form>
+            </div>
+          </SearchBar>
+          <button
+            className="resetBtn"
+            onClick={[Function]}
+          >
+            Select Start Dates
+          </button>
+        </div>
+      </div>
+      <div
+        className="QASearchBar"
+      >
+        <QATable
+          data={
+            Object {
+              "Headers": Array [
+                Object {
+                  "header": "Date",
+                  "width": 100,
+                },
+                Object {
+                  "header": "Event",
+                },
+              ],
+              "Rows": Array [],
+            }
+          }
+        >
+          <ReactTable
+            AggregatedComponent={[Function]}
+            ExpanderComponent={[Function]}
+            FilterComponent={[Function]}
+            LoadingComponent={[Function]}
+            NoDataComponent={[Function]}
+            PadRowComponent={[Function]}
+            PaginationComponent={[Function]}
+            PivotValueComponent={[Function]}
+            ResizerComponent={[Function]}
+            TableComponent={[Function]}
+            TbodyComponent={[Function]}
+            TdComponent={[Function]}
+            TfootComponent={[Function]}
+            ThComponent={[Function]}
+            TheadComponent={[Function]}
+            TrComponent={[Function]}
+            TrGroupComponent={[Function]}
+            aggregatedKey="_aggregated"
+            className="-striped -highlight"
+            collapseOnDataChange={true}
+            collapseOnPageChange={true}
+            collapseOnSortingChange={true}
+            column={
+              Object {
+                "Aggregated": undefined,
+                "Cell": undefined,
+                "Expander": undefined,
+                "Filter": undefined,
+                "Footer": undefined,
+                "Header": undefined,
+                "Pivot": undefined,
+                "PivotValue": undefined,
+                "Placeholder": undefined,
+                "aggregate": undefined,
+                "className": "",
+                "filterAll": false,
+                "filterMethod": undefined,
+                "filterable": undefined,
+                "footerClassName": "",
+                "footerStyle": Object {},
+                "getFooterProps": [Function],
+                "getHeaderProps": [Function],
+                "getProps": [Function],
+                "headerClassName": "",
+                "headerStyle": Object {},
+                "minResizeWidth": 11,
+                "minWidth": 100,
+                "resizable": undefined,
+                "show": true,
+                "sortMethod": undefined,
+                "sortable": undefined,
+                "style": Object {},
+              }
+            }
+            columns={
+              Array [
+                Object {
+                  "Header": "Date",
+                  "accessor": "Date",
+                  "width": 100,
+                },
+                Object {
+                  "Header": "Event",
+                  "accessor": "Event",
+                  "width": undefined,
+                },
+              ]
+            }
+            data={Array []}
+            defaultExpanded={Object {}}
+            defaultFilterMethod={[Function]}
+            defaultFiltered={Array []}
+            defaultPage={0}
+            defaultPageSize={20}
+            defaultResized={Array []}
+            defaultSortDesc={false}
+            defaultSortMethod={[Function]}
+            defaultSorted={Array []}
+            expanderDefaults={
+              Object {
+                "filterable": false,
+                "resizable": false,
+                "sortable": false,
+                "width": 35,
+              }
+            }
+            filterable={false}
+            freezeWhenExpanded={false}
+            getLoadingProps={[Function]}
+            getNoDataProps={[Function]}
+            getPaginationProps={[Function]}
+            getProps={[Function]}
+            getResizerProps={[Function]}
+            getTableProps={[Function]}
+            getTbodyProps={[Function]}
+            getTdProps={[Function]}
+            getTfootProps={[Function]}
+            getTfootTdProps={[Function]}
+            getTfootTrProps={[Function]}
+            getTheadFilterProps={[Function]}
+            getTheadFilterThProps={[Function]}
+            getTheadFilterTrProps={[Function]}
+            getTheadGroupProps={[Function]}
+            getTheadGroupThProps={[Function]}
+            getTheadGroupTrProps={[Function]}
+            getTheadProps={[Function]}
+            getTheadThProps={[Function]}
+            getTheadTrProps={[Function]}
+            getTrGroupProps={[Function]}
+            getTrProps={[Function]}
+            groupedByPivotKey="_groupedByPivot"
+            indexKey="_index"
+            loading={false}
+            loadingText="Loading..."
+            multiSort={true}
+            nestingLevelKey="_nestingLevel"
+            nextText="Next"
+            noDataText="No rows found"
+            ofText="of"
+            onFetchData={[Function]}
+            originalKey="_original"
+            pageJumpText="jump to page"
+            pageSizeOptions={
+              Array [
+                5,
+                10,
+                20,
+                25,
+                50,
+                100,
+              ]
+            }
+            pageText="Page"
+            pivotDefaults={Object {}}
+            pivotIDKey="_pivotID"
+            pivotValKey="_pivotVal"
+            previousText="Previous"
+            resizable={true}
+            resolveData={[Function]}
+            rowsSelectorText="rows per page"
+            rowsText="rows"
+            showPageJump={true}
+            showPageSizeOptions={true}
+            showPagination={false}
+            showPaginationBottom={true}
+            showPaginationTop={false}
+            sortable={true}
+            style={
+              Object {
+                "height": "400px",
+              }
+            }
+            subRowsKey="_subRows"
+          >
+            <div
+              className="ReactTable -striped -highlight"
+              style={
+                Object {
+                  "height": "400px",
+                }
+              }
+            >
+              <TableComponent
+                className=""
+              >
+                <div
+                  className="rt-table"
+                  role="grid"
+                >
+                  <Thead
+                    className="-header"
+                    style={
+                      Object {
+                        "minWidth": "200px",
+                      }
+                    }
+                  >
+                    <div
+                      className="rt-thead -header"
+                      style={
+                        Object {
+                          "minWidth": "200px",
+                        }
+                      }
+                    >
+                      <TrComponent>
+                        <div
+                          className="rt-tr"
+                          role="row"
+                        >
+                          <ThComponent
+                            className="rt-resizable-header -cursor-pointer"
+                            key="0-Date"
+                            style={
+                              Object {
+                                "flex": "100 0 auto",
+                                "maxWidth": "100px",
+                                "width": "100px",
+                              }
+                            }
+                            toggleSort={[Function]}
+                          >
+                            <div
+                              className="rt-th rt-resizable-header -cursor-pointer"
+                              onClick={[Function]}
+                              role="columnheader"
+                              style={
+                                Object {
+                                  "flex": "100 0 auto",
+                                  "maxWidth": "100px",
+                                  "width": "100px",
+                                }
+                              }
+                              tabIndex="-1"
+                            >
+                              <div
+                                className="rt-resizable-header-content"
+                              >
+                                Date
+                              </div>
+                              <Resizer
+                                onMouseDown={[Function]}
+                                onTouchStart={[Function]}
+                              >
+                                <div
+                                  className="rt-resizer"
+                                  onMouseDown={[Function]}
+                                  onTouchStart={[Function]}
+                                />
+                              </Resizer>
+                            </div>
+                          </ThComponent>
+                          <ThComponent
+                            className="rt-resizable-header -cursor-pointer"
+                            key="1-Event"
+                            style={
+                              Object {
+                                "flex": "100 0 auto",
+                                "maxWidth": null,
+                                "width": "100px",
+                              }
+                            }
+                            toggleSort={[Function]}
+                          >
+                            <div
+                              className="rt-th rt-resizable-header -cursor-pointer"
+                              onClick={[Function]}
+                              role="columnheader"
+                              style={
+                                Object {
+                                  "flex": "100 0 auto",
+                                  "maxWidth": null,
+                                  "width": "100px",
+                                }
+                              }
+                              tabIndex="-1"
+                            >
+                              <div
+                                className="rt-resizable-header-content"
+                              >
+                                Event
+                              </div>
+                              <Resizer
+                                onMouseDown={[Function]}
+                                onTouchStart={[Function]}
+                              >
+                                <div
+                                  className="rt-resizer"
+                                  onMouseDown={[Function]}
+                                  onTouchStart={[Function]}
+                                />
+                              </Resizer>
+                            </div>
+                          </ThComponent>
+                        </div>
+                      </TrComponent>
+                    </div>
+                  </Thead>
+                  <Tbody
+                    className=""
+                    style={
+                      Object {
+                        "minWidth": "200px",
+                      }
+                    }
+                  >
+                    <div
+                      className="rt-tbody"
+                      style={
+                        Object {
+                          "minWidth": "200px",
+                        }
+                      }
+                    >
+                      <TrGroupComponent
+                        key="pad-0"
+                      >
+                        <div
+                          className="rt-tr-group"
+                          role="rowgroup"
+                        >
+                          <TrComponent
+                            className="-padRow -odd"
+                            style={Object {}}
+                          >
+                            <div
+                              className="rt-tr -padRow -odd"
+                              role="row"
+                              style={Object {}}
+                            >
+                              <TdComponent
+                                className=""
+                                key="0-Date"
+                                style={
+                                  Object {
+                                    "flex": "100 0 auto",
+                                    "maxWidth": "100px",
+                                    "width": "100px",
+                                  }
+                                }
+                              >
+                                <div
+                                  className="rt-td"
+                                  role="gridcell"
+                                  style={
+                                    Object {
+                                      "flex": "100 0 auto",
+                                      "maxWidth": "100px",
+                                      "width": "100px",
+                                    }
+                                  }
+                                >
+                                  <PadRowComponent>
+                                    <span>
+                                       
+                                    </span>
+                                  </PadRowComponent>
+                                </div>
+                              </TdComponent>
+                              <TdComponent
+                                className=""
+                                key="1-Event"
+                                style={
+                                  Object {
+                                    "flex": "100 0 auto",
+                                    "maxWidth": null,
+                                    "width": "100px",
+                                  }
+                                }
+                              >
+                                <div
+                                  className="rt-td"
+                                  role="gridcell"
+                                  style={
+                                    Object {
+                                      "flex": "100 0 auto",
+                                      "maxWidth": null,
+                                      "width": "100px",
+                                    }
+                                  }
+                                >
+                                  <PadRowComponent>
+                                    <span>
+                                       
+                                    </span>
+                                  </PadRowComponent>
+                                </div>
+                              </TdComponent>
+                            </div>
+                          </TrComponent>
+                        </div>
+                      </TrGroupComponent>
+                      <TrGroupComponent
+                        key="pad-1"
+                      >
+                        <div
+                          className="rt-tr-group"
+                          role="rowgroup"
+                        >
+                          <TrComponent
+                            className="-padRow -even"
+                            style={Object {}}
+                          >
+                            <div
+                              className="rt-tr -padRow -even"
+                              role="row"
+                              style={Object {}}
+                            >
+                              <TdComponent
+                                className=""
+                                key="0-Date"
+                                style={
+                                  Object {
+                                    "flex": "100 0 auto",
+                                    "maxWidth": "100px",
+                                    "width": "100px",
+                                  }
+                                }
+                              >
+                                <div
+                                  className="rt-td"
+                                  role="gridcell"
+                                  style={
+                                    Object {
+                                      "flex": "100 0 auto",
+                                      "maxWidth": "100px",
+                                      "width": "100px",
+                                    }
+                                  }
+                                >
+                                  <PadRowComponent>
+                                    <span>
+                                       
+                                    </span>
+                                  </PadRowComponent>
+                                </div>
+                              </TdComponent>
+                              <TdComponent
+                                className=""
+                                key="1-Event"
+                                style={
+                                  Object {
+                                    "flex": "100 0 auto",
+                                    "maxWidth": null,
+                                    "width": "100px",
+                                  }
+                                }
+                              >
+                                <div
+                                  className="rt-td"
+                                  role="gridcell"
+                                  style={
+                                    Object {
+                                      "flex": "100 0 auto",
+                                      "maxWidth": null,
+                                      "width": "100px",
+                                    }
+                                  }
+                                >
+                                  <PadRowComponent>
+                                    <span>
+                                       
+                                    </span>
+                                  </PadRowComponent>
+                                </div>
+                              </TdComponent>
+                            </div>
+                          </TrComponent>
+                        </div>
+                      </TrGroupComponent>
+                      <TrGroupComponent
+                        key="pad-2"
+                      >
+                        <div
+                          className="rt-tr-group"
+                          role="rowgroup"
+                        >
+                          <TrComponent
+                            className="-padRow -odd"
+                            style={Object {}}
+                          >
+                            <div
+                              className="rt-tr -padRow -odd"
+                              role="row"
+                              style={Object {}}
+                            >
+                              <TdComponent
+                                className=""
+                                key="0-Date"
+                                style={
+                                  Object {
+                                    "flex": "100 0 auto",
+                                    "maxWidth": "100px",
+                                    "width": "100px",
+                                  }
+                                }
+                              >
+                                <div
+                                  className="rt-td"
+                                  role="gridcell"
+                                  style={
+                                    Object {
+                                      "flex": "100 0 auto",
+                                      "maxWidth": "100px",
+                                      "width": "100px",
+                                    }
+                                  }
+                                >
+                                  <PadRowComponent>
+                                    <span>
+                                       
+                                    </span>
+                                  </PadRowComponent>
+                                </div>
+                              </TdComponent>
+                              <TdComponent
+                                className=""
+                                key="1-Event"
+                                style={
+                                  Object {
+                                    "flex": "100 0 auto",
+                                    "maxWidth": null,
+                                    "width": "100px",
+                                  }
+                                }
+                              >
+                                <div
+                                  className="rt-td"
+                                  role="gridcell"
+                                  style={
+                                    Object {
+                                      "flex": "100 0 auto",
+                                      "maxWidth": null,
+                                      "width": "100px",
+                                    }
+                                  }
+                                >
+                                  <PadRowComponent>
+                                    <span>
+                                       
+                                    </span>
+                                  </PadRowComponent>
+                                </div>
+                              </TdComponent>
+                            </div>
+                          </TrComponent>
+                        </div>
+                      </TrGroupComponent>
+                      <TrGroupComponent
+                        key="pad-3"
+                      >
+                        <div
+                          className="rt-tr-group"
+                          role="rowgroup"
+                        >
+                          <TrComponent
+                            className="-padRow -even"
+                            style={Object {}}
+                          >
+                            <div
+                              className="rt-tr -padRow -even"
+                              role="row"
+                              style={Object {}}
+                            >
+                              <TdComponent
+                                className=""
+                                key="0-Date"
+                                style={
+                                  Object {
+                                    "flex": "100 0 auto",
+                                    "maxWidth": "100px",
+                                    "width": "100px",
+                                  }
+                                }
+                              >
+                                <div
+                                  className="rt-td"
+                                  role="gridcell"
+                                  style={
+                                    Object {
+                                      "flex": "100 0 auto",
+                                      "maxWidth": "100px",
+                                      "width": "100px",
+                                    }
+                                  }
+                                >
+                                  <PadRowComponent>
+                                    <span>
+                                       
+                                    </span>
+                                  </PadRowComponent>
+                                </div>
+                              </TdComponent>
+                              <TdComponent
+                                className=""
+                                key="1-Event"
+                                style={
+                                  Object {
+                                    "flex": "100 0 auto",
+                                    "maxWidth": null,
+                                    "width": "100px",
+                                  }
+                                }
+                              >
+                                <div
+                                  className="rt-td"
+                                  role="gridcell"
+                                  style={
+                                    Object {
+                                      "flex": "100 0 auto",
+                                      "maxWidth": null,
+                                      "width": "100px",
+                                    }
+                                  }
+                                >
+                                  <PadRowComponent>
+                                    <span>
+                                       
+                                    </span>
+                                  </PadRowComponent>
+                                </div>
+                              </TdComponent>
+                            </div>
+                          </TrComponent>
+                        </div>
+                      </TrGroupComponent>
+                      <TrGroupComponent
+                        key="pad-4"
+                      >
+                        <div
+                          className="rt-tr-group"
+                          role="rowgroup"
+                        >
+                          <TrComponent
+                            className="-padRow -odd"
+                            style={Object {}}
+                          >
+                            <div
+                              className="rt-tr -padRow -odd"
+                              role="row"
+                              style={Object {}}
+                            >
+                              <TdComponent
+                                className=""
+                                key="0-Date"
+                                style={
+                                  Object {
+                                    "flex": "100 0 auto",
+                                    "maxWidth": "100px",
+                                    "width": "100px",
+                                  }
+                                }
+                              >
+                                <div
+                                  className="rt-td"
+                                  role="gridcell"
+                                  style={
+                                    Object {
+                                      "flex": "100 0 auto",
+                                      "maxWidth": "100px",
+                                      "width": "100px",
+                                    }
+                                  }
+                                >
+                                  <PadRowComponent>
+                                    <span>
+                                       
+                                    </span>
+                                  </PadRowComponent>
+                                </div>
+                              </TdComponent>
+                              <TdComponent
+                                className=""
+                                key="1-Event"
+                                style={
+                                  Object {
+                                    "flex": "100 0 auto",
+                                    "maxWidth": null,
+                                    "width": "100px",
+                                  }
+                                }
+                              >
+                                <div
+                                  className="rt-td"
+                                  role="gridcell"
+                                  style={
+                                    Object {
+                                      "flex": "100 0 auto",
+                                      "maxWidth": null,
+                                      "width": "100px",
+                                    }
+                                  }
+                                >
+                                  <PadRowComponent>
+                                    <span>
+                                       
+                                    </span>
+                                  </PadRowComponent>
+                                </div>
+                              </TdComponent>
+                            </div>
+                          </TrComponent>
+                        </div>
+                      </TrGroupComponent>
+                      <TrGroupComponent
+                        key="pad-5"
+                      >
+                        <div
+                          className="rt-tr-group"
+                          role="rowgroup"
+                        >
+                          <TrComponent
+                            className="-padRow -even"
+                            style={Object {}}
+                          >
+                            <div
+                              className="rt-tr -padRow -even"
+                              role="row"
+                              style={Object {}}
+                            >
+                              <TdComponent
+                                className=""
+                                key="0-Date"
+                                style={
+                                  Object {
+                                    "flex": "100 0 auto",
+                                    "maxWidth": "100px",
+                                    "width": "100px",
+                                  }
+                                }
+                              >
+                                <div
+                                  className="rt-td"
+                                  role="gridcell"
+                                  style={
+                                    Object {
+                                      "flex": "100 0 auto",
+                                      "maxWidth": "100px",
+                                      "width": "100px",
+                                    }
+                                  }
+                                >
+                                  <PadRowComponent>
+                                    <span>
+                                       
+                                    </span>
+                                  </PadRowComponent>
+                                </div>
+                              </TdComponent>
+                              <TdComponent
+                                className=""
+                                key="1-Event"
+                                style={
+                                  Object {
+                                    "flex": "100 0 auto",
+                                    "maxWidth": null,
+                                    "width": "100px",
+                                  }
+                                }
+                              >
+                                <div
+                                  className="rt-td"
+                                  role="gridcell"
+                                  style={
+                                    Object {
+                                      "flex": "100 0 auto",
+                                      "maxWidth": null,
+                                      "width": "100px",
+                                    }
+                                  }
+                                >
+                                  <PadRowComponent>
+                                    <span>
+                                       
+                                    </span>
+                                  </PadRowComponent>
+                                </div>
+                              </TdComponent>
+                            </div>
+                          </TrComponent>
+                        </div>
+                      </TrGroupComponent>
+                      <TrGroupComponent
+                        key="pad-6"
+                      >
+                        <div
+                          className="rt-tr-group"
+                          role="rowgroup"
+                        >
+                          <TrComponent
+                            className="-padRow -odd"
+                            style={Object {}}
+                          >
+                            <div
+                              className="rt-tr -padRow -odd"
+                              role="row"
+                              style={Object {}}
+                            >
+                              <TdComponent
+                                className=""
+                                key="0-Date"
+                                style={
+                                  Object {
+                                    "flex": "100 0 auto",
+                                    "maxWidth": "100px",
+                                    "width": "100px",
+                                  }
+                                }
+                              >
+                                <div
+                                  className="rt-td"
+                                  role="gridcell"
+                                  style={
+                                    Object {
+                                      "flex": "100 0 auto",
+                                      "maxWidth": "100px",
+                                      "width": "100px",
+                                    }
+                                  }
+                                >
+                                  <PadRowComponent>
+                                    <span>
+                                       
+                                    </span>
+                                  </PadRowComponent>
+                                </div>
+                              </TdComponent>
+                              <TdComponent
+                                className=""
+                                key="1-Event"
+                                style={
+                                  Object {
+                                    "flex": "100 0 auto",
+                                    "maxWidth": null,
+                                    "width": "100px",
+                                  }
+                                }
+                              >
+                                <div
+                                  className="rt-td"
+                                  role="gridcell"
+                                  style={
+                                    Object {
+                                      "flex": "100 0 auto",
+                                      "maxWidth": null,
+                                      "width": "100px",
+                                    }
+                                  }
+                                >
+                                  <PadRowComponent>
+                                    <span>
+                                       
+                                    </span>
+                                  </PadRowComponent>
+                                </div>
+                              </TdComponent>
+                            </div>
+                          </TrComponent>
+                        </div>
+                      </TrGroupComponent>
+                      <TrGroupComponent
+                        key="pad-7"
+                      >
+                        <div
+                          className="rt-tr-group"
+                          role="rowgroup"
+                        >
+                          <TrComponent
+                            className="-padRow -even"
+                            style={Object {}}
+                          >
+                            <div
+                              className="rt-tr -padRow -even"
+                              role="row"
+                              style={Object {}}
+                            >
+                              <TdComponent
+                                className=""
+                                key="0-Date"
+                                style={
+                                  Object {
+                                    "flex": "100 0 auto",
+                                    "maxWidth": "100px",
+                                    "width": "100px",
+                                  }
+                                }
+                              >
+                                <div
+                                  className="rt-td"
+                                  role="gridcell"
+                                  style={
+                                    Object {
+                                      "flex": "100 0 auto",
+                                      "maxWidth": "100px",
+                                      "width": "100px",
+                                    }
+                                  }
+                                >
+                                  <PadRowComponent>
+                                    <span>
+                                       
+                                    </span>
+                                  </PadRowComponent>
+                                </div>
+                              </TdComponent>
+                              <TdComponent
+                                className=""
+                                key="1-Event"
+                                style={
+                                  Object {
+                                    "flex": "100 0 auto",
+                                    "maxWidth": null,
+                                    "width": "100px",
+                                  }
+                                }
+                              >
+                                <div
+                                  className="rt-td"
+                                  role="gridcell"
+                                  style={
+                                    Object {
+                                      "flex": "100 0 auto",
+                                      "maxWidth": null,
+                                      "width": "100px",
+                                    }
+                                  }
+                                >
+                                  <PadRowComponent>
+                                    <span>
+                                       
+                                    </span>
+                                  </PadRowComponent>
+                                </div>
+                              </TdComponent>
+                            </div>
+                          </TrComponent>
+                        </div>
+                      </TrGroupComponent>
+                      <TrGroupComponent
+                        key="pad-8"
+                      >
+                        <div
+                          className="rt-tr-group"
+                          role="rowgroup"
+                        >
+                          <TrComponent
+                            className="-padRow -odd"
+                            style={Object {}}
+                          >
+                            <div
+                              className="rt-tr -padRow -odd"
+                              role="row"
+                              style={Object {}}
+                            >
+                              <TdComponent
+                                className=""
+                                key="0-Date"
+                                style={
+                                  Object {
+                                    "flex": "100 0 auto",
+                                    "maxWidth": "100px",
+                                    "width": "100px",
+                                  }
+                                }
+                              >
+                                <div
+                                  className="rt-td"
+                                  role="gridcell"
+                                  style={
+                                    Object {
+                                      "flex": "100 0 auto",
+                                      "maxWidth": "100px",
+                                      "width": "100px",
+                                    }
+                                  }
+                                >
+                                  <PadRowComponent>
+                                    <span>
+                                       
+                                    </span>
+                                  </PadRowComponent>
+                                </div>
+                              </TdComponent>
+                              <TdComponent
+                                className=""
+                                key="1-Event"
+                                style={
+                                  Object {
+                                    "flex": "100 0 auto",
+                                    "maxWidth": null,
+                                    "width": "100px",
+                                  }
+                                }
+                              >
+                                <div
+                                  className="rt-td"
+                                  role="gridcell"
+                                  style={
+                                    Object {
+                                      "flex": "100 0 auto",
+                                      "maxWidth": null,
+                                      "width": "100px",
+                                    }
+                                  }
+                                >
+                                  <PadRowComponent>
+                                    <span>
+                                       
+                                    </span>
+                                  </PadRowComponent>
+                                </div>
+                              </TdComponent>
+                            </div>
+                          </TrComponent>
+                        </div>
+                      </TrGroupComponent>
+                      <TrGroupComponent
+                        key="pad-9"
+                      >
+                        <div
+                          className="rt-tr-group"
+                          role="rowgroup"
+                        >
+                          <TrComponent
+                            className="-padRow -even"
+                            style={Object {}}
+                          >
+                            <div
+                              className="rt-tr -padRow -even"
+                              role="row"
+                              style={Object {}}
+                            >
+                              <TdComponent
+                                className=""
+                                key="0-Date"
+                                style={
+                                  Object {
+                                    "flex": "100 0 auto",
+                                    "maxWidth": "100px",
+                                    "width": "100px",
+                                  }
+                                }
+                              >
+                                <div
+                                  className="rt-td"
+                                  role="gridcell"
+                                  style={
+                                    Object {
+                                      "flex": "100 0 auto",
+                                      "maxWidth": "100px",
+                                      "width": "100px",
+                                    }
+                                  }
+                                >
+                                  <PadRowComponent>
+                                    <span>
+                                       
+                                    </span>
+                                  </PadRowComponent>
+                                </div>
+                              </TdComponent>
+                              <TdComponent
+                                className=""
+                                key="1-Event"
+                                style={
+                                  Object {
+                                    "flex": "100 0 auto",
+                                    "maxWidth": null,
+                                    "width": "100px",
+                                  }
+                                }
+                              >
+                                <div
+                                  className="rt-td"
+                                  role="gridcell"
+                                  style={
+                                    Object {
+                                      "flex": "100 0 auto",
+                                      "maxWidth": null,
+                                      "width": "100px",
+                                    }
+                                  }
+                                >
+                                  <PadRowComponent>
+                                    <span>
+                                       
+                                    </span>
+                                  </PadRowComponent>
+                                </div>
+                              </TdComponent>
+                            </div>
+                          </TrComponent>
+                        </div>
+                      </TrGroupComponent>
+                      <TrGroupComponent
+                        key="pad-10"
+                      >
+                        <div
+                          className="rt-tr-group"
+                          role="rowgroup"
+                        >
+                          <TrComponent
+                            className="-padRow -odd"
+                            style={Object {}}
+                          >
+                            <div
+                              className="rt-tr -padRow -odd"
+                              role="row"
+                              style={Object {}}
+                            >
+                              <TdComponent
+                                className=""
+                                key="0-Date"
+                                style={
+                                  Object {
+                                    "flex": "100 0 auto",
+                                    "maxWidth": "100px",
+                                    "width": "100px",
+                                  }
+                                }
+                              >
+                                <div
+                                  className="rt-td"
+                                  role="gridcell"
+                                  style={
+                                    Object {
+                                      "flex": "100 0 auto",
+                                      "maxWidth": "100px",
+                                      "width": "100px",
+                                    }
+                                  }
+                                >
+                                  <PadRowComponent>
+                                    <span>
+                                       
+                                    </span>
+                                  </PadRowComponent>
+                                </div>
+                              </TdComponent>
+                              <TdComponent
+                                className=""
+                                key="1-Event"
+                                style={
+                                  Object {
+                                    "flex": "100 0 auto",
+                                    "maxWidth": null,
+                                    "width": "100px",
+                                  }
+                                }
+                              >
+                                <div
+                                  className="rt-td"
+                                  role="gridcell"
+                                  style={
+                                    Object {
+                                      "flex": "100 0 auto",
+                                      "maxWidth": null,
+                                      "width": "100px",
+                                    }
+                                  }
+                                >
+                                  <PadRowComponent>
+                                    <span>
+                                       
+                                    </span>
+                                  </PadRowComponent>
+                                </div>
+                              </TdComponent>
+                            </div>
+                          </TrComponent>
+                        </div>
+                      </TrGroupComponent>
+                      <TrGroupComponent
+                        key="pad-11"
+                      >
+                        <div
+                          className="rt-tr-group"
+                          role="rowgroup"
+                        >
+                          <TrComponent
+                            className="-padRow -even"
+                            style={Object {}}
+                          >
+                            <div
+                              className="rt-tr -padRow -even"
+                              role="row"
+                              style={Object {}}
+                            >
+                              <TdComponent
+                                className=""
+                                key="0-Date"
+                                style={
+                                  Object {
+                                    "flex": "100 0 auto",
+                                    "maxWidth": "100px",
+                                    "width": "100px",
+                                  }
+                                }
+                              >
+                                <div
+                                  className="rt-td"
+                                  role="gridcell"
+                                  style={
+                                    Object {
+                                      "flex": "100 0 auto",
+                                      "maxWidth": "100px",
+                                      "width": "100px",
+                                    }
+                                  }
+                                >
+                                  <PadRowComponent>
+                                    <span>
+                                       
+                                    </span>
+                                  </PadRowComponent>
+                                </div>
+                              </TdComponent>
+                              <TdComponent
+                                className=""
+                                key="1-Event"
+                                style={
+                                  Object {
+                                    "flex": "100 0 auto",
+                                    "maxWidth": null,
+                                    "width": "100px",
+                                  }
+                                }
+                              >
+                                <div
+                                  className="rt-td"
+                                  role="gridcell"
+                                  style={
+                                    Object {
+                                      "flex": "100 0 auto",
+                                      "maxWidth": null,
+                                      "width": "100px",
+                                    }
+                                  }
+                                >
+                                  <PadRowComponent>
+                                    <span>
+                                       
+                                    </span>
+                                  </PadRowComponent>
+                                </div>
+                              </TdComponent>
+                            </div>
+                          </TrComponent>
+                        </div>
+                      </TrGroupComponent>
+                      <TrGroupComponent
+                        key="pad-12"
+                      >
+                        <div
+                          className="rt-tr-group"
+                          role="rowgroup"
+                        >
+                          <TrComponent
+                            className="-padRow -odd"
+                            style={Object {}}
+                          >
+                            <div
+                              className="rt-tr -padRow -odd"
+                              role="row"
+                              style={Object {}}
+                            >
+                              <TdComponent
+                                className=""
+                                key="0-Date"
+                                style={
+                                  Object {
+                                    "flex": "100 0 auto",
+                                    "maxWidth": "100px",
+                                    "width": "100px",
+                                  }
+                                }
+                              >
+                                <div
+                                  className="rt-td"
+                                  role="gridcell"
+                                  style={
+                                    Object {
+                                      "flex": "100 0 auto",
+                                      "maxWidth": "100px",
+                                      "width": "100px",
+                                    }
+                                  }
+                                >
+                                  <PadRowComponent>
+                                    <span>
+                                       
+                                    </span>
+                                  </PadRowComponent>
+                                </div>
+                              </TdComponent>
+                              <TdComponent
+                                className=""
+                                key="1-Event"
+                                style={
+                                  Object {
+                                    "flex": "100 0 auto",
+                                    "maxWidth": null,
+                                    "width": "100px",
+                                  }
+                                }
+                              >
+                                <div
+                                  className="rt-td"
+                                  role="gridcell"
+                                  style={
+                                    Object {
+                                      "flex": "100 0 auto",
+                                      "maxWidth": null,
+                                      "width": "100px",
+                                    }
+                                  }
+                                >
+                                  <PadRowComponent>
+                                    <span>
+                                       
+                                    </span>
+                                  </PadRowComponent>
+                                </div>
+                              </TdComponent>
+                            </div>
+                          </TrComponent>
+                        </div>
+                      </TrGroupComponent>
+                      <TrGroupComponent
+                        key="pad-13"
+                      >
+                        <div
+                          className="rt-tr-group"
+                          role="rowgroup"
+                        >
+                          <TrComponent
+                            className="-padRow -even"
+                            style={Object {}}
+                          >
+                            <div
+                              className="rt-tr -padRow -even"
+                              role="row"
+                              style={Object {}}
+                            >
+                              <TdComponent
+                                className=""
+                                key="0-Date"
+                                style={
+                                  Object {
+                                    "flex": "100 0 auto",
+                                    "maxWidth": "100px",
+                                    "width": "100px",
+                                  }
+                                }
+                              >
+                                <div
+                                  className="rt-td"
+                                  role="gridcell"
+                                  style={
+                                    Object {
+                                      "flex": "100 0 auto",
+                                      "maxWidth": "100px",
+                                      "width": "100px",
+                                    }
+                                  }
+                                >
+                                  <PadRowComponent>
+                                    <span>
+                                       
+                                    </span>
+                                  </PadRowComponent>
+                                </div>
+                              </TdComponent>
+                              <TdComponent
+                                className=""
+                                key="1-Event"
+                                style={
+                                  Object {
+                                    "flex": "100 0 auto",
+                                    "maxWidth": null,
+                                    "width": "100px",
+                                  }
+                                }
+                              >
+                                <div
+                                  className="rt-td"
+                                  role="gridcell"
+                                  style={
+                                    Object {
+                                      "flex": "100 0 auto",
+                                      "maxWidth": null,
+                                      "width": "100px",
+                                    }
+                                  }
+                                >
+                                  <PadRowComponent>
+                                    <span>
+                                       
+                                    </span>
+                                  </PadRowComponent>
+                                </div>
+                              </TdComponent>
+                            </div>
+                          </TrComponent>
+                        </div>
+                      </TrGroupComponent>
+                      <TrGroupComponent
+                        key="pad-14"
+                      >
+                        <div
+                          className="rt-tr-group"
+                          role="rowgroup"
+                        >
+                          <TrComponent
+                            className="-padRow -odd"
+                            style={Object {}}
+                          >
+                            <div
+                              className="rt-tr -padRow -odd"
+                              role="row"
+                              style={Object {}}
+                            >
+                              <TdComponent
+                                className=""
+                                key="0-Date"
+                                style={
+                                  Object {
+                                    "flex": "100 0 auto",
+                                    "maxWidth": "100px",
+                                    "width": "100px",
+                                  }
+                                }
+                              >
+                                <div
+                                  className="rt-td"
+                                  role="gridcell"
+                                  style={
+                                    Object {
+                                      "flex": "100 0 auto",
+                                      "maxWidth": "100px",
+                                      "width": "100px",
+                                    }
+                                  }
+                                >
+                                  <PadRowComponent>
+                                    <span>
+                                       
+                                    </span>
+                                  </PadRowComponent>
+                                </div>
+                              </TdComponent>
+                              <TdComponent
+                                className=""
+                                key="1-Event"
+                                style={
+                                  Object {
+                                    "flex": "100 0 auto",
+                                    "maxWidth": null,
+                                    "width": "100px",
+                                  }
+                                }
+                              >
+                                <div
+                                  className="rt-td"
+                                  role="gridcell"
+                                  style={
+                                    Object {
+                                      "flex": "100 0 auto",
+                                      "maxWidth": null,
+                                      "width": "100px",
+                                    }
+                                  }
+                                >
+                                  <PadRowComponent>
+                                    <span>
+                                       
+                                    </span>
+                                  </PadRowComponent>
+                                </div>
+                              </TdComponent>
+                            </div>
+                          </TrComponent>
+                        </div>
+                      </TrGroupComponent>
+                      <TrGroupComponent
+                        key="pad-15"
+                      >
+                        <div
+                          className="rt-tr-group"
+                          role="rowgroup"
+                        >
+                          <TrComponent
+                            className="-padRow -even"
+                            style={Object {}}
+                          >
+                            <div
+                              className="rt-tr -padRow -even"
+                              role="row"
+                              style={Object {}}
+                            >
+                              <TdComponent
+                                className=""
+                                key="0-Date"
+                                style={
+                                  Object {
+                                    "flex": "100 0 auto",
+                                    "maxWidth": "100px",
+                                    "width": "100px",
+                                  }
+                                }
+                              >
+                                <div
+                                  className="rt-td"
+                                  role="gridcell"
+                                  style={
+                                    Object {
+                                      "flex": "100 0 auto",
+                                      "maxWidth": "100px",
+                                      "width": "100px",
+                                    }
+                                  }
+                                >
+                                  <PadRowComponent>
+                                    <span>
+                                       
+                                    </span>
+                                  </PadRowComponent>
+                                </div>
+                              </TdComponent>
+                              <TdComponent
+                                className=""
+                                key="1-Event"
+                                style={
+                                  Object {
+                                    "flex": "100 0 auto",
+                                    "maxWidth": null,
+                                    "width": "100px",
+                                  }
+                                }
+                              >
+                                <div
+                                  className="rt-td"
+                                  role="gridcell"
+                                  style={
+                                    Object {
+                                      "flex": "100 0 auto",
+                                      "maxWidth": null,
+                                      "width": "100px",
+                                    }
+                                  }
+                                >
+                                  <PadRowComponent>
+                                    <span>
+                                       
+                                    </span>
+                                  </PadRowComponent>
+                                </div>
+                              </TdComponent>
+                            </div>
+                          </TrComponent>
+                        </div>
+                      </TrGroupComponent>
+                      <TrGroupComponent
+                        key="pad-16"
+                      >
+                        <div
+                          className="rt-tr-group"
+                          role="rowgroup"
+                        >
+                          <TrComponent
+                            className="-padRow -odd"
+                            style={Object {}}
+                          >
+                            <div
+                              className="rt-tr -padRow -odd"
+                              role="row"
+                              style={Object {}}
+                            >
+                              <TdComponent
+                                className=""
+                                key="0-Date"
+                                style={
+                                  Object {
+                                    "flex": "100 0 auto",
+                                    "maxWidth": "100px",
+                                    "width": "100px",
+                                  }
+                                }
+                              >
+                                <div
+                                  className="rt-td"
+                                  role="gridcell"
+                                  style={
+                                    Object {
+                                      "flex": "100 0 auto",
+                                      "maxWidth": "100px",
+                                      "width": "100px",
+                                    }
+                                  }
+                                >
+                                  <PadRowComponent>
+                                    <span>
+                                       
+                                    </span>
+                                  </PadRowComponent>
+                                </div>
+                              </TdComponent>
+                              <TdComponent
+                                className=""
+                                key="1-Event"
+                                style={
+                                  Object {
+                                    "flex": "100 0 auto",
+                                    "maxWidth": null,
+                                    "width": "100px",
+                                  }
+                                }
+                              >
+                                <div
+                                  className="rt-td"
+                                  role="gridcell"
+                                  style={
+                                    Object {
+                                      "flex": "100 0 auto",
+                                      "maxWidth": null,
+                                      "width": "100px",
+                                    }
+                                  }
+                                >
+                                  <PadRowComponent>
+                                    <span>
+                                       
+                                    </span>
+                                  </PadRowComponent>
+                                </div>
+                              </TdComponent>
+                            </div>
+                          </TrComponent>
+                        </div>
+                      </TrGroupComponent>
+                      <TrGroupComponent
+                        key="pad-17"
+                      >
+                        <div
+                          className="rt-tr-group"
+                          role="rowgroup"
+                        >
+                          <TrComponent
+                            className="-padRow -even"
+                            style={Object {}}
+                          >
+                            <div
+                              className="rt-tr -padRow -even"
+                              role="row"
+                              style={Object {}}
+                            >
+                              <TdComponent
+                                className=""
+                                key="0-Date"
+                                style={
+                                  Object {
+                                    "flex": "100 0 auto",
+                                    "maxWidth": "100px",
+                                    "width": "100px",
+                                  }
+                                }
+                              >
+                                <div
+                                  className="rt-td"
+                                  role="gridcell"
+                                  style={
+                                    Object {
+                                      "flex": "100 0 auto",
+                                      "maxWidth": "100px",
+                                      "width": "100px",
+                                    }
+                                  }
+                                >
+                                  <PadRowComponent>
+                                    <span>
+                                       
+                                    </span>
+                                  </PadRowComponent>
+                                </div>
+                              </TdComponent>
+                              <TdComponent
+                                className=""
+                                key="1-Event"
+                                style={
+                                  Object {
+                                    "flex": "100 0 auto",
+                                    "maxWidth": null,
+                                    "width": "100px",
+                                  }
+                                }
+                              >
+                                <div
+                                  className="rt-td"
+                                  role="gridcell"
+                                  style={
+                                    Object {
+                                      "flex": "100 0 auto",
+                                      "maxWidth": null,
+                                      "width": "100px",
+                                    }
+                                  }
+                                >
+                                  <PadRowComponent>
+                                    <span>
+                                       
+                                    </span>
+                                  </PadRowComponent>
+                                </div>
+                              </TdComponent>
+                            </div>
+                          </TrComponent>
+                        </div>
+                      </TrGroupComponent>
+                      <TrGroupComponent
+                        key="pad-18"
+                      >
+                        <div
+                          className="rt-tr-group"
+                          role="rowgroup"
+                        >
+                          <TrComponent
+                            className="-padRow -odd"
+                            style={Object {}}
+                          >
+                            <div
+                              className="rt-tr -padRow -odd"
+                              role="row"
+                              style={Object {}}
+                            >
+                              <TdComponent
+                                className=""
+                                key="0-Date"
+                                style={
+                                  Object {
+                                    "flex": "100 0 auto",
+                                    "maxWidth": "100px",
+                                    "width": "100px",
+                                  }
+                                }
+                              >
+                                <div
+                                  className="rt-td"
+                                  role="gridcell"
+                                  style={
+                                    Object {
+                                      "flex": "100 0 auto",
+                                      "maxWidth": "100px",
+                                      "width": "100px",
+                                    }
+                                  }
+                                >
+                                  <PadRowComponent>
+                                    <span>
+                                       
+                                    </span>
+                                  </PadRowComponent>
+                                </div>
+                              </TdComponent>
+                              <TdComponent
+                                className=""
+                                key="1-Event"
+                                style={
+                                  Object {
+                                    "flex": "100 0 auto",
+                                    "maxWidth": null,
+                                    "width": "100px",
+                                  }
+                                }
+                              >
+                                <div
+                                  className="rt-td"
+                                  role="gridcell"
+                                  style={
+                                    Object {
+                                      "flex": "100 0 auto",
+                                      "maxWidth": null,
+                                      "width": "100px",
+                                    }
+                                  }
+                                >
+                                  <PadRowComponent>
+                                    <span>
+                                       
+                                    </span>
+                                  </PadRowComponent>
+                                </div>
+                              </TdComponent>
+                            </div>
+                          </TrComponent>
+                        </div>
+                      </TrGroupComponent>
+                      <TrGroupComponent
+                        key="pad-19"
+                      >
+                        <div
+                          className="rt-tr-group"
+                          role="rowgroup"
+                        >
+                          <TrComponent
+                            className="-padRow -even"
+                            style={Object {}}
+                          >
+                            <div
+                              className="rt-tr -padRow -even"
+                              role="row"
+                              style={Object {}}
+                            >
+                              <TdComponent
+                                className=""
+                                key="0-Date"
+                                style={
+                                  Object {
+                                    "flex": "100 0 auto",
+                                    "maxWidth": "100px",
+                                    "width": "100px",
+                                  }
+                                }
+                              >
+                                <div
+                                  className="rt-td"
+                                  role="gridcell"
+                                  style={
+                                    Object {
+                                      "flex": "100 0 auto",
+                                      "maxWidth": "100px",
+                                      "width": "100px",
+                                    }
+                                  }
+                                >
+                                  <PadRowComponent>
+                                    <span>
+                                       
+                                    </span>
+                                  </PadRowComponent>
+                                </div>
+                              </TdComponent>
+                              <TdComponent
+                                className=""
+                                key="1-Event"
+                                style={
+                                  Object {
+                                    "flex": "100 0 auto",
+                                    "maxWidth": null,
+                                    "width": "100px",
+                                  }
+                                }
+                              >
+                                <div
+                                  className="rt-td"
+                                  role="gridcell"
+                                  style={
+                                    Object {
+                                      "flex": "100 0 auto",
+                                      "maxWidth": null,
+                                      "width": "100px",
+                                    }
+                                  }
+                                >
+                                  <PadRowComponent>
+                                    <span>
+                                       
+                                    </span>
+                                  </PadRowComponent>
+                                </div>
+                              </TdComponent>
+                            </div>
+                          </TrComponent>
+                        </div>
+                      </TrGroupComponent>
+                    </div>
+                  </Tbody>
+                </div>
+              </TableComponent>
+              <NoData>
+                <div
+                  className="rt-noData"
+                >
+                  No rows found
+                </div>
+              </NoData>
+              <LoadingComponent
+                loading={false}
+                loadingText="Loading..."
+              >
+                <div
+                  className="-loading"
+                >
+                  <div
+                    className="-loading-inner"
+                  >
+                    Loading...
+                  </div>
+                </div>
+              </LoadingComponent>
+            </div>
+          </ReactTable>
+        </QATable>
+        <Modal
+          autoFocus={true}
+          backdrop={true}
+          backdropTransition={
+            Object {
+              "mountOnEnter": true,
+              "timeout": 150,
+            }
+          }
+          centered={false}
+          className="dateModal"
+          fade={true}
+          isOpen={false}
+          keyboard={true}
+          modalTransition={
+            Object {
+              "timeout": 300,
+            }
+          }
+          onClosed={[Function]}
+          onOpened={[Function]}
+          role="dialog"
+          toggle={[Function]}
+          zIndex={1050}
+        />
+      </div>
+    </div>
+  </div>
+</UserRecord>
+`;

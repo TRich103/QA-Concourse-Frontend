@@ -11,6 +11,10 @@
     border-radius: 4px;
 }
 
+.ReactTable .tr-th, .ReactTable .rt-td {
+    white-space: unset
+}
+
 .BigBox{
     padding-top: 5%;
     width: 60%;

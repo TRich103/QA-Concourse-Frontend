@@ -19,6 +19,7 @@ export default class TraineeExpenses extends Component {
             recordOf: '',
             record: [],
             currentUser: authService.currentUserValue,
+            //currentUser: {token: {role: "admin", status: "Active", _id: "5d0bb39bd2ba63099c621593"}},
             expArray: [],
             monthly_expenses: 0,
             expenseType: '',
@@ -28,7 +29,7 @@ export default class TraineeExpenses extends Component {
     
     onSave = () => {
     
-        axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/admin/expenses/'+this.props.match.params.id, {expenseType: this.state.expenseType, amount: this.state.monthly_expenses, addedBy: this.state.currentUser.token._id })
+        axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/admin/expenses/'+this.props.match.params.id, {expenseType: this.state.expenseType, amount: Number(this.state.monthly_expenses).toFixed(2), addedBy: this.state.currentUser.token._id })
         .then(res => {
             console.log(res.data);
             window.location.reload();
@@ -169,16 +170,17 @@ export default class TraineeExpenses extends Component {
 
                                     </thead>
                                     <tbody>
-                                        {expArray.map(monthly_expenses => {
+                                        {expArray.map((monthly_expenses, index) => {
                                             return (
                                                 <tr>
                                                     <td>{monthly_expenses.type}</td>
                                                     <td>£{monthly_expenses.amount}</td>
                                                     <td><button className="actionBtn" onClick={() => { 
                                                             if (window.confirm('Are you sure you wish to delete this expense?'))
-                                                            axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/admin/removeExpenses/'+this.props.match.params.id, {"expenseType": monthly_expenses.type, "amount": monthly_expenses.amount }).then(() => window.location.reload()) } }>
+                                                            axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/admin/removeExpenses/'+this.props.match.params.id, {"expenseType": monthly_expenses.type, "amount": monthly_expenses.amount, "location": index, "addedBy":this.state.currentUser.token._id}).then(() => window.location.reload()) } }>
                                                             Delete
                                                             <img src={close}></img>
+                                                            <img></img>
                                         </button></td>
                                                 </tr>
                                             );
