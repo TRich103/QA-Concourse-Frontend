@@ -435,7 +435,7 @@ export default class ListTrainee extends Component {
                     <div id="addUser">
                        <Link className="link" to={"/create"}> <button className="qabtn">Add Trainee <img src={add}></img></button></Link>
                        <Link className="link" to={"/trainee-settings"}><button className="qabtn">Settings <img src={settings}></img></button></Link>
-					   <CSVLink className="link" data={output} filename='CSV-Report.csv'><button className="qabtn">Download CSV <img src={download}></img></button></CSVLink>					   
+					   <CSVLink className="link" data={output} filename={"Admin_report_" + moment().format('MMMM YYYY') + ".csv"}><button className="qabtn">Download CSV <img src={download}></img></button></CSVLink>					   
                     </div>
                     <Collapse in={this.state.open}>
                     <p>
@@ -573,8 +573,8 @@ export default class ListTrainee extends Component {
                             </ModalBody>
                         </Modal>
 						<div id="addUser">
-                            <CSVLink className="link" data={output} filename='CSV.csv'><button className="qabtn">CSV template<img src={download}></img></button></CSVLink>
-                            <CSVLink className="link" data={out} filename='CSV.csv'><button className="qabtn">Download CSV<img src={download}></img></button></CSVLink>
+                            <CSVLink className="link" data={output} filename={"Finance_report_template_" + moment().format('MMMM YYYY') + ".csv"}><button className="qabtn">CSV template<img src={download}></img></button></CSVLink>
+                            <CSVLink className="link" data={out} filename={"Finance_report_" + moment().format('MMMM YYYY') + ".csv"}><button className="qabtn">Download CSV<img src={download}></img></button></CSVLink>
                         </div>
                     <Collapse in={this.state.open}>
                     <p>
