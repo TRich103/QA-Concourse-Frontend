@@ -12,6 +12,10 @@ import DayPicker, { DateUtils } from 'react-day-picker';
 import DatePicker from "react-datepicker";
 import 'react-day-picker/lib/style.css';
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
+import * as jsPDF from 'jspdf';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
+import download from './icons/download.svg';
 
 export default class CostReport extends Component {
     
@@ -426,6 +430,22 @@ export default class CostReport extends Component {
             }
         })
     }
+
+    updatePDF(trainees){
+        let list = trainees;
+        let pdf = new jsPDF();
+
+        console.log(trainees);
+        let x = 10;
+        let y = 10;
+        pdf.text('Name   Payment', x, y);
+        list.map(t => {
+            y = y+10;
+            pdf.text(t.name +"   "+ t.totalMonth, x, y);
+        })
+
+        pdf.save('a4.pdf');
+    }
 	
     render() {
         let trainees = this.state.trainee_data;
@@ -557,7 +577,8 @@ export default class CostReport extends Component {
                                 <th>Amount Payable:</th><td>£{Number(this.state.values.amountPayable).toFixed(2)}</td>&nbsp;&nbsp;
                                 <th>Trainees in training:</th><td>{this.state.values.training_number}</td>&nbsp;&nbsp;
                                 <th>Trainees on bench:</th><td>{this.state.values.bench_number}</td>&nbsp;&nbsp;
-                                <th>Pending trainees:</th><td>{this.state.values.pending_number}</td>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <th>Pending trainees:</th><td>{this.state.values.pending_number}</td>&nbsp;&nbsp;
+                                <th>Download PDF:</th><td><button className="actionBtn" onClick={() => this.updatePDF(trainees)}>PDF <img src={download}></img></button></td>&nbsp;&nbsp;&nbsp;&nbsp;
                             </tr>
                     </tbody>
                 </table>

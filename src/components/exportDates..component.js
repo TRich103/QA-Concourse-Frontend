@@ -303,7 +303,7 @@ export default class ListTrainee extends Component {
                     var obj = [t.trainee_fname, t.trainee_lname, t.bursary, t.trainee_days_worked,t.bursary_amount, t.monthly_expenses.length, Number((t.bursary_amount*t.trainee_days_worked)+totalexpenses).toFixed(2), moment(t.trainee_start_date).format('MMMM Do YYYY'), moment(t.trainee_end_date).format('MMMM Do YYYY'), moment(t.trainee_bench_start_date).format('MMMM Do YYYY'), moment(t.trainee_bench_end_date).format('MMMM Do YYYY')];  
                   output.push(obj);
                 }
-            })
+            )}
         console.log(search.length);
         if (search.length > 0) {
             if (role === 'finance') {
