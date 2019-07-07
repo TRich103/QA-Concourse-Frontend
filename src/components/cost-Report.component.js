@@ -13,7 +13,6 @@ import DatePicker from "react-datepicker";
 import 'react-day-picker/lib/style.css';
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 import * as jsPDF from 'jspdf';
-import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import download from './icons/download.svg';
 
@@ -434,17 +433,21 @@ export default class CostReport extends Component {
     updatePDF(trainees){
         let list = trainees;
         let pdf = new jsPDF();
+        let formattedData = []; 
+        let total = 0;
 
-        console.log(trainees);
-        let x = 10;
-        let y = 10;
-        pdf.text('Name   Payment', x, y);
         list.map(t => {
-            y = y+10;
-            pdf.text(t.name +"   "+ t.totalMonth, x, y);
+            console.log(t);
+            formattedData.push([t.name, Number(t.totalMonth).toFixed(2)]);
+            total = t.totalMonth + total;
         })
+        formattedData.push(['Total Amount For Month', Number(total).toFixed(2)]);
 
-        pdf.save('a4.pdf');
+        pdf.autoTable({
+            head: [['Name', 'Amount']],
+            body: formattedData
+        });
+        pdf.save('table.pdf');
     }
 	
     render() {
