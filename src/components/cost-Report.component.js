@@ -14,7 +14,7 @@ import 'react-day-picker/lib/style.css';
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 import * as jsPDF from 'jspdf';
 import 'jspdf-autotable';
-import download from './icons/download.svg';
+//import download from './icons/download.svg';
 
 export default class CostReport extends Component {
     
@@ -25,6 +25,7 @@ export default class CostReport extends Component {
             report: true,
             trainee_data: [],
             currentUser: authService.currentUserValue,
+            //currentUser: {token:{_id: "5d0bb39bd2ba63099c621593", role: "admin", status: "Active"}},
             staffEmail: '',
             date: '',
             values : {
@@ -431,6 +432,7 @@ export default class CostReport extends Component {
     }
 
     updatePDF(trainees){
+        console.log(this.state.currentUser);
         let list = trainees;
         let pdf = new jsPDF();
         let formattedData = []; 
@@ -447,6 +449,11 @@ export default class CostReport extends Component {
             head: [['Name', 'Amount']],
             body: formattedData
         });
+        let finalY = pdf.autoTable.previous.finalY;
+        pdf.setFontSize(9);
+        pdf.text(15, finalY+20, "Admin Approved By: ");
+        pdf.text(15, finalY+30, "Finance Approved By: ");
+        pdf.text(15, finalY+40, "Signed : ........................")
         pdf.save('table.pdf');
     }
 	
@@ -581,7 +588,8 @@ export default class CostReport extends Component {
                                 <th>Trainees in training:</th><td>{this.state.values.training_number}</td>&nbsp;&nbsp;
                                 <th>Trainees on bench:</th><td>{this.state.values.bench_number}</td>&nbsp;&nbsp;
                                 <th>Pending trainees:</th><td>{this.state.values.pending_number}</td>&nbsp;&nbsp;
-                                <th>Download PDF:</th><td><button className="actionBtn" onClick={() => this.updatePDF(trainees)}>PDF <img src={download}></img></button></td>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <th>Download PDF:</th><td><button className="actionBtn" onClick={() => this.updatePDF(trainees)}>PDF </button></td>&nbsp;&nbsp;&nbsp;&nbsp;
+                                {/* <img src={download}></img> */}
                             </tr>
                     </tbody>
                 </table>
