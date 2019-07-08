@@ -5,11 +5,18 @@
 #cRTitle{
 	font-family: "Roboto", sans-serif;
 	margin-left: 0px;
+	font-size:30px;
 	border-bottom: solid 5px black;
 }
 
 .cRStatus{
 	border-radius: 5px;
+}
+.QAtable{
+	font-size:15px;
+}
+.Qatable-headers tr{
+	display:table-row-group;
 }
 
 .cRButton{
