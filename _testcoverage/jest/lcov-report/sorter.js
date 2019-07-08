@@ -8,21 +8,13 @@ var addSorting = (function() {
         };
 
     // returns the summary table element
-    function getTable() {
-        return document.querySelector('.coverage-summary');
-    }
+    function getTable() { return document.querySelector('.coverage-summary'); }
     // returns the thead element of the summary table
-    function getTableHeader() {
-        return getTable().querySelector('thead tr');
-    }
+    function getTableHeader() { return getTable().querySelector('thead tr'); }
     // returns the tbody element of the summary table
-    function getTableBody() {
-        return getTable().querySelector('tbody');
-    }
+    function getTableBody() { return getTable().querySelector('tbody'); }
     // returns the th element for nth column
-    function getNthColumn(n) {
-        return getTableHeader().querySelectorAll('th')[n];
-    }
+    function getNthColumn(n) { return getTableHeader().querySelectorAll('th')[n]; }
 
     // loads all columns
     function loadColumns() {
@@ -128,7 +120,6 @@ var addSorting = (function() {
             el,
             ithSorter = function ithSorter(i) {
                 var col = cols[i];
-
                 return function() {
                     var desc = col.defaultDescSort;
 
@@ -161,7 +152,7 @@ var addSorting = (function() {
             return;
         }
         cols = loadColumns();
-        loadData();
+        loadData(cols);
         addSortIndicators();
         enableUI();
     };
