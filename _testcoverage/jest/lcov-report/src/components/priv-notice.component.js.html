@@ -1,0 +1,645 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/components/priv-notice.component.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="..\..\prettify.css" />
+    <link rel="stylesheet" href="..\..\base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(..\..\sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="..\..\index.html">All files</a> / <a href="index.html">src/components</a> priv-notice.component.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">5.88% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>1/17</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/4</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/8</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">6.25% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>1/16</span>
+      </div>
+    </div>
+    <p class="quiet">
+      Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
+    </p>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
+<a name='L2'></a><a href='#L2'>2</a>
+<a name='L3'></a><a href='#L3'>3</a>
+<a name='L4'></a><a href='#L4'>4</a>
+<a name='L5'></a><a href='#L5'>5</a>
+<a name='L6'></a><a href='#L6'>6</a>
+<a name='L7'></a><a href='#L7'>7</a>
+<a name='L8'></a><a href='#L8'>8</a>
+<a name='L9'></a><a href='#L9'>9</a>
+<a name='L10'></a><a href='#L10'>10</a>
+<a name='L11'></a><a href='#L11'>11</a>
+<a name='L12'></a><a href='#L12'>12</a>
+<a name='L13'></a><a href='#L13'>13</a>
+<a name='L14'></a><a href='#L14'>14</a>
+<a name='L15'></a><a href='#L15'>15</a>
+<a name='L16'></a><a href='#L16'>16</a>
+<a name='L17'></a><a href='#L17'>17</a>
+<a name='L18'></a><a href='#L18'>18</a>
+<a name='L19'></a><a href='#L19'>19</a>
+<a name='L20'></a><a href='#L20'>20</a>
+<a name='L21'></a><a href='#L21'>21</a>
+<a name='L22'></a><a href='#L22'>22</a>
+<a name='L23'></a><a href='#L23'>23</a>
+<a name='L24'></a><a href='#L24'>24</a>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a>
+<a name='L40'></a><a href='#L40'>40</a>
+<a name='L41'></a><a href='#L41'>41</a>
+<a name='L42'></a><a href='#L42'>42</a>
+<a name='L43'></a><a href='#L43'>43</a>
+<a name='L44'></a><a href='#L44'>44</a>
+<a name='L45'></a><a href='#L45'>45</a>
+<a name='L46'></a><a href='#L46'>46</a>
+<a name='L47'></a><a href='#L47'>47</a>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a>
+<a name='L74'></a><a href='#L74'>74</a>
+<a name='L75'></a><a href='#L75'>75</a>
+<a name='L76'></a><a href='#L76'>76</a>
+<a name='L77'></a><a href='#L77'>77</a>
+<a name='L78'></a><a href='#L78'>78</a>
+<a name='L79'></a><a href='#L79'>79</a>
+<a name='L80'></a><a href='#L80'>80</a>
+<a name='L81'></a><a href='#L81'>81</a>
+<a name='L82'></a><a href='#L82'>82</a>
+<a name='L83'></a><a href='#L83'>83</a>
+<a name='L84'></a><a href='#L84'>84</a>
+<a name='L85'></a><a href='#L85'>85</a>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a>
+<a name='L88'></a><a href='#L88'>88</a>
+<a name='L89'></a><a href='#L89'>89</a>
+<a name='L90'></a><a href='#L90'>90</a>
+<a name='L91'></a><a href='#L91'>91</a>
+<a name='L92'></a><a href='#L92'>92</a>
+<a name='L93'></a><a href='#L93'>93</a>
+<a name='L94'></a><a href='#L94'>94</a>
+<a name='L95'></a><a href='#L95'>95</a>
+<a name='L96'></a><a href='#L96'>96</a>
+<a name='L97'></a><a href='#L97'>97</a>
+<a name='L98'></a><a href='#L98'>98</a>
+<a name='L99'></a><a href='#L99'>99</a>
+<a name='L100'></a><a href='#L100'>100</a>
+<a name='L101'></a><a href='#L101'>101</a>
+<a name='L102'></a><a href='#L102'>102</a>
+<a name='L103'></a><a href='#L103'>103</a>
+<a name='L104'></a><a href='#L104'>104</a>
+<a name='L105'></a><a href='#L105'>105</a>
+<a name='L106'></a><a href='#L106'>106</a>
+<a name='L107'></a><a href='#L107'>107</a>
+<a name='L108'></a><a href='#L108'>108</a>
+<a name='L109'></a><a href='#L109'>109</a>
+<a name='L110'></a><a href='#L110'>110</a>
+<a name='L111'></a><a href='#L111'>111</a>
+<a name='L112'></a><a href='#L112'>112</a>
+<a name='L113'></a><a href='#L113'>113</a>
+<a name='L114'></a><a href='#L114'>114</a>
+<a name='L115'></a><a href='#L115'>115</a>
+<a name='L116'></a><a href='#L116'>116</a>
+<a name='L117'></a><a href='#L117'>117</a>
+<a name='L118'></a><a href='#L118'>118</a>
+<a name='L119'></a><a href='#L119'>119</a>
+<a name='L120'></a><a href='#L120'>120</a>
+<a name='L121'></a><a href='#L121'>121</a>
+<a name='L122'></a><a href='#L122'>122</a>
+<a name='L123'></a><a href='#L123'>123</a>
+<a name='L124'></a><a href='#L124'>124</a>
+<a name='L125'></a><a href='#L125'>125</a>
+<a name='L126'></a><a href='#L126'>126</a>
+<a name='L127'></a><a href='#L127'>127</a>
+<a name='L128'></a><a href='#L128'>128</a>
+<a name='L129'></a><a href='#L129'>129</a>
+<a name='L130'></a><a href='#L130'>130</a>
+<a name='L131'></a><a href='#L131'>131</a>
+<a name='L132'></a><a href='#L132'>132</a>
+<a name='L133'></a><a href='#L133'>133</a>
+<a name='L134'></a><a href='#L134'>134</a>
+<a name='L135'></a><a href='#L135'>135</a>
+<a name='L136'></a><a href='#L136'>136</a>
+<a name='L137'></a><a href='#L137'>137</a>
+<a name='L138'></a><a href='#L138'>138</a>
+<a name='L139'></a><a href='#L139'>139</a>
+<a name='L140'></a><a href='#L140'>140</a>
+<a name='L141'></a><a href='#L141'>141</a>
+<a name='L142'></a><a href='#L142'>142</a>
+<a name='L143'></a><a href='#L143'>143</a>
+<a name='L144'></a><a href='#L144'>144</a>
+<a name='L145'></a><a href='#L145'>145</a>
+<a name='L146'></a><a href='#L146'>146</a>
+<a name='L147'></a><a href='#L147'>147</a>
+<a name='L148'></a><a href='#L148'>148</a>
+<a name='L149'></a><a href='#L149'>149</a>
+<a name='L150'></a><a href='#L150'>150</a>
+<a name='L151'></a><a href='#L151'>151</a>
+<a name='L152'></a><a href='#L152'>152</a>
+<a name='L153'></a><a href='#L153'>153</a>
+<a name='L154'></a><a href='#L154'>154</a>
+<a name='L155'></a><a href='#L155'>155</a>
+<a name='L156'></a><a href='#L156'>156</a>
+<a name='L157'></a><a href='#L157'>157</a>
+<a name='L158'></a><a href='#L158'>158</a>
+<a name='L159'></a><a href='#L159'>159</a>
+<a name='L160'></a><a href='#L160'>160</a>
+<a name='L161'></a><a href='#L161'>161</a>
+<a name='L162'></a><a href='#L162'>162</a>
+<a name='L163'></a><a href='#L163'>163</a>
+<a name='L164'></a><a href='#L164'>164</a>
+<a name='L165'></a><a href='#L165'>165</a>
+<a name='L166'></a><a href='#L166'>166</a>
+<a name='L167'></a><a href='#L167'>167</a>
+<a name='L168'></a><a href='#L168'>168</a>
+<a name='L169'></a><a href='#L169'>169</a>
+<a name='L170'></a><a href='#L170'>170</a>
+<a name='L171'></a><a href='#L171'>171</a>
+<a name='L172'></a><a href='#L172'>172</a>
+<a name='L173'></a><a href='#L173'>173</a>
+<a name='L174'></a><a href='#L174'>174</a>
+<a name='L175'></a><a href='#L175'>175</a>
+<a name='L176'></a><a href='#L176'>176</a>
+<a name='L177'></a><a href='#L177'>177</a>
+<a name='L178'></a><a href='#L178'>178</a>
+<a name='L179'></a><a href='#L179'>179</a>
+<a name='L180'></a><a href='#L180'>180</a>
+<a name='L181'></a><a href='#L181'>181</a>
+<a name='L182'></a><a href='#L182'>182</a>
+<a name='L183'></a><a href='#L183'>183</a>
+<a name='L184'></a><a href='#L184'>184</a>
+<a name='L185'></a><a href='#L185'>185</a>
+<a name='L186'></a><a href='#L186'>186</a>
+<a name='L187'></a><a href='#L187'>187</a>
+<a name='L188'></a><a href='#L188'>188</a>
+<a name='L189'></a><a href='#L189'>189</a>
+<a name='L190'></a><a href='#L190'>190</a>
+<a name='L191'></a><a href='#L191'>191</a>
+<a name='L192'></a><a href='#L192'>192</a>
+<a name='L193'></a><a href='#L193'>193</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { Component } from 'react';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import { authService } from './modules/authService';
+import axios from 'axios';
+import '../css/privacy-notice.css';
+&nbsp;
+&nbsp;
+const privText = &lt;div className='priv-text'&gt;&lt;h4 id="modal-label" className="priv-notice-title"&gt;Privacy Notice&lt;/h4&gt;&lt;p&gt;The QA group of companies ("QA", "we", "our" or "us") are committed to ensuring that your privacy is protected. This Privacy Notice describes how we use the personal information that we collect from you, or that you provide, when you:&lt;/p&gt;
+    &lt;ul&gt;
+        &lt;li&gt;visit any of our websites, portals or online learning environments (the "Website");&lt;/li&gt;
+        &lt;li&gt;use the educational services, testing, certification, products, and consultancy services (together the "Services") that we provide; or&lt;/li&gt;
+        &lt;li&gt;communicate with us.&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;p&gt;&lt;strong&gt;Information We Collect&lt;/strong&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;span&gt;Information that you provide directly&lt;/span&gt;&lt;/p&gt;
+    &lt;p&gt;We collect personal information from you:&lt;/p&gt;
+    &lt;ul&gt;
+        &lt;li&gt;through the use of forms, which may be on paper or on our Websites, such as when you login to access our Services, signup to receive our newsletters, register for information, or make a purchase or commence a course of study;&lt;/li&gt;
+        &lt;li&gt;when you create an account on our Websites and provide us with information about any special requirements, such as dietary requirements, that you may have; and &lt;/li&gt;
+        &lt;li&gt;if you choose to provide us with information when you use our Website or access our Services;&lt;/li&gt;
+        &lt;li&gt;when you communicate with us for any reason, including by email, postal mail or telephone, and when you use our Services.&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;p&gt;Some of the personal information that you provide may include sensitive personal information, such as health-related information or information about your race or ethnicity, which we need for statutory registration/reporting purposes and to ensure that we can provide the necessary duty of care.&lt;/p&gt;
+    &lt;p&gt;&lt;span&gt;Information that we collect automatically&lt;/span&gt;&lt;/p&gt;
+    &lt;p&gt;When you visit our Website, we may collect certain information automatically from your device.&lt;/p&gt;
+    &lt;p&gt;Specifically, the information we collect automatically may include information like your IP address, device type, unique device identification numbers, browser-type, broad geographic location (e.g. country or city-level location) and other technical information. We may also collect information about how your device has interacted with our Website, including the pages accessed and links clicked.&lt;/p&gt;
+    &lt;p&gt;Collecting this information enables us to better understand the visitors who come to our Website, where they come from, and what content on our Website is of interest to them. We use this information for our internal analytics purposes and to improve the quality and relevance of our Website to our visitors.&lt;/p&gt;
+    &lt;p&gt;Some of this information may be collected using cookies and similar tracking technology, as explained further under the heading 'Cookies', below.&lt;/p&gt;
+    &lt;p&gt;&lt;span&gt;Information that we obtain from third party sources&lt;/span&gt;&lt;/p&gt;
+    &lt;p&gt;We may receive personal information about you from third party sources (such as your employer if they enroll you on a course, or agencies if you apply for study or employment, but only where we believe that these third parties either have your consent or are otherwise legally permitted or required to disclose your personal information to us. We collect only the minimum amount of information required from these third parties to enable us to provide the requested service or process any application you send to us (for example, your educational or employment history). We only use the information we receive from these third parties as set out in this Privacy Notice.&lt;/p&gt;
+    &lt;p&gt;&lt;strong&gt;Use of Your Information&lt;/strong&gt;&lt;/p&gt;
+    &lt;p&gt;The information that we collect and store relating to you is primarily used to enable us to provide our Services to you. In addition, we may use the information for the following purposes:&lt;/p&gt;
+    &lt;ul&gt;
+        &lt;li&gt;to provide you with information or Services you request from us;&lt;/li&gt;
+        &lt;li&gt;to provide information on other QA products and Services which we feel may be of interest to you, in accordance with your communications and consent preferences;&lt;/li&gt;
+        &lt;li&gt;to meet our contractual commitments to you;&lt;/li&gt;
+        &lt;li&gt;to act on your behalf where third party involvement is available and appropriate &amp;ndash; for example through a third party specialist training provider or certification/awarding body;&lt;/li&gt;
+        &lt;li&gt;to obtain additional personal information to secure funding or satisfy statutory legal or Government scheme requirements &amp;ndash; for example through an Apprenticeship scheme;&lt;/li&gt;
+        &lt;li&gt;to monitor and analyze trends, usage and activities in connection with our Websites/Services; andas necessary to prevent or detect crime.&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;p&gt;We may also monitor or record telephone calls for training, customer service and quality assurance purposes, and to detect or prevent crime, [and will inform you that we do so when you call us]. These recordings will be retained for a maximum of 30 days.&lt;/p&gt;
+    &lt;p&gt;In general, we will use any of the information we collect from you only for the purposes described in this Privacy Notice or for purposes that we explain to you at the time we collect such information. However, we may also use your personal information for other purposes that are not incompatible with the purposes we have disclosed to you (such as statistical purposes) if and where this is permitted by applicable data protection laws.&lt;/p&gt;
+    &lt;p&gt;If you do not want us to use your data for any marketing purposes, you will have the opportunity to withhold your consent to this when you provide your details to us.&lt;/p&gt;
+    &lt;p&gt;Consent can be varied online via the Website or cp.qa.com.&lt;/p&gt;
+    &lt;p&gt;&lt;strong&gt;Storing and Retaining Your Personal Data&lt;/strong&gt;&lt;/p&gt;
+    &lt;p&gt;The personal information you provided to us is stored within secure servers. We use appropriate technical and organisational measures to protect the personal information that we collect and process about you. The measures we use are designed to provide a level of security appropriate to the risk of processing your personal information.&lt;/p&gt;
+    &lt;p&gt;All QA email addresses support TLS email encryption, so it is advised that if you are concerned about the contents of any email to use this encryption.&lt;/p&gt;
+    &lt;p&gt;Where we have given you (or where you have chosen) a password so that you can access certain parts of our sites and portals, you are responsible for keeping these passwords confidential.&lt;/p&gt;
+    &lt;p&gt;Please note that the transmission of information via the internet (including email) is not completely secure and therefore, although we endeavor to protect the personal information you provide to us, we cannot guarantee the security of data sent to us electronically and the transmission of such data is therefore entirely at your own risk.We retain personal information we collect from you where we have an ongoing legitimate business need to do so (for example, to provide you with a service you have requested or to comply with applicable legal, tax or accounting requirements).&lt;/p&gt;
+    &lt;p&gt;When we have no ongoing legitimate business or statutory need to process your personal information, we will either delete or anonymise it.&lt;/p&gt;
+    &lt;p&gt;&lt;strong&gt;Disclosing Your Information&lt;/strong&gt;&lt;/p&gt;
+    &lt;p&gt;We may disclose your personal information, with your consent, to any company within our corporate group. This includes, where applicable, our subsidiaries, our holding company and its subsidiaries.&lt;/p&gt;
+    &lt;p&gt;We may also disclose your personal information with:&lt;/p&gt;
+    &lt;ul&gt;
+        &lt;li&gt;third party service providers and partners who provide data processing services to us (for example, to support the delivery of Services), or who otherwise process personal information for purposes that are described in this Privacy Notice;&lt;/li&gt;
+        &lt;li&gt;third party funders, where required within Apprenticeships or further/higher education;&lt;/li&gt;
+        &lt;li&gt;your employer, where required within an Apprenticeship program/Higher Education program or other&lt;/li&gt;
+        &lt;li&gt;government agencies, where required by the scheme or education path you elect to follow; &lt;/li&gt;
+        &lt;li&gt;partners with whom we work to provide Services (such as course vendors, examination bodies and trainers); &lt;/li&gt;
+        &lt;li&gt;any third party in connection with, or during negotiations of, any merger, sales of company assets, financing or acquisition of all or a portion of our business by another company; &lt;/li&gt;
+        &lt;li&gt;any law enforcement agency, court, regulator, government authority or other third party where we believe this is necessary to comply with a legal or regulatory obligation, or otherwise to protect our rights or the rights of any third party; and to &lt;/li&gt;
+        &lt;li&gt;any other person with your consent to the disclosure. &lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;p&gt;Where you are a customer or prospective customer, we may disclose your data to third parties for our marketing purposes so that we can identify products and services we think you will be interested in. Personal data used in this way may include contact details such as name, address, phone number, and email address. When sharing with third party marketing organisations, your data may be processed in countries inside or outside of the EU.&lt;/p&gt;
+    &lt;p&gt;&lt;strong&gt;Third Party Links&lt;/strong&gt;&lt;/p&gt;
+    &lt;p&gt;You might find links to third party websites on our Websites or within documentation we provide.&lt;/p&gt;
+    &lt;p&gt;If you access other websites using the links provided, the operators of these sites may collect information from you which will be used by them in accordance with their own privacy policies which you should review.&lt;/p&gt;
+    &lt;p&gt;We do not accept any responsibility or liability for their policies whatsoever as we have no control over them.&lt;/p&gt;
+    &lt;p&gt;&lt;strong&gt;Social Networking&lt;/strong&gt;&lt;/p&gt;
+    &lt;p&gt;The Website may offer you the opportunity to share or follow information about us (or the Website or our Services) using third party social networking functionality (such as through "share this", "like" or "follow" buttons).&lt;/p&gt;
+    &lt;p&gt;We offer this functionality in order to generate interest in us, the Website and our Services among the members of your social networks, and to permit you to share and follow opinions, news and recommendations about us with your friends. However, you should be aware that sharing personal or non-personal information with a social network may result in that information being collected by the social network provider or result in that information being made publicly-available, including through Internet search engines.&lt;/p&gt;
+    &lt;p&gt;Please note that we do not exercise, endorse or control the policies or practices of any third party social network whose functionality you may access through the Website.&lt;/p&gt;
+    &lt;p&gt;You should always read the Privacy Notice of any social network through which you share information carefully in order to understand their specific privacy and information usage practices.&lt;/p&gt;
+    &lt;p&gt;&lt;strong&gt;International Data Transfers&lt;/strong&gt;&lt;/p&gt;
+    &lt;p&gt;For some of our Services, your personal information may be transferred to, and processed in, countries outside of the EEA. However, we have taken appropriate safeguards to require that your personal information will remain protected in accordance with this Privacy Notice. These measures include transferring your personal data to third parties who are located in a country which the European Commission has determined has data protection laws that are at least as protective as those in Europe, and transferring your personal data to third parties who have entered into standard contractual clauses with us. For more information about these safeguards please contact us using the contact details provided below.&lt;/p&gt;
+    &lt;p&gt;&lt;strong&gt;Cookies&lt;/strong&gt;&lt;/p&gt;
+    &lt;p&gt;We use cookies and similar tracking technology (collectively, "Cookies") to collect and use personal information about you. For further information about the types of Cookies we use, why we use them and how you can control Cookies please see our Cookie Notice at: &lt;a href="http://www.qa.com/legal/cookie-notice"&gt;www.qa.com/legal/cookie-notice&lt;/a&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;strong&gt;Legal Basis (EEA visitors only).&lt;/strong&gt;&lt;/p&gt;
+    &lt;p&gt;Our legal basis for collecting and using personal information will depend on the personal information being collected and the specific context in which we collect it.&lt;/p&gt;
+    &lt;p&gt;However, we will normally collect personal information from you only:&lt;/p&gt;
+    &lt;ul&gt;
+        &lt;li&gt;where we need the personal information to perform a contract with you (for example, to enroll you into a course or provide you with learning materials);&lt;/li&gt;
+        &lt;li&gt;where the processing is in our legitimate interests and is not overridden by your rights; or&lt;/li&gt;
+        &lt;li&gt;where we have your consent to do so;&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;p&gt;In some cases, we may also have a legal obligation to collect personal information from you.&lt;/p&gt;
+    &lt;p&gt;If we ask you to provide personal information to comply with a legal requirement or to perform a contact with you, we will make this clear at the relevant time and advise you whether the provision of your personal information is mandatory or not (as well as of the possible consequences if you do not provide your personal information).&lt;/p&gt;
+    &lt;p&gt;If we collect and use your personal information in reliance on our legitimate interests (or those of any third party), this interest will normally be to operate our platform and communicating with you as necessary to provide our services to you and for our legitimate commercial interest, for instance, when responding to your queries, improving our platform, undertaking marketing, or for the purposes of detecting or preventing illegal activities. We may have other legitimate interests and if appropriate we will make clear to you at the relevant time what those legitimate interests are.&lt;/p&gt;
+    &lt;p&gt;If you have questions about or need further information concerning the legal basis on which we collect and use your personal information, please contact us using the contact details provided below.&lt;/p&gt;
+    &lt;p&gt;&lt;strong&gt;Data protection rights&lt;/strong&gt;&lt;/p&gt;
+    &lt;p&gt;You have the following data protection rights:&lt;/p&gt;
+    &lt;ul&gt;
+        &lt;li&gt;If you wish to &lt;strong&gt;access, correct, update or request deletion&lt;/strong&gt; of your personal information, you can do so at any time by contacting us using the contact details provided below.&lt;/li&gt;
+        &lt;li&gt;In addition, you can &lt;strong&gt;object to processing&lt;/strong&gt; of your personal information, ask us to &lt;strong&gt;restrict processing&lt;/strong&gt; of your personal information or &lt;strong&gt;request portability&lt;/strong&gt; of your personal information. Again, you can exercise these rights by contacting us using the contact details provided below.&lt;/li&gt;
+        &lt;li&gt;You have the right to &lt;strong&gt;opt-out of marketing and telemarketing communications&lt;/strong&gt; we send you at any time. You can exercise this right by clicking on the "Manage your Marketing Preferences" link in the marketing e-mails we send you and within our Websites. &lt;/li&gt;
+        &lt;li&gt;Similarly, if we have collected and process your personal information with your consent, then you can &lt;strong&gt;withdraw your consent&lt;/strong&gt; at any time. Withdrawing your consent will not affect the lawfulness of any processing we conducted prior to your withdrawal, nor will it affect processing of your personal information conducted in reliance on lawful processing grounds other than consent.&lt;/li&gt;
+        &lt;li&gt;You have the &lt;strong&gt;right to complain to a data protection authority&lt;/strong&gt; about our collection and use of your personal information. For more information, please contact your local data protection authority.&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;p&gt;We respond to all requests we receive from individuals wishing to exercise their data protection rights in accordance with applicable data protection laws.&lt;/p&gt;
+    &lt;p&gt;&lt;strong&gt;Contacting Us&lt;/strong&gt;&lt;/p&gt;
+    &lt;p&gt;The data controller of your personal information will be the QA group entity that you are dealing with, and as such will be one of the following:&lt;/p&gt;
+    &lt;ul&gt;
+        &lt;li&gt;QA Limited&lt;/li&gt;
+        &lt;li&gt;QA Consulting Services Limited&lt;/li&gt;
+        &lt;li&gt;QAHE Limited &lt;/li&gt;
+        &lt;li&gt;QAHE (UR) Limited &lt;/li&gt;
+        &lt;li&gt;QAHE (Ulst) Limited &lt;/li&gt;
+        &lt;li&gt;QAHE (NU) Limited &lt;/li&gt;
+        &lt;li&gt;QAHX (Mdx) Limited &lt;/li&gt;
+        &lt;li&gt;QAHE (Services) Limited &lt;/li&gt;
+        &lt;li&gt;QAHE (Solent) Limited &lt;/li&gt;
+        &lt;li&gt;Branch Campus (London and Birmingham) Limited NI &lt;/li&gt;
+        &lt;li&gt;Northumbrian London Campus Limited &lt;/li&gt;
+        &lt;li&gt;Roehampton Pathway Campus Limited &lt;/li&gt;
+        &lt;li&gt;Solent Pathway Campus Limited &lt;/li&gt;
+        &lt;li&gt;Focus Project Management Europe Limited&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;p&gt;We welcome any queries, comments or requests you may have regarding this Privacy Notice. Please do not hesitate to contact us, or our DPO, via email at: &lt;a href="mailto:privacy@qa.com"&gt;privacy@qa.com&lt;/a&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;strong&gt;Changes to the Privacy Notice&lt;/strong&gt;&lt;/p&gt;
+    &lt;p&gt;We may change this Privacy Notice from time to time by updating this document. The online version is available at: &lt;a href="http://www.qa.com/legal/privacy-notice"&gt;www.qa.com/legal/privacy-notice&lt;/a&gt;&lt;/p&gt;
+    &lt;p&gt;You should check this page from time to time to ensure that you are happy with any changes.&lt;/p&gt;
+    &lt;p&gt;If material changes are made to this Privacy Notice, we will notify you by placing a prominent notice on the Website or by contacting you to let you know via the contact details you have provided us with.&lt;/p&gt;
+    &lt;p&gt;By clicking the button below, you accept the terms of this Privacy Notice.&lt;/p&gt;
+    &lt;/div&gt;;
+&nbsp;
+class PrivNotice extends Component {
+<span class="fstat-no" title="function not covered" >    co</span>nstructor(...args) {
+<span class="cstat-no" title="statement not covered" >        super(...args);</span>
+<span class="cstat-no" title="statement not covered" >        this.state = { </span>
+            showModal: false,
+            currentUser: authService.currentUserValue
+         };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        this.close = <span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >            this.setState({ showModal: false });</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        this.open = <span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >            this.setState({ showModal: true });</span>
+        };
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    co</span>mponentDidMount(){
+<span class="cstat-no" title="statement not covered" >        axios.get('http://' + process.env.REACT_APP_AWS_IP + ':4000/privacy/' + this.state.currentUser.token._id)</span>
+        .then(<span class="fstat-no" title="function not covered" >re</span>sponse =&gt; {
+<span class="cstat-no" title="statement not covered" >            console.log(response);</span>
+<span class="cstat-no" title="statement not covered" >            if(response.data === 'Success'){</span>
+<span class="cstat-no" title="statement not covered" >                this.setState({</span>
+                    showModal: false
+                })
+            }
+            else <span class="cstat-no" title="statement not covered" >if(response.data === 'Failed'){</span>
+<span class="cstat-no" title="statement not covered" >                this.setState({</span>
+                    showModal: true
+                })
+            }
+        });
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    re</span>nder() {
+<span class="cstat-no" title="statement not covered" >        return (</span>
+            &lt;div data-keyboard="false"&gt;
+&nbsp;
+                &lt;Modal
+                    onHide={this.close}
+                    backdrop='static'
+                    size='lg'
+                    dialogClassName="modal-style"
+                    aria-labelledby="modal-label"
+                    show={this.state.showModal}
+                    keyboard={false}
+                &gt;
+                {privText}
+                &lt;Button
+                    className='priv-btn'
+                    variant='secondary'
+                    block='false'
+                    //onClick={this.close}
+                    onClick = {<span class="fstat-no" title="function not covered" >()</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >                        console.log(this.state.currentUser.token._id);</span>
+<span class="cstat-no" title="statement not covered" >                        axios.get('http://'+process.env.REACT_APP_AWS_IP+':4000/privacy/accept/'+this.state.currentUser.token._id).then(<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >this.setState({ showModal: false }))</span> </span>} }
+                    //Additional logic is required for click event
+                &gt;Accept&lt;/Button&gt;
+                &lt;br&gt;&lt;/br&gt;
+                &lt;/Modal&gt;
+            &lt;/div&gt;
+        );
+    }
+}
+&nbsp;
+export default PrivNotice;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Jul 03 2019 17:01:32 GMT+0100 (British Summer Time)
+</div>
+</div>
+<script src="..\..\prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="..\..\sorter.js"></script>
+<script src="..\..\block-navigation.js"></script>
+</body>
+</html>
