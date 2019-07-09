@@ -488,8 +488,8 @@ export default class CostReport extends Component {
         });
         let finalY = pdf.autoTable.previous.finalY;
         pdf.setFontSize(9);
-        pdf.text(15, finalY+20, "Admin Approved By: ");
-        pdf.text(115, finalY+20, "Finance Approved By: ");
+        pdf.text(15, finalY+20, "Admin Approved By: "+this.state.approvedBy);
+        pdf.text(115, finalY+20, "Finance Approved By: "+this.state.finApprovedBy);
         pdf.text(15, finalY+30, "Signed : ........................")
         pdf.text(115, finalY+30, "Signed : ........................")
         pdf.save('table.pdf');
