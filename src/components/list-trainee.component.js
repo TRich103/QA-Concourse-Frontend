@@ -46,7 +46,7 @@ export default class ListTrainee extends Component {
 
             axios.get('http://' + process.env.REACT_APP_AWS_IP + ':4000/admin/staff/' + this.state.currentUser.token._id)
             .then(response => {
-              if(response.data == null){
+              if(response.data === null){
                 authService.logout();
                 if (!authService.currentUserValue) {
                   document.location.href = 'http://' + process.env.REACT_APP_AWS_IP + ':3000/login';
@@ -118,18 +118,18 @@ export default class ListTrainee extends Component {
                 }
             })
         }
-        if(filter.status != 'All'){
+        if(filter.status !== 'All'){
             trainees = trainees.filter(function(trainee){
-                if(trainee.status == filter.status){
+                if(trainee.status === filter.status){
                     return trainee;
                 }
 
             })
         }
 
-        if(filter.bursary != 'All'){
+        if(filter.bursary !== 'All'){
             trainees = trainees.filter(function(trainee){
-                if(trainee.bursary == filter.bursary){
+                if(trainee.bursary === filter.bursary){
                     return trainee;
                 }
 
@@ -207,7 +207,7 @@ export default class ListTrainee extends Component {
                     </thead>               
                     <tbody>
                         {trainees.map(t => {
-                            if(t.status != "Suspended"){
+                            if(t.status !== "Suspended"){
                                 return (
                                     <tr className="trainees">
                                         <td onClick={() => window.location.href = "/editDates/" + t._id}> {t.trainee_fname}</td>

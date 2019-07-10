@@ -121,8 +121,8 @@ export default class UserRecord extends Component {
             let range = this.state.range;
             let recordOf = this.state.recordOf;
             let userType = this.state.userType;
-            if(from != undefined){
-                if(to == undefined){
+            if(from !== undefined){
+                if(to === undefined){
                     record = record.filter(function(record){
                         let start = new Date(Date.parse(record.timestamp));
                         console.log(start);
@@ -133,7 +133,7 @@ export default class UserRecord extends Component {
                         }
                     })
                 }
-                else if(to!= undefined){
+                else if(to !== undefined){
                     record = record.filter(function(record){
                         let start = new Date(Date.parse(record.timestamp));
                         if(DateUtils.isDayInRange(start, range)){

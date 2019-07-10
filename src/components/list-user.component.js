@@ -133,10 +133,10 @@ export default class ListUser extends Component {
                     className="filter-btn"
                     >
                     Filters
-                    <img src={filterIcon}></img>
+                    <img src={filterIcon} alt="This is a filter icon" ></img>
                     </button>
                     <div id="addUser">
-                        <Link className="link" to ={"/addUser"}><button className="qabtn">Add User<img src={add}></img></button></Link>
+                        <Link className="link" to={"/addUser"}><button className="qabtn">Add User<img src={add} alt="This is an add icon"></img></button></Link>
                     </div>
                     <Collapse in={this.state.open}>
                     <p>
@@ -190,20 +190,20 @@ export default class ListUser extends Component {
                                 <td>
                                         <center>{currentStaff ? <button id="fakeBtn">
                                             {deleteToggle}
-                                            <img src={close}></img>
+                                            <img src={close} alt="This is a close icon"></img>
                                         </button> : <button className="actionBtn" onClick={() => {
                                             if (window.confirm('Are you sure you wish to ' + deleteToggle.toLowerCase() + ' this user?'))
                                                 axios.get('http://' + process.env.REACT_APP_AWS_IP + ':4000/admin/' + deleteRoute + '/' + user._id).then(() => window.location.reload())
                                         }}>
                                                 {deleteToggle}
-                                                <img src={close}></img>
+                                                <img src={close} alt="This is a close icon"></img>
                                             </button>}&nbsp;
-                                    <button className="actionBtn" value={user._id} onClick={this.handleHistoryClick}>View History <img src={history}></img></button>&nbsp;
-                                    <a href={"mailto:" + user.email}><button className="actionBtn">Email <img src={mail}></img></button> </a>
+                                    <button className="actionBtn" value={user._id} onClick={this.handleHistoryClick}>View History <img src={history} alt="This is a history icon"></img></button>&nbsp;
+                                    <a href={"mailto:" + user.email}><button className="actionBtn">Email <img src={mail} alt="This is an email icon"></img></button> </a>
                                     <button className="actionBtn" onClick={() => { 
                                                     axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/admin/send-email-staff/', {email: user.email}).then(() => window.alert("Email Sent!")) } }>
                                                     Resend Activation Email
-                                                    <img src={mail}></img>
+                                                    <img src={mail} alt="This is an email icon"></img>
                                     </button>&nbsp;
                                         </center>
                                 </td>

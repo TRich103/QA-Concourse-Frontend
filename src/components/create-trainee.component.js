@@ -74,7 +74,7 @@ export default class CreateTrainee extends Component {
     componentDidMount(){
         axios.get('http://' + process.env.REACT_APP_AWS_IP + ':4000/admin/staff/' + this.state.currentUser.token._id)
         .then(response => {
-          if(response.data == null){
+          if(response.data === null){
             authService.logout();
             if (!authService.currentUserValue) {
               document.location.href = 'http://' + process.env.REACT_APP_AWS_IP + ':3000/login';
@@ -362,13 +362,13 @@ export default class CreateTrainee extends Component {
             case "tooloworhigh":
                 var dateWarning = window.confirm("The dates you have entered are unusually high or low. Are you sure you want to proceed?");
                 
-				if (dateWarning == false){
+				if (dateWarning === false){
                 break;
                 }
             case "toomuchbursary":
                 var dateWarning = window.confirm("Are you sure you want to give this trainee a bursary of more than £100 daily?");
     
-                if(dateWarning == false){
+                if(dateWarning === false){
                     break;
                 }
             default:
@@ -423,7 +423,7 @@ export default class CreateTrainee extends Component {
             console.log(newTrainee);
             axios.post('http://' + process.env.REACT_APP_AWS_IP + ':4000/trainee/add', newTrainee)
                     .then((response) => {
-                        if (response.status == 205) {
+                        if (response.status === 205) {
                             alert("Email is already in use");
                         }
                         else {
