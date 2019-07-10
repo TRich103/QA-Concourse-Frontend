@@ -117,7 +117,7 @@ export default class EditDates extends Component {
     }
 	
     componentDidMount() {
-        axios.get('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/'+this.props.match.params.id)
+        axios.get('https://'+process.env.REACT_APP_BACKEND_IP+'/trainee/'+this.props.match.params.id)
             .then(response => {
                 console.log(response);
                 
@@ -222,15 +222,15 @@ export default class EditDates extends Component {
 		
         console.log(obj);
         console.log(bursary);
-        axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/editDates/'+this.props.match.params.id, obj)
+        axios.post('https://'+process.env.REACT_APP_BACKEND_IP+'/trainee/editDates/'+this.props.match.params.id, obj)
             .then(res => {console.log(res.data);
                           this.props.history.push('/');
                           window.location.reload();});
-		axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/daysToWork/'+this.props.match.params.id, workingDays)
+		axios.post('https://'+process.env.REACT_APP_BACKEND_IP+'/trainee/daysToWork/'+this.props.match.params.id, workingDays)
             .then(res => {console.log(res.data);
                           this.props.history.push('/');
                           window.location.reload();});
-        axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/editBursary/'+this.props.match.params.id, bursary)
+        axios.post('https://'+process.env.REACT_APP_BACKEND_IP+'/trainee/editBursary/'+this.props.match.params.id, bursary)
                 .then(res => {console.log(res.data);
                              this.props.history.push('/');
                              window.location.reload();});                 

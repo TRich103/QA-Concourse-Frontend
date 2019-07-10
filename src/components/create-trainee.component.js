@@ -72,12 +72,12 @@ export default class CreateTrainee extends Component {
 	
 
     componentDidMount(){
-        axios.get('http://' + process.env.REACT_APP_AWS_IP + ':4000/admin/staff/' + this.state.currentUser.token._id)
+        axios.get('https://' + process.env.REACT_APP_BACKEND_IP + '/admin/staff/' + this.state.currentUser.token._id)
         .then(response => {
           if(response.data == null){
             authService.logout();
             if (!authService.currentUserValue) {
-              document.location.href = 'http://' + process.env.REACT_APP_AWS_IP + ':3000/login';
+              document.location.href = 'https://' + process.env.REACT_APP_AWS_IP + '/login';
             }
           }
           else{
@@ -85,7 +85,7 @@ export default class CreateTrainee extends Component {
             this.setState({
               recruiterName: response.data.fname + ' ' + response.data.lname 
             })
-            axios.get('http://' + process.env.REACT_APP_AWS_IP + ':4000/settings/').then(response =>{
+            axios.get('https://' + process.env.REACT_APP_BACKEND_IP + '/settings/').then(response =>{
                 console.log(response.data);
                 this.setState({
                             bankHolidays: response.data.pay_bank_holidays,
@@ -94,14 +94,14 @@ export default class CreateTrainee extends Component {
             }
         });
 
-        axios.get('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/get/allTech/').then(response => {
+        axios.get('https://'+process.env.REACT_APP_BACKEND_IP+'/trainee/get/allTech/').then(response => {
             this.setState({
                 tech: response.data
             });
             console.log(response.data);
         });
 
-        axios.get('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/get/Intakes/').then(response => {
+        axios.get('https://'+process.env.REACT_APP_BACKEND_IP+'/trainee/get/Intakes/').then(response => {
             this.setState({
                 intakes: response.data
             });
@@ -375,7 +375,7 @@ export default class CreateTrainee extends Component {
             console.log(`Form submitted:`);
             console.log("this is the bursary amount of state : "+this.state.bursary_amount);
             if(this.state.addIntake === true){
-                axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/addIntake', {intakeName: this.state.intake}).then( (response) => {
+                axios.post('https://'+process.env.REACT_APP_BACKEND_IP+'/trainee/addIntake', {intakeName: this.state.intake}).then( (response) => {
                     if(response.status === "400"){
                         console.log("Could not be added successfully");
                     }
@@ -385,7 +385,7 @@ export default class CreateTrainee extends Component {
                 })
             }
             if(this.state.addTech === true){
-                axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/addTech', {techName: this.state.chosenTech}).then( (response) => {
+                axios.post('https://'+process.env.REACT_APP_BACKEND_IP+'/trainee/addTech', {techName: this.state.chosenTech}).then( (response) => {
                     if(response.status === 400){
                         console.log("An error has occured");
                     }
@@ -421,20 +421,20 @@ export default class CreateTrainee extends Component {
             console.log("this is the start date of the variable : "+ newTrainee.trainee_start_date);
 			console.log(this.state.bank_holidays);
             console.log(newTrainee);
-            axios.post('http://' + process.env.REACT_APP_AWS_IP + ':4000/trainee/add', newTrainee)
+            axios.post('https://' + process.env.REACT_APP_BACKEND_IP + '/trainee/add', newTrainee)
                     .then((response) => {
                         if (response.status == 205) {
                             alert("Email is already in use");
                         }
                         else {
-                            axios.post('http://' + process.env.REACT_APP_AWS_IP + ':4000/trainee/daysToWork', {
+                            axios.post('https://' + process.env.REACT_APP_BACKEND_IP + '/trainee/daysToWork', {
                                 trainee_email: this.state.trainee_email.toLowerCase()
                             })
                                 .then((response) => {
                                     console.log(response.data)
                                 });
 
-                            axios.post('http://' + process.env.REACT_APP_AWS_IP + ':4000/trainee/send-email', {
+                            axios.post('https://' + process.env.REACT_APP_BACKEND_IP + '/trainee/send-email', {
                                 trainee_email: this.state.trainee_email.toLowerCase(),
                                 trainee_fname: this.toTitleCase(this.state.trainee_fname)
                             })

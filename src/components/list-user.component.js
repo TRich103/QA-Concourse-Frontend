@@ -17,7 +17,7 @@ export default class ListUser extends Component {
     constructor(props) {
 			//redirects to login if not logged in
 	    if (!authService.currentUserValue){
-			document.location.href = 'http://'+process.env.REACT_APP_AWS_IP+':3000/login';
+			document.location.href = 'https://'+process.env.REACT_APP_AWS_IP+'/login';
 			//this.context.history.push('/login');
 		}
         super(props);
@@ -193,7 +193,7 @@ export default class ListUser extends Component {
                                             <img src={close}></img>
                                         </button> : <button className="actionBtn" onClick={() => {
                                             if (window.confirm('Are you sure you wish to ' + deleteToggle.toLowerCase() + ' this user?'))
-                                                axios.get('http://' + process.env.REACT_APP_AWS_IP + ':4000/admin/' + deleteRoute + '/' + user._id).then(() => window.location.reload())
+                                                axios.get('https://' + process.env.REACT_APP_BACKEND_IP + '/admin/' + deleteRoute + '/' + user._id).then(() => window.location.reload())
                                         }}>
                                                 {deleteToggle}
                                                 <img src={close}></img>
@@ -201,7 +201,7 @@ export default class ListUser extends Component {
                                     <button className="actionBtn" value={user._id} onClick={this.handleHistoryClick}>View History <img src={history}></img></button>&nbsp;
                                     <a href={"mailto:" + user.email}><button className="actionBtn">Email <img src={mail}></img></button> </a>
                                     <button className="actionBtn" onClick={() => { 
-                                                    axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/admin/send-email-staff/', {email: user.email}).then(() => window.alert("Email Sent!")) } }>
+                                                    axios.post('https://'+process.env.REACT_APP_BACKEND_IP+'/admin/send-email-staff/', {email: user.email}).then(() => window.alert("Email Sent!")) } }>
                                                     Resend Activation Email
                                                     <img src={mail}></img>
                                     </button>&nbsp;

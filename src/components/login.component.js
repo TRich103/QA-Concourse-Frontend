@@ -50,23 +50,23 @@ export default class Login extends Component {
             token: ''
         };
 
-        axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/auth/login', user)
+        axios.post('https://'+process.env.REACT_APP_BACKEND_IP+'/auth/login', user)
             .then(function (res) {
                 if (res.status === 200) {
                     var status = res.data.user.status;
                     console.log("STATUS: "+status);
                     if(status !== "Suspended"){
                         if (typeof res.data.user.role === "undefined") {
-                            document.location.href = 'http://'+process.env.REACT_APP_AWS_IP+':3000/trainee-details/' + res.data.user._id
+                            document.location.href = 'https://'+process.env.REACT_APP_AWS_IP+'/trainee-details/' + res.data.user._id
                             token.token = decode(res.data.token);
                             localStorage.setItem('currentUser', JSON.stringify(token));
                         }
                         else if (res.data.user.role === "admin") {
-                            document.location.href = 'http://'+process.env.REACT_APP_AWS_IP+':3000/admin';
+                            document.location.href = 'https://'+process.env.REACT_APP_AWS_IP+'/admin';
                             token.token = decode(res.data.token);
                             localStorage.setItem('currentUser', JSON.stringify(token));
                         } else {
-                            document.location.href = 'http://'+process.env.REACT_APP_AWS_IP+':3000/';
+                            document.location.href = 'https://'+process.env.REACT_APP_AWS_IP+'/';
                             //Get user token and decode user token here
                             token.token = decode(res.data.token);
                             localStorage.setItem('currentUser', JSON.stringify(token));

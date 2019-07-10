@@ -77,9 +77,9 @@ export default class CostReport extends Component {
     }
     
     componentDidMount() {
-        axios.post('http://' + process.env.REACT_APP_AWS_IP + ':4000/trainee/monthlyReport', {month: moment().format("MMMM YYYY")})
+        axios.post('https://' + process.env.REACT_APP_BACKEND_IP + '/trainee/monthlyReport', {month: moment().format("MMMM YYYY")})
             .then( () => {
-                axios.post('http://' + process.env.REACT_APP_AWS_IP + ':4000/trainee/getMonthlyReport', {month: moment().format("MMMM YYYY")}).then(response => {
+                axios.post('http://' + process.env.REACT_APP_BACKEND_IP + '/trainee/getMonthlyReport', {month: moment().format("MMMM YYYY")}).then(response => {
                     if(response.data === 'no report'){
                         console.log('No reports found');
                     } else{
@@ -170,7 +170,7 @@ export default class CostReport extends Component {
             })
             
 
-            axios.get('http://' + process.env.REACT_APP_AWS_IP + ':4000/admin/staff/' + this.state.currentUser.token._id)
+            axios.get('https://' + process.env.REACT_APP_BACKEND_IP + '/admin/staff/' + this.state.currentUser.token._id)
             .then(response => {
               if(response.data == null){
                 authService.logout();
@@ -258,7 +258,7 @@ export default class CostReport extends Component {
     }
 	finaceUpdate(){
 		window.confirm("You are about to Approve this months Report. Are you sure you want to proceed?");	
-		axios.post('http://' + process.env.REACT_APP_AWS_IP + ':4000/trainee/monthlyReport/updateStatus', {
+		axios.post('https://' + process.env.REACT_APP_BACKEND_IP + '/trainee/monthlyReport/updateStatus', {
 			month: this.state.date, 
 			user_role: 'finance', 
 			financeApprove: this.state.finApproval})
@@ -266,7 +266,7 @@ export default class CostReport extends Component {
 	}
 	
 	revertReport(){
-        axios.post('http://' + process.env.REACT_APP_AWS_IP + ':4000/trainee/monthlyReport/updateStatus', {
+        axios.post('https://' + process.env.REACT_APP_BACKEND_IP + '/trainee/monthlyReport/updateStatus', {
 			month: this.state.date,
 			user_role: "pending",
 			approvedBy: ' '})
@@ -279,7 +279,7 @@ export default class CostReport extends Component {
         if (this.state.currentUser.token.role === "admin"){
             role = 'admin'
         }
-        axios.post('http://' + process.env.REACT_APP_AWS_IP + ':4000/trainee/monthlyReport/updateStatus', {
+        axios.post('https://' + process.env.REACT_APP_BACKEND_IP + '/trainee/monthlyReport/updateStatus', {
 			month: this.state.date, 
 			user_role: role, 
 			approvedBy: this.state.approval})
@@ -323,11 +323,11 @@ export default class CostReport extends Component {
             startDate: ''
             });
 
-        axios.post('http://' + process.env.REACT_APP_AWS_IP + ':4000/trainee/monthlyReport', {month: moment().format("MMMM YYYY")})
+        axios.post('http://' + process.env.REACT_APP_BACKEND_IP + '/trainee/monthlyReport', {month: moment().format("MMMM YYYY")})
         .then( () => {
-        axios.post('http://' + process.env.REACT_APP_AWS_IP + ':4000/trainee/monthlyReport', {month: moment(date).format("MMMM YYYY")})
+        axios.post('http://' + process.env.REACT_APP_BACKEND_IP + '/trainee/monthlyReport', {month: moment(date).format("MMMM YYYY")})
         .then( () => {
-            axios.post('http://' + process.env.REACT_APP_AWS_IP + ':4000/trainee/getMonthlyReport', {month: moment(date).format("MMMM YYYY")}).then(response => {
+            axios.post('http://' + process.env.REACT_APP_BACKEND_IP + '/trainee/getMonthlyReport', {month: moment(date).format("MMMM YYYY")}).then(response => {
                 console.log(response.data)
                 if(response.data === 'no report' || response.data.reportTrainees.length === 0){
                     this.setState({
@@ -435,7 +435,7 @@ export default class CostReport extends Component {
         })})
         
 
-        axios.get('http://' + process.env.REACT_APP_AWS_IP + ':4000/admin/staff/' + this.state.currentUser.token._id)
+        axios.get('https://' + process.env.REACT_APP_BACKEND_IP + '/admin/staff/' + this.state.currentUser.token._id)
         .then(response => {
           if(response.data == null){
             authService.logout();
