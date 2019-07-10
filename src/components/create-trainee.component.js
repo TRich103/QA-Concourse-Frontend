@@ -53,8 +53,8 @@ export default class CreateTrainee extends Component {
             intakes:[],
             geoFlex:'',
             clearance: '',
-            currentUser: {token:{_id: "5d0bb39bd2ba63099c621593", role: "admin", status: "Active"}},
-            //currentUser: authService.currentUserValue, //for testing purposes comment this out, and uncomment the one above.
+            //currentUser: {token:{_id: "5d0bb39bd2ba63099c621593", role: "admin", status: "Active"}},
+            currentUser: authService.currentUserValue, //for testing purposes comment this out, and uncomment the one above.
             languages: '',
             date_achieved: '',
             recruiterName: '',
@@ -215,19 +215,27 @@ export default class CreateTrainee extends Component {
         let intake = this.state.intake;
         let intakes = this.state.intakes;
         //checks to see if intake value exists
-        for(var i = 0; i < intakes.length; i++){
-            if(intakes[i].value === intake){
-                this.setState({
-                    addIntake: false
-                })
-                console.log('set as false');
-            }
-            else{
-                this.setState({
-                    addIntake: true
-                });
-                console.log('set as true');
-                break;
+        if(intakes.length === 0){
+            this.setState({
+                addIntake: true
+            });
+            console.log('set as true');
+        }
+        else{
+            for(var i = 0; i < intakes.length; i++){
+                if(intakes[i].value === intake){
+                    this.setState({
+                        addIntake: false
+                    })
+                    console.log('set as false');
+                }
+                else{
+                    this.setState({
+                        addIntake: true
+                    });
+                    console.log('set as true');
+                    break;
+                }
             }
         }
     }
