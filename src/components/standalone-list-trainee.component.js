@@ -22,6 +22,10 @@ import 'react-day-picker/lib/style.css';
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 import download from './icons/download.svg';
 
+import CreateTrainee from "./create-trainee.component";
+import TraineeSettings from "./TraineeSettings.component";
+import EditTrainee from "./edit-trainee.component";
+
 import { Button, ButtonGroup } from 'reactstrap';
 
 export default class ListTrainee extends Component {
@@ -433,8 +437,8 @@ export default class ListTrainee extends Component {
                         </ModalBody>
                     </Modal>
                     <div id="addUser">
-                       <Link className="link" to={"/create"}> <button className="qabtn">Add Trainee <img src={add}></img></button></Link>
-                       <Link className="link" to={"/trainee-settings"}><button className="qabtn">Settings <img src={settings}></img></button></Link>
+						<Link className="link" to={"/create"}> <button className="qabtn" onClick={()=>{this.props.content(<CreateTrainee/>)}}>Create Trainee<img src={add}></img></button></Link>
+                       	<Link className="link" to={"/trainee-settings"}> <button className="qabtn" onClick={()=>{this.props.content(<TraineeSettings/>)}}>Settings<img src={settings}></img></button></Link>
 					   <CSVLink className="link" data={output} filename={"Admin_report_" + moment().format('MMMM YYYY') + ".csv"}><button className="qabtn">Download CSV <img src={download}></img></button></CSVLink>					   
                     </div>
                     <Collapse in={this.state.open}>

@@ -4,12 +4,14 @@ import React, { Component } from 'react';
 import './App.css';
 import Nav from './Navigation.js'
 import { BrowserRouter as Router, Route} from "react-router-dom";
+import Container from './components/components/container-component/container.component';
+import { myConfig } from './components/components/container-component/component-map';
 
 import CreateTrainee from "./components/create-trainee.component";
 import EditTrainee from "./components/edit-trainee.component";
 import ListTrainee from "./components/list-trainee.component";
 import TabFinance from "./components/tab-finance.component";
-import SystemLogs from "./components/SystemLogs.component";
+
 import TraineeSettings from "./components/TraineeSettings.component";
 
 import ChangePassword from "./components/change-password-trainee.component";
@@ -30,6 +32,30 @@ import PasswordStaff from './components/admin-staff-password';
 import "./css/Login.css";
 
 
+function App() {
+
+  if(!authService.currentUserValue){
+    return (
+      <Router>
+          <div className="App">
+            <Container role='' links={myConfig}/>
+          </div>
+      </Router>
+    );
+  }
+  else{
+    return (
+      <Router>
+          <div className="App">
+			<div data-keyboard="false"><Privacy/></div>
+            <Container role={authService.currentUserValue.token.role} links={myConfig}/>
+          </div>
+      </Router>
+    );
+  }
+}
+
+/*
 class App extends Component {
   render() {
 	  if (!authService.currentUserValue){
@@ -59,7 +85,6 @@ class App extends Component {
          <div className="App">
            <Nav/>
          </div>
-		 <Route path="/system_logs" component={SystemLogs} />
          <Route path="/admin" component={TabList} />
          <Route path="/edit/:id" component={EditTrainee} />
          <Route path="/create" component={CreateTrainee} />
@@ -128,5 +153,6 @@ class App extends Component {
   }
  }
 }
+*/
 
 export default App;

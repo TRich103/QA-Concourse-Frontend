@@ -1,0 +1,10 @@
+#Btn {
+    background-color: #004050;
+    border: 1px solid #004050;
+}
+
+#Btn:hover {
+        background-color: white;
+        color: #004050;
+        border: 1px solid #004050;
+}

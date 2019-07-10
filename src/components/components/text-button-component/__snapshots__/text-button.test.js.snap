@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextButton should be disabled when disabled is set to true 1`] = `
+<div>
+  <ButtonGroup
+    role="group"
+    tag="div"
+  >
+    <Button
+      color="secondary"
+      disabled={true}
+      tag="button"
+    />
+  </ButtonGroup>
+</div>
+`;
+
+exports[`TextButton should render button text correctly with given string 1`] = `
+<div>
+  <ButtonGroup
+    role="group"
+    tag="div"
+  >
+    <Button
+      color="secondary"
+      tag="button"
+    >
+      Click Me
+    </Button>
+  </ButtonGroup>
+</div>
+`;

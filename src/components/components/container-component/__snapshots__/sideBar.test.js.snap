@@ -1,0 +1,107 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Side Bar should render the side bar with admin links when role is admin 1`] = `
+<div>
+  <Menu
+    bodyClassName=""
+    burgerBarClassName=""
+    burgerButtonClassName=""
+    className=""
+    crossButtonClassName=""
+    crossClassName=""
+    customBurgerIcon={
+      <img
+        src="Open.svg"
+      />
+    }
+    customCrossIcon={
+      <img
+        src="Close.svg"
+      />
+    }
+    disableAutoFocus={false}
+    disableCloseOnEsc={false}
+    htmlClassName="OpenMenu"
+    id=""
+    itemClassName=""
+    itemListClassName=""
+    menuClassName=""
+    morphShapeClassName=""
+    noOverlay={true}
+    onStateChange={[Function]}
+    outerContainerId="outer-container"
+    overlayClassName=""
+    pageWrapId="page-wrap"
+    styles={Object {}}
+    width={300}
+  >
+    <NavLink
+      as={[Function]}
+      disabled={false}
+      onClick={[Function]}
+    >
+      Admin Sidebar Link 1
+    </NavLink>
+    <NavLink
+      as={[Function]}
+      disabled={false}
+      onClick={[Function]}
+    >
+      Admin Sidebar Link 2
+    </NavLink>
+  </Menu>
+</div>
+`;
+
+exports[`Side Bar should render the sidebar with recruiter links when role is recruiter 1`] = `
+<div>
+  <Menu
+    bodyClassName=""
+    burgerBarClassName=""
+    burgerButtonClassName=""
+    className=""
+    crossButtonClassName=""
+    crossClassName=""
+    customBurgerIcon={
+      <img
+        src="Open.svg"
+      />
+    }
+    customCrossIcon={
+      <img
+        src="Close.svg"
+      />
+    }
+    disableAutoFocus={false}
+    disableCloseOnEsc={false}
+    htmlClassName="OpenMenu"
+    id=""
+    itemClassName=""
+    itemListClassName=""
+    menuClassName=""
+    morphShapeClassName=""
+    noOverlay={true}
+    onStateChange={[Function]}
+    outerContainerId="outer-container"
+    overlayClassName=""
+    pageWrapId="page-wrap"
+    styles={Object {}}
+    width={300}
+  >
+    <NavLink
+      as={[Function]}
+      disabled={false}
+      onClick={[Function]}
+    >
+      Recruiter SideBar Link 1
+    </NavLink>
+    <NavLink
+      as={[Function]}
+      disabled={false}
+      onClick={[Function]}
+    >
+      Recruiter SiderBar Link 2
+    </NavLink>
+  </Menu>
+</div>
+`;

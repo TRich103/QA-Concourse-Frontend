@@ -1,0 +1,247 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header page redirects for bad credentials 1`] = `
+<Navigation>
+  <div
+    id="bar"
+  >
+    <div
+      id="navigation-bar"
+    >
+      <Navbar
+        color="light"
+        expand="md"
+        light={true}
+        tag="nav"
+      >
+        <nav
+          className="navbar navbar-expand-md navbar-light bg-light"
+        >
+          <NavbarBrand
+            href="/"
+            tag="a"
+          >
+            <a
+              className="navbar-brand"
+              href="/"
+            >
+              <img
+                alt="QA logo"
+                src="QA_logo.png"
+                width="60px"
+              />
+            </a>
+          </NavbarBrand>
+          <Nav
+            className="ml-auto"
+            navbar={true}
+            tag="ul"
+            vertical={false}
+          >
+            <ul
+              className="ml-auto navbar-nav"
+            >
+              <NavItem
+                className="display_name"
+                tag="li"
+              >
+                <li
+                  className="display_name nav-item"
+                >
+                  Logged in as: 
+                   
+                   
+                   
+                    |  
+                </li>
+              </NavItem>
+              <NavItem
+                tag="li"
+              >
+                <li
+                  className="nav-item"
+                >
+                  <Button
+                    color="secondary"
+                    href="/login"
+                    id="logoutBtn"
+                    onClick={[Function]}
+                    tag="button"
+                  >
+                    <a
+                      aria-label={null}
+                      className="btn btn-secondary"
+                      href="/login"
+                      id="logoutBtn"
+                      onClick={[Function]}
+                    >
+                      Logout
+                    </a>
+                  </Button>
+                </li>
+              </NavItem>
+            </ul>
+          </Nav>
+        </nav>
+      </Navbar>
+    </div>
+  </div>
+</Navigation>
+`;
+
+exports[`Header should display correct user name 1`] = `
+<div
+  id="bar"
+>
+  <div
+    id="navigation-bar"
+  >
+    <Navbar
+      color="light"
+      expand="md"
+      light={true}
+      tag="nav"
+    >
+      <NavbarBrand
+        href="/"
+        tag="a"
+      >
+        <img
+          alt="QA logo"
+          src="QA_logo.png"
+          width="60px"
+        />
+      </NavbarBrand>
+      <Nav
+        className="ml-auto"
+        navbar={true}
+        tag="ul"
+        vertical={false}
+      >
+        <NavItem
+          className="display_name"
+          tag="li"
+        >
+          Logged in as: 
+           
+           
+          Test
+           
+          Account
+            |  
+        </NavItem>
+        <NavItem
+          tag="li"
+        >
+          <Button
+            color="secondary"
+            href="/login"
+            id="logoutBtn"
+            onClick={[Function]}
+            tag="button"
+          >
+            Logout
+          </Button>
+        </NavItem>
+      </Nav>
+    </Navbar>
+  </div>
+</div>
+`;
+
+exports[`Header should render with "Login" if user is null 1`] = `
+<div
+  id="navigation-bar"
+>
+  <Navbar
+    color="light"
+    expand="md"
+    light={true}
+    tag="nav"
+  >
+    <NavbarBrand
+      href="/"
+      tag="a"
+    >
+      <img
+        src="QA_logo.png"
+        width="60px"
+      />
+    </NavbarBrand>
+    <Nav
+      className="ml-auto"
+      navbar={true}
+      tag="ul"
+      vertical={false}
+    >
+      <Button
+        color="secondary"
+        href="/login"
+        id="loginBtn"
+        onClick={[Function]}
+        tag="button"
+      >
+        Login
+      </Button>
+    </Nav>
+  </Navbar>
+</div>
+`;
+
+exports[`Header should render with "Logout" if user is defined 1`] = `
+<div
+  id="bar"
+>
+  <div
+    id="navigation-bar"
+  >
+    <Navbar
+      color="light"
+      expand="md"
+      light={true}
+      tag="nav"
+    >
+      <NavbarBrand
+        href="/"
+        tag="a"
+      >
+        <img
+          alt="QA logo"
+          src="QA_logo.png"
+          width="60px"
+        />
+      </NavbarBrand>
+      <Nav
+        className="ml-auto"
+        navbar={true}
+        tag="ul"
+        vertical={false}
+      >
+        <NavItem
+          className="display_name"
+          tag="li"
+        >
+          Logged in as: 
+           
+           
+           
+            |  
+        </NavItem>
+        <NavItem
+          tag="li"
+        >
+          <Button
+            color="secondary"
+            href="/login"
+            id="logoutBtn"
+            onClick={[Function]}
+            tag="button"
+          >
+            Logout
+          </Button>
+        </NavItem>
+      </Nav>
+    </Navbar>
+  </div>
+</div>
+`;

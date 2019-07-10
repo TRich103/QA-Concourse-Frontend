@@ -7,7 +7,6 @@ import Collapse from 'react-bootstrap/Collapse'
 // import '../css/list-trainee-recruiter.css';
 import moment from 'moment';
 import "react-table/react-table.css";
-import '../css/report.css';
 
 import DayPicker, { DateUtils } from 'react-day-picker';
 import DatePicker from "react-datepicker";

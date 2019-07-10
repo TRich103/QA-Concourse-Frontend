@@ -1,0 +1,40 @@
+.display_name{
+	margin-top:8px;
+	margin-right:5px; 
+}
+
+.nav-item{
+	color:black;
+}
+.sidebar_btn{
+	cursor: grab;
+}
+#navigation-bar{
+	width:100%;
+}
+
+.navbar,
+.navbar-default {
+    background-image: linear-gradient(to bottom,#f3f2f2 0,#d6d8da 100%) !important; /* override background image gradient w/ flat color */
+}
+
+#loginBtn{
+  background-color: #004050;
+	margin-top: 10px;
+}
+
+#loginBtn:hover{
+  background-color: white;
+  color:#004050;
+  border: 1px solid #004050;
+}
+
+#logoutBtn{
+  background-color: #2c3a3d;
+}
+
+#logoutBtn:hover{
+  background-color: white;
+  color:#004050;
+  border: 1px solid #004050;
+}

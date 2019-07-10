@@ -1,0 +1,1715 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Container should render the side bar with admin links when role is admin 1`] = `
+<NavbarDisplay
+  links={
+    Object {
+      "admin": Object {
+        "buttons": Array [
+          Object {
+            "content": <AdminHome />,
+            "name": "Home",
+          },
+        ],
+        "dropdowns": Array [
+          Object {
+            "content": Array [
+              Object {
+                "content": <GenericDiv />,
+                "name": "Table",
+              },
+              Object {
+                "content": <div>
+                  <h2>
+                    QA Search Bar
+                  </h2>
+                  <p>
+                    Please search for the values of the JSON objects (i.e John, Mary, Jack@example.com etc.)
+                  </p>
+                  <SearchContainer
+                    data={
+                      Array [
+                        Object {
+                          "Age": "22",
+                          "Email": "John@example.com",
+                          "Name": "John",
+                        },
+                        Object {
+                          "Age": "26",
+                          "Email": "Jane@example.com",
+                          "Name": "Jane",
+                        },
+                        Object {
+                          "Age": "24",
+                          "Email": "Jack@example.com",
+                          "Name": "Jack",
+                        },
+                        Object {
+                          "Age": "23",
+                          "Mobile": "07777888999",
+                          "Name": "Mary",
+                        },
+                      ]
+                    }
+                  />
+                </div>,
+                "name": "Search Bar",
+              },
+              Object {
+                "content": <div>
+                  <h2>
+                    Picture and Text Buttons
+                  </h2>
+                  <PictureButtonDiv />
+                  <br />
+                  <ButtonDiv />
+                  <br />
+                </div>,
+                "name": "Buttons",
+              },
+              Object {
+                "content": <div>
+                  <h2>
+                    Apartment Display
+                  </h2>
+                  <ApartmentList />
+                  <br />
+                </div>,
+                "name": "Apartment Display",
+              },
+              Object {
+                "content": <div>
+                  <CalendarDiv />
+                  <br />
+                </div>,
+                "name": "Calendar",
+              },
+              Object {
+                "content": <div>
+                  <QAForm
+                    data={
+                      Array [
+                        Object {
+                          "FieldText": "Name",
+                          "Type": "text",
+                          "UniqueID": "formnamefield",
+                        },
+                        Object {
+                          "FieldText": "Choose a fruit",
+                          "Options": Array [
+                            "Apple",
+                            "Banana",
+                            "Pear",
+                            "Orange",
+                            "Grape",
+                          ],
+                          "Type": "select",
+                          "UniqueID": "formfruitfield",
+                        },
+                        Object {
+                          "FieldText": "Which country do you like the most?",
+                          "Options": Array [
+                            "UK",
+                            "Germany",
+                            "Russia",
+                            "USA",
+                          ],
+                          "Type": "radio",
+                          "UniqueID": "formcountryfield",
+                        },
+                        Object {
+                          "FieldText": "Which animals are cool?",
+                          "Options": Array [
+                            "Tigers",
+                            "Penguins",
+                            "Gorillas",
+                            "Wolves",
+                          ],
+                          "Type": "checkbox",
+                          "UniqueID": "formanimalfield",
+                        },
+                      ]
+                    }
+                  />
+                </div>,
+                "name": "Generated Form",
+              },
+            ],
+            "name": "Component Demos",
+          },
+        ],
+        "home": <AdminHome />,
+        "side": Array [
+          Object {
+            "content": <Admin5 />,
+            "name": "Admin Sidebar Link 1",
+          },
+          Object {
+            "content": <Admin6 />,
+            "name": "Admin Sidebar Link 2",
+          },
+        ],
+      },
+      "null": <Login />,
+      "recruiter": Object {
+        "buttons": Array [
+          Object {
+            "content": <RecruiterHome />,
+            "name": "Home",
+          },
+        ],
+        "dropdowns": Array [
+          Object {
+            "content": Array [
+              Object {
+                "content": <Recruiter1 />,
+                "name": "Recruiter Bursary Link 1",
+              },
+              Object {
+                "content": <Recruiter2 />,
+                "name": "Recruiter Bursary Link 2",
+              },
+            ],
+            "name": "Bursary",
+          },
+          Object {
+            "content": Array [
+              Object {
+                "content": <Recruiter3 />,
+                "name": "Recruiter Apartment Link 1",
+              },
+              Object {
+                "content": <Recruiter4 />,
+                "name": "Recruiter Apartment Link 2",
+              },
+            ],
+            "name": "Apartments",
+          },
+        ],
+        "home": <RecruiterHome />,
+        "side": Array [
+          Object {
+            "content": <Recruiter5 />,
+            "name": "Recruiter SideBar Link 1",
+          },
+          Object {
+            "content": <Recruiter6 />,
+            "name": "Recruiter SiderBar Link 2",
+          },
+        ],
+      },
+    }
+  }
+  role=""
+>
+  <div>
+    <div>
+      <Navigation>
+        <div
+          id="navigation-bar"
+        >
+          <Navbar
+            color="light"
+            expand="md"
+            light={true}
+            tag="nav"
+          >
+            <nav
+              className="navbar navbar-expand-md navbar-light bg-light"
+            >
+              <NavbarBrand
+                href="/"
+                tag="a"
+              >
+                <a
+                  className="navbar-brand"
+                  href="/"
+                >
+                  <img
+                    src="QA_logo.png"
+                    width="60px"
+                  />
+                </a>
+              </NavbarBrand>
+              <Nav
+                className="ml-auto"
+                navbar={true}
+                tag="ul"
+                vertical={false}
+              >
+                <ul
+                  className="ml-auto navbar-nav"
+                >
+                  <Button
+                    color="secondary"
+                    href="/login"
+                    id="loginBtn"
+                    onClick={[Function]}
+                    tag="button"
+                  >
+                    <a
+                      aria-label={null}
+                      className="btn btn-secondary"
+                      href="/login"
+                      id="loginBtn"
+                      onClick={[Function]}
+                    >
+                      Login
+                    </a>
+                  </Button>
+                </ul>
+              </Nav>
+            </nav>
+          </Navbar>
+        </div>
+      </Navigation>
+      <Login>
+        <div
+          className="Login"
+        >
+          <form
+            className="form"
+            onSubmit={[Function]}
+          >
+            <label
+              bsSize="large"
+              className="uname"
+            >
+              <b>
+                Email
+              </b>
+            </label>
+            <input
+              name="email"
+              onChange={[Function]}
+              placeholder="Enter Email"
+              required={true}
+              type="text"
+            />
+            <br />
+            <label
+              bsSize="large"
+              className="psw"
+            >
+              <b>
+                Password
+              </b>
+            </label>
+            <input
+              name="psw"
+              onChange={[Function]}
+              placeholder="Enter Password"
+              required={true}
+              type="password"
+            />
+            <br />
+            <br />
+            <Button
+              className="btn"
+              color="secondary"
+              id="loginBtn"
+              tag="button"
+              type="submit"
+              value="Login"
+            >
+              <button
+                aria-label={null}
+                className="btn btn btn-secondary"
+                id="loginBtn"
+                onClick={[Function]}
+                type="submit"
+                value="Login"
+              >
+                Login
+              </button>
+            </Button>
+            <button
+              className="forgotBtn"
+              onClick={[Function]}
+            >
+              FORGOT PASSWORD?
+            </button>
+          </form>
+        </div>
+      </Login>
+    </div>
+  </div>
+</NavbarDisplay>
+`;
+
+exports[`Container should render the side bar with admin links when role is admin 2`] = `
+<NavbarDisplay
+  links={
+    Object {
+      "admin": Object {
+        "buttons": Array [
+          Object {
+            "content": <AdminHome />,
+            "name": "Home",
+          },
+        ],
+        "dropdowns": Array [
+          Object {
+            "content": Array [
+              Object {
+                "content": <GenericDiv />,
+                "name": "Table",
+              },
+              Object {
+                "content": <div>
+                  <h2>
+                    QA Search Bar
+                  </h2>
+                  <p>
+                    Please search for the values of the JSON objects (i.e John, Mary, Jack@example.com etc.)
+                  </p>
+                  <SearchContainer
+                    data={
+                      Array [
+                        Object {
+                          "Age": "22",
+                          "Email": "John@example.com",
+                          "Name": "John",
+                        },
+                        Object {
+                          "Age": "26",
+                          "Email": "Jane@example.com",
+                          "Name": "Jane",
+                        },
+                        Object {
+                          "Age": "24",
+                          "Email": "Jack@example.com",
+                          "Name": "Jack",
+                        },
+                        Object {
+                          "Age": "23",
+                          "Mobile": "07777888999",
+                          "Name": "Mary",
+                        },
+                      ]
+                    }
+                  />
+                </div>,
+                "name": "Search Bar",
+              },
+              Object {
+                "content": <div>
+                  <h2>
+                    Picture and Text Buttons
+                  </h2>
+                  <PictureButtonDiv />
+                  <br />
+                  <ButtonDiv />
+                  <br />
+                </div>,
+                "name": "Buttons",
+              },
+              Object {
+                "content": <div>
+                  <h2>
+                    Apartment Display
+                  </h2>
+                  <ApartmentList />
+                  <br />
+                </div>,
+                "name": "Apartment Display",
+              },
+              Object {
+                "content": <div>
+                  <CalendarDiv />
+                  <br />
+                </div>,
+                "name": "Calendar",
+              },
+              Object {
+                "content": <div>
+                  <QAForm
+                    data={
+                      Array [
+                        Object {
+                          "FieldText": "Name",
+                          "Type": "text",
+                          "UniqueID": "formnamefield",
+                        },
+                        Object {
+                          "FieldText": "Choose a fruit",
+                          "Options": Array [
+                            "Apple",
+                            "Banana",
+                            "Pear",
+                            "Orange",
+                            "Grape",
+                          ],
+                          "Type": "select",
+                          "UniqueID": "formfruitfield",
+                        },
+                        Object {
+                          "FieldText": "Which country do you like the most?",
+                          "Options": Array [
+                            "UK",
+                            "Germany",
+                            "Russia",
+                            "USA",
+                          ],
+                          "Type": "radio",
+                          "UniqueID": "formcountryfield",
+                        },
+                        Object {
+                          "FieldText": "Which animals are cool?",
+                          "Options": Array [
+                            "Tigers",
+                            "Penguins",
+                            "Gorillas",
+                            "Wolves",
+                          ],
+                          "Type": "checkbox",
+                          "UniqueID": "formanimalfield",
+                        },
+                      ]
+                    }
+                  />
+                </div>,
+                "name": "Generated Form",
+              },
+            ],
+            "name": "Component Demos",
+          },
+        ],
+        "home": <AdminHome />,
+        "side": Array [
+          Object {
+            "content": <Admin5 />,
+            "name": "Admin Sidebar Link 1",
+          },
+          Object {
+            "content": <Admin6 />,
+            "name": "Admin Sidebar Link 2",
+          },
+        ],
+      },
+      "null": <Login />,
+      "recruiter": Object {
+        "buttons": Array [
+          Object {
+            "content": <RecruiterHome />,
+            "name": "Home",
+          },
+        ],
+        "dropdowns": Array [
+          Object {
+            "content": Array [
+              Object {
+                "content": <Recruiter1 />,
+                "name": "Recruiter Bursary Link 1",
+              },
+              Object {
+                "content": <Recruiter2 />,
+                "name": "Recruiter Bursary Link 2",
+              },
+            ],
+            "name": "Bursary",
+          },
+          Object {
+            "content": Array [
+              Object {
+                "content": <Recruiter3 />,
+                "name": "Recruiter Apartment Link 1",
+              },
+              Object {
+                "content": <Recruiter4 />,
+                "name": "Recruiter Apartment Link 2",
+              },
+            ],
+            "name": "Apartments",
+          },
+        ],
+        "home": <RecruiterHome />,
+        "side": Array [
+          Object {
+            "content": <Recruiter5 />,
+            "name": "Recruiter SideBar Link 1",
+          },
+          Object {
+            "content": <Recruiter6 />,
+            "name": "Recruiter SiderBar Link 2",
+          },
+        ],
+      },
+    }
+  }
+  role="admin"
+>
+  <div>
+    <div>
+      <div
+        id="fixed"
+      >
+        <Navigation>
+          <div
+            id="navigation-bar"
+          >
+            <Navbar
+              color="light"
+              expand="md"
+              light={true}
+              tag="nav"
+            >
+              <nav
+                className="navbar navbar-expand-md navbar-light bg-light"
+              >
+                <NavbarBrand
+                  href="/"
+                  tag="a"
+                >
+                  <a
+                    className="navbar-brand"
+                    href="/"
+                  >
+                    <img
+                      src="QA_logo.png"
+                      width="60px"
+                    />
+                  </a>
+                </NavbarBrand>
+                <Nav
+                  className="ml-auto"
+                  navbar={true}
+                  tag="ul"
+                  vertical={false}
+                >
+                  <ul
+                    className="ml-auto navbar-nav"
+                  >
+                    <Button
+                      color="secondary"
+                      href="/login"
+                      id="loginBtn"
+                      onClick={[Function]}
+                      tag="button"
+                    >
+                      <a
+                        aria-label={null}
+                        className="btn btn-secondary"
+                        href="/login"
+                        id="loginBtn"
+                        onClick={[Function]}
+                      >
+                        Login
+                      </a>
+                    </Button>
+                  </ul>
+                </Nav>
+              </nav>
+            </Navbar>
+          </div>
+        </Navigation>
+        <Navbarr
+          content={[Function]}
+          links={
+            Object {
+              "admin": Object {
+                "buttons": Array [
+                  Object {
+                    "content": <AdminHome />,
+                    "name": "Home",
+                  },
+                ],
+                "dropdowns": Array [
+                  Object {
+                    "content": Array [
+                      Object {
+                        "content": <GenericDiv />,
+                        "name": "Table",
+                      },
+                      Object {
+                        "content": <div>
+                          <h2>
+                            QA Search Bar
+                          </h2>
+                          <p>
+                            Please search for the values of the JSON objects (i.e John, Mary, Jack@example.com etc.)
+                          </p>
+                          <SearchContainer
+                            data={
+                              Array [
+                                Object {
+                                  "Age": "22",
+                                  "Email": "John@example.com",
+                                  "Name": "John",
+                                },
+                                Object {
+                                  "Age": "26",
+                                  "Email": "Jane@example.com",
+                                  "Name": "Jane",
+                                },
+                                Object {
+                                  "Age": "24",
+                                  "Email": "Jack@example.com",
+                                  "Name": "Jack",
+                                },
+                                Object {
+                                  "Age": "23",
+                                  "Mobile": "07777888999",
+                                  "Name": "Mary",
+                                },
+                              ]
+                            }
+                          />
+                        </div>,
+                        "name": "Search Bar",
+                      },
+                      Object {
+                        "content": <div>
+                          <h2>
+                            Picture and Text Buttons
+                          </h2>
+                          <PictureButtonDiv />
+                          <br />
+                          <ButtonDiv />
+                          <br />
+                        </div>,
+                        "name": "Buttons",
+                      },
+                      Object {
+                        "content": <div>
+                          <h2>
+                            Apartment Display
+                          </h2>
+                          <ApartmentList />
+                          <br />
+                        </div>,
+                        "name": "Apartment Display",
+                      },
+                      Object {
+                        "content": <div>
+                          <CalendarDiv />
+                          <br />
+                        </div>,
+                        "name": "Calendar",
+                      },
+                      Object {
+                        "content": <div>
+                          <QAForm
+                            data={
+                              Array [
+                                Object {
+                                  "FieldText": "Name",
+                                  "Type": "text",
+                                  "UniqueID": "formnamefield",
+                                },
+                                Object {
+                                  "FieldText": "Choose a fruit",
+                                  "Options": Array [
+                                    "Apple",
+                                    "Banana",
+                                    "Pear",
+                                    "Orange",
+                                    "Grape",
+                                  ],
+                                  "Type": "select",
+                                  "UniqueID": "formfruitfield",
+                                },
+                                Object {
+                                  "FieldText": "Which country do you like the most?",
+                                  "Options": Array [
+                                    "UK",
+                                    "Germany",
+                                    "Russia",
+                                    "USA",
+                                  ],
+                                  "Type": "radio",
+                                  "UniqueID": "formcountryfield",
+                                },
+                                Object {
+                                  "FieldText": "Which animals are cool?",
+                                  "Options": Array [
+                                    "Tigers",
+                                    "Penguins",
+                                    "Gorillas",
+                                    "Wolves",
+                                  ],
+                                  "Type": "checkbox",
+                                  "UniqueID": "formanimalfield",
+                                },
+                              ]
+                            }
+                          />
+                        </div>,
+                        "name": "Generated Form",
+                      },
+                    ],
+                    "name": "Component Demos",
+                  },
+                ],
+                "home": <AdminHome />,
+                "side": Array [
+                  Object {
+                    "content": <Admin5 />,
+                    "name": "Admin Sidebar Link 1",
+                  },
+                  Object {
+                    "content": <Admin6 />,
+                    "name": "Admin Sidebar Link 2",
+                  },
+                ],
+              },
+              "null": <Login />,
+              "recruiter": Object {
+                "buttons": Array [
+                  Object {
+                    "content": <RecruiterHome />,
+                    "name": "Home",
+                  },
+                ],
+                "dropdowns": Array [
+                  Object {
+                    "content": Array [
+                      Object {
+                        "content": <Recruiter1 />,
+                        "name": "Recruiter Bursary Link 1",
+                      },
+                      Object {
+                        "content": <Recruiter2 />,
+                        "name": "Recruiter Bursary Link 2",
+                      },
+                    ],
+                    "name": "Bursary",
+                  },
+                  Object {
+                    "content": Array [
+                      Object {
+                        "content": <Recruiter3 />,
+                        "name": "Recruiter Apartment Link 1",
+                      },
+                      Object {
+                        "content": <Recruiter4 />,
+                        "name": "Recruiter Apartment Link 2",
+                      },
+                    ],
+                    "name": "Apartments",
+                  },
+                ],
+                "home": <RecruiterHome />,
+                "side": Array [
+                  Object {
+                    "content": <Recruiter5 />,
+                    "name": "Recruiter SideBar Link 1",
+                  },
+                  Object {
+                    "content": <Recruiter6 />,
+                    "name": "Recruiter SiderBar Link 2",
+                  },
+                ],
+              },
+            }
+          }
+          role="admin"
+        >
+          <div
+            id="navigation-bar"
+          >
+            <Bootstrap(undefined)
+              bg="light"
+              expand="lg"
+            >
+              <ForwardRef
+                bg="light"
+                bsPrefix="navbar"
+                expand="lg"
+                innerRef={null}
+              >
+                <Uncontrolled(Navbar)
+                  bg="light"
+                  bsPrefix="navbar"
+                  expand="lg"
+                  innerRef={null}
+                >
+                  <Navbar
+                    bg="light"
+                    bsPrefix="navbar"
+                    collapseOnSelect={false}
+                    expand="lg"
+                    onToggle={[Function]}
+                    variant="light"
+                  >
+                    <nav
+                      className="navbar navbar-expand-lg navbar-light bg-light"
+                    >
+                      <Nav
+                        className="mr-auto"
+                        fill={false}
+                        justify={false}
+                      >
+                        <ContextTransform(AbstractNav)
+                          as="div"
+                          className="mr-auto navbar-nav"
+                          onSelect={[Function]}
+                        >
+                          <AbstractNav
+                            as="div"
+                            className="mr-auto navbar-nav"
+                            onSelect={[Function]}
+                            parentOnSelect={[Function]}
+                          >
+                            <div
+                              className="mr-auto navbar-nav"
+                              onKeyDown={[Function]}
+                            >
+                              <NavLink
+                                as={[Function]}
+                                disabled={false}
+                                onClick={[Function]}
+                              >
+                                <ForwardRef
+                                  as={[Function]}
+                                  className="nav-link"
+                                  disabled={false}
+                                  onClick={[Function]}
+                                >
+                                  <SafeAnchor
+                                    className="nav-link"
+                                    data-rb-event-key={null}
+                                    disabled={false}
+                                    onClick={[Function]}
+                                  >
+                                    <a
+                                      className="nav-link"
+                                      data-rb-event-key={null}
+                                      href="#"
+                                      onClick={[Function]}
+                                      onKeyDown={[Function]}
+                                      role="button"
+                                    >
+                                      Home
+                                    </a>
+                                  </SafeAnchor>
+                                </ForwardRef>
+                              </NavLink>
+                              <NavDropdown
+                                id="basic-nav-dropdown"
+                                title="Component Demos"
+                              >
+                                <Dropdown
+                                  as={
+                                    Object {
+                                      "$$typeof": Symbol(react.forward_ref),
+                                      "displayName": "NavItem",
+                                      "render": [Function],
+                                    }
+                                  }
+                                  navbar={false}
+                                >
+                                  <ReactOverlaysDropdown
+                                    itemSelector=".dropdown-item:not(.disabled):not(:disabled)"
+                                    onToggle={[Function]}
+                                  >
+                                    <Manager>
+                                      <NavItem
+                                        className="dropdown"
+                                        onKeyDown={[Function]}
+                                      >
+                                        <div
+                                          className="dropdown nav-item"
+                                          onKeyDown={[Function]}
+                                        >
+                                          <Bootstrap(DropdownToggle)
+                                            as={
+                                              Object {
+                                                "$$typeof": Symbol(react.forward_ref),
+                                                "defaultProps": Object {
+                                                  "as": [Function],
+                                                  "disabled": false,
+                                                },
+                                                "displayName": "NavLink",
+                                                "render": [Function],
+                                              }
+                                            }
+                                            eventKey={null}
+                                            id="basic-nav-dropdown"
+                                          >
+                                            <DropdownToggle
+                                              as={
+                                                Object {
+                                                  "$$typeof": Symbol(react.forward_ref),
+                                                  "defaultProps": Object {
+                                                    "as": [Function],
+                                                    "disabled": false,
+                                                  },
+                                                  "displayName": "NavLink",
+                                                  "render": [Function],
+                                                }
+                                              }
+                                              bsPrefix="dropdown-toggle"
+                                              eventKey={null}
+                                              id="basic-nav-dropdown"
+                                            >
+                                              <ReactOverlaysDropdownToggle>
+                                                <NavLink
+                                                  aria-expanded={false}
+                                                  aria-haspopup={true}
+                                                  as={[Function]}
+                                                  className="dropdown-toggle"
+                                                  disabled={false}
+                                                  eventKey={null}
+                                                  id="basic-nav-dropdown"
+                                                  onClick={[Function]}
+                                                >
+                                                  <ForwardRef
+                                                    aria-expanded={false}
+                                                    aria-haspopup={true}
+                                                    as={[Function]}
+                                                    className="dropdown-toggle nav-link"
+                                                    disabled={false}
+                                                    eventKey={null}
+                                                    id="basic-nav-dropdown"
+                                                    onClick={[Function]}
+                                                  >
+                                                    <SafeAnchor
+                                                      aria-expanded={false}
+                                                      aria-haspopup={true}
+                                                      className="dropdown-toggle nav-link"
+                                                      data-rb-event-key={null}
+                                                      disabled={false}
+                                                      onClick={[Function]}
+                                                    >
+                                                      <a
+                                                        aria-expanded={false}
+                                                        aria-haspopup={true}
+                                                        className="dropdown-toggle nav-link"
+                                                        data-rb-event-key={null}
+                                                        href="#"
+                                                        onClick={[Function]}
+                                                        onKeyDown={[Function]}
+                                                        role="button"
+                                                      >
+                                                        Component Demos
+                                                      </a>
+                                                    </SafeAnchor>
+                                                  </ForwardRef>
+                                                </NavLink>
+                                              </ReactOverlaysDropdownToggle>
+                                            </DropdownToggle>
+                                          </Bootstrap(DropdownToggle)>
+                                          <DropdownMenu
+                                            alignRight={false}
+                                            flip={true}
+                                          >
+                                            <ForwardRef(ContextTransform(DropdownMenu))
+                                              alignEnd={false}
+                                              flip={true}
+                                              usePopper={false}
+                                            >
+                                              <ReactOverlaysDropdownMenu
+                                                alignEnd={false}
+                                                flip={true}
+                                                menuRef={[Function]}
+                                                onToggle={[Function]}
+                                                toggleNode={
+                                                  <a
+                                                    aria-expanded="false"
+                                                    aria-haspopup="true"
+                                                    class="dropdown-toggle nav-link"
+                                                    href="#"
+                                                    role="button"
+                                                  >
+                                                    Component Demos
+                                                  </a>
+                                                }
+                                                usePopper={false}
+                                              >
+                                                <RootCloseWrapper
+                                                  disabled={true}
+                                                  event="click"
+                                                  onRootClose={[Function]}
+                                                >
+                                                  <div
+                                                    aria-labelledby=""
+                                                    className="dropdown-menu"
+                                                  >
+                                                    <DropdownItem
+                                                      as={[Function]}
+                                                      disabled={false}
+                                                      onClick={[Function]}
+                                                    >
+                                                      <SafeAnchor
+                                                        className="dropdown-item"
+                                                        disabled={false}
+                                                        onClick={[Function]}
+                                                      >
+                                                        <a
+                                                          className="dropdown-item"
+                                                          href="#"
+                                                          onClick={[Function]}
+                                                          onKeyDown={[Function]}
+                                                          role="button"
+                                                        >
+                                                          Table
+                                                        </a>
+                                                      </SafeAnchor>
+                                                    </DropdownItem>
+                                                    <DropdownItem
+                                                      as={[Function]}
+                                                      disabled={false}
+                                                      onClick={[Function]}
+                                                    >
+                                                      <SafeAnchor
+                                                        className="dropdown-item"
+                                                        disabled={false}
+                                                        onClick={[Function]}
+                                                      >
+                                                        <a
+                                                          className="dropdown-item"
+                                                          href="#"
+                                                          onClick={[Function]}
+                                                          onKeyDown={[Function]}
+                                                          role="button"
+                                                        >
+                                                          Search Bar
+                                                        </a>
+                                                      </SafeAnchor>
+                                                    </DropdownItem>
+                                                    <DropdownItem
+                                                      as={[Function]}
+                                                      disabled={false}
+                                                      onClick={[Function]}
+                                                    >
+                                                      <SafeAnchor
+                                                        className="dropdown-item"
+                                                        disabled={false}
+                                                        onClick={[Function]}
+                                                      >
+                                                        <a
+                                                          className="dropdown-item"
+                                                          href="#"
+                                                          onClick={[Function]}
+                                                          onKeyDown={[Function]}
+                                                          role="button"
+                                                        >
+                                                          Buttons
+                                                        </a>
+                                                      </SafeAnchor>
+                                                    </DropdownItem>
+                                                    <DropdownItem
+                                                      as={[Function]}
+                                                      disabled={false}
+                                                      onClick={[Function]}
+                                                    >
+                                                      <SafeAnchor
+                                                        className="dropdown-item"
+                                                        disabled={false}
+                                                        onClick={[Function]}
+                                                      >
+                                                        <a
+                                                          className="dropdown-item"
+                                                          href="#"
+                                                          onClick={[Function]}
+                                                          onKeyDown={[Function]}
+                                                          role="button"
+                                                        >
+                                                          Apartment Display
+                                                        </a>
+                                                      </SafeAnchor>
+                                                    </DropdownItem>
+                                                    <DropdownItem
+                                                      as={[Function]}
+                                                      disabled={false}
+                                                      onClick={[Function]}
+                                                    >
+                                                      <SafeAnchor
+                                                        className="dropdown-item"
+                                                        disabled={false}
+                                                        onClick={[Function]}
+                                                      >
+                                                        <a
+                                                          className="dropdown-item"
+                                                          href="#"
+                                                          onClick={[Function]}
+                                                          onKeyDown={[Function]}
+                                                          role="button"
+                                                        >
+                                                          Calendar
+                                                        </a>
+                                                      </SafeAnchor>
+                                                    </DropdownItem>
+                                                    <DropdownItem
+                                                      as={[Function]}
+                                                      disabled={false}
+                                                      onClick={[Function]}
+                                                    >
+                                                      <SafeAnchor
+                                                        className="dropdown-item"
+                                                        disabled={false}
+                                                        onClick={[Function]}
+                                                      >
+                                                        <a
+                                                          className="dropdown-item"
+                                                          href="#"
+                                                          onClick={[Function]}
+                                                          onKeyDown={[Function]}
+                                                          role="button"
+                                                        >
+                                                          Generated Form
+                                                        </a>
+                                                      </SafeAnchor>
+                                                    </DropdownItem>
+                                                  </div>
+                                                </RootCloseWrapper>
+                                              </ReactOverlaysDropdownMenu>
+                                            </ForwardRef(ContextTransform(DropdownMenu))>
+                                          </DropdownMenu>
+                                        </div>
+                                      </NavItem>
+                                    </Manager>
+                                  </ReactOverlaysDropdown>
+                                </Dropdown>
+                              </NavDropdown>
+                            </div>
+                          </AbstractNav>
+                        </ContextTransform(AbstractNav)>
+                      </Nav>
+                    </nav>
+                  </Navbar>
+                </Uncontrolled(Navbar)>
+              </ForwardRef>
+            </Bootstrap(undefined)>
+          </div>
+        </Navbarr>
+      </div>
+      <div
+        className="sideBarNarrow"
+      />
+      <div
+        id="outer-container"
+      >
+        <sideBar
+          content={[Function]}
+          links={
+            Object {
+              "admin": Object {
+                "buttons": Array [
+                  Object {
+                    "content": <AdminHome />,
+                    "name": "Home",
+                  },
+                ],
+                "dropdowns": Array [
+                  Object {
+                    "content": Array [
+                      Object {
+                        "content": <GenericDiv />,
+                        "name": "Table",
+                      },
+                      Object {
+                        "content": <div>
+                          <h2>
+                            QA Search Bar
+                          </h2>
+                          <p>
+                            Please search for the values of the JSON objects (i.e John, Mary, Jack@example.com etc.)
+                          </p>
+                          <SearchContainer
+                            data={
+                              Array [
+                                Object {
+                                  "Age": "22",
+                                  "Email": "John@example.com",
+                                  "Name": "John",
+                                },
+                                Object {
+                                  "Age": "26",
+                                  "Email": "Jane@example.com",
+                                  "Name": "Jane",
+                                },
+                                Object {
+                                  "Age": "24",
+                                  "Email": "Jack@example.com",
+                                  "Name": "Jack",
+                                },
+                                Object {
+                                  "Age": "23",
+                                  "Mobile": "07777888999",
+                                  "Name": "Mary",
+                                },
+                              ]
+                            }
+                          />
+                        </div>,
+                        "name": "Search Bar",
+                      },
+                      Object {
+                        "content": <div>
+                          <h2>
+                            Picture and Text Buttons
+                          </h2>
+                          <PictureButtonDiv />
+                          <br />
+                          <ButtonDiv />
+                          <br />
+                        </div>,
+                        "name": "Buttons",
+                      },
+                      Object {
+                        "content": <div>
+                          <h2>
+                            Apartment Display
+                          </h2>
+                          <ApartmentList />
+                          <br />
+                        </div>,
+                        "name": "Apartment Display",
+                      },
+                      Object {
+                        "content": <div>
+                          <CalendarDiv />
+                          <br />
+                        </div>,
+                        "name": "Calendar",
+                      },
+                      Object {
+                        "content": <div>
+                          <QAForm
+                            data={
+                              Array [
+                                Object {
+                                  "FieldText": "Name",
+                                  "Type": "text",
+                                  "UniqueID": "formnamefield",
+                                },
+                                Object {
+                                  "FieldText": "Choose a fruit",
+                                  "Options": Array [
+                                    "Apple",
+                                    "Banana",
+                                    "Pear",
+                                    "Orange",
+                                    "Grape",
+                                  ],
+                                  "Type": "select",
+                                  "UniqueID": "formfruitfield",
+                                },
+                                Object {
+                                  "FieldText": "Which country do you like the most?",
+                                  "Options": Array [
+                                    "UK",
+                                    "Germany",
+                                    "Russia",
+                                    "USA",
+                                  ],
+                                  "Type": "radio",
+                                  "UniqueID": "formcountryfield",
+                                },
+                                Object {
+                                  "FieldText": "Which animals are cool?",
+                                  "Options": Array [
+                                    "Tigers",
+                                    "Penguins",
+                                    "Gorillas",
+                                    "Wolves",
+                                  ],
+                                  "Type": "checkbox",
+                                  "UniqueID": "formanimalfield",
+                                },
+                              ]
+                            }
+                          />
+                        </div>,
+                        "name": "Generated Form",
+                      },
+                    ],
+                    "name": "Component Demos",
+                  },
+                ],
+                "home": <AdminHome />,
+                "side": Array [
+                  Object {
+                    "content": <Admin5 />,
+                    "name": "Admin Sidebar Link 1",
+                  },
+                  Object {
+                    "content": <Admin6 />,
+                    "name": "Admin Sidebar Link 2",
+                  },
+                ],
+              },
+              "null": <Login />,
+              "recruiter": Object {
+                "buttons": Array [
+                  Object {
+                    "content": <RecruiterHome />,
+                    "name": "Home",
+                  },
+                ],
+                "dropdowns": Array [
+                  Object {
+                    "content": Array [
+                      Object {
+                        "content": <Recruiter1 />,
+                        "name": "Recruiter Bursary Link 1",
+                      },
+                      Object {
+                        "content": <Recruiter2 />,
+                        "name": "Recruiter Bursary Link 2",
+                      },
+                    ],
+                    "name": "Bursary",
+                  },
+                  Object {
+                    "content": Array [
+                      Object {
+                        "content": <Recruiter3 />,
+                        "name": "Recruiter Apartment Link 1",
+                      },
+                      Object {
+                        "content": <Recruiter4 />,
+                        "name": "Recruiter Apartment Link 2",
+                      },
+                    ],
+                    "name": "Apartments",
+                  },
+                ],
+                "home": <RecruiterHome />,
+                "side": Array [
+                  Object {
+                    "content": <Recruiter5 />,
+                    "name": "Recruiter SideBar Link 1",
+                  },
+                  Object {
+                    "content": <Recruiter6 />,
+                    "name": "Recruiter SiderBar Link 2",
+                  },
+                ],
+              },
+            }
+          }
+          role="admin"
+        >
+          <div>
+            <Menu
+              bodyClassName=""
+              burgerBarClassName=""
+              burgerButtonClassName=""
+              className=""
+              crossButtonClassName=""
+              crossClassName=""
+              customBurgerIcon={
+                <img
+                  src="Open.svg"
+                />
+              }
+              customCrossIcon={
+                <img
+                  src="Close.svg"
+                />
+              }
+              disableAutoFocus={false}
+              disableCloseOnEsc={false}
+              htmlClassName="OpenMenu"
+              id=""
+              itemClassName=""
+              itemListClassName=""
+              menuClassName=""
+              morphShapeClassName=""
+              noOverlay={true}
+              onStateChange={[Function]}
+              outerContainerId="outer-container"
+              overlayClassName=""
+              pageWrapId="page-wrap"
+              styles={Object {}}
+              width={300}
+            >
+              <div>
+                <div
+                  className="bm-menu-wrap"
+                  id=""
+                  style={
+                    Object {
+                      "MozTransform": "translate3d(-100%, 0, 0)",
+                      "MsTransform": "translate3d(-100%, 0, 0)",
+                      "OTransform": "translate3d(-100%, 0, 0)",
+                      "WebkitTransform": "translate3d(-100%, 0, 0)",
+                      "height": "100%",
+                      "position": "fixed",
+                      "right": "inherit",
+                      "transform": "translate3d(-100%, 0, 0)",
+                      "transition": "all 0.5s",
+                      "width": "300px",
+                      "zIndex": 1100,
+                    }
+                  }
+                >
+                  <div
+                    className="bm-menu"
+                    style={
+                      Object {
+                        "boxSizing": "border-box",
+                        "height": "100%",
+                        "overflow": "auto",
+                      }
+                    }
+                  >
+                    <nav
+                      className="bm-item-list"
+                      style={
+                        Object {
+                          "height": "100%",
+                        }
+                      }
+                    >
+                      <NavLink
+                        as={[Function]}
+                        className="bm-item"
+                        disabled={false}
+                        key="0/.0"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "display": "block",
+                          }
+                        }
+                        tabIndex={-1}
+                      >
+                        <ForwardRef
+                          as={[Function]}
+                          className="bm-item nav-link"
+                          disabled={false}
+                          onClick={[Function]}
+                          style={
+                            Object {
+                              "display": "block",
+                            }
+                          }
+                          tabIndex={-1}
+                        >
+                          <SafeAnchor
+                            className="bm-item nav-link"
+                            disabled={false}
+                            onClick={[Function]}
+                            style={
+                              Object {
+                                "display": "block",
+                              }
+                            }
+                          >
+                            <a
+                              className="bm-item nav-link"
+                              href="#"
+                              onClick={[Function]}
+                              onKeyDown={[Function]}
+                              role="button"
+                              style={
+                                Object {
+                                  "display": "block",
+                                }
+                              }
+                            >
+                              Admin Sidebar Link 1
+                            </a>
+                          </SafeAnchor>
+                        </ForwardRef>
+                      </NavLink>
+                      <NavLink
+                        as={[Function]}
+                        className="bm-item"
+                        disabled={false}
+                        key="1/.1"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "display": "block",
+                          }
+                        }
+                        tabIndex={-1}
+                      >
+                        <ForwardRef
+                          as={[Function]}
+                          className="bm-item nav-link"
+                          disabled={false}
+                          onClick={[Function]}
+                          style={
+                            Object {
+                              "display": "block",
+                            }
+                          }
+                          tabIndex={-1}
+                        >
+                          <SafeAnchor
+                            className="bm-item nav-link"
+                            disabled={false}
+                            onClick={[Function]}
+                            style={
+                              Object {
+                                "display": "block",
+                              }
+                            }
+                          >
+                            <a
+                              className="bm-item nav-link"
+                              href="#"
+                              onClick={[Function]}
+                              onKeyDown={[Function]}
+                              role="button"
+                              style={
+                                Object {
+                                  "display": "block",
+                                }
+                              }
+                            >
+                              Admin Sidebar Link 2
+                            </a>
+                          </SafeAnchor>
+                        </ForwardRef>
+                      </NavLink>
+                    </nav>
+                  </div>
+                  <div
+                    style={Object {}}
+                  >
+                    <CrossIcon
+                      className=""
+                      crossClassName=""
+                      customIcon={
+                        <img
+                          src="Close.svg"
+                        />
+                      }
+                      onClick={[Function]}
+                      styles={Object {}}
+                      tabIndex={-1}
+                    >
+                      <div
+                        className="bm-cross-button"
+                        style={
+                          Object {
+                            "height": 24,
+                            "position": "absolute",
+                            "right": 8,
+                            "top": 8,
+                            "width": 24,
+                          }
+                        }
+                      >
+                        <img
+                          className="bm-cross"
+                          src="Close.svg"
+                          style={
+                            Object {
+                              "height": "100%",
+                              "width": "100%",
+                            }
+                          }
+                        />
+                        <button
+                          onClick={[Function]}
+                          style={
+                            Object {
+                              "background": "transparent",
+                              "border": "none",
+                              "cursor": "pointer",
+                              "fontSize": 0,
+                              "height": "100%",
+                              "left": 0,
+                              "margin": 0,
+                              "padding": 0,
+                              "position": "absolute",
+                              "top": 0,
+                              "width": "100%",
+                            }
+                          }
+                          tabIndex={-1}
+                        >
+                          Close Menu
+                        </button>
+                      </div>
+                    </CrossIcon>
+                  </div>
+                </div>
+                <div
+                  style={Object {}}
+                >
+                  <BurgerIcon
+                    barClassName=""
+                    className=""
+                    customIcon={
+                      <img
+                        src="Open.svg"
+                      />
+                    }
+                    onClick={[Function]}
+                    styles={Object {}}
+                  >
+                    <div
+                      className="bm-burger-button"
+                      style={
+                        Object {
+                          "zIndex": 1000,
+                        }
+                      }
+                    >
+                      <img
+                        className="bm-icon"
+                        src="Open.svg"
+                        style={
+                          Object {
+                            "height": "100%",
+                            "width": "100%",
+                          }
+                        }
+                      />
+                      <button
+                        onClick={[Function]}
+                        onMouseOut={[Function]}
+                        onMouseOver={[Function]}
+                        style={
+                          Object {
+                            "background": "transparent",
+                            "border": "none",
+                            "cursor": "pointer",
+                            "fontSize": 0,
+                            "height": "100%",
+                            "left": 0,
+                            "margin": 0,
+                            "padding": 0,
+                            "position": "absolute",
+                            "top": 0,
+                            "width": "100%",
+                          }
+                        }
+                      >
+                        Open Menu
+                      </button>
+                    </div>
+                  </BurgerIcon>
+                </div>
+              </div>
+            </Menu>
+          </div>
+        </sideBar>
+      </div>
+      <main
+        id="page-wrap"
+      >
+        <Content
+          content={[Function]}
+        >
+          <div>
+            <AdminHome
+              content={[Function]}
+            >
+              <div>
+                <h1>
+                  Admin Homepage
+                </h1>
+                <button
+                  onClick={[Function]}
+                >
+                  Change content
+                </button>
+              </div>
+            </AdminHome>
+          </div>
+        </Content>
+      </main>
+    </div>
+  </div>
+</NavbarDisplay>
+`;

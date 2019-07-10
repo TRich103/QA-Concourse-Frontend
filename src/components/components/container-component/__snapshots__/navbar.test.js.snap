@@ -1,0 +1,136 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Navbar should render the navbar with admin links when role is admin 1`] = `
+<div
+  id="navigation-bar"
+>
+  <Bootstrap(undefined)
+    bg="light"
+    expand="lg"
+  >
+    <Nav
+      className="mr-auto"
+      fill={false}
+      justify={false}
+    >
+      <NavLink
+        as={[Function]}
+        disabled={false}
+        onClick={[Function]}
+      >
+        Home
+      </NavLink>
+      <NavDropdown
+        id="basic-nav-dropdown"
+        title="Component Demos"
+      >
+        <DropdownItem
+          as={[Function]}
+          disabled={false}
+          onClick={[Function]}
+        >
+          Table
+        </DropdownItem>
+        <DropdownItem
+          as={[Function]}
+          disabled={false}
+          onClick={[Function]}
+        >
+          Search Bar
+        </DropdownItem>
+        <DropdownItem
+          as={[Function]}
+          disabled={false}
+          onClick={[Function]}
+        >
+          Buttons
+        </DropdownItem>
+        <DropdownItem
+          as={[Function]}
+          disabled={false}
+          onClick={[Function]}
+        >
+          Apartment Display
+        </DropdownItem>
+        <DropdownItem
+          as={[Function]}
+          disabled={false}
+          onClick={[Function]}
+        >
+          Calendar
+        </DropdownItem>
+        <DropdownItem
+          as={[Function]}
+          disabled={false}
+          onClick={[Function]}
+        >
+          Generated Form
+        </DropdownItem>
+      </NavDropdown>
+    </Nav>
+  </Bootstrap(undefined)>
+</div>
+`;
+
+exports[`Navbar should render the navbar with recruiter links when role is recruiter 1`] = `
+<div
+  id="navigation-bar"
+>
+  <Bootstrap(undefined)
+    bg="light"
+    expand="lg"
+  >
+    <Nav
+      className="mr-auto"
+      fill={false}
+      justify={false}
+    >
+      <NavLink
+        as={[Function]}
+        disabled={false}
+        onClick={[Function]}
+      >
+        Home
+      </NavLink>
+      <NavDropdown
+        id="basic-nav-dropdown"
+        title="Bursary"
+      >
+        <DropdownItem
+          as={[Function]}
+          disabled={false}
+          onClick={[Function]}
+        >
+          Recruiter Bursary Link 1
+        </DropdownItem>
+        <DropdownItem
+          as={[Function]}
+          disabled={false}
+          onClick={[Function]}
+        >
+          Recruiter Bursary Link 2
+        </DropdownItem>
+      </NavDropdown>
+      <NavDropdown
+        id="basic-nav-dropdown"
+        title="Apartments"
+      >
+        <DropdownItem
+          as={[Function]}
+          disabled={false}
+          onClick={[Function]}
+        >
+          Recruiter Apartment Link 1
+        </DropdownItem>
+        <DropdownItem
+          as={[Function]}
+          disabled={false}
+          onClick={[Function]}
+        >
+          Recruiter Apartment Link 2
+        </DropdownItem>
+      </NavDropdown>
+    </Nav>
+  </Bootstrap(undefined)>
+</div>
+`;

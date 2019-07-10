@@ -1,0 +1,37 @@
+.sideBarNarrow{
+    background-color: #e6e6e7;
+    width: 60px;
+    height: 100vh;
+    z-index: 100;
+    position: fixed;
+    float: left;
+}
+
+#fixed{
+    position: fixed;
+    width: 100%;
+    margin: 0 auto;
+    top: 0;
+    z-index: 1000;
+}
+
+#page-wrap{ 
+    position: absolute;
+    margin-top: 122px;
+    transform: translate3d(60px, 0px, 0px);
+    width: 95%;
+    overflow-wrap: break-word;
+}
+
+body{
+    overflow-x: hidden;
+}
+
+.OpenMenu body{
+    overflow-x: auto !important;
+}
+
+#outer-container{
+    display: inline;
+    position: relative;
+}

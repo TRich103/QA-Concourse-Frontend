@@ -1,0 +1,147 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Apartment Display component Apartment display matches desired outcome 1`] = `
+<ApartmentList
+  body="Test Body"
+  heading="Test Heading"
+  img="apartment.jpg"
+>
+  <div
+    style={
+      Object {
+        "padding": "1%",
+      }
+    }
+  >
+    <Media>
+      <div
+        className="media"
+      >
+        <Media
+          href="#"
+          left={true}
+        >
+          <a
+            className="media-left"
+            href="#"
+          >
+            <Media
+              object={true}
+              src="apartment.jpg"
+              style={
+                Object {
+                  "maxHeight": "256px",
+                  "maxWidth": "256px",
+                  "paddingRight": "10%",
+                  "paddingTop": "1%",
+                }
+              }
+            >
+              <img
+                className="media-object"
+                src="apartment.jpg"
+                style={
+                  Object {
+                    "maxHeight": "256px",
+                    "maxWidth": "256px",
+                    "paddingRight": "10%",
+                    "paddingTop": "1%",
+                  }
+                }
+              />
+            </Media>
+          </a>
+        </Media>
+        <Media
+          body={true}
+        >
+          <div
+            className="media-body"
+          >
+            <Media
+              heading={true}
+            >
+              <h4
+                className="media-heading"
+              >
+                Test Heading
+              </h4>
+            </Media>
+            Test Body
+          </div>
+        </Media>
+      </div>
+    </Media>
+  </div>
+</ApartmentList>
+`;
+
+exports[`Apartment Display component renders desired display 1`] = `
+<div
+  style={
+    Object {
+      "padding": "1%",
+    }
+  }
+>
+  <Media>
+    <div
+      className="media"
+    >
+      <Media
+        href="#"
+        left={true}
+      >
+        <a
+          className="media-left"
+          href="#"
+        >
+          <Media
+            object={true}
+            src="apartment.jpg"
+            style={
+              Object {
+                "maxHeight": "256px",
+                "maxWidth": "256px",
+                "paddingRight": "10%",
+                "paddingTop": "1%",
+              }
+            }
+          >
+            <img
+              className="media-object"
+              src="apartment.jpg"
+              style={
+                Object {
+                  "maxHeight": "256px",
+                  "maxWidth": "256px",
+                  "paddingRight": "10%",
+                  "paddingTop": "1%",
+                }
+              }
+            />
+          </Media>
+        </a>
+      </Media>
+      <Media
+        body={true}
+      >
+        <div
+          className="media-body"
+        >
+          <Media
+            heading={true}
+          >
+            <h4
+              className="media-heading"
+            >
+              Test Heading
+            </h4>
+          </Media>
+          Test Body
+        </div>
+      </Media>
+    </div>
+  </Media>
+</div>
+`;

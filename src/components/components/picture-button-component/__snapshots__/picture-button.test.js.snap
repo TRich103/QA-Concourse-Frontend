@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextButton should be the image passed 1`] = `
+<div>
+  <Bootstrap(Image)
+    src="../images/square.jpg"
+    style={
+      Object {
+        "cursor": "pointer",
+        "maxHeight": 128,
+        "maxWidth": 128,
+      }
+    }
+  />
+</div>
+`;
+
+exports[`TextButton should match the inline CSS passed into the style 1`] = `
+<div>
+  <Bootstrap(Image)
+    style={
+      Object {
+        "maxHeight": 360,
+        "maxWidth": 360,
+      }
+    }
+  />
+</div>
+`;
+
+exports[`TextButton should possess the id that has been passed 1`] = `
+<div>
+  <Bootstrap(Image)
+    id="img"
+    style={
+      Object {
+        "cursor": "pointer",
+        "maxHeight": 128,
+        "maxWidth": 128,
+      }
+    }
+  />
+</div>
+`;
