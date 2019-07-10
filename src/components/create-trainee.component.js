@@ -214,19 +214,27 @@ export default class CreateTrainee extends Component {
         let intake = this.state.intake;
         let intakes = this.state.intakes;
         //checks to see if intake value exists
-        for(var i = 0; i < intakes.length; i++){
-            if(intakes[i].value === intake){
-                this.setState({
-                    addIntake: false
-                })
-                console.log('set as false');
-            }
-            else{
-                this.setState({
-                    addIntake: true
-                });
-                console.log('set as true');
-                break;
+        if(intakes.length === 0){
+            this.setState({
+                addIntake: true
+            });
+            console.log('set as true');
+        }
+        else{
+            for(var i = 0; i < intakes.length; i++){
+                if(intakes[i].value === intake){
+                    this.setState({
+                        addIntake: false
+                    })
+                    console.log('set as false');
+                }
+                else{
+                    this.setState({
+                        addIntake: true
+                    });
+                    console.log('set as true');
+                    break;
+                }
             }
         }
     }
