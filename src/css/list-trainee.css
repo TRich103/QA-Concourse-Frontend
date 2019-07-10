@@ -1,0 +1,64 @@
+
+.QAtable{
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 4px;
+}
+
+#addUser{
+    float:right;
+    padding-right: 60px;
+}
+
+.link{
+    color: white;
+    text-decoration: none;
+}
+.link:hover {
+    color:white;
+    text-decoration: none;
+}
+
+.qabtn{
+    background-color: #337ab7;
+    border-radius: 4px;
+    text-decoration: none;
+    border:none;
+}
+
+.action{
+    width:150px;
+}
+
+.heading{
+    background-color:aliceblue;
+}
+
+
+#email a{
+    text-decoration: none;
+}
+
+.trainee:hover{
+	cursor: pointer;
+}
+
+.userRole{
+	text-transform: capitalize;
+}
+
+#resultsTable{
+    width: 100%;
+    overflow :scroll;
+}
+
+#fakeBtn {
+    background-color: #9ea5a594;
+    border-color: #d5dbdb;
+    color: #d5dbdb;
+    cursor: default;
+    opacity: 0.7;
+    border:1px solid transparent;
+    border-radius: 0.25rem;
+    opacity: 0.8;
+} 

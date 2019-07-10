@@ -1,0 +1,117 @@
+
+.QAtable{
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 4px;
+    width:80%;
+}
+
+#addUser{
+    float:right;
+    padding: 5px;
+}
+
+.link{
+    color: white;
+    text-decoration: none;
+}
+
+a.link:hover{
+    color: #004050;;
+}
+
+#searchLogs {
+    float: left;
+}
+
+#addUser .qabtn{
+	width: 145px;
+	height:30px;
+    background-color: #004050;
+    opacity: 0.8;
+    border-radius: 4px;
+    text-decoration: none;
+    border:none;
+    color: white;
+    margin-right: 10px;
+    border: 0.5px solid #004050;
+	opacity: 0.8;
+}
+
+#addUser .qabtn:hover{
+    background-color: white;
+    border: 0.5px solid #004050;
+    color: #457581;
+    margin-right: 10px;
+}
+
+a:hover{
+    color: #457581;
+}
+
+.modal-content{
+    width: -70%;
+}
+
+.action{
+    width:150px;
+}
+
+.bigBox{
+    margin-top: 5%;
+}
+
+.filter{
+    margin: 0.35%;
+}
+.filter-btn{
+    border:1px solid transparent;
+    background-color: #004050;
+    opacity: 0.65;
+    color: white;
+    border-radius: 0.25rem;
+    margin-left: 0.3%;
+}
+.filter-btn:hover{
+    background-color: white;
+    color : #004050;
+    border-radius: 0.25rem;
+    margin-left: 0.3%;
+    border: 2px solid #004050;
+}
+
+.mod-body{
+    text-align: center;
+    margin-right: 6%;
+}
+.resetBtn{
+    border:1px solid transparent;
+    background-color: #004050;
+    opacity: 0.65;
+    color: white;
+    border-radius: 0.25rem;
+}
+
+#email a{
+    text-decoration: none;
+}
+
+.actionBtn{
+    border:1px solid transparent;
+    background-color: #004050;
+    opacity: 0.65;
+    color: white;
+    border-radius: 0.25rem;
+    opacity: 0.8;
+}
+
+.actionBtn:hover{
+    background-color: white;
+    color : #004050;
+    border-radius: 0.25rem;
+    border: 1px solid #004050;
+}
+
+.trainees:hover{
+	cursor: pointer;
+}

@@ -1,0 +1,241 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render testing renders correctly when there are no items 1`] = `
+<TraineeExpenses
+  match={
+    Object {
+      "params": Object {
+        "id": "5d0bb39bd2ba63099c621593",
+      },
+    }
+  }
+>
+  <div
+    className="BigBox"
+  >
+    <div
+      className="QAtable"
+    >
+      <div>
+        <h2>
+          Expenses for 
+           - 
+        </h2>
+        <hr />
+        <div>
+             
+          <label>
+            Amount (£): 
+          </label>
+            
+          <input
+            min="0"
+            onChange={[Function]}
+            style={
+              Object {
+                "marginBlock": 30,
+              }
+            }
+            type="number"
+            value={0}
+          />
+               
+          <label>
+            Type: 
+          </label>
+            
+          <select
+            id="expenseType"
+            onChange={[Function]}
+            value=""
+          >
+            <option
+              selected={true}
+              value=""
+            >
+              Select expense type
+            </option>
+            <option
+              value="Air fares"
+            >
+              Air fares
+            </option>
+            <option
+              value="Car hire"
+            >
+              Car hire
+            </option>
+            <option
+              value="Computer consumables"
+            >
+              Computer consumables
+            </option>
+            <option
+              value="Customer Entertainment(customer)"
+            >
+              Customer entertainment(customer)
+            </option>
+            <option
+              value="Customer Entertainment(staff)"
+            >
+              Customer entertainment(staff)
+            </option>
+            <option
+              value="Hotels/Accomodation"
+            >
+              Hotels/Accomodation
+            </option>
+            <option
+              value="Meals"
+            >
+              Meals
+            </option>
+            <option
+              value="Fuel"
+            >
+              Fuel
+            </option>
+            <option
+              value="Other"
+            >
+              Other
+            </option>
+            <option
+              value="Parking/Tolls"
+            >
+              Parking/Tolls
+            </option>
+            <option
+              value="Postage"
+            >
+              Postage
+            </option>
+            <option
+              value="Public Transport"
+            >
+              Public Transport
+            </option>
+            <option
+              value="Staff Entertainment"
+            >
+              Staff Entertainment
+            </option>
+            <option
+              value="Stationary"
+            >
+              Stationary
+            </option>
+            <option
+              value="Subscription and req. fees"
+            >
+              Subscription and req. fees
+            </option>
+            <option
+              value="Taxi Fares"
+            >
+              Taxi Fares
+            </option>
+            <option
+              value="Training Materials"
+            >
+              Training Materials
+            </option>
+          </select>
+               
+          <ButtonGroup
+            role="group"
+            tag="div"
+          >
+            <div
+              className="btn-group"
+              role="group"
+            >
+                
+              <Button
+                color="secondary"
+                id="createExpenseBtn"
+                onClick={[Function]}
+                tag="button"
+                type="submit"
+              >
+                <button
+                  aria-label={null}
+                  className="btn btn-secondary"
+                  id="createExpenseBtn"
+                  onClick={[Function]}
+                  type="submit"
+                >
+                  Add
+                </button>
+              </Button>
+               
+            </div>
+          </ButtonGroup>
+          <table
+            className="table table-striped"
+            id="logTable"
+            style={
+              Object {
+                "marginTop": 20,
+              }
+            }
+          >
+            <thead>
+              <tr>
+                <th>
+                  Expenses
+                </th>
+                <th>
+                  Amount(£)
+                </th>
+                <th>
+                  Actions
+                </th>
+              </tr>
+            </thead>
+            <tbody />
+          </table>
+        </div>
+             
+        <ButtonGroup
+          role="group"
+          tag="div"
+        >
+          <div
+            className="btn-group"
+            role="group"
+          >
+            <Button
+              color="secondary"
+              id="createExpenseBtn"
+              onClick={[Function]}
+              style={
+                Object {
+                  "marginBottom": 30,
+                }
+              }
+              tag="button"
+              type="submit"
+            >
+              <button
+                aria-label={null}
+                className="btn btn-secondary"
+                id="createExpenseBtn"
+                onClick={[Function]}
+                style={
+                  Object {
+                    "marginBottom": 30,
+                  }
+                }
+                type="submit"
+              >
+                ⭠ Back
+              </button>
+            </Button>
+          </div>
+        </ButtonGroup>
+      </div>
+    </div>
+  </div>
+</TraineeExpenses>
+`;

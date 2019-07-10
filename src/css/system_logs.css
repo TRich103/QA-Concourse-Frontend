@@ -1,0 +1,33 @@
+.system_wrapper{
+	margin: 0 auto;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    width:80%;
+	height:700px;
+	margin-top: 5%;
+}
+
+.system_body{
+	width:90%;
+	height:20px;
+
+}
+
+.system_body_logs{
+	overflow-y: auto;
+	top:55%;
+	height:630px;
+	width:90%;
+	white-space: pre-wrap;
+	padding:1%;
+	margin-left:5%;
+	background-color:aliceBlue;
+}
+
+.system_wrapper button,textareabutton{
+	margin-top:2%;
+	float:right;
+	margin-right:2%;
+	background-color:#5a6268;
+	color:white;
+}

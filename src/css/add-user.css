@@ -1,0 +1,76 @@
+.createUser{
+    background-color: white;
+    margin-top: 5%;
+    border-radius: 4px;
+}
+
+.form-group {
+    text-align: center;
+}
+
+.addForm{
+    height: 80%;
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 2.5%;
+    padding-bottom: 2.5%;
+}
+
+#updateBtn {
+	background-color: #004050;
+	width: 25%;
+    margin-left: auto;
+    margin-right: auto;
+	text-transform: capitalize;
+	font-family: "Roboto", sans-serif;
+}
+
+#dropDown{
+    width:40%;
+    margin-left: 30%;
+    text-align: center;	
+}
+
+
+/* Change style of Role button and dropdown*/
+
+button.dropdown-toggle.btn.btn-secondary {
+    width: 60%;
+    background-color: #005b72;
+    margin-left: auto;
+    margin-right: auto;
+text-transform: capitalize;
+font-family: "Roboto", sans-serif;
+	font-size: 18px;
+}
+
+div.dropdown-menu.show {
+    background-color: white;
+    width: 60%;
+    min-width: 0;
+}
+button.dropdown-item {
+    color: black;
+    text-align: center;
+}
+button.dropdown-item:hover {
+    color: black;
+    background-color: rgb(202, 202, 202);
+    text-align: center;
+}
+
+/* Move title in line input elements page*/
+h3 {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+/* Shorten text input fields*/
+.user-text-inputs {
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+}
