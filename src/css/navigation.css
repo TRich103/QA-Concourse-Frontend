@@ -2,6 +2,9 @@
 	margin-top:8px;
 	margin-right:5px; 
 }
+.nav-logo{
+ object-fit:cover;
+}
 
 .nav-item{
 	color:black;

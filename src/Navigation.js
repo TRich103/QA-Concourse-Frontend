@@ -32,6 +32,14 @@ export default class Navigation extends React.Component {
       trainee_fname: '',
       trainee_lname: ''
     };
+    this.logoColour = {
+        "mix-blend-mode": "hue",
+        "background-color": '#'+Math.floor(Math.random()*16777215).toString(16), //HEX code generation
+        "position": "absolute",
+        "width": "60px",
+        "height": "42px"
+      };
+
   }
 
   toggle() {
@@ -91,13 +99,15 @@ export default class Navigation extends React.Component {
 
   }
   render() {
-
     if (authService.currentUserValue) {
       return (
         <div id='bar'>
 		<div id="navigation-bar">
           <Navbar color="light" light expand="md">
-            <NavbarBrand href="/login"><img src={logo} alt="QA logo" width="60px" /></NavbarBrand>
+            <NavbarBrand href="/login">
+                           <div style={this.logoColour}></div>
+            <img src={logo} className="nav-logo" alt="QA logo" width="60px" />
+            </NavbarBrand>
                       <NavbarToggler onClick={this.toggle} />
                       <TopNavBar pageWrapId={"navigation-bar"} outerContainerId={"bar"} />
             <Collapse isOpen={this.state.isOpen} navbar>
@@ -118,8 +128,10 @@ export default class Navigation extends React.Component {
       return (
         <div id="navigation-bar">
           <Navbar color="light" light expand="md">
-            <NavbarBrand href="/"><img src={logo} width="60px" />
-			</NavbarBrand>
+            <NavbarBrand href="/">
+                           <div style={this.logoColour}></div>
+            <img src={logo} className="nav-logo" alt="QA logo" width="60px" />
+            </NavbarBrand>
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className="ml-auto" navbar>
