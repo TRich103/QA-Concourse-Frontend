@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { codes } from "../secrets/secrets.js";
+//import { codes } from "../secrets/secrets.js";
 import '../css/changePasswordTrainee.css';
 import { authService } from './modules/authService.js';
 // import {authService} from './modules/authService'

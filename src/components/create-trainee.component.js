@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import AccessDenied from './modules/AccessDenied';
 import { authService } from './modules/authService';
-import moment, { lang } from 'moment';
+import moment/*, { lang }*/ from 'moment';
 import momentBusinessDays from 'moment-business-days';
 import 'bootstrap/dist/css/bootstrap.css';
 import "react-datepicker/dist/react-datepicker.css";
@@ -11,9 +11,7 @@ import '../css/add-trainee.css';
 import Collapse from 'react-bootstrap/Collapse'
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
-import MomentLocaleUtils, {
-    formatDate,
-  } from 'react-day-picker/moment';
+import /*MomentLocaleUtils, */{formatDate} from 'react-day-picker/moment';
 import CreatableSelect from 'react-select/creatable';
 export default class CreateTrainee extends Component {
     
@@ -448,7 +446,11 @@ export default class CreateTrainee extends Component {
                     );  
         }      
     }
-    
+    cancelBtnState() {
+        this.setState({
+            form_cancel: true
+        })
+    }
    render() {
 	   if(this.state.currentUser.token.role !== 'recruiter' && this.state.currentUser.token.role !== 'admin'){
 		   return (
@@ -458,7 +460,7 @@ export default class CreateTrainee extends Component {
             <div className="createTrainee" style={{marginLeft: 200, marginRight: 200}}>
                 <form className="createTraineeForm" onSubmit={this.onSubmit}>
                     <h3 className="title">Add Trainee</h3>
-                    <div><center><button id="cancelBtn" onClick={() => {this.state.form_cancel = true; document.location.href = "/"; }}>Cancel</button></center></div>
+                    <div><center><button id="cancelBtn" onClick={() => {this.cancelBtnState.bind(this); document.location.href = "/"; }}>Cancel</button></center></div>
                     <div className="text-input-fields">
                         <div className="form-group"> 
                             <label>First Name: </label>

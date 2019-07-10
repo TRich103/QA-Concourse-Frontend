@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import '../css/history.css';
-import { authService } from './modules/authService';
+//import { authService } from './modules/authService';
 import AccessDenied from './modules/AccessDenied';
 import moment from 'moment';
 import QAGenericTable from './components/table-component/qa-table.component';

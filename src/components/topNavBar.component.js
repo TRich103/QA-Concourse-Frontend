@@ -45,7 +45,7 @@ export default class topNavBar extends React.Component {
         window.location.href="update-mypassword-staff/"+e.target.value   
     }
     render() {
-        const { show_server_logs, changePassVisible } = this.state;
+        const {/* show_server_logs, */changePassVisible } = this.state;
 
         return (
             // Pass on our props

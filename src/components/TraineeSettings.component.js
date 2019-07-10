@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import AccessDenied from './modules/AccessDenied';
-import { authService } from './modules/authService';
+//import AccessDenied from './modules/AccessDenied';
+//import { authService } from './modules/authService';
 import '../css/edit-list-trainee.css';
 import '../css/global-settings.css';
 
