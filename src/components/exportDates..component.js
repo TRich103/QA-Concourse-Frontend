@@ -72,7 +72,7 @@ export default class ListTrainee extends Component {
             });
         axios.get('http://' + process.env.REACT_APP_AWS_IP + ':4000/admin/staff/' + this.state.currentUser.token._id)
             .then(response => {
-                if (response.data == null) {
+                if (response.data === null) {
                     authService.logout();
                     if (!authService.currentUserValue) {
                         document.location.href = 'http://' + process.env.REACT_APP_AWS_IP + ':3000/login';
@@ -205,9 +205,9 @@ export default class ListTrainee extends Component {
                 }
             })
         }
-        if (filter.status != 'All') {
+        if (filter.status !== 'All') {
             trainees = trainees.filter(function (trainee) {
-                if (trainee.status == filter.status) {
+                if (trainee.status === filter.status) {
                     console.log(trainee);
                     return trainee;
                 }
@@ -215,9 +215,9 @@ export default class ListTrainee extends Component {
             })
         }
 
-        if (filter.bursary != 'All') {
+        if (filter.bursary !== 'All') {
             trainees = trainees.filter(function (trainee) {
-                if (trainee.bursary == filter.bursary) {
+                if (trainee.bursary === filter.bursary) {
                     return trainee;
                 }
 
@@ -239,8 +239,8 @@ export default class ListTrainee extends Component {
             })
         }
 
-        if (from != undefined) {
-            if (to == undefined) {
+        if (from !== undefined) {
+            if (to === undefined) {
                 trainees = trainees.filter(function (trainee) {
                     let start = new Date(Date.parse(trainee.trainee_start_date));
                     if (DateUtils.isSameDay(start, from)) {
@@ -248,7 +248,7 @@ export default class ListTrainee extends Component {
                     }
                 })
             }
-            else if (to != undefined) {
+            else if (to !== undefined) {
                 trainees = trainees.filter(function (trainee) {
                     let start = new Date(Date.parse(trainee.trainee_start_date));
                     if (DateUtils.isDayInRange(start, range)) {
@@ -300,13 +300,14 @@ export default class ListTrainee extends Component {
             console.log(this.state.splitDays);
             trainees = trainees.filter(function (i) {
                 if (splitDays.includes(i.trainee_start_date.split(" ", 4).toString())) {
+                    var obj;
                     if (role === 'finance') {
-                        var obj = [i.trainee_fname, i.trainee_lname, i.trainee_email, i.trainee_bank_name, i.trainee_account_no, i.trainee_sort_code, moment(i.trainee_start_date).format('MMMM Do YYYY'), moment(i.trainee_end_date).format('MMMM Do YYYY')];
+                        obj = [i.trainee_fname, i.trainee_lname, i.trainee_email, i.trainee_bank_name, i.trainee_account_no, i.trainee_sort_code, moment(i.trainee_start_date).format('MMMM Do YYYY'), moment(i.trainee_end_date).format('MMMM Do YYYY')];
                         output.push(obj);
                         console.log(output);
                         return i;
                     } else if (role === 'admin') {
-                        var obj = [i.trainee_fname, i.trainee_lname, i.trainee_email, moment(i.trainee_start_date).format('MMMM Do YYYY'), moment(i.trainee_end_date).format('MMMM Do YYYY')];
+                        obj = [i.trainee_fname, i.trainee_lname, i.trainee_email, moment(i.trainee_start_date).format('MMMM Do YYYY'), moment(i.trainee_end_date).format('MMMM Do YYYY')];
                         output.push(obj);
                         console.log(output);
                         return i;
@@ -331,9 +332,9 @@ export default class ListTrainee extends Component {
                             className="filter-btn"
                         >
                             Filters
-                    <img src={filterIcon}></img>
+                    <img src={filterIcon} alt="This is a filter icon"></img>
                         </button>
-                        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} className="dateModal">
+                        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} /*className="dateModal"*/>
                             <ModalHeader toggle={this.toggle} cssModule={{ 'modal-title': 'w-100 text-center' }}>Select Start Dates</ModalHeader>
                             <ModalBody cssModule={{ 'modal-body': 'w-100 text-center' }}>
                                 <div className="mod-body">
@@ -358,7 +359,7 @@ export default class ListTrainee extends Component {
                         <div id="addUser">
                             <CSVLink className="link" onClick={() => {
                                 this.$CSVLink.current.link.download = this.getFileNameAdmin();
-                            }} ref={this.$CSVLink} data={output} filename={"Admin_report_" + moment().format('MMMM YYYY')+".csv"} target="_blank" ><button className="qabtn">Download CSV <img src={download}></img></button></CSVLink>
+                            }} ref={this.$CSVLink} data={output} filename={"Admin_report_" + moment().format('MMMM YYYY') + ".csv"} target="_blank" ><button className="qabtn">Download CSV <img src={download} alt="This is a download icon"></img></button></CSVLink>
                         </div>
                         <Collapse in={this.state.filterBoolean}>
                             <p>
@@ -435,9 +436,9 @@ export default class ListTrainee extends Component {
                             className="filter-btn"
                         >
                             Filters
-                        <img src={filterIcon}></img>
+                        <img src={filterIcon} alt="This is a filter icon"></img>
                         </button>
-                        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} className="dateModal">
+                        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} /*className="dateModal"*/>
                             <ModalHeader toggle={this.toggle} cssModule={{ 'modal-title': 'w-100 text-center' }}>Select Start Dates</ModalHeader>
                             <ModalBody cssModule={{ 'modal-body': 'w-100 text-center' }}>
                                 <p>
@@ -462,8 +463,8 @@ export default class ListTrainee extends Component {
                             </ModalBody>
                         </Modal>
                         <div id="addUser">
-                            <CSVLink className="link" data={output} filename='CSV.csv'><button className="qabtn">CSV template<img src={download}></img></button></CSVLink>
-                            <CSVLink className="link" data={out} filename='CSV.csv'><button className="qabtn">Download CSV<img src={download}></img></button></CSVLink>
+                            <CSVLink className="link" data={output} filename='CSV.csv'><button className="qabtn">CSV template<img src={download} alt="This is a download icon"></img></button></CSVLink>
+                            <CSVLink className="link" data={out} filename='CSV.csv'><button className="qabtn">Download CSV<img src={download} alt="This is a download icon"></img></button></CSVLink>
                         </div>
                         <Collapse in={this.state.filterBoolean}>
                             <p>

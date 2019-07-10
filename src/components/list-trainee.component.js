@@ -101,7 +101,7 @@ export default class ListTrainee extends Component {
         let search = this.state.searchString.trim().toLowerCase().replace(/\s+/g, '');
         let filter = this.state.filter;
         let recruiterName = this.state.recruiterName;
-        let deleteToggle = '';
+        //let deleteToggle = '';
         const {open} = this.state;
 
         
@@ -167,10 +167,10 @@ export default class ListTrainee extends Component {
                     className="filter-btn"
                     >
                     Filters
-                    <img src={filterIcon}></img>
+                    <img src={filterIcon} alt="This is a filter icon"></img>
                     </button>
                     <div id="addUser">
-                        <Link className="link" to={"/create"}><button className="qabtn">Add Trainee <img src={add}></img></button></Link>
+                                <Link className="link" to={"/create"}><button className="qabtn">Add Trainee <img src={add} alt="This is an add icon"></img></button></Link>
                     </div>
                     <Collapse in={this.state.open}>
                     <p>
@@ -220,9 +220,9 @@ export default class ListTrainee extends Component {
                                                             if (window.confirm('Are you sure you wish to delete this trainee?'))
                                                             axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/delete/'+t._id,{addedBy:this.state.currentUser.token._id}).then(() => window.location.reload()) } }>
                                                             Suspend
-                                                            <img src={close}></img>
+                                                            <img src={close} alt="This is a close icon"></img>
                                         </button>&nbsp;
-                                        <a href={"mailto:"+t.trainee_email}><button className="actionBtn">Email <img src={mail}></img></button> </a>
+                                        <a href={"mailto:" + t.trainee_email}><button className="actionBtn">Email <img src={mail} alt="This is an email icon"></img></button> </a>
                                         </center>
                                         </td>
                                     </tr>

@@ -9,7 +9,7 @@ import ExportDates from './exportDates..component.js';
 import ListTrainee from './standalone-list-trainee.component.js';
 import CostReports from './cost-Report.component.js';
 import '../css/tabs.css';
-import TraineeSettings from './TraineeSettings.component';
+//import TraineeSettings from './TraineeSettings.component';
 
 export default class TabList extends React.Component {
   constructor(props) {

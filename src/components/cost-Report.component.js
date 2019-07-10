@@ -13,7 +13,7 @@ import DayPicker, { DateUtils } from 'react-day-picker';
 import DatePicker from "react-datepicker";
 import 'react-day-picker/lib/style.css';
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
-import * as jsPDF from 'jspdf';
+//import * as jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import download from './icons/download.svg';
 
@@ -172,7 +172,7 @@ export default class CostReport extends Component {
 
             axios.get('http://' + process.env.REACT_APP_AWS_IP + ':4000/admin/staff/' + this.state.currentUser.token._id)
             .then(response => {
-              if(response.data == null){
+              if(response.data === null){
                 authService.logout();
                 if (!authService.currentUserValue) {
                   document.location.href = 'http://' + process.env.REACT_APP_AWS_IP + ':3000/login';
@@ -437,7 +437,7 @@ export default class CostReport extends Component {
 
         axios.get('http://' + process.env.REACT_APP_AWS_IP + ':4000/admin/staff/' + this.state.currentUser.token._id)
         .then(response => {
-          if(response.data == null){
+          if(response.data === null){
             authService.logout();
             if (!authService.currentUserValue) {
               document.location.href = 'http://' + process.env.REACT_APP_AWS_IP + ':3000/login';
@@ -559,9 +559,9 @@ export default class CostReport extends Component {
             })
         }
 
-        if(filter.status != 'All'){
+        if(filter.status !== 'All'){
             trainees = trainees.filter(function(trainee){
-                if(trainee.status == filter.status){
+                if(trainee.status === filter.status){
                     console.log(trainee);
                     return trainee;
                 }
@@ -577,8 +577,8 @@ export default class CostReport extends Component {
             })
         }
 
-        if(from != undefined){
-            if(to == undefined){
+        if(from !== undefined){
+            if(to === undefined){
                 trainees = trainees.filter(function(trainee){
                     let start = new Date(Date.parse(trainee.start));
                     if(DateUtils.isSameDay(start, from)){
@@ -586,7 +586,7 @@ export default class CostReport extends Component {
                     }
                 })
             }
-            else if(to!= undefined){
+            else if(to !== undefined){
                 trainees = trainees.filter(function(trainee){
                     let start = new Date(Date.parse(trainee.start));
                     if(DateUtils.isDayInRange(start, range)){
@@ -632,7 +632,7 @@ export default class CostReport extends Component {
                                 <th>Trainees in training:</th><td>{this.state.values.training_number}</td>&nbsp;&nbsp;
                                 <th>Trainees on bench:</th><td>{this.state.values.bench_number}</td>&nbsp;&nbsp;
                                 <th>Pending trainees:</th><td>{this.state.values.pending_number}</td>&nbsp;&nbsp;
-                                <th>Download PDF:</th><td><button className="actionBtn" onClick={() => this.updatePDF(trainees)}>PDF <img src={download}></img></button></td>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <th>Download PDF:</th><td><button className="actionBtn" onClick={() => this.updatePDF(trainees)}>PDF <img src={download} alt="This is a download icon" ></img></button></td>&nbsp;&nbsp;&nbsp;&nbsp;
                             </tr>
                     </tbody>
 					<tbody>
@@ -667,7 +667,7 @@ export default class CostReport extends Component {
                     >
                     Filters
                     </button>
-                    <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} className="dateModal">
+                    <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} /*className="dateModal"*/>
                         <ModalHeader toggle={this.toggle} cssModule={{'modal-title':'w-100 text-center'}}>Select Start Dates</ModalHeader>
                         <ModalBody cssModule={{'modal-body':'w-100 text-center'}}>
                         <div className = "mod-body">

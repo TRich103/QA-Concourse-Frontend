@@ -46,7 +46,6 @@ export default class ListTrainee extends Component {
             csvN:'',
             modal: false,
             filterBoolean: false,
-            searchString: "",
 			range:{
                 from: undefined,
                 to: undefined,
@@ -104,7 +103,8 @@ export default class ListTrainee extends Component {
         this.setState(prevState => ({
           modal: !prevState.modal
         }));
-      }
+    }
+
     onChangeMyTraineeFilter(e){
         var newVal = !this.state.filter.myTrainees
         console.log(newVal)
@@ -154,15 +154,7 @@ export default class ListTrainee extends Component {
         });
     }
 	  
-      onChangeMyTraineeFilter(e){
-        var newVal = !this.state.filter.myTrainees
-        console.log(newVal)
-        var newFilter = this.state.filter
-        newFilter.myTrainees = newVal
-        this.setState({
-            filter : newFilter
-        })
-    }
+
 	
 	
     onChangeSuspendedFilter(e){
@@ -201,11 +193,7 @@ export default class ListTrainee extends Component {
         window.location.href="expenses/"+e.target.value
     }
 
-    toggle() {
-        this.setState(prevState => ({
-          modal: !prevState.modal
-        }));
-      }
+
 	
     render() {
         let splitDays = this.state.splitDays;
@@ -329,14 +317,15 @@ export default class ListTrainee extends Component {
             console.log(search);
             console.log(this.state.splitDays);
             trainees = trainees.filter(function(i){
-                if(splitDays.includes(i.trainee_start_date.split(" ", 4).toString())){
+                if (splitDays.includes(i.trainee_start_date.split(" ", 4).toString())) {
+                    var obj;
                     if(role === 'finance'){
-                        var obj =  [i.trainee_fname, i.trainee_lname, i.trainee_email, i.trainee_bank_name, i.trainee_account_no, i.trainee_sort_code, moment(i.trainee_start_date).format('MMMM Do YYYY'), moment(i.trainee_end_date).format('MMMM Do YYYY')];
+                        obj =  [i.trainee_fname, i.trainee_lname, i.trainee_email, i.trainee_bank_name, i.trainee_account_no, i.trainee_sort_code, moment(i.trainee_start_date).format('MMMM Do YYYY'), moment(i.trainee_end_date).format('MMMM Do YYYY')];
                         output.push(obj);
                         console.log(output);
                         return i;
                     } else if(role === 'admin'){
-                        var obj =  [i.trainee_fname, i.trainee_lname, i.trainee_email, moment(i.trainee_start_date).format('MMMM Do YYYY'), moment(i.trainee_end_date).format('MMMM Do YYYY')];
+                        obj =  [i.trainee_fname, i.trainee_lname, i.trainee_email, moment(i.trainee_start_date).format('MMMM Do YYYY'), moment(i.trainee_end_date).format('MMMM Do YYYY')];
                         output.push(obj);
                         console.log(output);
                         return i;
@@ -408,9 +397,9 @@ export default class ListTrainee extends Component {
                     className="filter-btn"
                     >
                     Filters
-                    <img src={filterIcon}></img>
+                    <img src={filterIcon} alt="This is a filter icon"></img>
                     </button>
-					<Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} className="dateModal">
+					<Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} /*className="dateModal"*/>
                         <ModalHeader toggle={this.toggle} cssModule={{'modal-title':'w-100 text-center'}}>Select Start Dates</ModalHeader>
                         <ModalBody cssModule={{'modal-body':'w-100 text-center'}}>
                         <div className = "mod-body">
@@ -433,9 +422,9 @@ export default class ListTrainee extends Component {
                         </ModalBody>
                     </Modal>
                     <div id="addUser">
-                       <Link className="link" to={"/create"}> <button className="qabtn">Add Trainee <img src={add}></img></button></Link>
-                       <Link className="link" to={"/trainee-settings"}><button className="qabtn">Settings <img src={settings}></img></button></Link>
-					   <CSVLink className="link" data={output} filename={"Admin_report_" + moment().format('MMMM YYYY') + ".csv"}><button className="qabtn">Download CSV <img src={download}></img></button></CSVLink>					   
+                       <Link className="link" to={"/create"}> <button className="qabtn">Add Trainee <img src={add} alt="this is an add icon"></img></button></Link>
+                       <Link className="link" to={"/trainee-settings"}><button className="qabtn">Settings <img src={settings} alt="this is a settings icon"></img></button></Link>
+					   <CSVLink className="link" data={output} filename={"Admin_report_" + moment().format('MMMM YYYY') + ".csv"}><button className="qabtn">Download CSV <img src={download} alt="this is a download icon"></img></button></CSVLink>					   
                     </div>
                     <Collapse in={this.state.open}>
                     <p>
@@ -507,15 +496,15 @@ export default class ListTrainee extends Component {
                                                                 if (window.confirm('Are you sure you wish to '+deleteToggle.toLowerCase()+' this trainee?'))
                                                                 axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/'+deleteRoute+'/'+t._id, {addedBy:this.state.currentUser.token._id}).then(() => window.location.reload()) } }>
                                                                 {deleteToggle}
-                                                                <img src={close}></img>
+                                                                <img src={close} alt="This is a close icon"></img>
                                                 </button>&nbsp;
-                                                <button className="actionBtn" value={t._id} onClick={this.handleHistoryClick}>View History <img src={history}></img></button>&nbsp;
-                                                <button className="actionBtn" value={t._id} onClick={this.handleExpensesClick}> Expenses <img src={addmoney}></img></button>&nbsp;
-                                                <a href={"mailto:"+t.trainee_email}><button className="actionBtn">Email <img src={mail}></img></button> </a>
+                                                <button className="actionBtn" value={t._id} onClick={this.handleHistoryClick}>View History <img src={history} alt="This is a history icon"></img></button>&nbsp;
+                                                <button className="actionBtn" value={t._id} onClick={this.handleExpensesClick}> Expenses <img src={addmoney} alt="This is an add money icon"></img></button>&nbsp;
+                                                <a href={"mailto:"+t.trainee_email}><button className="actionBtn">Email <img src={mail} alt="this is an email icon"></img></button> </a>
                                                 <button className="actionBtn" onClick={() => { 
                                                                 axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/send-email/', {trainee_email: t.trainee_email}).then(() => window.alert("Email Sent!")) } }>
                                                                 Resend Activation Email 
-                                                                <img src={mail}></img>
+                                                                <img src={mail} alt="This is an email icon"></img>
                                                 </button>&nbsp;
                                                 </center>
                                            </td>
@@ -546,9 +535,9 @@ export default class ListTrainee extends Component {
                     className="filter-btn"
                     >
                     Filters
-                    <img src={filterIcon}></img>
+                    <img src={filterIcon} alt="This is a filter icon"></img>
                     </button>
-					<Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} className="dateModal">
+					<Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} /*className="dateModal"*/>
                             <ModalHeader toggle={this.toggle} cssModule={{'modal-title':'w-100 text-center'}}>Select Start Dates</ModalHeader>
                             <ModalBody cssModule={{'modal-body':'w-100 text-center'}}>
                             <p>
@@ -573,8 +562,8 @@ export default class ListTrainee extends Component {
                             </ModalBody>
                         </Modal>
 						<div id="addUser">
-                            <CSVLink className="link" data={output} filename={"Finance_report_template_" + moment().format('MMMM YYYY') + ".csv"}><button className="qabtn">CSV template<img src={download}></img></button></CSVLink>
-                            <CSVLink className="link" data={out} filename={"Finance_report_" + moment().format('MMMM YYYY') + ".csv"}><button className="qabtn">Download CSV<img src={download}></img></button></CSVLink>
+                            <CSVLink className="link" data={output} filename={"Finance_report_template_" + moment().format('MMMM YYYY') + ".csv"}><button className="qabtn">CSV template<img src={download} alt="This is a download icon"></img></button></CSVLink>
+                        <CSVLink className="link" data={out} filename={"Finance_report_" + moment().format('MMMM YYYY') + ".csv"}><button className="qabtn">Download CSV<img src={download} alt="This is a download icon"></img></button></CSVLink>
                         </div>
                     <Collapse in={this.state.open}>
                     <p>
@@ -627,8 +616,8 @@ export default class ListTrainee extends Component {
                                             <td onClick={() => window.location.href = "/trainee-details/" + t._id}> <center>£{Number(t.bursary_amount * t.trainee_days_worked + expenses).toFixed(2)}</center></td>
                                             <td> 
                                                 <center>
-                                                <button className="actionBtn" onClick={() => window.location.href = "/trainee-details/" + t._id}> View Details <img src={eye}></img></button>&nbsp;
-                                                <a href={"mailto:"+t.trainee_email}><button className="actionBtn">Email <img src={mail}></img></button> </a>
+                                                <button className="actionBtn" onClick={() => window.location.href = "/trainee-details/" + t._id}> View Details <img src={eye} alt="This is an eye"></img></button>&nbsp;
+                                                <a href={"mailto:" + t.trainee_email}><button className="actionBtn">Email <img src={mail} alt="This is an email icon"></img></button> </a>
                                                 </center>
                                             </td>
                                         </tr>

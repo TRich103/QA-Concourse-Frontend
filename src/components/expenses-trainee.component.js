@@ -179,8 +179,8 @@ export default class TraineeExpenses extends Component {
                                                             if (window.confirm('Are you sure you wish to delete this expense?'))
                                                             axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/admin/removeExpenses/'+this.props.match.params.id, {"expenseType": monthly_expenses.type, "amount": monthly_expenses.amount, "location": index, "addedBy":this.state.currentUser.token._id}).then(() => window.location.reload()) } }>
                                                             Delete
-                                                            <img src={close}></img>
-                                                            <img></img>
+                                                            <img src={close} alt="This is a close icon"></img>
+                                                            <img alt="None"></img>
                                         </button></td>
                                                 </tr>
                                             );
