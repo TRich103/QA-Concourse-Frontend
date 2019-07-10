@@ -25,7 +25,7 @@ import download from './icons/download.svg';
 import CreateTrainee from "./create-trainee.component";
 import TraineeSettings from "./TraineeSettings.component";
 import EditTrainee from "./edit-trainee.component";
-
+import userExpense from "./expenses-trainee.component"
 import { Button, ButtonGroup } from 'reactstrap';
 
 export default class ListTrainee extends Component {
@@ -514,6 +514,7 @@ export default class ListTrainee extends Component {
                                                                 <img src={close}></img>
                                                 </button>&nbsp;
                                                 <button className="actionBtn" value={t._id} onClick={this.handleHistoryClick}>View History <img src={history}></img></button>&nbsp;
+												<button className="actionBtn" value={t._id} onClick={()=>{this.props.content(<userExpense/>)}}>Expenses<img src={addmoney}></img></button> &nbsp; 
                                                 <button className="actionBtn" value={t._id} onClick={this.handleExpensesClick}> Expenses <img src={addmoney}></img></button>&nbsp;
                                                 <a href={"mailto:"+t.trainee_email}><button className="actionBtn">Email <img src={mail}></img></button> </a>
                                                 <button className="actionBtn" onClick={() => { 

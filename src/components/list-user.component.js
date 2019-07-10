@@ -11,6 +11,7 @@ import close from './icons/close2.svg';
 import filterIcon from './icons/filter.svg';
 import mail from './icons/envelope.svg';
 
+import CreateUser from './create-user.component';
 
 export default class ListUser extends Component {
     
@@ -90,7 +91,10 @@ export default class ListUser extends Component {
 
         if(search.length > 0){
             users = users.filter(function(i){
-                if(i.email.toLowerCase().match(search) || i.role.toLowerCase().match(search)){
+                if(i.email.toLowerCase().match(search) || 
+					i.role.toLowerCase().match(search) ||
+					i.fname.toLowerCase().match(search)||
+					i.lname.toLowerCase().match(search)){
                     return i;
                 }
             })
@@ -136,7 +140,7 @@ export default class ListUser extends Component {
                     <img src={filterIcon}></img>
                     </button>
                     <div id="addUser">
-                        <Link className="link" to ={"/addUser"}><button className="qabtn">Add User<img src={add}></img></button></Link>
+						<Link className="link" to={"/addUser"}> <button className="qabtn" onClick={()=>{this.props.content(<CreateUser/>)}}>Create User<img src={add}></img></button></Link>
                     </div>
                     <Collapse in={this.state.open}>
                     <p>

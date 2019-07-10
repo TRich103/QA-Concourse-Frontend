@@ -25,7 +25,6 @@ export default class CostReport extends Component {
             report: true,
             trainee_data: [],
             currentUser: authService.currentUserValue,
-            //currentUser: {token:{_id: "5d0bb39bd2ba63099c621593", role: "admin", status: "Active"}},
             staffEmail: '',
 			approvedBy: '',
 			finApprovedBy:'',
@@ -290,7 +289,6 @@ export default class CostReport extends Component {
             report: true,
             trainee_data: [],
             currentUser: authService.currentUserValue,
-            //currentUser: {token:{_id: "5d0bb39bd2ba63099c621593", role: "admin", status: "Active"}},
             staffEmail: '',
             date: '',
             values : {
@@ -627,13 +625,10 @@ export default class CostReport extends Component {
                                 &nbsp;&nbsp;<th>Status:</th><td>{this.state.values.status}</td>&nbsp;&nbsp;
 								<th>Admin Approved By: </th><td>{this.state.approvedBy}</td>&nbsp;&nbsp;
 								<th>Finance Approved By: </th><td>{this.state.finApprovedBy}</td>&nbsp;&nbsp;
-                                <th>Amount Payable:</th><td>£{Number(this.state.values.amountPayable).toFixed(2)}</td>&nbsp;&nbsp;
-                                <th>Trainees in training:</th><td>{this.state.values.training_number}</td>&nbsp;&nbsp;
-                                <th>Trainees on bench:</th><td>{this.state.values.bench_number}</td>&nbsp;&nbsp;
-                                <th>Pending trainees:</th><td>{this.state.values.pending_number}</td>&nbsp;&nbsp;
                                 <th>Download PDF:</th><td><button className="actionBtn" onClick={() => this.updatePDF(trainees)}>PDF <img src={download}></img></button></td>&nbsp;&nbsp;&nbsp;&nbsp;
                             </tr>
                     </tbody>
+					
 					<tbody>
 					<tr>
 							&nbsp;&nbsp;<th>Amount Payable:</th><td>£{this.state.values.amountPayable}</td>&nbsp;&nbsp;
