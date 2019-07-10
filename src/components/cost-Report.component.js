@@ -79,7 +79,7 @@ export default class CostReport extends Component {
     componentDidMount() {
         axios.post('https://' + process.env.REACT_APP_BACKEND_IP + '/trainee/monthlyReport', {month: moment().format("MMMM YYYY")})
             .then( () => {
-                axios.post('http://' + process.env.REACT_APP_BACKEND_IP + '/trainee/getMonthlyReport', {month: moment().format("MMMM YYYY")}).then(response => {
+                axios.post('https://' + process.env.REACT_APP_BACKEND_IP + '/trainee/getMonthlyReport', {month: moment().format("MMMM YYYY")}).then(response => {
                     if(response.data === 'no report'){
                         console.log('No reports found');
                     } else{
@@ -175,7 +175,7 @@ export default class CostReport extends Component {
               if(response.data == null){
                 authService.logout();
                 if (!authService.currentUserValue) {
-                  document.location.href = 'http://' + process.env.REACT_APP_AWS_IP + ':3000/login';
+                  document.location.href = 'https://' + process.env.REACT_APP_AWS_IP + '/login';
                 }
               }
               else{
@@ -323,11 +323,11 @@ export default class CostReport extends Component {
             startDate: ''
             });
 
-        axios.post('http://' + process.env.REACT_APP_BACKEND_IP + '/trainee/monthlyReport', {month: moment().format("MMMM YYYY")})
+        axios.post('https://' + process.env.REACT_APP_BACKEND_IP + '/trainee/monthlyReport', {month: moment().format("MMMM YYYY")})
         .then( () => {
-        axios.post('http://' + process.env.REACT_APP_BACKEND_IP + '/trainee/monthlyReport', {month: moment(date).format("MMMM YYYY")})
+        axios.post('https://' + process.env.REACT_APP_BACKEND_IP + '/trainee/monthlyReport', {month: moment(date).format("MMMM YYYY")})
         .then( () => {
-            axios.post('http://' + process.env.REACT_APP_BACKEND_IP + '/trainee/getMonthlyReport', {month: moment(date).format("MMMM YYYY")}).then(response => {
+            axios.post('https://' + process.env.REACT_APP_BACKEND_IP + '/trainee/getMonthlyReport', {month: moment(date).format("MMMM YYYY")}).then(response => {
                 console.log(response.data)
                 if(response.data === 'no report' || response.data.reportTrainees.length === 0){
                     this.setState({
@@ -440,7 +440,7 @@ export default class CostReport extends Component {
           if(response.data == null){
             authService.logout();
             if (!authService.currentUserValue) {
-              document.location.href = 'http://' + process.env.REACT_APP_AWS_IP + ':3000/login';
+              document.location.href = 'https://' + process.env.REACT_APP_AWS_IP + '/login';
             }
           }
           else{

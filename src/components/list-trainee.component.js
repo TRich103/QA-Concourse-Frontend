@@ -49,7 +49,7 @@ export default class ListTrainee extends Component {
               if(response.data == null){
                 authService.logout();
                 if (!authService.currentUserValue) {
-                  document.location.href = 'https://' + process.env.REACT_APP_AWS_IP + ':3000/login';
+                  document.location.href = 'https://' + process.env.REACT_APP_AWS_IP + '/login';
                 }
               }
               else{

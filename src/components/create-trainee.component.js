@@ -53,8 +53,7 @@ export default class CreateTrainee extends Component {
             intakes:[],
             geoFlex:'',
             clearance: '',
-            currentUser: {token:{_id: "5d0bb39bd2ba63099c621593", role: "admin", status: "Active"}},
-            //currentUser: authService.currentUserValue, //for testing purposes comment this out, and uncomment the one above.
+            currentUser: authService.currentUserValue, //for testing purposes comment this out, and uncomment the one above.
             languages: '',
             date_achieved: '',
             recruiterName: '',

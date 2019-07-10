@@ -40,7 +40,7 @@ export default class ListUser extends Component {
 	
     
     componentDidMount() {
-        axios.get('http://'+process.env.REACT_APP_AWS_IP+':4000/admin/')
+        axios.get('https://'+process.env.REACT_APP_AWS_IP+'/admin/')
             .then(response => {
                 console.log(response.data);
 			if(this.state.currentUser.token.role === 'admin'){
