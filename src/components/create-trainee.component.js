@@ -488,6 +488,7 @@ export default class CreateTrainee extends Component {
                             <label>Phone Number: </label>
                             <input  type="number"
                                     className="form-control"
+	                            maxLength={12}
                                     value={this.state.trainee_phone}
                                     onChange={this.onChangePhone}
                                     required/>
