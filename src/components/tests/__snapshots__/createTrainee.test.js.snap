@@ -117,6 +117,11 @@ exports[`Create trainee render tests renders correctly when there are no items 1
             >
               Female
             </option>
+            <option
+              value="Prefer Not to Say"
+            >
+              Prefer not to say
+            </option>
           </select>
         </div>
         <div

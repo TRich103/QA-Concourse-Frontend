@@ -12,6 +12,9 @@ import DayPicker, { DateUtils } from 'react-day-picker';
 import DatePicker from "react-datepicker";
 import 'react-day-picker/lib/style.css';
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
+import * as jsPDF from 'jspdf';
+import 'jspdf-autotable';
+import download from './icons/download.svg';
 
 export default class CostReport extends Component {
     
@@ -22,6 +25,7 @@ export default class CostReport extends Component {
             report: true,
             trainee_data: [],
             currentUser: authService.currentUserValue,
+            //currentUser: {token:{_id: "5d0bb39bd2ba63099c621593", role: "admin", status: "Active"}},
             staffEmail: '',
 			approvedBy: '',
 			finApprovedBy:'',
@@ -286,6 +290,7 @@ export default class CostReport extends Component {
             report: true,
             trainee_data: [],
             currentUser: authService.currentUserValue,
+            //currentUser: {token:{_id: "5d0bb39bd2ba63099c621593", role: "admin", status: "Active"}},
             staffEmail: '',
             date: '',
             values : {
@@ -456,13 +461,37 @@ export default class CostReport extends Component {
 
     onSubmit(e){
         let added = this.state.month + this.state.year;
-        console.log(added);
-        console.log(added.replace(/\s+/g, ''));
         this.setState({
             values:{
                 date: added
             }
         })
+    }
+
+    updatePDF(trainees){
+        const jsPDF = require('jspdf');
+        let list = trainees;
+        let pdf = new jsPDF();
+        let formattedData = []; 
+        let total = 0;
+
+        list.map(t => {
+            formattedData.push([t.name, Number(t.totalMonth).toFixed(2)]);
+            total = t.totalMonth + total;
+        })
+        formattedData.push(['Total Amount For Month', Number(total).toFixed(2)]);
+        pdf.text(this.state.date, 90, 10)
+        pdf.autoTable({
+            head: [['Name', 'Amount']],
+            body: formattedData
+        });
+        let finalY = pdf.autoTable.previous.finalY;
+        pdf.setFontSize(9);
+        pdf.text(15, finalY+20, "Admin Approved By: "+this.state.approvedBy);
+        pdf.text(115, finalY+20, "Finance Approved By: "+this.state.finApprovedBy);
+        pdf.text(15, finalY+30, "Signed : ........................")
+        pdf.text(115, finalY+30, "Signed : ........................")
+        pdf.save('table.pdf');
     }
 	
     render() {
@@ -498,7 +527,7 @@ export default class CostReport extends Component {
                 <div>
                 <br/>
                 <div id="addUser">
-                        <button className="qabtn">Choose month</button>
+                        <label>Choose month :</label>
                         <DatePicker
                             selected={this.state.startDate}
                             onChange={this.handleChange}
@@ -601,7 +630,8 @@ export default class CostReport extends Component {
                                 <th>Amount Payable:</th><td>£{Number(this.state.values.amountPayable).toFixed(2)}</td>&nbsp;&nbsp;
                                 <th>Trainees in training:</th><td>{this.state.values.training_number}</td>&nbsp;&nbsp;
                                 <th>Trainees on bench:</th><td>{this.state.values.bench_number}</td>&nbsp;&nbsp;
-                                <th>Pending trainees:</th><td>{this.state.values.pending_number}</td>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <th>Pending trainees:</th><td>{this.state.values.pending_number}</td>&nbsp;&nbsp;
+                                <th>Download PDF:</th><td><button className="actionBtn" onClick={() => this.updatePDF(trainees)}>PDF <img src={download}></img></button></td>&nbsp;&nbsp;&nbsp;&nbsp;
                             </tr>
                     </tbody>
 					<tbody>

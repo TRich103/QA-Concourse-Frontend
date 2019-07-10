@@ -358,7 +358,7 @@ export default class ListTrainee extends Component {
                         <div id="addUser">
                             <CSVLink className="link" onClick={() => {
                                 this.$CSVLink.current.link.download = this.getFileNameAdmin();
-                            }} ref={this.$CSVLink} data={output} filename={"Admin_report_" + moment().format('MMMM YYYY' + ".csv")} target="_blank" ><button className="qabtn">Download CSV <img src={download}></img></button></CSVLink>
+                            }} ref={this.$CSVLink} data={output} filename={"Admin_report_" + moment().format('MMMM YYYY')+".csv"} target="_blank" ><button className="qabtn">Download CSV <img src={download}></img></button></CSVLink>
                         </div>
                         <Collapse in={this.state.filterBoolean}>
                             <p>
