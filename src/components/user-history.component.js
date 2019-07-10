@@ -48,6 +48,7 @@ export default class UserRecord extends Component {
             
             this.setState({searchResults: this.state.record})
         }
+        return null;
     };
 
     handleDaysClicked(day) {
@@ -128,8 +129,11 @@ export default class UserRecord extends Component {
                         console.log(start);
                         console.log(from);
                         console.log(DateUtils.isSameDay(start, from));
-                        if(DateUtils.isSameDay(start, from)){
-                             return record;
+                        if (DateUtils.isSameDay(start, from)) {
+                            return record;
+                        }
+                        else {
+                            return "";
                         }
                     })
                 }

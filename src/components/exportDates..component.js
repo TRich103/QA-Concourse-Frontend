@@ -269,7 +269,41 @@ export default class ListTrainee extends Component {
                 })
                // output = [["Sort Code","Payee/Trainee Name", "Account Number", "Bursary Amount", "BURSARY", "99","\r\n"]];
                //var obj = [t.trainee_sort_code + String.fromCharCode(8203), t.trainee_fname + ' ' + t.trainee_lname, t.trainee_account_no + String.fromCharCode(8203), t.bursary_amount * t.trainee_days_worked + String.fromCharCode(8203), "BURSARY", "99"];
-                var obj = [t.trainee_fname+' '+t.trainee_lname, t.trainee_account_no + String.fromCharCode(8203), t.trainee_sort_code + String.fromCharCode(8203),Number(t.bursary_amount*t.trainee_days_worked + totalexpenses).toFixed(2),"2","00","\""+"\""+t.trainee_sort_code+"\""+"\""+','+"\""+"\""+t.trainee_fname+' '+t.trainee_lname+"\""+"\""+','+"\""+"\""+t.trainee_account_no+"\""+"\""+','+"\""+"\""+Number(t.bursary_amount*t.trainee_days_worked + totalexpenses).toFixed(2)+"\""+"\""+','+"\""+"\""+"BURSARY"+"\""+"\""+','+"\""+"\""+"99"+"\""+"\""];
+                var obj = [t.trainee_fname + ' ' + t.trainee_lname, t.trainee_account_no + String.fromCharCode(8203), t.trainee_sort_code + String.fromCharCode(8203), Number(t.bursary_amount * t.trainee_days_worked + totalexpenses).toFixed(2), "2", "00", "\""
+                    + "\""
+                    + t.trainee_sort_code
+                    + "\""
+                    + "\""
+                    + ','
+                    + "\""
+                    + "\""
+                    + t.trainee_fname + ' ' + t.trainee_lname
+                    + "\""
+                    + "\""
+                    + ','
+                    + "\""
+                    + "\""
+                    + t.trainee_account_no
+                    + "\""
+                    + "\""
+                    + ','
+                    + "\""
+                    + "\""
+                    + Number(t.bursary_amount * t.trainee_days_worked + totalexpenses).toFixed(2)
+                    + "\""
+                    + "\""
+                    + ','
+                    + "\""
+                    + "\""
+                    + "BURSARY"
+                    + "\""
+                    + "\""
+                    + ','
+                    + "\""
+                    + "\""
+                    + "99" 
+                    + "\""
+                    + "\""];
                 var old = [t.trainee_sort_code,t.trainee_fname+' '+t.trainee_lname,t.trainee_account_no,Number(t.bursary_amount*t.trainee_days_worked + totalexpenses).toFixed(2),"BURSARY","99"];
                 if(t.status === 'Active'){
                     output.push(obj);

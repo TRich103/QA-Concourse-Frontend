@@ -90,8 +90,11 @@ export default class ListUser extends Component {
 
         if(search.length > 0){
             users = users.filter(function(i){
-                if(i.email.toLowerCase().match(search) || i.role.toLowerCase().match(search)){
+                if (i.email.toLowerCase().match(search) || i.role.toLowerCase().match(search)) {
                     return i;
+                }
+                else {
+                    return "";
                 }
             })
         }
@@ -101,7 +104,9 @@ export default class ListUser extends Component {
                 if(user.role === filter.role.toLowerCase()){
                     return user;
                 }
-
+                else {
+                    return "";
+                }
             })
         }
 
@@ -109,6 +114,9 @@ export default class ListUser extends Component {
             users = users.filter(function(user){
                 if(user.status !== 'Suspended'){
                     return user;
+                }
+                else {
+                    return "";
                 }
             })
         }
