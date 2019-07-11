@@ -57,7 +57,7 @@ export default class Login extends Component {
                     var status = res.data.user.status;
                     console.log("STATUS: "+status);
                     if(status !== "Suspended"){
-                        document.location.href = 'http://localhost:3000/';
+                        document.location.href = 'http://'+process.env.REACT_APP_AWS_IP+':3000/';
                         token.token = decode(res.data.token);
                         localStorage.setItem('currentUser', JSON.stringify(token));
                     }
