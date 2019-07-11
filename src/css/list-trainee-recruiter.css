@@ -22,12 +22,14 @@ a.link:hover{
     float: left;
 }
 
-.ReactTable {
+.ReactTable{
 	margin-left:0.5%;
 	width:100%;
 	height:760px;
     }
-
+.ReactTable.-striped .rt-tr.-odd{
+    background-color: aliceblue;
+}
 
 #addUser .qabtn{
 	width: 145px;

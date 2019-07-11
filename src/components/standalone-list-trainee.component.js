@@ -29,6 +29,7 @@ import EditDates from "./edit-dates.component";
 import EditTrainee from "./edit-trainee.component";
 import userExpense from "./expenses-trainee.component"
 import { Button, ButtonGroup } from 'reactstrap';
+import History from './user-history.component.js';
 
 export default class ListTrainee extends Component {
     
@@ -72,6 +73,7 @@ export default class ListTrainee extends Component {
         this.onChangeMyTraineeFilter = this.onChangeMyTraineeFilter.bind(this);
         this.onChangeSuspendedFilter = this.onChangeSuspendedFilter.bind(this);
         this.handleExpensesClick = this.handleExpensesClick.bind(this);
+		this.suspendTrainee = this.suspendTrainee.bind(this);
     }
     
     componentDidMount() {
@@ -200,9 +202,25 @@ export default class ListTrainee extends Component {
             filter : newFilter
         })
     }
+	
+	suspendTrainee(e){ 
+	let deleteToggle = '';
+    let deleteRoute = '';
+	 if(this.state.trainees.status === "Suspended"){
+                    deleteToggle = "Reactivate";
+                    deleteRoute = "reactivate";
+                }else{
+                      deleteToggle = "Suspend";
+                      deleteRoute = "delete";
+                }
+         if (window.confirm('Are you sure you wish to '+deleteToggle.toLowerCase()+' this trainee?'))
+         axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/'+deleteRoute+'/'+this.state.trainees._id, 
+		 {addedBy:this.state.currentUser.token._id})
+				.then(() => window.location.reload()) 
+		} 
 
     handleHistoryClick(e){
-        window.location.href="history/"+e.target.value   
+        this.props.content(<History/>)
     }
 
     handleExpensesClick(e){
@@ -241,11 +259,11 @@ export default class ListTrainee extends Component {
 			let name= t.trainee_fname + t.trainee_lname
             let expenses = 0;
 			let deleteToggle = '';
-            let deleteRoute = '';
+			let deleteRoute = '';
           t.monthly_expenses.map(expense =>{
                   expenses += +Number(expense.amount).toFixed(2);
                 })
-                if(t.status === "Suspended"){
+				if(this.state.trainees.status === "Suspended"){
                     deleteToggle = "Reactivate";
                     deleteRoute = "reactivate";
                 }else{
@@ -267,10 +285,7 @@ export default class ListTrainee extends Component {
 				
 				'Action':			
 				<div>
-				 <button className="actionBtn" onClick={() => { 
-                    if (window.confirm('Are you sure you wish to '+deleteToggle.toLowerCase()+' this trainee?'))
-                    axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/'+deleteRoute+'/'+t._id, {addedBy:this.state.currentUser.token._id}).then(() => window.location.reload()) } }>
-                    {deleteToggle}<img src={close}></img>
+				 <button className="actionBtn" onClick={() => this.suspendTrainee(t._id)}>{deleteToggle}<img src={close}></img>
                 </button>&nbsp;
                 <button className="actionBtn" value={t._id} onClick={this.handleHistoryClick}>View History <img src={history}></img></button>&nbsp;
 				<button className="actionBtn" value={t._id} onClick={()=>{this.props.content(<userExpense/>)}}>Expenses<img src={addmoney}></img></button> &nbsp; 
