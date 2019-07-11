@@ -117,7 +117,6 @@ export default class CreateUser extends Component {
                                     console.log("else");
                                     axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/admin/send-email-staff', {email: this.state.user_email})
                                     .then( (response) => {console.log(response.data)
-									                      this.props.history.push('/admin');
 														  window.location.reload();
 														 });
                                  }
@@ -139,8 +138,8 @@ export default class CreateUser extends Component {
                 
                 <form className="addForm" onSubmit={this.onSubmit}>
                     <h3>Add User <center><button id="cancelBtn" onClick={() => { document.location.href = "/"; }}> ⭠ Back</button></center></h3>
-                    <div className="form-group">
-                        <div className="user-text-inputs">
+                    <div className="grid-container-user">
+                        <div className="gird-item-user">
                             <label>First Name: </label>
                             <input 
                                 type="text"
@@ -149,6 +148,8 @@ export default class CreateUser extends Component {
                                 onChange={this.changeUserFName}
                                 required/>
                             <br/>
+							</div>
+							<div className="gird-item-user">
                             <label>Last Name: </label>
                             <input 
                                 type="text"
@@ -157,6 +158,8 @@ export default class CreateUser extends Component {
                                 onChange={this.changeUserLName}
                                 required/>
                             <br/>
+							</div>
+							<div className="gird-item-user">
                             <label>Email: </label>
                             <input 
                                     type="email" 
@@ -165,8 +168,9 @@ export default class CreateUser extends Component {
                                     onChange={this.onChangeUserEmail}
                                     required/>
                         </div>
-                        <br></br>
-                        <Dropdown id="dropDown" isOpen={this.state.dropdownOpen} toggle={this.toggle} required>
+               
+						<div className="grid-item-user">
+                        <Dropdown id="grid-item-user" isOpen={this.state.dropdownOpen} toggle={this.toggle} required>
                         <DropdownToggle caret>
                         {this.state.user_role}
                         </DropdownToggle>
@@ -183,7 +187,8 @@ export default class CreateUser extends Component {
                         </DropdownMenu>
                         </Dropdown>
                     <br></br>
-                    </div>
+					</div>
+             </div>
 
                     <div className="form-group">
                         <input type="submit" value="Add User" id="updateBtn" className="btn btn-primary" />

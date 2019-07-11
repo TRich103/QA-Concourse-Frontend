@@ -578,17 +578,16 @@ export default class CreateTrainee extends Component {
                             />
                         </div>
 					</div>
-                    <div>
+                   
+				   <div className="grid-container-bursary">
+				   <div className="gird-item-bursary">
                         <label> Bursary: </label>
 						&nbsp;&nbsp;
                         <input type="checkbox" id="bursaryValue" onClick={this.onClickBursary}/>
-                    </div>
-					
-                    <Collapse in={this.state.open}>
-                    <div>
+					<Collapse in={this.state.open}>
+					<div>
                         <label>Bursary Amount:</label>
                         <br />
-						&nbsp;&nbsp;
                                 <input 
                                     type="number"
                                     value={this.state.bursary_amount}
@@ -596,6 +595,8 @@ export default class CreateTrainee extends Component {
                                     required/>
                     </div>
                     </Collapse>
+					</div>
+					</div>
 			<div className="grid-wrapper">                
 					<div className="grid-dates" >
                         <label> Training Start Date</label>

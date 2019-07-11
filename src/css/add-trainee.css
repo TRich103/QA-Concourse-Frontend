@@ -20,6 +20,7 @@
 .title{
     margin-left: 5%;
 }
+
 .grid-container{
   display: grid;
   grid-template-columns: auto auto auto;
@@ -39,7 +40,7 @@
 }
 .grid-wrapper{
 	display:grid;
-	  grid-template-columns: auto auto auto auto;
+	  grid-template-columns: auto auto auto auto auto;
 	  padding:10px;
 }
 .text-input-fields {

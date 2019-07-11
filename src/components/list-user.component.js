@@ -10,6 +10,8 @@ import history from './icons/history.svg';
 import close from './icons/close2.svg';
 import filterIcon from './icons/filter.svg';
 import mail from './icons/envelope.svg';
+import QATable from '../components/components/table-component/qa-table.component';
+import List_User from './list-user.component.js';
 
 import CreateUser from './create-user.component';
 
@@ -88,6 +90,57 @@ export default class ListUser extends Component {
         let search = this.state.searchString.trim().toLowerCase();
         let filter = this.state.filter;
         const {open} = this.state;
+		let headers = [{ 'header': 'Name', 'width': 300 },{ 'header': 'Role', 'width': 200 },
+			{ 'header': 'Status', 'width': 300 },{ 'header': 'Action', 'width': 800 } ]
+		let rows = []
+		users.map(u => {
+			let _id = u._id
+			let name= u.fname +' '+ u.lname;
+			let deleteToggle = '';
+            let deleteRoute = '';  
+            let currentStaff;
+                if(u.status === "Suspended"){
+                   deleteToggle = "Reactivate";
+                   deleteRoute = "reactivate";
+            }else{
+                  deleteToggle = "Suspend";
+                  deleteRoute = "delete";
+            }if(this.state.currentUser.token._id === u._id){
+                currentStaff = true;
+            }else{
+				 currentStaff = false;
+                 }     
+		let row = {
+                'Name': name,
+                'Status': u.status,
+				'Role':u.role,
+				'Action':
+				<div>
+				<center>{currentStaff ? <button id="fakeBtn">
+                {deleteToggle}
+                <img src={close}></img>
+                </button> : <button className="actionBtn" onClick={() => {
+                if (window.confirm('Are you sure you wish to ' + deleteToggle.toLowerCase() + ' this user?'))
+                    axios.get('http://' + process.env.REACT_APP_AWS_IP + ':4000/admin/' + deleteRoute + '/' + u._id).then(() => this.props.content(<List_User/>))
+                                        }}>
+                                                {deleteToggle}
+                                                <img src={close}></img>
+                                            </button>}&nbsp;
+                                    <button className="actionBtn" value={u._id} onClick={this.handleHistoryClick}>View History <img src={history}></img></button>&nbsp;
+                                    <a href={"mailto:" + u.email}><button className="actionBtn">Email <img src={mail}></img></button> </a>
+                                    <button className="actionBtn" onClick={() => { 
+                                                    axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/admin/send-email-staff/', {email: u.email})
+													.then(() => window.alert("Email Sent!")) } }>
+                                                    Resend Activation Email
+                                                    <img src={mail}></img>
+                                    </button>&nbsp;
+                                        </center>
+				</div>,
+		}
+		//Adds data to Rows
+			rows.push(row)
+		})	
+	let tableData = { Headers: headers, Rows: rows }
 
         if(search.length > 0){
             users = users.filter(function(i){
@@ -158,64 +211,7 @@ export default class ListUser extends Component {
                     </Collapse>
                 </div>
                 <div id="resultsTable">
-                <table className="table table-hover" style={{ marginTop: 20}} >
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Role</th>
-                            <th>Status</th>
-                            <th className="action"><center>Action</center></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {users.map(user => {
-                            let deleteToggle = '';
-                            let deleteRoute = '';  
-                            let currentStaff;
-                            if(user.status === "Suspended"){
-                                deleteToggle = "Reactivate";
-                                deleteRoute = "reactivate";
-                            }
-                            else{
-                                deleteToggle = "Suspend";
-                                deleteRoute = "delete";
-                            }  
-                            if(this.state.currentUser.token._id === user._id){
-                                currentStaff = true;
-                            }
-                            else{
-                                currentStaff = false;
-                            }                           
-                            return (
-                                <tr>
-                                <td>{user.fname} {user.lname}</td>
-                                <td className="userRole">{user.role}</td>
-                                <td>{user.status}</td>
-                                <td>
-                                        <center>{currentStaff ? <button id="fakeBtn">
-                                            {deleteToggle}
-                                            <img src={close}></img>
-                                        </button> : <button className="actionBtn" onClick={() => {
-                                            if (window.confirm('Are you sure you wish to ' + deleteToggle.toLowerCase() + ' this user?'))
-                                                axios.get('http://' + process.env.REACT_APP_AWS_IP + ':4000/admin/' + deleteRoute + '/' + user._id).then(() => window.location.reload())
-                                        }}>
-                                                {deleteToggle}
-                                                <img src={close}></img>
-                                            </button>}&nbsp;
-                                    <button className="actionBtn" value={user._id} onClick={this.handleHistoryClick}>View History <img src={history}></img></button>&nbsp;
-                                    <a href={"mailto:" + user.email}><button className="actionBtn">Email <img src={mail}></img></button> </a>
-                                    <button className="actionBtn" onClick={() => { 
-                                                    axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/admin/send-email-staff/', {email: user.email}).then(() => window.alert("Email Sent!")) } }>
-                                                    Resend Activation Email
-                                                    <img src={mail}></img>
-                                    </button>&nbsp;
-                                        </center>
-                                </td>
-                            </tr>
-                            )
-                        })}
-                    </tbody>
-                </table>
+				<QATable id="trainee-table" data={tableData}/>
                 </div>
             </div>
         )

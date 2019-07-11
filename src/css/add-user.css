@@ -7,6 +7,16 @@
 .form-group {
     text-align: center;
 }
+.grid-container-user{
+  display: grid;
+  grid-template-columns: auto auto;
+  padding: 5px;
+}
+.gird-item-user{
+  border: none;
+  padding: 20px;
+  font-size: 16px;
+}
 
 .addForm{
     height: 80%;
@@ -28,8 +38,6 @@
 
 #dropDown{
     width:40%;
-    margin-left: 30%;
-    text-align: center;	
 }
 
 
