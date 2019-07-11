@@ -32,13 +32,9 @@ export default class Navigation extends React.Component {
       trainee_fname: '',
       trainee_lname: ''
     };
-    this.logoColour = {
-        "mix-blend-mode": "hue",
-        "background-color": '#'+Math.floor(Math.random()*16777215).toString(16), //HEX code generation
-        "position": "absolute",
-        "width": "60px",
-        "height": "42px"
-      };
+
+
+
 
   }
 
@@ -100,12 +96,21 @@ export default class Navigation extends React.Component {
   }
   render() {
     if (authService.currentUserValue) {
-      return (
+        var logoColour;
+        if(authService.currentUserValue.token.role === "admin"){
+            this.logoColour = "logo-colour-admin";
+        }else if(authService.currentUserValue.token.role === "finance"){
+            this.logoColour = "logo-color-finance";
+        }else if(authService.currentUserValue.token.role === "recruiter"){
+            this.logoColour = "logo-colour-recruiter";
+        }
+
+        return (
         <div id='bar'>
 		<div id="navigation-bar">
           <Navbar color="light" light expand="md">
             <NavbarBrand href="/login">
-                           <div style={this.logoColour}></div>
+                           <div className={this.logoColour}></div>
             <img src={logo} className="nav-logo" alt="QA logo" width="60px" />
             </NavbarBrand>
                       <NavbarToggler onClick={this.toggle} />
@@ -129,7 +134,6 @@ export default class Navigation extends React.Component {
         <div id="navigation-bar">
           <Navbar color="light" light expand="md">
             <NavbarBrand href="/">
-                           <div style={this.logoColour}></div>
             <img src={logo} className="nav-logo" alt="QA logo" width="60px" />
             </NavbarBrand>
             <NavbarToggler onClick={this.toggle} />
