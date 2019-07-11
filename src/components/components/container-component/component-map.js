@@ -40,29 +40,19 @@ export const myConfig =
                     ],
         "side": [
                         {'name': 'Trainees', 'content': <RecruiterTrainee/>},
-                        {'name': 'Recruiter SiderBar Link 2', 'content': <Recruiter6/>}
                    ],
     },
     "admin": {
         "home": <ListTrainee/>,
         "buttons": [
-                        {'name': 'Home', 'content': <ListTrainee/>},
-						{'name': 'Change Password', 'content':<PasswordStaff/>}
+						{'name': 'Change Password', 'content':<PasswordStaff/>},
+						{'name': 'Bursary', 'content':<ListTrainee/>},
+						{'name': 'User Managment', 'content':<ListUser/>},
+						
                    ],
-        "dropdowns":[
-                        {   'name': 'Bursary',
-                            'content':[
-                                        {'name': 'Create User', 'content': <CreateUser/>},
-										{'name': 'Create Trainee', 'content': <CreateTrainee/>},
-										{'name': 'Create Trainee', 'content': <ListTrainee/>},
-										{'name': 'Create Trainee', 'content': <ListUser/>}
-                                        
-                                      ]
-                        }
-                    ],
+        "dropdowns":[ ],
         "side": [
 						{'name': 'Trainees', 'content': <ListTrainee/>},
-                        {'name': 'Users', 'content': <ListUser/>},
 						{'name': 'Cost Report', 'content': <CostReports/>}
                    ],
     },

@@ -469,11 +469,11 @@ export default class ListTrainee extends Component {
                     <table className="table table-hover" style={{ marginTop: 20 }} >
                         <thead>
                             <tr>
+								<th>Cohort</th>
                                 <th>First Name</th>
                                 <th>Last Name</th>
                                 <th><center>Status</center></th>
                                 <th>Recruited By</th>
-								<th>Cohort</th>
                                 <th><center>Bursary</center></th>
                                 <th><center>Payment This Month</center></th>
 								<th><center>Start Date</center></th>
@@ -498,11 +498,11 @@ export default class ListTrainee extends Component {
                                 }
                                 return (
                                     <tr className="trainees">
+										<td onClick={() => window.location.href = "/editDates/" + t._id}> {t.trainee_intake}</td>
                                         <td onClick={() => window.location.href = "/editDates/" + t._id}> {t.trainee_fname}</td>
                                         <td onClick={() => window.location.href = "/editDates/" + t._id}> {t.trainee_lname}</td>
                                         <td onClick={() => window.location.href = "/editDates/" + t._id}> <center>{t.status}</center></td>
                                         <td onClick={() => window.location.href = "/editDates/" + t._id}> {t.added_By}</td>
-										<td onClick={() => window.location.href = "/editDates/" + t._id}> {t.trainee_intake}</td>
                                         <td onClick={() => window.location.href = "/editDates/" + t._id}> <center>{t.bursary}</center></td>
                                         <td onClick={() => window.location.href = "/editDates/" + t._id}> <center>£{Number(t.bursary_amount * t.trainee_days_worked + expenses).toFixed(2)}</center></td>
 										<td> <center>{moment(t.trainee_start_date).format('MMMM Do YYYY')}</center></td>

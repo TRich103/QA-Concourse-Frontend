@@ -197,6 +197,7 @@ export default class ListTrainee extends Component {
                 <table className="table table-hover" style={{ marginTop: 20 }} >
                     <thead>
                         <tr>
+							<th>Cohort</th>
                             <th>First Name</th>
                             <th>Last Name</th>
                             <th><center>Status</center></th>
@@ -210,6 +211,7 @@ export default class ListTrainee extends Component {
                             if(t.status != "Suspended"){
                                 return (
                                     <tr className="trainees">
+										<td onClick={() => window.location.href = "/editDates/" + t._id}> {t.trainee_intake}</td>
                                         <td onClick={() => window.location.href = "/editDates/" + t._id}> {t.trainee_fname}</td>
                                         <td onClick={() => window.location.href = "/editDates/" + t._id}> {t.trainee_lname}</td>
                                         <td onClick={() => window.location.href = "/editDates/" + t._id}> <center>{t.status}</center></td>
