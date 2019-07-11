@@ -231,9 +231,10 @@ export default class ListTrainee extends Component {
         let search = this.state.searchString.trim().toLowerCase().replace(/\s+/g, '');
         let filter = this.state.filter;
         let staffName = this.state.staffName;
-        let currentDate = new Date().getDate(); 
+        const date = new Date();
         const {open} = this.state;
-        
+
+
         if(search.length > 0){
             trainees = trainees.filter(function(i){
                 if(i.trainee_fname.toLowerCase().match(search) ||
@@ -282,7 +283,12 @@ export default class ListTrainee extends Component {
         }
         if(filter.training === true){
             trainees = trainees.filter(function(trainee){
-                if(currentDate >= trainee.trainee_start_date && currentDate <= trainee.trainee_bench_start_date){
+                console.log(date);
+                console.log(trainee.trainee_start_date+" "+trainee.trainee_bench_start_date)
+                if(moment(date).isAfter(trainee.trainee_start_date,'day') && moment(date).isBefore(trainee.trainee_bench_start_date,'day')){
+                    return trainee;
+                }
+                else if(moment(date).isSame(trainee.trainee_start_date,'day')){
                     return trainee;
                 }
             })
