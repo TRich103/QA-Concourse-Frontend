@@ -20,7 +20,6 @@ describe("Logo Colour is correct for Admin", () => {
     it('Class for admin exists', () => {
         expect(wrapper.find('.logo-colour-admin').toBe(true));
     });
-
     it('background colour for the logo is purple', () => {
         let containerStyle =
         expect(wrapper.find(wrapper.find('.logo-colour-admin').prop('style')).toHaveProperty('backgroundColor','#ff00ff'));
