@@ -39,7 +39,8 @@ export default class ListTrainee extends Component {
                 myTrainees: false,
                 status: 'All',
                 bursary: 'All',
-                suspended: false
+                suspended: false,
+                training: false
             },
             open: false,
 			csv: '',
@@ -66,6 +67,7 @@ export default class ListTrainee extends Component {
         this.onChangeMyTraineeFilter = this.onChangeMyTraineeFilter.bind(this);
         this.onChangeSuspendedFilter = this.onChangeSuspendedFilter.bind(this);
         this.handleExpensesClick = this.handleExpensesClick.bind(this);
+        this.onChangeTrainingFilter = this.onChangeTrainingFilter.bind(this);
     }
     
     componentDidMount() {
@@ -206,6 +208,15 @@ export default class ListTrainee extends Component {
           modal: !prevState.modal
         }));
       }
+      onChangeTrainingFilter(e){
+        var newVal = !this.state.filter.training
+        console.log(newVal)
+        var newFilter = this.state.filter
+        newFilter.training = newVal
+        this.setState({
+            filter : newFilter
+        })
+    }
 	
     render() {
         let splitDays = this.state.splitDays;
@@ -220,6 +231,7 @@ export default class ListTrainee extends Component {
         let search = this.state.searchString.trim().toLowerCase().replace(/\s+/g, '');
         let filter = this.state.filter;
         let staffName = this.state.staffName;
+        let currentDate = new Date().getDate(); 
         const {open} = this.state;
         
         if(search.length > 0){
@@ -264,6 +276,13 @@ export default class ListTrainee extends Component {
         if(filter.suspended === false){
             trainees = trainees.filter(function(trainee){
                 if(trainee.status !== 'Suspended'){
+                    return trainee;
+                }
+            })
+        }
+        if(filter.training === true){
+            trainees = trainees.filter(function(trainee){
+                if(currentDate >= trainee.trainee_start_date && currentDate <= trainee.trainee_bench_start_date){
                     return trainee;
                 }
             })
@@ -458,6 +477,8 @@ export default class ListTrainee extends Component {
                         <label>Show Suspended</label> &nbsp;
                         <input type="checkbox" value="Suspended" onClick={this.onChangeSuspendedFilter}/> &nbsp;&nbsp;
 						<button className="resetBtn" onClick={this.toggle}>Select Start Dates</button> &nbsp;&nbsp;
+                        <label>Trainees in Training</label> &nbsp;
+                        <input type="checkbox" value="inTraining" onClick={this.onChangeTrainingFilter}/> &nbsp;&nbsp;
                     </p>
                     </Collapse>
                     </div>
