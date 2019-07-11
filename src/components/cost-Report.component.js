@@ -101,6 +101,7 @@ export default class CostReport extends Component {
                         console.log(reportTrainee.monthly_expenses)
                         reportTrainee.monthly_expenses.map(expense =>{
                             expenses += +Number(expense.amount).toFixed(2);
+                            return expense;
                         })
                         if(reportTrainee.status === 'Pending'|| reportTrainee.status === 'Incomplete'){
                             await pending++
@@ -143,6 +144,7 @@ export default class CostReport extends Component {
                                     console.log(expense.amount);
                                     traineeExpenses = +traineeExpenses + +Number(expense.amount).toFixed(2);
                                     console.log(traineeExpenses);
+                                    return expense;
                                 })
                             }
                             totalDays = totalDays + parseInt(reportTrainee.trainee_days_worked)
@@ -356,6 +358,7 @@ export default class CostReport extends Component {
                     let expenses = 0;
                     reportTrainee.monthly_expenses.map(expense =>{
                         expenses += +Number(expense.amount).toFixed(2);
+                        return expense;
                     })
                     if(reportTrainee.status === 'Pending'|| reportTrainee.status === 'Incomplete'){
                         await pending++
@@ -412,6 +415,7 @@ export default class CostReport extends Component {
                                     console.log(expense.amount);
                                     traineeExpenses = +traineeExpenses + +Number(expense.amount).toFixed(2);
                                     console.log(traineeExpenses);
+                                    return expense;
                                 })
                             }
                         }
@@ -479,6 +483,7 @@ export default class CostReport extends Component {
         list.map(t => {
             formattedData.push([t.name, Number(t.totalMonth).toFixed(2)]);
             total = t.totalMonth + total;
+            return t;
         })
         formattedData.push(['Total Amount For Month', Number(total).toFixed(2)]);
         pdf.text(this.state.date, 90, 10)
@@ -546,26 +551,31 @@ export default class CostReport extends Component {
 
         if(searchString.length > 0){
             trainees = trainees.filter(function(i){
-                if(i.name.toLowerCase().match(searchString.toLowerCase()) ||
-                   i.status.toLowerCase().match(searchString.toLowerCase())        ||
-                   i.recruitedBy.toLowerCase().match(searchString.toLowerCase())      ||
-                   i.start.toString().match(searchString)       ||
-                   i.days.toString().match(searchString) ||
-                   i.bursary.amountMonth.toString().match(searchString) ||
-                   i.email.toLowerCase().match(searchString.toLowerCase()) ||
-                   (i.name.toLowerCase() + i.status.toLowerCase() + i.email.toLowerCase() + i.recruitedBy.toLowerCase()).match(searchString.toLowerCase())){
+                if (i.name.toLowerCase().match(searchString.toLowerCase()) ||
+                    i.status.toLowerCase().match(searchString.toLowerCase()) ||
+                    i.recruitedBy.toLowerCase().match(searchString.toLowerCase()) ||
+                    i.start.toString().match(searchString) ||
+                    i.days.toString().match(searchString) ||
+                    i.bursary.amountMonth.toString().match(searchString) ||
+                    i.email.toLowerCase().match(searchString.toLowerCase()) ||
+                    (i.name.toLowerCase() + i.status.toLowerCase() + i.email.toLowerCase() + i.recruitedBy.toLowerCase()).match(searchString.toLowerCase())) {
                     return i;
+                }
+                else {
+                    return null;
                 }
             })
         }
 
         if(filter.status !== 'All'){
             trainees = trainees.filter(function(trainee){
-                if(trainee.status === filter.status){
+                if (trainee.status === filter.status) {
                     console.log(trainee);
                     return trainee;
                 }
-
+                else {
+                    return null;
+                }
             })
         }
 
@@ -573,6 +583,9 @@ export default class CostReport extends Component {
             trainees = trainees.filter(function(trainee){
                 if(trainee.status === 'Training'||trainee.status === 'Bench'){
                     return trainee;
+                }
+                else {
+                    return null;
                 }
             })
         }
@@ -584,6 +597,9 @@ export default class CostReport extends Component {
                     if(DateUtils.isSameDay(start, from)){
                          return trainee;
                     }
+                    else {
+                        return null;
+                    }
                 })
             }
             else if(to !== undefined){
@@ -591,6 +607,9 @@ export default class CostReport extends Component {
                     let start = new Date(Date.parse(trainee.start));
                     if(DateUtils.isDayInRange(start, range)){
                          return trainee;
+                    }
+                    else {
+                        return null;
                     }
                 })
             }
@@ -742,6 +761,7 @@ export default class CostReport extends Component {
                             let total = 0
                             trainees.map(t => {
                                 total += parseInt(t.days)
+                                return total;
                             })
                             return 'Total: ' + total}
                         },
@@ -754,6 +774,7 @@ export default class CostReport extends Component {
                             let total = 0
                             trainees.map(t => {
                                 total += t.bursary.amountMonth
+                                return total;
                             })
                             return 'Total: £' + Number(total).toFixed(2)}
                         },
@@ -765,6 +786,7 @@ export default class CostReport extends Component {
                             let total = 0
                             trainees.map(t => {
                                 total += +Number(t.expenses).toFixed(2)
+                                return total;
                             })
                             return 'Total: £' + Number(total).toFixed(2)}
                         },
@@ -776,6 +798,7 @@ export default class CostReport extends Component {
                             let total = 0
                             trainees.map(t => {
                                 total += t.totalMonth
+                                return total;
                             })
                             return 'Total: £' + Number(total).toFixed(2)}
                         }

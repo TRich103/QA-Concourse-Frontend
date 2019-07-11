@@ -202,6 +202,7 @@ export default class EditDates extends Component {
                 if (dateWarning === false) {
                     break;
                 }
+                break;
             default:
 
         const obj = {

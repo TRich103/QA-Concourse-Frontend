@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">32.17% </span>
+        <span class="strong">31.94% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>46/143</span>
+        <span class='fraction'>46/144</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">30.19% </span>
@@ -30,14 +30,14 @@
         <span class='fraction'>16/53</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">32.5% </span>
+        <span class="strong">31.71% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>13/40</span>
+        <span class='fraction'>13/41</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">32.39% </span>
+        <span class="strong">32.17% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>46/142</span>
+        <span class='fraction'>46/143</span>
       </div>
     </div>
   </div>
@@ -727,9 +727,9 @@
 682
 683
 684
-685</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+685
+686
+687</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1175,6 +1175,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1415,7 +1419,7 @@
 import axios from 'axios';
 import AccessDenied from './modules/AccessDenied';
 import { authService } from './modules/authService';
-import moment, { lang } from 'moment';
+import moment/*, { lang }*/ from 'moment';
 import momentBusinessDays from 'moment-business-days';
 import 'bootstrap/dist/css/bootstrap.css';
 import "react-datepicker/dist/react-datepicker.css";
@@ -1424,9 +1428,7 @@ import '../css/add-trainee.css';
 import Collapse from 'react-bootstrap/Collapse'
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
-import MomentLocaleUtils, {
-    formatDate,
-  } from 'react-day-picker/moment';
+import /*MomentLocaleUtils, */{formatDate} from 'react-day-picker/moment';
 import CreatableSelect from 'react-select/creatable';
 export default class CreateTrainee extends Component {
     
@@ -1487,7 +1489,7 @@ export default class CreateTrainee extends Component {
     componentDidMount(){
         axios.get('http://' + process.env.REACT_APP_AWS_IP + ':4000/admin/staff/' + this.state.currentUser.token._id)
         .then(<span class="fstat-no" title="function not covered" >re</span>sponse =&gt; {
-<span class="cstat-no" title="statement not covered" >          if(response.data == null){</span>
+<span class="cstat-no" title="statement not covered" >          if(response.data === null){</span>
 <span class="cstat-no" title="statement not covered" >            authService.logout();</span>
 <span class="cstat-no" title="statement not covered" >            if (!authService.currentUserValue) {</span>
 <span class="cstat-no" title="statement not covered" >              document.location.href = 'http://' + process.env.REACT_APP_AWS_IP + ':3000/login';</span>
@@ -1775,13 +1777,13 @@ export default class CreateTrainee extends Component {
 <span class="branch-2 cbranch-no" title="branch not covered" >            case "tooloworhigh":</span>
                 var dateWarning = <span class="cstat-no" title="statement not covered" >window.confirm("The dates you have entered are unusually high or low. Are you sure you want to proceed?");</span>
                 
-<span class="cstat-no" title="statement not covered" >				if (dateWarning == false){</span>
+<span class="cstat-no" title="statement not covered" >				if (dateWarning === false){</span>
 <span class="cstat-no" title="statement not covered" >                break;</span>
                 }
 <span class="branch-3 cbranch-no" title="branch not covered" >            case "toomuchbursary":</span>
                 var dateWarning = <span class="cstat-no" title="statement not covered" >window.confirm("Are you sure you want to give this trainee a bursary of more than £100 daily?");</span>
     
-<span class="cstat-no" title="statement not covered" >                if(dateWarning == false){</span>
+<span class="cstat-no" title="statement not covered" >                if(dateWarning === false){</span>
 <span class="cstat-no" title="statement not covered" >                    break;</span>
                 }
             default:
@@ -1836,7 +1838,7 @@ export default class CreateTrainee extends Component {
             console.log(newTrainee);
             axios.post('http://' + process.env.REACT_APP_AWS_IP + ':4000/trainee/add', newTrainee)
                     .then(<span class="fstat-no" title="function not covered" >(r</span>esponse) =&gt; {
-<span class="cstat-no" title="statement not covered" >                        if (response.status == 205) {</span>
+<span class="cstat-no" title="statement not covered" >                        if (response.status === 205) {</span>
 <span class="cstat-no" title="statement not covered" >                            alert("Email is already in use");</span>
                         }
                         else {
@@ -1861,7 +1863,11 @@ export default class CreateTrainee extends Component {
                     );  
         }      
     }
-    
+<span class="fstat-no" title="function not covered" >    ca</span>ncelBtnState() {
+<span class="cstat-no" title="statement not covered" >        this.setState({</span>
+            form_cancel: true
+        })
+    }
    render() {
 	   <span class="missing-if-branch" title="if path not taken" >I</span>if(this.state.currentUser.token.role !== 'recruiter' &amp;&amp; this.state.currentUser.token.role !== 'admin'){
 <span class="cstat-no" title="statement not covered" >		   return (</span>
@@ -1871,7 +1877,7 @@ export default class CreateTrainee extends Component {
             &lt;div className="createTrainee" style={{marginLeft: 200, marginRight: 200}}&gt;
                 &lt;form className="createTraineeForm" onSubmit={this.onSubmit}&gt;
                     &lt;h3 className="title"&gt;Add Trainee&lt;/h3&gt;
-                    &lt;div&gt;&lt;center&gt;&lt;button id="cancelBtn" onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; {<span class="cstat-no" title="statement not covered" >this.state.form_cancel = true; <span class="cstat-no" title="statement not covered" ></span>document.location.href = "/"; </span>}}&gt;Cancel&lt;/button&gt;&lt;/center&gt;&lt;/div&gt;
+                    &lt;div&gt;&lt;center&gt;&lt;button id="cancelBtn" onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; {<span class="cstat-no" title="statement not covered" >this.cancelBtnState.bind(this); <span class="cstat-no" title="statement not covered" ></span>document.location.href = "/"; </span>}}&gt;Cancel&lt;/button&gt;&lt;/center&gt;&lt;/div&gt;
                     &lt;div className="text-input-fields"&gt;
                         &lt;div className="form-group"&gt; 
                             &lt;label&gt;First Name: &lt;/label&gt;
@@ -2101,7 +2107,7 @@ export default class CreateTrainee extends Component {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Jul 09 2019 12:05:45 GMT+0100 (British Summer Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Thu Jul 11 2019 15:22:27 GMT+0100 (British Summer Time)
 </div>
 </div>
 <script src="..\prettify.js"></script>

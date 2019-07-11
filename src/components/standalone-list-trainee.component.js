@@ -25,14 +25,14 @@ import download from './icons/download.svg';
 //import { Button, ButtonGroup } from 'reactstrap';
 
 export default class ListTrainee extends Component {
-    
+
     constructor(props) {
         super(props);
-			
+
         this.state = {
             trainees: [],
             record: [],
-			searchString: "",
+            searchString: "",
             currentUser: authService.currentUserValue,
             staffName: '',
             filter: {
@@ -42,22 +42,22 @@ export default class ListTrainee extends Component {
                 suspended: false
             },
             open: false,
-			csv: '',
-            csvN:'',
+            csv: '',
+            csvN: '',
             modal: false,
             filterBoolean: false,
-			range:{
+            range: {
                 from: undefined,
                 to: undefined,
             }
-			};
-        
-		this.onChangeFilterSearch = this.onChangeFilterSearch.bind(this)
+        };
+
+        this.onChangeFilterSearch = this.onChangeFilterSearch.bind(this)
         this.handleDayClick = this.handleDayClick.bind(this);
         this.toggle = this.toggle.bind(this);
         this.handleDaysClicked = this.handleDaysClicked.bind(this);
         this.handleResetClick = this.handleResetClick.bind(this);
-		
+
         this.handleHistoryClick = this.handleHistoryClick.bind(this);
         this.onChangeSearch = this.onChangeSearch.bind(this);
         this.onChangeBursaryFilter = this.onChangeBursaryFilter.bind(this);
@@ -66,135 +66,136 @@ export default class ListTrainee extends Component {
         this.onChangeSuspendedFilter = this.onChangeSuspendedFilter.bind(this);
         this.handleExpensesClick = this.handleExpensesClick.bind(this);
     }
-    
+
     componentDidMount() {
-        axios.get('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/')
+        axios.get('http://' + process.env.REACT_APP_AWS_IP + ':4000/trainee/')
             .then(response => {
-                this.setState({trainees: response.data});
+                this.setState({ trainees: response.data });
             })
-            .catch(function (error){
+            .catch(function (error) {
                 console.log(error);
             })
 
-            axios.get('http://' + process.env.REACT_APP_AWS_IP + ':4000/admin/staff/' + this.state.currentUser.token._id)
+        axios.get('http://' + process.env.REACT_APP_AWS_IP + ':4000/admin/staff/' + this.state.currentUser.token._id)
             .then(response => {
-              if(response.data === null){
-                authService.logout();
-                if (!authService.currentUserValue) {
-                  document.location.href = 'http://' + process.env.REACT_APP_AWS_IP + ':3000/login';
+                if (response.data === null) {
+                    authService.logout();
+                    if (!authService.currentUserValue) {
+                        document.location.href = 'http://' + process.env.REACT_APP_AWS_IP + ':3000/login';
+                    }
                 }
-              }
-              else{
-                this.setState({
-                  staffName: response.data.fname + " " + response.data.lname
-                })
-              }
+                else {
+                    this.setState({
+                        staffName: response.data.fname + " " + response.data.lname
+                    })
+                }
             });
     }
 
     // Added onChangeSearch(e) function. Needed for the search filter
-   onChangeSearch= (e) =>{
-            this.setState({
-                searchString: e,
-                selectedDate: e
-            });
+    onChangeSearch = (e) => {
+        this.setState({
+            searchString: e,
+            selectedDate: e
+        });
     }
-	toggle() {
+    toggle() {
         this.setState(prevState => ({
-          modal: !prevState.modal
+            modal: !prevState.modal
         }));
     }
 
-    onChangeMyTraineeFilter(e){
+    onChangeMyTraineeFilter(e) {
         var newVal = !this.state.filter.myTrainees
         console.log(newVal)
         var newFilter = this.state.filter
         newFilter.myTrainees = newVal
         this.setState({
-            filter : newFilter
+            filter: newFilter
         })
     }
-	
-	handleDayClick(day, { selected }) {
+
+    handleDayClick(day, { selected }) {
         const { selectedDays } = this.state;
         const { splitDays } = this.state;
         if (selected) {
-          const selectedIndex = selectedDays.findIndex(selectedDay =>
-            DateUtils.isSameDay(selectedDay, day)
-          );
-        selectedDays.splice(selectedIndex, 1);
-        splitDays.splice(selectedIndex, 1);
+            const selectedIndex = selectedDays.findIndex(selectedDay =>
+                DateUtils.isSameDay(selectedDay, day)
+            );
+            selectedDays.splice(selectedIndex, 1);
+            splitDays.splice(selectedIndex, 1);
         } else {
-          selectedDays.push(day);
-           splitDays.push(day.toString().split(" ", 4).toString());
+            selectedDays.push(day);
+            splitDays.push(day.toString().split(" ", 4).toString());
         }
         this.setState({ selectedDays });
-      }
+    }
 
-      handleDaysClicked(day) {
+    handleDaysClicked(day) {
         const range = DateUtils.addDayToRange(day, this.state.range);
         console.log(range);
         this.setState({
-            range: range});
+            range: range
+        });
         console.log(this.state.range);
-      }
-	  
-	  handleResetClick() {
+    }
+
+    handleResetClick() {
         this.setState({
             range: {
                 from: undefined,
                 to: undefined
             }
         });
-      }
-	  
-	  onChangeFilterSearch(e) {
+    }
+
+    onChangeFilterSearch(e) {
         this.setState({
             searchString: e.target.value
         });
     }
-	  
 
-	
-	
-    onChangeSuspendedFilter(e){
+
+
+
+    onChangeSuspendedFilter(e) {
         var newVal = !this.state.filter.suspended
         console.log(newVal)
         var newFilter = this.state.filter
         newFilter.suspended = newVal
         this.setState({
-            filter : newFilter
+            filter: newFilter
         })
     }
 
-    onChangeStatusFilter(e){
+    onChangeStatusFilter(e) {
         var newVal = e.target.value;
         var newFilter = this.state.filter
         newFilter.status = newVal
         this.setState({
-            filter : newFilter
+            filter: newFilter
         })
     }
 
-    onChangeBursaryFilter(e){
+    onChangeBursaryFilter(e) {
         var newVal = e.target.value;
         var newFilter = this.state.filter
         newFilter.bursary = newVal
         this.setState({
-            filter : newFilter
+            filter: newFilter
         })
     }
 
-    handleHistoryClick(e){
-        window.location.href="history/"+e.target.value   
+    handleHistoryClick(e) {
+        window.location.href = "history/" + e.target.value
     }
 
-    handleExpensesClick(e){
-        window.location.href="expenses/"+e.target.value
+    handleExpensesClick(e) {
+        window.location.href = "expenses/" + e.target.value
     }
 
 
-	
+
     render() {
         let splitDays = this.state.splitDays;
         let output = this.state.csv;
@@ -208,81 +209,101 @@ export default class ListTrainee extends Component {
         let search = this.state.searchString.trim().toLowerCase().replace(/\s+/g, '');
         let filter = this.state.filter;
         let staffName = this.state.staffName;
-        const {open} = this.state;
-        
-        if(search.length > 0){
-            trainees = trainees.filter(function(i){
-                if(i.trainee_fname.toLowerCase().match(search) ||
-                   i.trainee_lname.toLowerCase().match(search) ||
-                   i.status.toLowerCase().match(search)        ||
-                   i.added_By.toLowerCase().match(search)      ||
-                   i.bursary.toLowerCase().match(search)       ||
-                   i.trainee_email.toLowerCase().match(search) ||
-                   (i.trainee_fname.toLowerCase() + i.trainee_lname.toLowerCase() + i.trainee_email.toLowerCase()).match(search)){
+        const { open } = this.state;
+
+        if (search.length > 0) {
+            trainees = trainees.filter(function (i) {
+                if (i.trainee_fname.toLowerCase().match(search) ||
+                    i.trainee_lname.toLowerCase().match(search) ||
+                    i.status.toLowerCase().match(search) ||
+                    i.added_By.toLowerCase().match(search) ||
+                    i.bursary.toLowerCase().match(search) ||
+                    i.trainee_email.toLowerCase().match(search) ||
+                    (i.trainee_fname.toLowerCase() + i.trainee_lname.toLowerCase() + i.trainee_email.toLowerCase()).match(search)) {
                     return i;
                 }
+                else {
+                    return null;
+                }
             })
         }
-        if(filter.status !== 'All'){
-            trainees = trainees.filter(function(trainee){
-                if(trainee.status === filter.status){
+        if (filter.status !== 'All') {
+            trainees = trainees.filter(function (trainee) {
+                if (trainee.status === filter.status) {
                     return trainee;
                 }
-
-            })
-        }
-
-        if(filter.bursary !== 'All'){
-            trainees = trainees.filter(function(trainee){
-                if(trainee.bursary === filter.bursary){
-                    return trainee;
-                }
-
-            })
-        }
-
-        if(filter.myTrainees === true){
-            trainees = trainees.filter(function(trainee){
-                if(trainee.added_By === staffName){
-                    return trainee;
+                else {
+                    return null;
                 }
             })
         }
 
-        if(filter.suspended === false){
-            trainees = trainees.filter(function(trainee){
-                if(trainee.status !== 'Suspended'){
+        if (filter.bursary !== 'All') {
+            trainees = trainees.filter(function (trainee) {
+                if (trainee.bursary === filter.bursary) {
                     return trainee;
+                }
+                else {
+                    return null;
                 }
             })
         }
-		if(from !== undefined){
-            if(to === undefined){
-                trainees = trainees.filter(function(trainee){
+
+        if (filter.myTrainees === true) {
+            trainees = trainees.filter(function (trainee) {
+                if (trainee.added_By === staffName) {
+                    return trainee;
+                }
+                else {
+                    return null;
+                }
+            })
+        }
+
+        if (filter.suspended === false) {
+            trainees = trainees.filter(function (trainee) {
+                if (trainee.status !== 'Suspended') {
+                    return trainee;
+                }
+                else {
+                    return null;
+                }
+            })
+        }
+        if (from !== undefined) {
+            if (to === undefined) {
+                trainees = trainees.filter(function (trainee) {
                     let start = new Date(Date.parse(trainee.trainee_start_date));
-                    if(DateUtils.isSameDay(start, from)){
-                         return trainee;
+                    if (DateUtils.isSameDay(start, from)) {
+                        return trainee;
+                    }
+                    else {
+                        return null;
                     }
                 })
             }
-            else if(to !== undefined){
-                trainees = trainees.filter(function(trainee){
+            else if (to !== undefined) {
+                trainees = trainees.filter(function (trainee) {
                     let start = new Date(Date.parse(trainee.trainee_start_date));
-                    if(DateUtils.isDayInRange(start, range)){
-                         return trainee;
+                    if (DateUtils.isDayInRange(start, range)) {
+                        return trainee;
+                    }
+                    else {
+                        return null;
                     }
                 })
             }
         }
-		
-		if(role === 'finance'){
+
+        if (role === 'finance') {
             output = [["Trainee/Payee Name", "Account Number", "Sort Code", "Total Value", "Decimal Place", "Append", "Data to Copy to Clipboard"]];
             out = [];
-            
-            trainees.map( t => {
+
+            trainees.map(t => {
                 let totalexpenses = 0;
                 t.monthly_expenses.map(expense => {
                     totalexpenses = +totalexpenses + +Number(expense.amount).toFixed(2);
+                    return totalexpenses;
                 })
                 var obj = [t.trainee_fname + ' ' + t.trainee_lname, t.trainee_account_no, t.trainee_sort_code, Number(t.bursary_amount * t.trainee_days_worked + totalexpenses).toFixed(2), "2", "00", "\""
                     + "\""
@@ -303,6 +324,8 @@ export default class ListTrainee extends Component {
                     + "\""
                     + "\""
                     + Number(t.bursary_amount * t.trainee_days_worked + totalexpenses).toFixed(2) + "\""
+                    + "\",\"\"BURSARY\"\",\"\"99\"\""
+                    /*
                     + "\""
                     + ','
                     + "\""
@@ -315,102 +338,69 @@ export default class ListTrainee extends Component {
                     + "\""
                     + "99"
                     + "\""
-                    + "\""];
-                var old = [t.trainee_sort_code,t.trainee_fname+' '+t.trainee_lname,t.trainee_account_no,Number(t.bursary_amount*t.trainee_days_worked + totalexpenses).toFixed(2),"BURSARY","99"];
-                if(t.status === 'Active'){
+                    + "\""
+                    */
+                ];
+                var old = [t.trainee_sort_code, t.trainee_fname + ' ' + t.trainee_lname, t.trainee_account_no, Number(t.bursary_amount * t.trainee_days_worked + totalexpenses).toFixed(2), "BURSARY", "99"];
+                if (t.status === 'Active') {
                     output.push(obj);
                     out.push(old);
                 }
-                }
+                return null;
+            }
             )
-        }else if(role === 'admin'){
-            output = [["First Name", "Last Name", "Bursary", "Days Worked", "Bursary Amount", "Expenses total for month","Total payment for month", "Start-Date", "End-Date", "Bench start", "Bench end"]];
-            trainees.map( t => {
-                    let totalexpenses = 0;
-                    t.monthly_expenses.map(expense => {
-                        totalexpenses = +totalexpenses + +Number(expense.amount).toFixed(2);
-                    })
-                    var obj = [t.trainee_fname, t.trainee_lname, t.bursary, t.trainee_days_worked,t.bursary_amount, t.monthly_expenses.length, Number((t.bursary_amount*t.trainee_days_worked)+totalexpenses).toFixed(2), moment(t.trainee_start_date).format('MMMM Do YYYY'), moment(t.trainee_end_date).format('MMMM Do YYYY'), moment(t.trainee_bench_start_date).format('MMMM Do YYYY'), moment(t.trainee_bench_end_date).format('MMMM Do YYYY')];
-                    output.push(obj);
-                }
+        } else if (role === 'admin') {
+            output = [["First Name", "Last Name", "Bursary", "Days Worked", "Bursary Amount", "Expenses total for month", "Total payment for month", "Start-Date", "End-Date", "Bench start", "Bench end"]];
+            trainees.map(t => {
+                let totalexpenses = 0;
+                t.monthly_expenses.map(expense => {
+                    totalexpenses = +totalexpenses + +Number(expense.amount).toFixed(2);
+                    return totalexpenses;
+                })
+                var obj = [t.trainee_fname, t.trainee_lname, t.bursary, t.trainee_days_worked, t.bursary_amount, t.monthly_expenses.length, Number((t.bursary_amount * t.trainee_days_worked) + totalexpenses).toFixed(2), moment(t.trainee_start_date).format('MMMM Do YYYY'), moment(t.trainee_end_date).format('MMMM Do YYYY'), moment(t.trainee_bench_start_date).format('MMMM Do YYYY'), moment(t.trainee_bench_end_date).format('MMMM Do YYYY')];
+                output.push(obj);
+                return obj;
+            }
             )
         }
-		
-        
+
+
         console.log(search.length);
-        if(search.length > 0){
-            if(role === 'finance'){
-                 output = [["First Name", "Last Name", "Email", "Bank Name", "Account Number", "Sort Number","Start-Date", "End-Date"]];
+        if (search.length > 0) {
+            if (role === 'finance') {
+                output = [["First Name", "Last Name", "Email", "Bank Name", "Account Number", "Sort Number", "Start-Date", "End-Date"]];
             }
-            else if(role === 'admin'){
-                 output = [["First Name", "Last Name", "Email", "Start-Date", "End-Date"]];
+            else if (role === 'admin') {
+                output = [["First Name", "Last Name", "Email", "Start-Date", "End-Date"]];
             }
             console.log(search);
             console.log(this.state.splitDays);
-            trainees = trainees.filter(function(i){
+            trainees = trainees.filter(function (i) {
                 if (splitDays.includes(i.trainee_start_date.split(" ", 4).toString())) {
                     var obj;
-                    if(role === 'finance'){
-                        obj =  [i.trainee_fname, i.trainee_lname, i.trainee_email, i.trainee_bank_name, i.trainee_account_no, i.trainee_sort_code, moment(i.trainee_start_date).format('MMMM Do YYYY'), moment(i.trainee_end_date).format('MMMM Do YYYY')];
+                    if (role === 'finance') {
+                        obj = [i.trainee_fname, i.trainee_lname, i.trainee_email, i.trainee_bank_name, i.trainee_account_no, i.trainee_sort_code, moment(i.trainee_start_date).format('MMMM Do YYYY'), moment(i.trainee_end_date).format('MMMM Do YYYY')];
                         output.push(obj);
                         console.log(output);
                         return i;
-                    } else if(role === 'admin'){
-                        obj =  [i.trainee_fname, i.trainee_lname, i.trainee_email, moment(i.trainee_start_date).format('MMMM Do YYYY'), moment(i.trainee_end_date).format('MMMM Do YYYY')];
+                    } else if (role === 'admin') {
+                        obj = [i.trainee_fname, i.trainee_lname, i.trainee_email, moment(i.trainee_start_date).format('MMMM Do YYYY'), moment(i.trainee_end_date).format('MMMM Do YYYY')];
                         output.push(obj);
                         console.log(output);
                         return i;
                     }
+
                 }
+                return null;
             })
         }
 
-		if (this.state.currentUser.token.role === undefined){
-			return (
-			<AccessDenied/>
-			)
-		}
-		else if(this.state.currentUser.token.role === 'recruiter'){
-			return (
-            <div className="QAtable">
-                <div className="QASearchBar">
-                    <input
-                        type="text"
-                        value={this.state.searchString}
-                        onChange={this.onChangeSearch}
-                        placeholder="Find trainee..."
-                    />
-                    <div id="addUser">
-                        <button className="qabtn"><Link className="link" to={"/create"}>Add Trainee</Link></button>            
-                    </div>
-                </div>
-
-                <table className="table table-striped" style={{ marginTop: 20 }} >
-                    <thead>
-                        <tr>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Email</th>
-                        </tr>
-                    </thead>               
-                    <tbody>
-                        {trainees.map(t => {
-                            return (
-                                <tr>
-                                    <td> {t.trainee_fname}</td>
-                                    <td> {t.trainee_lname}</td>
-                                    <td> {t.trainee_email}</td>
-                                </tr>
-                            );
-                        })}
-                    </tbody>
-
-                </table>
-            </div>
-        );
-			
+        if (this.state.currentUser.token.role === undefined) {
+            return (
+                <AccessDenied />
+            )
         }
-        else if(this.state.currentUser.token.role === 'admin'){
+        else if (this.state.currentUser.token.role === 'recruiter') {
             return (
                 <div className="QAtable">
                     <div className="QASearchBar">
@@ -419,249 +409,294 @@ export default class ListTrainee extends Component {
                             value={this.state.searchString}
                             onChange={this.onChangeSearch}
                             placeholder="Find trainee..."
-                            //search icon
                         />
-                    <button
-                    onClick={() => this.setState({ open: !open })}
-                    aria-controls="example-collapse-text"
-                    aria-expanded={open}
-                    className="filter-btn"
-                    >
-                    Filters
-                    <img src={filterIcon} alt="This is a filter icon"></img>
-                    </button>
-					<Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} /*className="dateModal"*/>
-                        <ModalHeader toggle={this.toggle} cssModule={{'modal-title':'w-100 text-center'}}>Select Start Dates</ModalHeader>
-                        <ModalBody cssModule={{'modal-body':'w-100 text-center'}}>
-                        <div className = "mod-body">
-                        <DayPicker
-                            className="Selectable"
-                            numberOfMonths={this.props.numberOfMonths}
-                            selectedDays={[from, { from, to }]}
-                            modifiers={modifiers}
-                            onDayClick={this.handleDaysClicked}
-                        />
-                        <p>
-                            {from &&
-                                to && (
-                                <button className="resetBtn" onClick={this.handleResetClick}>
-                                    Reset
-                                </button>
-                                )}
-                        </p>
+                        <div id="addUser">
+                            <button className="qabtn"><Link className="link" to={"/create"}>Add Trainee</Link></button>
                         </div>
-                        </ModalBody>
-                    </Modal>
-                    <div id="addUser">
-                       <Link className="link" to={"/create"}> <button className="qabtn">Add Trainee <img src={add} alt="this is an add icon"></img></button></Link>
-                       <Link className="link" to={"/trainee-settings"}><button className="qabtn">Settings <img src={settings} alt="this is a settings icon"></img></button></Link>
-					   <CSVLink className="link" data={output} filename={"Admin_report_" + moment().format('MMMM YYYY') + ".csv"}><button className="qabtn">Download CSV <img src={download} alt="this is a download icon"></img></button></CSVLink>					   
                     </div>
-                    <Collapse in={this.state.open}>
-                    <p>
-                        <br></br>
-                        <label>My Trainees</label> &nbsp;
-                        <input type="checkbox" value="MyTrainees" onClick={this.onChangeMyTraineeFilter}/> &nbsp;&nbsp;
-                        <label>Status</label> &nbsp;
-                        <select onChange={this.onChangeStatusFilter}>
-                            <option value="All">All</option>
-                            <option value="Pending">Pending</option>
-                            <option value="Incomplete">Incomplete</option>
-                            <option value="Active">Active</option>
-                        </select>&nbsp;&nbsp;
-                        <label>Bursary</label> &nbsp;
-                        <select onChange={this.onChangeBursaryFilter}>
-                            <option>All</option>
-                            <option value="True">True</option>
-                            <option value="False">False</option>
-                        </select>&nbsp;&nbsp;
-                        <label>Show Suspended</label> &nbsp;
-                        <input type="checkbox" value="Suspended" onClick={this.onChangeSuspendedFilter}/> &nbsp;&nbsp;
-						<button className="resetBtn" onClick={this.toggle}>Select Start Dates</button> &nbsp;&nbsp;
-                    </p>
-                    </Collapse>
-                    </div>
-                    <div id="resultsTable">
-                    <table className="table table-hover" style={{ marginTop: 20 }} >
+
+                    <table className="table table-striped" style={{ marginTop: 20 }} >
                         <thead>
                             <tr>
                                 <th>First Name</th>
                                 <th>Last Name</th>
-                                <th><center>Status</center></th>
-                                <th>Recruited By</th>
-								<th>Cohort</th>
-                                <th><center>Bursary</center></th>
-                                <th><center>Payment This Month</center></th>
-								<th><center>Start Date</center></th>
-                                <th><center>Action</center></th>
+                                <th>Email</th>
                             </tr>
-                        </thead>               
+                        </thead>
                         <tbody>
                             {trainees.map(t => {
-                                let deleteToggle = '';
-                                let deleteRoute = '';
-                                let expenses = 0;
-                                t.monthly_expenses.map(expense =>{
-                                    expenses += +Number(expense.amount).toFixed(2);
-                                })
-                                if(t.status === "Suspended"){
-                                    deleteToggle = "Reactivate";
-                                    deleteRoute = "reactivate";
-                                }
-                                else{
-                                    deleteToggle = "Suspend";
-                                    deleteRoute = "delete";
-                                }
                                 return (
-                                    <tr className="trainees">
-                                        <td onClick={() => window.location.href = "/editDates/" + t._id}> {t.trainee_fname}</td>
-                                        <td onClick={() => window.location.href = "/editDates/" + t._id}> {t.trainee_lname}</td>
-                                        <td onClick={() => window.location.href = "/editDates/" + t._id}> <center>{t.status}</center></td>
-                                        <td onClick={() => window.location.href = "/editDates/" + t._id}> {t.added_By}</td>
-										<td onClick={() => window.location.href = "/editDates/" + t._id}> {t.trainee_intake}</td>
-                                        <td onClick={() => window.location.href = "/editDates/" + t._id}> <center>{t.bursary}</center></td>
-                                        <td onClick={() => window.location.href = "/editDates/" + t._id}> <center>£{Number(t.bursary_amount * t.trainee_days_worked + expenses).toFixed(2)}</center></td>
-										<td> <center>{moment(t.trainee_start_date).format('MMMM Do YYYY')}</center></td>
-                                            <td>
-                                            <center><button className="actionBtn" onClick={() => { 
-                                                                if (window.confirm('Are you sure you wish to '+deleteToggle.toLowerCase()+' this trainee?'))
-                                                                axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/'+deleteRoute+'/'+t._id, {addedBy:this.state.currentUser.token._id}).then(() => window.location.reload()) } }>
-                                                                {deleteToggle}
-                                                                <img src={close} alt="This is a close icon"></img>
-                                                </button>&nbsp;
-                                                <button className="actionBtn" value={t._id} onClick={this.handleHistoryClick}>View History <img src={history} alt="This is a history icon"></img></button>&nbsp;
-                                                <button className="actionBtn" value={t._id} onClick={this.handleExpensesClick}> Expenses <img src={addmoney} alt="This is an add money icon"></img></button>&nbsp;
-                                                <a href={"mailto:"+t.trainee_email}><button className="actionBtn">Email <img src={mail} alt="this is an email icon"></img></button> </a>
-                                                <button className="actionBtn" onClick={() => { 
-                                                                axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/send-email/', {trainee_email: t.trainee_email}).then(() => window.alert("Email Sent!")) } }>
-                                                                Resend Activation Email 
-                                                                <img src={mail} alt="This is an email icon"></img>
-                                                </button>&nbsp;
-                                                </center>
-                                           </td>
-                                        </tr>
+                                    <tr>
+                                        <td> {t.trainee_fname}</td>
+                                        <td> {t.trainee_lname}</td>
+                                        <td> {t.trainee_email}</td>
+                                    </tr>
                                 );
                             })}
                         </tbody>
-    
+
                     </table>
+                </div>
+            );
+
+        }
+        else if (this.state.currentUser.token.role === 'admin') {
+            return (
+                <div className="QAtable">
+                    <div className="QASearchBar">
+                        <input
+                            type="text"
+                            value={this.state.searchString}
+                            onChange={this.onChangeSearch}
+                            placeholder="Find trainee..."
+                        //search icon
+                        />
+                        <button
+                            onClick={() => this.setState({ open: !open })}
+                            aria-controls="example-collapse-text"
+                            aria-expanded={open}
+                            className="filter-btn"
+                        >
+                            Filters
+                    <img src={filterIcon} alt="This is a filter icon"></img>
+                        </button>
+                        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} /*className="dateModal"*/>
+                            <ModalHeader toggle={this.toggle} cssModule={{ 'modal-title': 'w-100 text-center' }}>Select Start Dates</ModalHeader>
+                            <ModalBody cssModule={{ 'modal-body': 'w-100 text-center' }}>
+                                <div className="mod-body">
+                                    <DayPicker
+                                        className="Selectable"
+                                        numberOfMonths={this.props.numberOfMonths}
+                                        selectedDays={[from, { from, to }]}
+                                        modifiers={modifiers}
+                                        onDayClick={this.handleDaysClicked}
+                                    />
+                                    <p>
+                                        {from &&
+                                            to && (
+                                                <button className="resetBtn" onClick={this.handleResetClick}>
+                                                    Reset
+                                </button>
+                                            )}
+                                    </p>
+                                </div>
+                            </ModalBody>
+                        </Modal>
+                        <div id="addUser">
+                            <Link className="link" to={"/create"}> <button className="qabtn">Add Trainee <img src={add} alt="this is an add icon"></img></button></Link>
+                            <Link className="link" to={"/trainee-settings"}><button className="qabtn">Settings <img src={settings} alt="this is a settings icon"></img></button></Link>
+                            <CSVLink className="link" data={output} filename={"Admin_report_" + moment().format('MMMM YYYY') + ".csv"}><button className="qabtn">Download CSV <img src={download} alt="this is a download icon"></img></button></CSVLink>
+                        </div>
+                        <Collapse in={this.state.open}>
+                            <p>
+                                <br></br>
+                                <label>My Trainees</label> &nbsp;
+                        <input type="checkbox" value="MyTrainees" onClick={this.onChangeMyTraineeFilter} /> &nbsp;&nbsp;
+                        <label>Status</label> &nbsp;
+                        <select onChange={this.onChangeStatusFilter}>
+                                    <option value="All">All</option>
+                                    <option value="Pending">Pending</option>
+                                    <option value="Incomplete">Incomplete</option>
+                                    <option value="Active">Active</option>
+                                </select>&nbsp;&nbsp;
+                        <label>Bursary</label> &nbsp;
+                        <select onChange={this.onChangeBursaryFilter}>
+                                    <option>All</option>
+                                    <option value="True">True</option>
+                                    <option value="False">False</option>
+                                </select>&nbsp;&nbsp;
+                        <label>Show Suspended</label> &nbsp;
+                        <input type="checkbox" value="Suspended" onClick={this.onChangeSuspendedFilter} /> &nbsp;&nbsp;
+						<button className="resetBtn" onClick={this.toggle}>Select Start Dates</button> &nbsp;&nbsp;
+                    </p>
+                        </Collapse>
+                    </div>
+                    <div id="resultsTable">
+                        <table className="table table-hover" style={{ marginTop: 20 }} >
+                            <thead>
+                                <tr>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th><center>Status</center></th>
+                                    <th>Recruited By</th>
+                                    <th>Cohort</th>
+                                    <th><center>Bursary</center></th>
+                                    <th><center>Payment This Month</center></th>
+                                    <th><center>Start Date</center></th>
+                                    <th><center>Action</center></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {trainees.map(t => {
+                                    let deleteToggle = '';
+                                    let deleteRoute = '';
+                                    let expenses = 0;
+                                    t.monthly_expenses.map(expense => {
+                                        expenses += +Number(expense.amount).toFixed(2);
+                                        return expenses;
+                                    })
+                                    if (t.status === "Suspended") {
+                                        deleteToggle = "Reactivate";
+                                        deleteRoute = "reactivate";
+                                    }
+                                    else {
+                                        deleteToggle = "Suspend";
+                                        deleteRoute = "delete";
+                                    }
+                                    return (
+                                        <tr className="trainees">
+                                            <td onClick={() => window.location.href = "/editDates/" + t._id}> {t.trainee_fname}</td>
+                                            <td onClick={() => window.location.href = "/editDates/" + t._id}> {t.trainee_lname}</td>
+                                            <td onClick={() => window.location.href = "/editDates/" + t._id}> <center>{t.status}</center></td>
+                                            <td onClick={() => window.location.href = "/editDates/" + t._id}> {t.added_By}</td>
+                                            <td onClick={() => window.location.href = "/editDates/" + t._id}> {t.trainee_intake}</td>
+                                            <td onClick={() => window.location.href = "/editDates/" + t._id}> <center>{t.bursary}</center></td>
+                                            <td onClick={() => window.location.href = "/editDates/" + t._id}> <center>£{Number(t.bursary_amount * t.trainee_days_worked + expenses).toFixed(2)}</center></td>
+                                            <td> <center>{moment(t.trainee_start_date).format('MMMM Do YYYY')}</center></td>
+                                            <td>
+                                                <center><button className="actionBtn" onClick={() => {
+                                                    if (window.confirm('Are you sure you wish to ' + deleteToggle.toLowerCase() + ' this trainee?'))
+                                                        axios.post('http://' + process.env.REACT_APP_AWS_IP + ':4000/trainee/' + deleteRoute + '/' + t._id, { addedBy: this.state.currentUser.token._id }).then(() => window.location.reload())
+                                                }}>
+                                                    {deleteToggle}
+                                                    <img src={close} alt="This is a close icon"></img>
+                                                </button>&nbsp;
+                                                <button className="actionBtn" value={t._id} onClick={this.handleHistoryClick}>View History <img src={history} alt="This is a history icon"></img></button>&nbsp;
+                                                <button className="actionBtn" value={t._id} onClick={this.handleExpensesClick}> Expenses <img src={addmoney} alt="This is an add money icon"></img></button>&nbsp;
+                                                <a href={"mailto:" + t.trainee_email}><button className="actionBtn">Email <img src={mail} alt="this is an email icon"></img></button> </a>
+                                                    <button className="actionBtn" onClick={() => {
+                                                        axios.post('http://' + process.env.REACT_APP_AWS_IP + ':4000/trainee/send-email/', { trainee_email: t.trainee_email }).then(() => window.alert("Email Sent!"))
+                                                    }}>
+                                                        Resend Activation Email
+                                                                <img src={mail} alt="This is an email icon"></img>
+                                                    </button>&nbsp;
+                                                </center>
+                                            </td>
+                                        </tr>
+                                    );
+                                })}
+                            </tbody>
+
+                        </table>
                     </div>
                 </div>
             );
         }
-        else{
-        return (
-            <div className="QAtable">
-                <div className="QASearchBar">
-                    <input
-                        type="text"
-                        value={this.state.searchString}
-                        onChange={this.onChangeSearch}
-                        placeholder="Find trainee..."
-                    />
-                    <button
-                    onClick={() => this.setState({ open: !open })}
-                    aria-controls="example-collapse-text"
-                    aria-expanded={open}
-                    className="filter-btn"
-                    >
-                    Filters
+        else {
+            return (
+                <div className="QAtable">
+                    <div className="QASearchBar">
+                        <input
+                            type="text"
+                            value={this.state.searchString}
+                            onChange={this.onChangeSearch}
+                            placeholder="Find trainee..."
+                        />
+                        <button
+                            onClick={() => this.setState({ open: !open })}
+                            aria-controls="example-collapse-text"
+                            aria-expanded={open}
+                            className="filter-btn"
+                        >
+                            Filters
                     <img src={filterIcon} alt="This is a filter icon"></img>
-                    </button>
-					<Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} /*className="dateModal"*/>
-                            <ModalHeader toggle={this.toggle} cssModule={{'modal-title':'w-100 text-center'}}>Select Start Dates</ModalHeader>
-                            <ModalBody cssModule={{'modal-body':'w-100 text-center'}}>
-                            <p>
-                            {from &&
-                                to && (
-                                <button className="resetBtn" onClick={this.handleResetClick}>
-                                    Reset
+                        </button>
+                        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} /*className="dateModal"*/>
+                            <ModalHeader toggle={this.toggle} cssModule={{ 'modal-title': 'w-100 text-center' }}>Select Start Dates</ModalHeader>
+                            <ModalBody cssModule={{ 'modal-body': 'w-100 text-center' }}>
+                                <p>
+                                    {from &&
+                                        to && (
+                                            <button className="resetBtn" onClick={this.handleResetClick}>
+                                                Reset
                                 </button>
-                                )}
-                            </p>
-                            <DayPicker
-                                className="Selectable"
-                                numberOfMonths={this.props.numberOfMonths}
-                                selectedDays={[from, { from, to }]}
-                                modifiers={modifiers}
-                                onDayClick={this.handleDaysClicked}
-                            />
+                                        )}
+                                </p>
+                                <DayPicker
+                                    className="Selectable"
+                                    numberOfMonths={this.props.numberOfMonths}
+                                    selectedDays={[from, { from, to }]}
+                                    modifiers={modifiers}
+                                    onDayClick={this.handleDaysClicked}
+                                />
                                 {/* <DayPicker
                                     selectedDays={this.state.selectedDays}
                                     onDayClick={this.handleDayClick}
                                 /> */}
                             </ModalBody>
                         </Modal>
-						<div id="addUser">
+                        <div id="addUser">
                             <CSVLink className="link" data={output} filename={"Finance_report_template_" + moment().format('MMMM YYYY') + ".csv"}><button className="qabtn">CSV template<img src={download} alt="This is a download icon"></img></button></CSVLink>
-                        <CSVLink className="link" data={out} filename={"Finance_report_" + moment().format('MMMM YYYY') + ".csv"}><button className="qabtn">Download CSV<img src={download} alt="This is a download icon"></img></button></CSVLink>
+                            <CSVLink className="link" data={out} filename={"Finance_report_" + moment().format('MMMM YYYY') + ".csv"}><button className="qabtn">Download CSV<img src={download} alt="This is a download icon"></img></button></CSVLink>
                         </div>
-                    <Collapse in={this.state.open}>
-                    <p>
-                        <br></br>
-                        <label>Status</label> &nbsp;
+                        <Collapse in={this.state.open}>
+                            <p>
+                                <br></br>
+                                <label>Status</label> &nbsp;
                         <select onChange={this.onChangeStatusFilter}>
-                            <option value="All">All</option>
-                            <option value="Pending">Pending</option>
-                            <option value="Incomplete">Incomplete</option>
-                            <option value="Active">Active</option>
-                        </select>&nbsp;&nbsp;
+                                    <option value="All">All</option>
+                                    <option value="Pending">Pending</option>
+                                    <option value="Incomplete">Incomplete</option>
+                                    <option value="Active">Active</option>
+                                </select>&nbsp;&nbsp;
                         <label>Bursary</label> &nbsp;
                         <select onChange={this.onChangeBursaryFilter}>
-                            <option>All</option>
-                            <option value="True">True</option>
-                            <option value="False">False</option>
-                        </select>&nbsp;&nbsp;
+                                    <option>All</option>
+                                    <option value="True">True</option>
+                                    <option value="False">False</option>
+                                </select>&nbsp;&nbsp;
 						<button className="resetBtn" onClick={this.toggle}>Select Start Dates</button> &nbsp;&nbsp;
                     </p>
-                    </Collapse>
-                </div>
-                <div id="resultsTable">
-                <table className="table table-hover" style={{ marginTop: 20 }} >
-                    <thead>
-                        <tr>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th><center>Status</center></th>
-                            <th><center>Bursary</center></th>
-							<th><center>Start Date</center></th>
-                            <th><center>Payment This Month</center></th>
-                            <th><center>Action</center></th>
-                        </tr>
-                    </thead>               
-                    <tbody>
-                        {trainees.map(t => {
-                            let expenses = 0;
-                            t.monthly_expenses.map(expense => {
-                                expenses += +Number(expense.amount).toFixed(2);
-                            })
-							if(this.state.currentUser.token.role === 'finance'){
-                                if(t.status !== "Suspended"){
-                                    return (
-                                        <tr className="trainees">
-                                            <td onClick={() => window.location.href = "/trainee-details/" + t._id}> {t.trainee_fname}</td>
-                                            <td onClick={() => window.location.href = "/trainee-details/" + t._id}> {t.trainee_lname}</td>
-                                            <td onClick={() => window.location.href = "/trainee-details/" + t._id}> <center>{t.status}</center></td>
-                                            <td onClick={() => window.location.href = "/trainee-details/" + t._id}> <center>{t.bursary}</center></td>
-											<td onClick={() => window.location.href = "/trainee-details/" + t._id}> <center>{moment(t.trainee_start_date).format('MMMM Do YYYY')}</center></td>
-                                            <td onClick={() => window.location.href = "/trainee-details/" + t._id}> <center>£{Number(t.bursary_amount * t.trainee_days_worked + expenses).toFixed(2)}</center></td>
-                                            <td> 
-                                                <center>
-                                                <button className="actionBtn" onClick={() => window.location.href = "/trainee-details/" + t._id}> View Details <img src={eye} alt="This is an eye"></img></button>&nbsp;
+                        </Collapse>
+                    </div>
+                    <div id="resultsTable">
+                        <table className="table table-hover" style={{ marginTop: 20 }} >
+                            <thead>
+                                <tr>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th><center>Status</center></th>
+                                    <th><center>Bursary</center></th>
+                                    <th><center>Start Date</center></th>
+                                    <th><center>Payment This Month</center></th>
+                                    <th><center>Action</center></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {trainees.map(t => {
+                                    let expenses = 0;
+                                    t.monthly_expenses.map(expense => {
+                                        expenses += +Number(expense.amount).toFixed(2);
+                                        return expenses;
+                                    })
+                                    if (this.state.currentUser.token.role === 'finance') {
+                                        if (t.status !== "Suspended") {
+                                            return (
+                                                <tr className="trainees">
+                                                    <td onClick={() => window.location.href = "/trainee-details/" + t._id}> {t.trainee_fname}</td>
+                                                    <td onClick={() => window.location.href = "/trainee-details/" + t._id}> {t.trainee_lname}</td>
+                                                    <td onClick={() => window.location.href = "/trainee-details/" + t._id}> <center>{t.status}</center></td>
+                                                    <td onClick={() => window.location.href = "/trainee-details/" + t._id}> <center>{t.bursary}</center></td>
+                                                    <td onClick={() => window.location.href = "/trainee-details/" + t._id}> <center>{moment(t.trainee_start_date).format('MMMM Do YYYY')}</center></td>
+                                                    <td onClick={() => window.location.href = "/trainee-details/" + t._id}> <center>£{Number(t.bursary_amount * t.trainee_days_worked + expenses).toFixed(2)}</center></td>
+                                                    <td>
+                                                        <center>
+                                                            <button className="actionBtn" onClick={() => window.location.href = "/trainee-details/" + t._id}> View Details <img src={eye} alt="This is an eye"></img></button>&nbsp;
                                                 <a href={"mailto:" + t.trainee_email}><button className="actionBtn">Email <img src={mail} alt="This is an email icon"></img></button> </a>
-                                                </center>
-                                            </td>
-                                        </tr>
-                                    );
-                                }
-							}
-                        })}
-                    </tbody>
+                                                        </center>
+                                                    </td>
+                                                </tr>
+                                            );
+                                        }
+                                    }
+                                        return null;
+                                })}
+                            </tbody>
 
-                </table>
+                        </table>
+                    </div>
                 </div>
-            </div>
-        );
-		}
-	}
+            );
+        }
+    }
 }

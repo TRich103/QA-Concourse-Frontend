@@ -103,9 +103,9 @@ export default class TraineeExpenses extends Component {
                 {
                     let nextExpense = {"amount":expenses.amount,"type":expenses.expenseType};
             
-                    this.state.expArray.push(nextExpense);
-                }
-                )
+                this.state.expArray.push(nextExpense);
+                return expenses;
+            })
             console.log(response)
         })
     };

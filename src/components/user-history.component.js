@@ -39,7 +39,8 @@ export default class UserRecord extends Component {
                 let searchValues = Object.values(record);
                     if(searchValues.join('').toLowerCase().match(event.replace(/ /g,'').toLowerCase())){
                         searchResults.push(record);            
-                     }                
+                }      
+                return null;
             })
             this.setState({ searchResults : searchResults });
             console.log(searchResults);
@@ -140,8 +141,11 @@ export default class UserRecord extends Component {
                 else if(to !== undefined){
                     record = record.filter(function(record){
                         let start = new Date(Date.parse(record.timestamp));
-                        if(DateUtils.isDayInRange(start, range)){
-                             return record;
+                        if (DateUtils.isDayInRange(start, range)) {
+                            return record;
+                        }
+                        else {
+                            return null;
                         }
                     })
                 }

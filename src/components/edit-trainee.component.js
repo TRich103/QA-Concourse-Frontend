@@ -344,7 +344,7 @@ export default class EditTrainee extends Component {
                                     onChange={this.onChangeTraineeSort}
                                     required minLength = {6}
                                     />
-                            <img id="sortImg" alt="Sort Image"></img>
+                            <img id="sortImg" alt="Sort Icon"></img>
                         </div>
                         
                     </div>
@@ -361,7 +361,7 @@ export default class EditTrainee extends Component {
                                     onChange={this.onChangeTraineeAccount}
                                     required minLength = {8}
                                     />
-                            <img id="accountImg" alt="Accoount Image"></img> 
+                            <img id="accountImg" alt="Acount Icon"></img> 
                         </div>
                     </div>
                     {show_matching_bank ?

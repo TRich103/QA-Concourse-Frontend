@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">54.1% </span>
+        <span class="strong">53.97% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>33/61</span>
+        <span class='fraction'>34/63</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">30.43% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>9/17</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">53.33% </span>
+        <span class="strong">53.23% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>32/60</span>
+        <span class='fraction'>33/62</span>
       </div>
     </div>
   </div>
@@ -234,7 +234,11 @@
 189
 190
 191
-192</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+192
+193
+194
+195
+196</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -284,6 +288,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -365,6 +370,9 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -428,7 +436,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { Component } from 'react';
 import axios from 'axios';
 import '../css/history.css';
-import { authService } from './modules/authService';
+//import { authService } from './modules/authService';
 import AccessDenied from './modules/AccessDenied';
 import moment from 'moment';
 import QAGenericTable from './components/table-component/qa-table.component';
@@ -475,6 +483,7 @@ export default class UserRecord extends Component {
             
 <span class="cstat-no" title="statement not covered" >            this.setState({searchResults: this.state.record})</span>
         }
+        return null;
     };
 &nbsp;
     handleDaysClicked(day) {
@@ -548,19 +557,22 @@ export default class UserRecord extends Component {
             let range = this.state.range;
             let recordOf = this.state.recordOf;
             let userType = this.state.userType;
-            if(from != undefined){
-                <span class="missing-if-branch" title="else path not taken" >E</span>if(to == undefined){
+            if(from !== undefined){
+                <span class="missing-if-branch" title="else path not taken" >E</span>if(to === undefined){
                     record = record.filter(<span class="fstat-no" title="function not covered" >fu</span>nction(record){
                         let start = <span class="cstat-no" title="statement not covered" >new Date(Date.parse(record.timestamp));</span>
 <span class="cstat-no" title="statement not covered" >                        console.log(start);</span>
 <span class="cstat-no" title="statement not covered" >                        console.log(from);</span>
 <span class="cstat-no" title="statement not covered" >                        console.log(DateUtils.isSameDay(start, from));</span>
-<span class="cstat-no" title="statement not covered" >                        if(DateUtils.isSameDay(start, from)){</span>
-<span class="cstat-no" title="statement not covered" >                             return record;</span>
+<span class="cstat-no" title="statement not covered" >                        if (DateUtils.isSameDay(start, from)) {</span>
+<span class="cstat-no" title="statement not covered" >                            return record;</span>
+                        }
+                        else {
+<span class="cstat-no" title="statement not covered" >                            return "";</span>
                         }
                     })
                 }
-                else <span class="cstat-no" title="statement not covered" >if(to!= undefined){</span>
+                else <span class="cstat-no" title="statement not covered" >if(to !== undefined){</span>
 <span class="cstat-no" title="statement not covered" >                    record = record.filter(<span class="fstat-no" title="function not covered" >fu</span>nction(record){</span>
                         let start = <span class="cstat-no" title="statement not covered" >new Date(Date.parse(record.timestamp));</span>
 <span class="cstat-no" title="statement not covered" >                        if(DateUtils.isDayInRange(start, range)){</span>
@@ -622,7 +634,7 @@ export default class UserRecord extends Component {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Jul 09 2019 12:05:45 GMT+0100 (British Summer Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Thu Jul 11 2019 15:22:27 GMT+0100 (British Summer Time)
 </div>
 </div>
 <script src="..\prettify.js"></script>
