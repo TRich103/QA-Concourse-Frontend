@@ -15,6 +15,8 @@ import MomentLocaleUtils, {
     formatDate,
   } from 'react-day-picker/moment';
 import CreatableSelect from 'react-select/creatable';
+import QAForm2 from "./components/form-component/qa-form.component";
+
 export default class CreateTrainee extends Component {
     
     constructor(props) {
@@ -439,7 +441,6 @@ export default class CreateTrainee extends Component {
                             })
                                 .then((response) => {
                                     console.log(response.data);
-                                    this.props.history.push('/');
                                     window.location.reload();
                                 });
                         }
@@ -454,12 +455,12 @@ export default class CreateTrainee extends Component {
 		   < AccessDenied />
 	   );} else{
         return (
-            <div className="createTrainee" style={{marginLeft: 200, marginRight: 200}}>
+            <div className="createTrainee">
                 <form className="createTraineeForm" onSubmit={this.onSubmit}>
                     <h3 className="title">Add Trainee</h3>
                     <div><center><button id="cancelBtn" onClick={() => {this.state.form_cancel = true; document.location.href = "/"; }}>Cancel</button></center></div>
-                    <div className="text-input-fields">
-                        <div className="form-group"> 
+                    <div className="grid-container">
+                        <div className="gird-item"> 
                             <label>First Name: </label>
                             <input  type="text"
                                     className="form-control"
@@ -467,7 +468,7 @@ export default class CreateTrainee extends Component {
                                     onChange={this.onChangeTraineeFname}
                                     required/>
                         </div>
-                        <div className="form-group"> 
+                        <div className="gird-item"> 
                             <label>Last Name: </label>
                             <input  type="text"
                                     className="form-control"
@@ -475,7 +476,16 @@ export default class CreateTrainee extends Component {
                                     onChange={this.onChangeTraineeLname}
                                     required/>
                         </div>
-                        <div className="form-group"> 
+						<div className="gird-item">
+                            <label>Gender: </label>
+                            <select value={this.state.gender} className="form-control" onChange={this.onSelectGender} required>
+                                <option selected value="">Select gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Prefer Not to Say">Prefer not to say</option>
+                            </select>
+                        </div>
+                        <div className="gird-item"> 
                             <label>Phone Number: </label>
                             <input  type="number"
                                     className="form-control"
@@ -484,7 +494,7 @@ export default class CreateTrainee extends Component {
                                     onChange={this.onChangePhone}
                                     required/>
                         </div>
-                        <div className="form-group">
+                        <div className="gird-item">
                             <label>Email: </label>
                             <input 
                                     type="email" 
@@ -493,23 +503,8 @@ export default class CreateTrainee extends Component {
                                     onChange={this.onChangeTraineeEmail}
                                     required/>
                         </div>
-                        <div className="form-group">
-                            <label>Gender: </label>
-                            <select className="form-control" value={this.state.gender} onChange={this.onSelectGender} required>
-                                <option selected value="">Select gender</option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                                <option value="Prefer Not to Say">Prefer not to say</option>
-                            </select>
-                        </div>
-                        <div className="form-group">
-                            <label>University: </label>
-                            &nbsp;&nbsp;
-                            <input type="checkbox" onClick={this.onClickUniversity}/>
-                            <Collapse in={this.state.university}>
-                            <div>
-                                    <div id="uniDetails">
-                                    <label>University Name:</label>
+                        <div className="gird-item">
+                         <label>University Name:</label>
                                     &nbsp;&nbsp;
                                     <input
                                         type="text"
@@ -518,7 +513,8 @@ export default class CreateTrainee extends Component {
                                         onChange={this.onChangeUniName}
                                         />
                                     </div>
-                                    <div id="uniDetails">
+									
+                                    <div className="gird-item">
                                     <label>Degree Name:</label>
                                     <input
                                         type="text"
@@ -537,9 +533,6 @@ export default class CreateTrainee extends Component {
                                         onDayChange={this.onChangeDateAchieved}
                                     />
                                     </div> */}
-                                </div>
-                            </Collapse>
-                        </div>
                         {/* <div className="form-group"> 
                             <label>Languages Spoken: </label>
                             <input  type="text"
@@ -548,14 +541,14 @@ export default class CreateTrainee extends Component {
                                     onChange={this.onChangeLanguage}
                                     required/>
                         </div> */}
-                        <div className="form-group">
+                        <div className="gird-item">
                             <label>Geo-Flex :</label>
                             <select className="form-control" value={this.state.geoFlex} onChange={this.onChangeGeoFlex} required>
                                 <option selected value="Yes">Yes</option>
                                 <option value="No">No</option>
                             </select>
                         </div>
-                        <div className="form-group">
+                        <div className="gird-item">
                             <label>Security Clearance :</label>
                             <select className="form-control" value={this.state.clearance} onChange={this.onChangeClearance} required>
                                 <option selected value="None">None</option>
@@ -565,32 +558,34 @@ export default class CreateTrainee extends Component {
                                 <option value="NPPV3">NPPV3</option>
                             </select>
                         </div>
-                        <div>
+                        <div className="grid-item">
                             <label>Technology :</label>
-                            &nbsp;&nbsp;
                             <CreatableSelect
                             placeholder="Select technology"
                             onChange={this.handleChange}
                             options={this.state.tech}
+							
                             />
+						</div>
+						&nbsp;
+						<div className="grid-item">
                             <label>Cohort / Intake :</label>
-                            &nbsp;&nbsp;
+                            &nbsp;
                             <CreatableSelect
                             placeholder="Select or Create a new Intake"
                             onChange={this.handleCohort}
                             options={this.state.intakes}
                             />
                         </div>
-                    </div>
-					&nbsp;&nbsp;
-                    <div className="form-group">
+					</div>
+                    <div>
                         <label> Bursary: </label>
 						&nbsp;&nbsp;
                         <input type="checkbox" id="bursaryValue" onClick={this.onClickBursary}/>
                     </div>
-
+					
                     <Collapse in={this.state.open}>
-                    <div className="form-group">
+                    <div>
                         <label>Bursary Amount:</label>
                         <br />
 						&nbsp;&nbsp;
@@ -601,8 +596,8 @@ export default class CreateTrainee extends Component {
                                     required/>
                     </div>
                     </Collapse>
-				                    
-					<div className="form-group" >
+			<div className="grid-wrapper">                
+					<div className="grid-dates" >
                         <label> Training Start Date</label>
                         <div style={{height: '50px'}}>
                         <DayPickerInput
@@ -619,7 +614,9 @@ export default class CreateTrainee extends Component {
                                 },
                             }} 
                         />
+						   </div>
                         </div>
+						<div className="grid-dates">
                         <label> Training End Date </label>
                         <div style={{height: '50px'}}>
                             <DayPickerInput
@@ -636,7 +633,9 @@ export default class CreateTrainee extends Component {
                                     },
                                 }}
                             />
+							</div>
                         </div>
+						<div className="grid-dates">
 						<label> Bench Start Date </label>
 						<div style={{height: '50px'}}>
                             <DayPickerInput
@@ -653,7 +652,9 @@ export default class CreateTrainee extends Component {
                                     },
                                 }}
                             />
+							</div>
                         </div>
+						<div className="grid-dates">
 						<label> Bench End Date </label>
 						<div style={{height: '50px'}}>
                             <DayPickerInput
@@ -670,12 +671,14 @@ export default class CreateTrainee extends Component {
                                     },
                                 }}
                             />
-                        </div>
+							</div>
                     </div>
-
-                    <div className="form-group">
+				</div>
+				<div>
+                    <div>
                         <input id="createTraineeBtn" type="submit" value="Add Trainee" className="btn btn-primary" />
                     </div>
+				</div>
                 </form>
             </div>
         )

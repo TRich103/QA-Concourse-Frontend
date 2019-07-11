@@ -1,15 +1,14 @@
 .createTrainee{
+	width:80%;
+	height:900px;
+	margin-left:auto;
+	margin-right:auto;
     background-color: white;
-    margin-top:5%;
-    border-radius: 4px;
-    
 }
 
 .createTraineeForm{
     height: 80%;
     width: 100%;
-    margin-right: auto;
-    margin-left: auto;
     padding-top: 5%;
     padding-bottom: 5%;
 }
@@ -21,10 +20,30 @@
 .title{
     margin-left: 5%;
 }
-
+.grid-container{
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding: 10px;
+}
+.gird-item{
+  border: none;
+  padding: 20px;
+  font-size: 16px;
+}
+.grid-dates{
+	border: none;
+	position:center;
+	float:left;
+	margin-left:10%;
+	padding: 20px;
+}
+.grid-wrapper{
+	display:grid;
+	  grid-template-columns: auto auto auto auto;
+	  padding:10px;
+}
 .text-input-fields {
     width: 55%;
-    text-align: center;
     margin-left: auto;
     margin-right: auto;
 }
@@ -32,14 +51,11 @@
 #createTraineeBtn {
 	background-color: #005b72;
 	width: 30%;
-    margin-left: auto;
-    margin-right: auto;
 	text-transform: capitalize;
 	font-family: "Roboto", sans-serif;
 }
 
 #createTraineeBtn:hover {
+	color:#005b72;
     background-color: white;
-    color: #004050;
-    border: 1px solid #004050;
 }
