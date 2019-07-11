@@ -29,7 +29,8 @@ export default class QATable extends React.Component {
     setTableData(tableData){
         let columns =[];
         tableData.Headers.map(column =>{
-            columns.push({Header: column.header, accessor: column.header, width: column.width})
+            columns.push({ Header: column.header, accessor: column.header, width: column.width })
+            return null;
         })
         this.setState({
             tableRows: tableData.Rows,

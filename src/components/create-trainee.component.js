@@ -358,17 +358,19 @@ export default class CreateTrainee extends Component {
                 alert('The end date is before the start date, please resolve this before creating the trainee');
                 break;
             case "tooloworhigh":
-                var dateWarning = window.confirm("The dates you have entered are unusually high or low. Are you sure you want to proceed?");
-                
-				if (dateWarning === false){
-                break;
-                }
-            case "toomuchbursary":
-                var dateWarning = window.confirm("Are you sure you want to give this trainee a bursary of more than £100 daily?");
-    
-                if(dateWarning === false){
+                var dateWarning1 = window.confirm("The dates you have entered are unusually high or low. Are you sure you want to proceed?");
+
+                if (dateWarning1 === false) {
                     break;
                 }
+                break;
+            case "toomuchbursary":
+                var dateWarning2 = window.confirm("Are you sure you want to give this trainee a bursary of more than £100 daily?");
+
+                if (dateWarning2 === false) {
+                    break;
+                }
+                break;
             default:
             console.log(`Form submitted:`);
             console.log("this is the bursary amount of state : "+this.state.bursary_amount);
