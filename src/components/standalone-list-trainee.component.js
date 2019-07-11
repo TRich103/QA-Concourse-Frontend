@@ -250,10 +250,10 @@ export default class ListTrainee extends Component {
 		trainees.map( t => {
         if(t.status === 'Pending'|| t.status === 'Incomplete'){
         }else if(moment(t.trainee_bench_start_date).isAfter(moment().format('MMMM YYYY'))){
-                            t.status = "Bench";
+                            t.status = "Training";
                         }
                         else{
-                            t.status = "Training";
+                            t.status = "Bench";
                         }
 			let _id = t._id
 			let name= t.trainee_fname + t.trainee_lname
