@@ -13,6 +13,7 @@ import eye from './icons/eye.svg';
 import settings from './icons/settings.svg';
 import addmoney from './icons/add.svg';
 import mail from './icons/envelope.svg';
+import QATable from '../components/components/table-component/qa-table.component';
 //new imports
 import "react-datepicker/dist/react-datepicker.css";
 import { CSVLink } from "react-csv";
@@ -24,6 +25,7 @@ import download from './icons/download.svg';
 
 import CreateTrainee from "./create-trainee.component";
 import TraineeSettings from "./TraineeSettings.component";
+import EditDates from "./edit-dates.component";
 import EditTrainee from "./edit-trainee.component";
 import userExpense from "./expenses-trainee.component"
 import { Button, ButtonGroup } from 'reactstrap';
@@ -75,7 +77,9 @@ export default class ListTrainee extends Component {
     componentDidMount() {
         axios.get('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/')
             .then(response => {
-                this.setState({trainees: response.data});
+                this.setState({
+					trainees: response.data,
+					});
             })
             .catch(function (error){
                 console.log(error);
@@ -215,12 +219,97 @@ export default class ListTrainee extends Component {
         let splitDays = this.state.splitDays;
         let output = this.state.csv;
         let out = this.state.csvN;
-        let role = this.state.currentUser.token.role;
+        let role = this.state.currentUser.token.role; 
         let range = this.state.range;
         const { from, to } = this.state.range;
         const modifiers = { start: from, end: to };
+		let headers = [{ 'header': 'Cohort', 'width': 100 }, { 'header': 'Name', 'width': 100 }, {'header': 'Status', 'width': 100},
+            { 'header': 'Recruited By', 'width': 100 }, { 'header': 'Bursary', 'width': 100 }, { 'header': 'Payment This Month', 'width': 150 },
+			{ 'header': 'Training Start Date', 'width': 200 }, { 'header': 'Training End Date', 'width': 200 },
+			{ 'header': 'Bench Start Date', 'width': 200 },{ 'header': 'Bench End Date', 'width': 200 }, { 'header': 'Action', 'width': 800 } ]
+		let rows = []
+		let trainees = this.state.trainees;
+		trainees.map( t => {
+        if(t.status === 'Pending'|| t.status === 'Incomplete'){
+        }else if(moment(t.trainee_bench_start_date).isAfter(moment().format('MMMM YYYY'))){
+                            t.status = "Bench";
+                        }
+                        else{
+                            t.status = "Training";
+                        }
+			let _id = t._id
+			let name= t.trainee_fname + t.trainee_lname
+            let expenses = 0;
+			let deleteToggle = '';
+            let deleteRoute = '';
+          t.monthly_expenses.map(expense =>{
+                  expenses += +Number(expense.amount).toFixed(2);
+                })
+                if(t.status === "Suspended"){
+                    deleteToggle = "Reactivate";
+                    deleteRoute = "reactivate";
+                }else{
+                      deleteToggle = "Suspend";
+                      deleteRoute = "delete";
+                }
+				if(this.state.currentUser.token.role === 'admin'){	
+			let row = {
+                'Cohort': t.trainee_intake,
+                'Name': t.trainee_fname +' '+ t.trainee_lname,
+                'Status': t.status,
+                'Recruited By': t.added_By,
+				'Bursary': t.bursary,
+				'Payment This Month':'£'+Number(t.bursary_amount * t.trainee_days_worked ).toFixed(2),
+				'Training Start Date':moment(t.trainee_start_date).format('MMMM DD YYYY'),
+				'Training End Date':moment(t.trainee_end_date).format('MMMM DD YYYY'),
+				'Bench Start Date':moment(t.trainee_bench_start_date).format('MMMM DD YYYY'),
+				'Bench End Date':moment(t.trainee_bench_end_date).format('MMMM DD YYYY'),
+				
+				'Action':			
+				<div>
+				 <button className="actionBtn" onClick={() => { 
+                    if (window.confirm('Are you sure you wish to '+deleteToggle.toLowerCase()+' this trainee?'))
+                    axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/'+deleteRoute+'/'+t._id, {addedBy:this.state.currentUser.token._id}).then(() => window.location.reload()) } }>
+                    {deleteToggle}<img src={close}></img>
+                </button>&nbsp;
+                <button className="actionBtn" value={t._id} onClick={this.handleHistoryClick}>View History <img src={history}></img></button>&nbsp;
+				<button className="actionBtn" value={t._id} onClick={()=>{this.props.content(<userExpense/>)}}>Expenses<img src={addmoney}></img></button> &nbsp; 
+                <button className="actionBtn" value={t._id} onClick={this.handleExpensesClick}> Expenses <img src={addmoney}></img></button>&nbsp;
+                 <a href={"mailto:"+t.trainee_email}><button className="actionBtn">Email <img src={mail}></img></button> </a>
+                 <button className="actionBtn" onClick={() => { 
+                       axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/send-email/', {trainee_email: t.trainee_email}).then(() => window.alert("Email Sent!")) } }>
+                       Resend Activation Email <img src={mail}></img>
+                 </button>&nbsp;
+				</div>,
+            }	
+			//Adds data to Rows
+            rows.push(row)				
+		}else {
+			let row = {
+                'Cohort': t.trainee_intake,
+                'Name': t.trainee_fname +' '+ t.trainee_lname,
+                'Status': t.status,
+                'Recruited By': t.added_By,
+				'Bursary': t.bursary,
+				'Payment This Month':'£'+Number(t.bursary_amount * t.trainee_days_worked ).toFixed(2),
+				'Training Start Date':moment(t.trainee_start_date).format('MMMM DD YYYY'),
+				'Training End Date':moment(t.trainee_end_date).format('MMMM DD YYYY'),
+				'Bench Start Date':moment(t.trainee_bench_start_date).format('MMMM DD YYYY'),
+				'Bench End Date':moment(t.trainee_bench_end_date).format('MMMM DD YYYY'),
+				
+				'Action':			
+				<div>
+                <button className="actionBtn" onClick={() => window.location.href = "/trainee-details/" + t._id}> View Details <img src={eye}></img></button>&nbsp;
+                <a href={"mailto:"+t.trainee_email}><button className="actionBtn">Email <img src={mail}></img></button> </a>
+				</div>,
+            }
+			//Adds data to Rows
+            rows.push(row)	
+		}
+            
+        })
+		let tableData = { Headers: headers, Rows: rows }
         //Declared variables in order to read input from search function
-        let trainees = this.state.trainees;
         let search = this.state.searchString.trim().toLowerCase().replace(/\s+/g, '');
         let filter = this.state.filter;
         let staffName = this.state.staffName;
@@ -354,49 +443,9 @@ export default class ListTrainee extends Component {
 			<AccessDenied/>
 			)
 		}
-		else if(this.state.currentUser.token.role === 'recruiter'){
-			return (
-            <div className="QAtable">
-                <div className="QASearchBar">
-                    <input
-                        type="text"
-                        value={this.state.searchString}
-                        onChange={this.onChangeSearch}
-                        placeholder="Find trainee..."
-                    />
-                    <div id="addUser">
-                        <button className="qabtn"><Link className="link" to={"/create"}>Add Trainee</Link></button>            
-                    </div>
-                </div>
-
-                <table className="table table-striped" style={{ marginTop: 20 }} >
-                    <thead>
-                        <tr>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Email</th>
-                        </tr>
-                    </thead>               
-                    <tbody>
-                        {trainees.map(t => {
-                            return (
-                                <tr>
-                                    <td> {t.trainee_fname}</td>
-                                    <td> {t.trainee_lname}</td>
-                                    <td> {t.trainee_email}</td>
-                                </tr>
-                            );
-                        })}
-                    </tbody>
-
-                </table>
-            </div>
-        );
-			
-        }
         else if(this.state.currentUser.token.role === 'admin'){
             return (
-                <div className="QAtable">
+                <div>
                     <div className="QASearchBar">
                         <input
                             type="text"
@@ -466,74 +515,11 @@ export default class ListTrainee extends Component {
                     </Collapse>
                     </div>
                     <div id="resultsTable">
-                    <table className="table table-hover" style={{ marginTop: 20 }} >
-                        <thead>
-                            <tr>
-								<th>Cohort</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th><center>Status</center></th>
-                                <th>Recruited By</th>
-                                <th><center>Bursary</center></th>
-                                <th><center>Payment This Month</center></th>
-								<th><center>Start Date</center></th>
-                                <th><center>Action</center></th>
-                            </tr>
-                        </thead>               
-                        <tbody>
-                            {trainees.map(t => {
-                                let deleteToggle = '';
-                                let deleteRoute = '';
-                                let expenses = 0;
-                                t.monthly_expenses.map(expense =>{
-                                    expenses += +Number(expense.amount).toFixed(2);
-                                })
-                                if(t.status === "Suspended"){
-                                    deleteToggle = "Reactivate";
-                                    deleteRoute = "reactivate";
-                                }
-                                else{
-                                    deleteToggle = "Suspend";
-                                    deleteRoute = "delete";
-                                }
-                                return (
-                                    <tr className="trainees">
-										<td onClick={() => window.location.href = "/editDates/" + t._id}> {t.trainee_intake}</td>
-                                        <td onClick={() => window.location.href = "/editDates/" + t._id}> {t.trainee_fname}</td>
-                                        <td onClick={() => window.location.href = "/editDates/" + t._id}> {t.trainee_lname}</td>
-                                        <td onClick={() => window.location.href = "/editDates/" + t._id}> <center>{t.status}</center></td>
-                                        <td onClick={() => window.location.href = "/editDates/" + t._id}> {t.added_By}</td>
-                                        <td onClick={() => window.location.href = "/editDates/" + t._id}> <center>{t.bursary}</center></td>
-                                        <td onClick={() => window.location.href = "/editDates/" + t._id}> <center>£{Number(t.bursary_amount * t.trainee_days_worked + expenses).toFixed(2)}</center></td>
-										<td> <center>{moment(t.trainee_start_date).format('MMMM Do YYYY')}</center></td>
-                                            <td>
-                                            <center><button className="actionBtn" onClick={() => { 
-                                                                if (window.confirm('Are you sure you wish to '+deleteToggle.toLowerCase()+' this trainee?'))
-                                                                axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/'+deleteRoute+'/'+t._id, {addedBy:this.state.currentUser.token._id}).then(() => window.location.reload()) } }>
-                                                                {deleteToggle}
-                                                                <img src={close}></img>
-                                                </button>&nbsp;
-                                                <button className="actionBtn" value={t._id} onClick={this.handleHistoryClick}>View History <img src={history}></img></button>&nbsp;
-												<button className="actionBtn" value={t._id} onClick={()=>{this.props.content(<userExpense/>)}}>Expenses<img src={addmoney}></img></button> &nbsp; 
-                                                <button className="actionBtn" value={t._id} onClick={this.handleExpensesClick}> Expenses <img src={addmoney}></img></button>&nbsp;
-                                                <a href={"mailto:"+t.trainee_email}><button className="actionBtn">Email <img src={mail}></img></button> </a>
-                                                <button className="actionBtn" onClick={() => { 
-                                                                axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/send-email/', {trainee_email: t.trainee_email}).then(() => window.alert("Email Sent!")) } }>
-                                                                Resend Activation Email 
-                                                                <img src={mail}></img>
-                                                </button>&nbsp;
-                                                </center>
-                                           </td>
-                                        </tr>
-                                );
-                            })}
-                        </tbody>
-    
-                    </table>
+						<QATable id="trainee-table" data={tableData}/>
                     </div>
                 </div>
-            );
-        }
+                    );
+				}
         else{
         return (
             <div className="QAtable">
@@ -602,6 +588,7 @@ export default class ListTrainee extends Component {
                     </Collapse>
                 </div>
                 <div id="resultsTable">
+				<QATable id="trainee-table" data={tableData}/>
                 <table className="table table-hover" style={{ marginTop: 20 }} >
                     <thead>
                         <tr>

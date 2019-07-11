@@ -49,9 +49,6 @@ export default class QATable extends React.Component {
                 data={data}
                 columns={columns}
                 showPagination={false}
-                style={{
-                        height: "400px"
-                }}
             />
         );
     };
