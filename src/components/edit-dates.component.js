@@ -289,6 +289,8 @@ export default class EditDates extends Component {
                         <br />
 						&nbsp;&nbsp;
                                 <input 
+									step="0.01"
+									min="0"
                                     type="number"
                                     value={this.state.bursary_amount}
                                     onChange={this.onChangeBursaryAmount}
