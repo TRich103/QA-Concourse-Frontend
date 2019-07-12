@@ -18,7 +18,7 @@ export default class UserRecord extends Component {
             userType: '',
             recordOf: '',
             record: [],
-            currentUser: {token: {role: "admin", status: "Active", _id: "5d0bb39bd2ba63099c621593"}},
+            currentUser: authService.currentUserValue, //for testing purposes this needs to be changed
             searchResults: [],
             modal: false,
             range:{
