@@ -602,6 +602,7 @@ export default class CreateTrainee extends Component {
                         <br />
 						&nbsp;&nbsp;
                                 <input 
+                                    step="0.01"
                                     type="number"
                                     value={this.state.bursary_amount}
                                     onChange={this.onChangeBursaryAmount}
