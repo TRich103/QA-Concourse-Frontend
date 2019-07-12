@@ -84,13 +84,16 @@ export default class ListUser extends Component {
     
     render() {
         let users = this.state.users;
-        let search = this.state.searchString.trim().toLowerCase();
+        let search = this.state.searchString.trim().toLowerCase().replace(/\s+/g, '');
         let filter = this.state.filter;
         const {open} = this.state;
 
         if(search.length > 0){
             users = users.filter(function(i){
-                if(i.email.toLowerCase().match(search) || i.role.toLowerCase().match(search)){
+                if(i.email.toLowerCase().match(search) || i.role.toLowerCase().match(search) 
+                || i.fname.toLowerCase().match(search) || 
+                i.lname.toLowerCase().match(search) ||
+                (i.fname.toLowerCase() + i.lname.toLowerCase()).match(search)){
                     return i;
                 }
             })

@@ -46,12 +46,11 @@ export default class ListTrainee extends Component {
             csvN:'',
             modal: false,
             filterBoolean: false,
-            searchString: "",
 			range:{
                 from: undefined,
                 to: undefined,
             }
-			};
+        };
         
 		this.onChangeFilterSearch = this.onChangeFilterSearch.bind(this)
         this.handleDayClick = this.handleDayClick.bind(this);
@@ -96,7 +95,7 @@ export default class ListTrainee extends Component {
     // Added onChangeSearch(e) function. Needed for the search filter
    onChangeSearch= (e) =>{
             this.setState({
-                searchString: e,
+                searchString: e.target.value,
                 selectedDate: e
             });
     }
@@ -327,20 +326,15 @@ export default class ListTrainee extends Component {
                  output = [["First Name", "Last Name", "Email", "Start-Date", "End-Date"]];
             }
             console.log(search);
-            console.log(this.state.splitDays);
             trainees = trainees.filter(function(i){
-                if(splitDays.includes(i.trainee_start_date.split(" ", 4).toString())){
-                    if(role === 'finance'){
-                        var obj =  [i.trainee_fname, i.trainee_lname, i.trainee_email, i.trainee_bank_name, i.trainee_account_no, i.trainee_sort_code, moment(i.trainee_start_date).format('MMMM Do YYYY'), moment(i.trainee_end_date).format('MMMM Do YYYY')];
-                        output.push(obj);
-                        console.log(output);
-                        return i;
-                    } else if(role === 'admin'){
-                        var obj =  [i.trainee_fname, i.trainee_lname, i.trainee_email, moment(i.trainee_start_date).format('MMMM Do YYYY'), moment(i.trainee_end_date).format('MMMM Do YYYY')];
-                        output.push(obj);
-                        console.log(output);
-                        return i;
-                    }
+                if(i.trainee_fname.toLowerCase().match(search) ||
+                   i.trainee_lname.toLowerCase().match(search) ||
+                   i.status.toLowerCase().match(search)        ||
+                   i.added_By.toLowerCase().match(search)      ||
+                   i.bursary.toLowerCase().match(search)       ||
+                   i.trainee_email.toLowerCase().match(search) ||
+                   (i.trainee_fname.toLowerCase() + i.trainee_lname.toLowerCase() + i.trainee_email.toLowerCase()).match(search)){
+                    return i;
                 }
             })
         }
