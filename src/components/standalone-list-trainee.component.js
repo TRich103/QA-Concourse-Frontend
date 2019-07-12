@@ -106,7 +106,7 @@ export default class ListTrainee extends Component {
     // Added onChangeSearch(e) function. Needed for the search filter
    onChangeSearch= (e) =>{
             this.setState({
-                searchString: e,
+                searchString: e.target.value,
                 selectedDate: e
             });
     }
@@ -247,83 +247,6 @@ export default class ListTrainee extends Component {
 			{ 'header': 'Bench Start Date', 'width': 200 },{ 'header': 'Bench End Date', 'width': 200 }, { 'header': 'Action', 'width': 800 } ]
 		let rows = []
 		let trainees = this.state.trainees;
-		trainees.map( t => {
-        if(t.status === 'Pending'|| t.status === 'Incomplete'){
-        }else if(moment(t.trainee_bench_start_date).isAfter(moment().format('MMMM YYYY'))){
-                            t.status = "Training";
-                        }
-                        else{
-                            t.status = "Bench";
-                        }
-			let _id = t._id
-			let name= t.trainee_fname + t.trainee_lname
-            let expenses = 0;
-			let deleteToggle = '';
-			let deleteRoute = '';
-          t.monthly_expenses.map(expense =>{
-                  expenses += +Number(expense.amount).toFixed(2);
-                })
-				if(this.state.trainees.status === "Suspended"){
-                    deleteToggle = "Reactivate";
-                    deleteRoute = "reactivate";
-                }else{
-                      deleteToggle = "Suspend";
-                      deleteRoute = "delete";
-                }
-				if(this.state.currentUser.token.role === 'admin'){	
-			let row = {
-                'Cohort': t.trainee_intake,
-                'Name': t.trainee_fname +' '+ t.trainee_lname,
-                'Status': t.status,
-                'Recruited By': t.added_By,
-				'Bursary': t.bursary,
-				'Payment This Month':'£'+Number(t.bursary_amount * t.trainee_days_worked ).toFixed(2),
-				'Training Start Date':moment(t.trainee_start_date).format('MMMM DD YYYY'),
-				'Training End Date':moment(t.trainee_end_date).format('MMMM DD YYYY'),
-				'Bench Start Date':moment(t.trainee_bench_start_date).format('MMMM DD YYYY'),
-				'Bench End Date':moment(t.trainee_bench_end_date).format('MMMM DD YYYY'),
-				
-				'Action':			
-				<div>
-				 <button className="actionBtn" onClick={() => this.suspendTrainee(t._id)}>{deleteToggle}<img src={close}></img>
-                </button>&nbsp;
-                <button className="actionBtn" value={t._id} onClick={this.handleHistoryClick}>View History <img src={history}></img></button>&nbsp;
-				<button className="actionBtn" value={t._id} onClick={()=>{this.props.content(<userExpense/>)}}>Expenses<img src={addmoney}></img></button> &nbsp; 
-                <button className="actionBtn" value={t._id} onClick={this.handleExpensesClick}> Expenses <img src={addmoney}></img></button>&nbsp;
-                 <a href={"mailto:"+t.trainee_email}><button className="actionBtn">Email <img src={mail}></img></button> </a>
-                 <button className="actionBtn" onClick={() => { 
-                       axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/send-email/', {trainee_email: t.trainee_email}).then(() => window.alert("Email Sent!")) } }>
-                       Resend Activation Email <img src={mail}></img>
-                 </button>&nbsp;
-				</div>,
-            }	
-			//Adds data to Rows
-            rows.push(row)				
-		}else {
-			let row = {
-                'Cohort': t.trainee_intake,
-                'Name': t.trainee_fname +' '+ t.trainee_lname,
-                'Status': t.status,
-                'Recruited By': t.added_By,
-				'Bursary': t.bursary,
-				'Payment This Month':'£'+Number(t.bursary_amount * t.trainee_days_worked ).toFixed(2),
-				'Training Start Date':moment(t.trainee_start_date).format('MMMM DD YYYY'),
-				'Training End Date':moment(t.trainee_end_date).format('MMMM DD YYYY'),
-				'Bench Start Date':moment(t.trainee_bench_start_date).format('MMMM DD YYYY'),
-				'Bench End Date':moment(t.trainee_bench_end_date).format('MMMM DD YYYY'),
-				
-				'Action':			
-				<div>
-                <button className="actionBtn" onClick={() => window.location.href = "/trainee-details/" + t._id}> View Details <img src={eye}></img></button>&nbsp;
-                <a href={"mailto:"+t.trainee_email}><button className="actionBtn">Email <img src={mail}></img></button> </a>
-				</div>,
-            }
-			//Adds data to Rows
-            rows.push(row)	
-		}
-            
-        })
-		let tableData = { Headers: headers, Rows: rows }
         //Declared variables in order to read input from search function
         let search = this.state.searchString.trim().toLowerCase().replace(/\s+/g, '');
         let filter = this.state.filter;
@@ -437,21 +360,95 @@ export default class ListTrainee extends Component {
             console.log(search);
             console.log(this.state.splitDays);
             trainees = trainees.filter(function(i){
-                if(splitDays.includes(i.trainee_start_date.split(" ", 4).toString())){
-                    if(role === 'finance'){
-                        var obj =  [i.trainee_fname, i.trainee_lname, i.trainee_email, i.trainee_bank_name, i.trainee_account_no, i.trainee_sort_code, moment(i.trainee_start_date).format('MMMM Do YYYY'), moment(i.trainee_end_date).format('MMMM Do YYYY')];
-                        output.push(obj);
-                        console.log(output);
-                        return i;
-                    } else if(role === 'admin'){
-                        var obj =  [i.trainee_fname, i.trainee_lname, i.trainee_email, moment(i.trainee_start_date).format('MMMM Do YYYY'), moment(i.trainee_end_date).format('MMMM Do YYYY')];
-                        output.push(obj);
-                        console.log(output);
-                        return i;
-                    }
-                }
+                if(i.trainee_fname.toLowerCase().match(search) ||
+                i.trainee_lname.toLowerCase().match(search) ||
+                i.status.toLowerCase().match(search)        ||
+                i.added_By.toLowerCase().match(search)      ||
+                i.bursary.toLowerCase().match(search)       ||
+                i.trainee_email.toLowerCase().match(search) ||
+                (i.trainee_fname.toLowerCase() + i.trainee_lname.toLowerCase() + i.trainee_email.toLowerCase()).match(search)){
+                 return i;
+             }
             })
         }
+
+        trainees.map( t => {
+            if(t.status === 'Pending'|| t.status === 'Incomplete'){
+            }else if(moment(t.trainee_bench_start_date).isAfter(moment().format('MMMM YYYY'))){
+                                t.status = "Training";
+                            }
+                            else{
+                                t.status = "Bench";
+                            }
+                let _id = t._id
+                let name= t.trainee_fname + t.trainee_lname
+                let expenses = 0;
+                let deleteToggle = '';
+                let deleteRoute = '';
+              t.monthly_expenses.map(expense =>{
+                      expenses += +Number(expense.amount).toFixed(2);
+                    })
+                    if(this.state.trainees.status === "Suspended"){
+                        deleteToggle = "Reactivate";
+                        deleteRoute = "reactivate";
+                    }else{
+                          deleteToggle = "Suspend";
+                          deleteRoute = "delete";
+                    }
+                    if(this.state.currentUser.token.role === 'admin'){	
+                let row = {
+                    'Cohort': t.trainee_intake,
+                    'Name': t.trainee_fname +' '+ t.trainee_lname,
+                    'Status': t.status,
+                    'Recruited By': t.added_By,
+                    'Bursary': t.bursary,
+                    'Payment This Month':'£'+Number(t.bursary_amount * t.trainee_days_worked ).toFixed(2),
+                    'Training Start Date':moment(t.trainee_start_date).format('MMMM DD YYYY'),
+                    'Training End Date':moment(t.trainee_end_date).format('MMMM DD YYYY'),
+                    'Bench Start Date':moment(t.trainee_bench_start_date).format('MMMM DD YYYY'),
+                    'Bench End Date':moment(t.trainee_bench_end_date).format('MMMM DD YYYY'),
+                    
+                    'Action':			
+                    <div>
+                     <button className="actionBtn" onClick={() => this.suspendTrainee(t._id)}>{deleteToggle}<img src={close}></img>
+                    </button>&nbsp;
+                    <button className="actionBtn" value={t._id} onClick={this.handleHistoryClick}>View History <img src={history}></img></button>&nbsp;
+                    <button className="actionBtn" value={t._id} onClick={()=>{this.props.content(<userExpense/>)}}>Expenses<img src={addmoney}></img></button> &nbsp; 
+                    <button className="actionBtn" value={t._id} onClick={this.handleExpensesClick}> Expenses <img src={addmoney}></img></button>&nbsp;
+                     <a href={"mailto:"+t.trainee_email}><button className="actionBtn">Email <img src={mail}></img></button> </a>
+                     <button className="actionBtn" onClick={() => { 
+                           axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/send-email/', {trainee_email: t.trainee_email}).then(() => window.alert("Email Sent!")) } }>
+                           Resend Activation Email <img src={mail}></img>
+                     </button>&nbsp;
+                    </div>,
+                }	
+                //Adds data to Rows
+                rows.push(row)				
+            }else {
+                let row = {
+                    'Cohort': t.trainee_intake,
+                    'Name': t.trainee_fname +' '+ t.trainee_lname,
+                    'Status': t.status,
+                    'Recruited By': t.added_By,
+                    'Bursary': t.bursary,
+                    'Payment This Month':'£'+Number(t.bursary_amount * t.trainee_days_worked ).toFixed(2),
+                    'Training Start Date':moment(t.trainee_start_date).format('MMMM DD YYYY'),
+                    'Training End Date':moment(t.trainee_end_date).format('MMMM DD YYYY'),
+                    'Bench Start Date':moment(t.trainee_bench_start_date).format('MMMM DD YYYY'),
+                    'Bench End Date':moment(t.trainee_bench_end_date).format('MMMM DD YYYY'),
+                    
+                    'Action':			
+                    <div>
+                    <button className="actionBtn" onClick={() => window.location.href = "/trainee-details/" + t._id}> View Details <img src={eye}></img></button>&nbsp;
+                    <a href={"mailto:"+t.trainee_email}><button className="actionBtn">Email <img src={mail}></img></button> </a>
+                    </div>,
+                }
+                //Adds data to Rows
+                rows.push(row)	
+            }
+                
+            })
+            let tableData = { Headers: headers, Rows: rows }
 
 		if (this.state.currentUser.token.role === undefined){
 			return (

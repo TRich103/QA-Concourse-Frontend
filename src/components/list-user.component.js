@@ -87,13 +87,42 @@ export default class ListUser extends Component {
     
     render() {
         let users = this.state.users;
-        let search = this.state.searchString.trim().toLowerCase();
+        let search = this.state.searchString.trim().toLowerCase().replace(/\s+/g, '');
         let filter = this.state.filter;
         const {open} = this.state;
 		let headers = [{ 'header': 'Name', 'width': 300 },{ 'header': 'Role', 'width': 200 },
 			{ 'header': 'Status', 'width': 300 },{ 'header': 'Action', 'width': 800 } ]
 		let rows = []
-		users.map(u => {
+
+        if(search.length > 0){
+            users = users.filter(function(i){
+                if(i.email.toLowerCase().match(search) || i.role.toLowerCase().match(search) 
+                || i.fname.toLowerCase().match(search) || 
+                i.lname.toLowerCase().match(search) ||
+                (i.fname.toLowerCase() + i.lname.toLowerCase()).match(search)){
+                    return i;
+                }
+            })
+        }
+
+        if(filter.role !== 'All'){
+            users = users.filter(function(user){
+                if(user.role === filter.role.toLowerCase()){
+                    return user;
+                }
+
+            })
+        }
+
+        if(filter.suspended === false){
+            users = users.filter(function(user){
+                if(user.status !== 'Suspended'){
+                    return user;
+                }
+            })
+        }
+
+        users.map(u => {
 			let _id = u._id
 			let name= u.fname +' '+ u.lname;
 			let deleteToggle = '';
@@ -141,34 +170,6 @@ export default class ListUser extends Component {
 			rows.push(row)
 		})	
 	let tableData = { Headers: headers, Rows: rows }
-
-        if(search.length > 0){
-            users = users.filter(function(i){
-                if(i.email.toLowerCase().match(search) || 
-					i.role.toLowerCase().match(search) ||
-					i.fname.toLowerCase().match(search)||
-					i.lname.toLowerCase().match(search)){
-                    return i;
-                }
-            })
-        }
-
-        if(filter.role !== 'All'){
-            users = users.filter(function(user){
-                if(user.role === filter.role.toLowerCase()){
-                    return user;
-                }
-
-            })
-        }
-
-        if(filter.suspended === false){
-            users = users.filter(function(user){
-                if(user.status !== 'Suspended'){
-                    return user;
-                }
-            })
-        }
 
 	   if(this.state.currentUser.token.role !== 'admin'){
 		   return (
