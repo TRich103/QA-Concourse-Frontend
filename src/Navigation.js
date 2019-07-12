@@ -95,13 +95,13 @@ export default class Navigation extends React.Component {
 
   }
   render() {
-    if (authService.currentUserValue) {
+    if (this.state.currentUser) {
         var logoColour;
-        if(authService.currentUserValue.token.role === "admin"){
+        if(this.state.currentUser.token.role === "admin"){
             this.logoColour = "logo-colour-admin";
-        }else if(authService.currentUserValue.token.role === "finance"){
+        }else if(this.state.currentUser.token.role === "finance"){
             this.logoColour = "logo-color-finance";
-        }else if(authService.currentUserValue.token.role === "recruiter"){
+        }else if(this.state.currentUser.token.role === "recruiter"){
             this.logoColour = "logo-colour-recruiter";
         }
 
