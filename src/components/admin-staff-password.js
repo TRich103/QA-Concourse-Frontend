@@ -4,18 +4,14 @@ import { codes } from "../secrets/secrets.js";
 import '../css/changePasswordTrainee.css';
 import { authService } from './modules/authService.js';
 // import {authService} from './modules/authService'
+import ListTrainee from './standalone-list-trainee.component';
 
  export default class PasswordStaff extends Component {
 
      constructor(props) {
         super(props);
-
-         this.onChangeUserPassword = this.onChangeUserPassword.bind(this);
-        this.onChangeConfirmPassword = this.onChangeConfirmPassword.bind(this);
-        this.onChangeOldPassword = this.onChangeOldPassword.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
-
-         this.state = {
+        console.log(this.props);
+        this.state = {
             id:'',
             email: '',
             password: '',
@@ -23,10 +19,15 @@ import { authService } from './modules/authService.js';
             error: true,
             currentUser: authService.currentUserValue
         }
+
+        this.onChangeUserPassword = this.onChangeUserPassword.bind(this);
+        this.onChangeConfirmPassword = this.onChangeConfirmPassword.bind(this);
+        this.onChangeOldPassword = this.onChangeOldPassword.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
     }
 
      async componentDidMount() {
-        await axios.get('http://'+process.env.REACT_APP_AWS_IP+':4000/admin/reset-staff/'+this.props.match.params.token)
+        await axios.get('http://'+process.env.REACT_APP_AWS_IP+':4000/admin/reset-staff/'+this.state.currentUser.token._id)
             .then(response => {
                     console.log(response.data.message);
                     if (response.data.message === 'password reset link a-ok') {
@@ -43,7 +44,7 @@ import { authService } from './modules/authService.js';
                         error: true
                     });
             })
-        axios.get('http://'+process.env.REACT_APP_AWS_IP+':4000/admin/staff/'+this.state.id)
+        axios.get('http://'+process.env.REACT_APP_AWS_IP+':4000/admin/staff/'+this.state.currentUser.token._id)
             .then(response => {
                 this.setState({
                     email: response.data.email,
@@ -94,8 +95,7 @@ import { authService } from './modules/authService.js';
             //               console.log(res.data);
             //              })
             .then(res => {console.log(res);
-
-                           this.props.history.push('/');
+                           this.props.content(<ListTrainee/>);
                          })    
 
         }
