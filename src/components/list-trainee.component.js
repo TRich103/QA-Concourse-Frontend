@@ -134,7 +134,6 @@ export default class ListTrainee extends Component {
 				
 				'Action':			
 				<div>
-				<td onClick={() => window.location.href = "/editDates/" + t._id}> {t.trainee_intake}</td>
 				<button className="actionBtn" onClick={() => { 
                  if (window.confirm('Are you sure you wish to delete this trainee?'))
                   axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/delete/'+t._id,{addedBy:this.state.currentUser.token._id}).then( ) } }>

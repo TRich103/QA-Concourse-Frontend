@@ -227,10 +227,10 @@ export default class ListTrainee extends Component {
         let range = this.state.range;
         const { from, to } = this.state.range;
         const modifiers = { start: from, end: to };
-		let headers = [{ 'header': 'Cohort', 'width': 100 }, { 'header': 'Name', 'width': 100 }, {'header': 'Status', 'width': 100},
-            { 'header': 'Recruited By', 'width': 100 }, { 'header': 'Bursary', 'width': 100 }, { 'header': 'Payment This Month', 'width': 150 },
-			{ 'header': 'Training Start Date', 'width': 200 }, { 'header': 'Training End Date', 'width': 200 },
-			{ 'header': 'Bench Start Date', 'width': 200 },{ 'header': 'Bench End Date', 'width': 200 }, { 'header': 'Action', 'width': 800 } ]
+		let headers = [{ 'header': 'Cohort', 'width': 90 }, { 'header': 'Name', 'width': 100 },
+            { 'header': 'Recruited By', 'width': 100 }, { 'header': 'Payment This Month', 'width': 150 },
+			{ 'header': 'Training Start Date', 'width': 150 }, { 'header': 'Training End Date', 'width': 150 },
+			{ 'header': 'Bench Start Date', 'width': 150 },{ 'header': 'Bench End Date', 'width': 150 }, { 'header': 'Action', 'width': 700 } ]
 		let rows = []
 		let trainees = this.state.trainees;
         //Declared variables in order to read input from search function
@@ -385,9 +385,7 @@ export default class ListTrainee extends Component {
                 let row = {
                     'Cohort': t.trainee_intake,
                     'Name': t.trainee_fname +' '+ t.trainee_lname,
-                    'Status': t.status,
                     'Recruited By': t.added_By,
-                    'Bursary': t.bursary,
                     'Payment This Month':'£'+Number(t.bursary_amount * t.trainee_days_worked ).toFixed(2),
                     'Training Start Date':moment(t.trainee_start_date).format('MMMM DD YYYY'),
                     'Training End Date':moment(t.trainee_end_date).format('MMMM DD YYYY'),
