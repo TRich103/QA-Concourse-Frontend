@@ -556,7 +556,7 @@ export default class CostReport extends Component {
             })
         }
 
-        if(filter.status != 'All'){
+        if(filter.status !== 'All'){
             trainees = trainees.filter(function(trainee){
                 if(trainee.status == filter.status){
                     console.log(trainee);

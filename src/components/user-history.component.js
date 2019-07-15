@@ -151,15 +151,27 @@ export default class UserRecord extends Component {
             }
 
             return(
-                <div className = "BigBox">
                 <div className="historyTable">
-                        <div className="QASearchBar">
-                            <h2>{userType} History- {recordOf}</h2>
-                            <h3><center><button id="cancelBtn" onClick={() => {this.props.content(this.state.back)}}>⭠ Back</button></center></h3>
-                            <div id="logbox">
-                                <label id="searchLogs">Search Logs :</label><SearchBar search={this.search} /><button className="resetBtn" onClick={this.toggle}>Select Start Dates</button>
-                            </div>
+                        <div className="historyTitle">
+                            <h4>{userType} History -{recordOf}</h4>
+							</div>
+							<div className="history-wrapper">
+							<div className="history-button">
+                            <button id="cancelBtn" onClick={() => {this.props.content(this.state.back)}}>⭠ Back</button>
+                              </div> 
+							  <div>
+							  <div className="history_search_box">
+							  <label className="historylogs">Search Logs :</label>
+							  </div>
+							  <div className="history_search_bar">
+							  <SearchBar search={this.search} />
+								</div>
+								<div className="history_search_button">
+							<button className="resetBtn" onClick={this.toggle}>Select Start Dates</button>
                         </div>
+			</div>
+	</div>
+						
                         <div className="QASearchBar">
                         <QAGenericTable data={json}/>
 
@@ -187,7 +199,6 @@ export default class UserRecord extends Component {
                                 </ModalBody>
                             </Modal>
                         </div>
-            </div>
             </div>
             )
         }

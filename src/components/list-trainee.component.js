@@ -162,13 +162,16 @@ export default class ListTrainee extends Component {
         }
 
         trainees.map( t => {
-            if(t.status === 'Pending'|| t.status === 'Incomplete'){
-            }else if(moment(t.trainee_bench_start_date).isAfter(moment().format('MMMM YYYY'))){
+            if(moment(t.trainee_bench_start_date).isAfter(moment().format('MMMM YYYY'))){
+				if(t.status !== "Suspended"){
                                 t.status = "Training";
-                            }
-                            else{
-                                t.status = "Bench";
-                            }
+						}
+               } 
+                else{
+					 if(t.status !== "Suspended"){
+                         t.status = "Bench";
+					}
+               }
             let row = {
                     'Cohort':t.trainee_intake,
                     'Name': t.trainee_fname +' '+ t.trainee_lname,

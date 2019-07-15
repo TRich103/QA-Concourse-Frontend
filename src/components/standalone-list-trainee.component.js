@@ -334,8 +334,6 @@ export default class ListTrainee extends Component {
             )
         }
 		
-        
-        console.log(search.length);
         if(search.length > 0){
             if(role === 'finance'){
                  output = [["First Name", "Last Name", "Email", "Bank Name", "Account Number", "Sort Number","Start-Date", "End-Date"]];
@@ -359,14 +357,15 @@ export default class ListTrainee extends Component {
         }
 
         trainees.map( t => {
-            if(t.status === 'Pending'|| t.status === 'Incomplete'){
-            }else if(moment(t.trainee_bench_start_date).isAfter(moment().format('MMMM YYYY'))){
+            if(moment(t.trainee_bench_start_date).isAfter(moment().format('MMMM YYYY'))){
                                 if(t.status !== "Suspended"){
                                     t.status = "Training";
                                 }
                             }
                             else{
-                                t.status = "Bench";
+								if(t.status !== "Suspended"){
+									t.status = "Bench";
+							}
                             }
                 let _id = t._id
                 let name= t.trainee_fname + t.trainee_lname
@@ -385,14 +384,14 @@ export default class ListTrainee extends Component {
                     }
                     if(this.state.currentUser.token.role === 'admin'){	
                 let row = {
-                    'Cohort': t.trainee_intake,
-                    'Name': t.trainee_fname +' '+ t.trainee_lname,
-                    'Recruited By': t.added_By,
-                    'Payment This Month':'£'+Number(t.bursary_amount * t.trainee_days_worked ).toFixed(2),
-                    'Training Start Date':moment(t.trainee_start_date).format('MMMM DD YYYY'),
-                    'Training End Date':moment(t.trainee_end_date).format('MMMM DD YYYY'),
-                    'Bench Start Date':moment(t.trainee_bench_start_date).format('MMMM DD YYYY'),
-                    'Bench End Date':moment(t.trainee_bench_end_date).format('MMMM DD YYYY'),
+                    'Cohort':<p className="editable_table" onClick={() => this.props.content(<EditDates id={t._id}/>)}>{t.trainee_intake}</p>,
+                    'Name': <p className="editable_table" onClick={() => this.props.content(<EditDates id={t._id}/>)}>{t.trainee_fname +' '+ t.trainee_lname}</p>,
+                    'Recruited By': <p className="editable_table" onClick={() => this.props.content(<EditDates id={t._id}/>)}>{t.added_By}</p>,
+                    'Payment This Month':<p className="editable_table" onClick={() => this.props.content(<EditDates id={t._id}/>)}>{'£'+Number(t.bursary_amount * t.trainee_days_worked ).toFixed(2)}</p>,
+                    'Training Start Date':<p className="editable_table" onClick={() => this.props.content(<EditDates id={t._id}/>)}>{moment(t.trainee_start_date).format('MMMM DD YYYY')}</p>,
+                    'Training End Date':<p className="editable_table" onClick={() => this.props.content(<EditDates id={t._id}/>)}>{moment(t.trainee_end_date).format('MMMM DD YYYY')}</p>,
+                    'Bench Start Date':<p className="editable_table" onClick={() => this.props.content(<EditDates id={t._id}/>)}>{moment(t.trainee_bench_start_date).format('MMMM DD YYYY')}</p>,
+                    'Bench End Date':<p className="editable_table" onClick={() => this.props.content(<EditDates id={t._id}/>)}>{moment(t.trainee_bench_end_date).format('MMMM DD YYYY')}</p>,
                     
                     'Action':			
                     <div>
@@ -413,16 +412,16 @@ export default class ListTrainee extends Component {
                 rows.push(row)				
             }else {
                 let row = {
-                    'Cohort': t.trainee_intake,
-                    'Name': t.trainee_fname +' '+ t.trainee_lname,
-                    'Status': t.status,
-                    'Recruited By': t.added_By,
-                    'Bursary': t.bursary,
-                    'Payment This Month':'£'+Number(t.bursary_amount * t.trainee_days_worked ).toFixed(2),
-                    'Training Start Date':moment(t.trainee_start_date).format('MMMM DD YYYY'),
-                    'Training End Date':moment(t.trainee_end_date).format('MMMM DD YYYY'),
-                    'Bench Start Date':moment(t.trainee_bench_start_date).format('MMMM DD YYYY'),
-                    'Bench End Date':moment(t.trainee_bench_end_date).format('MMMM DD YYYY'),
+                    'Cohort':<p className="editable_table" onClick={() => this.props.content(<TraineeDetails id={t._id}/>)}>{ t.trainee_intake}</p>,
+					'Name':<p className="editable_table" onClick={() => this.props.content(<TraineeDetails id={t._id}/>)}>{t.trainee_fname +' '+ t.trainee_lname}</p>,
+                    'Status': <p className="editable_table" onClick={() => this.props.content(<TraineeDetails id={t._id}/>)}>{t.status}</p>,
+                    'Recruited By': <p className="editable_table" onClick={() => this.props.content(<TraineeDetails id={t._id}/>)}>{t.added_By}</p>,
+                    'Bursary': <p className="editable_table" onClick={() => this.props.content(<TraineeDetails id={t._id}/>)}>{t.bursary}</p>,
+                    'Payment This Month':<p className="editable_table" onClick={() => this.props.content(<TraineeDetails id={t._id}/>)}>{'£'+Number(t.bursary_amount * t.trainee_days_worked ).toFixed(2)}</p>,
+                    'Training Start Date':<p className="editable_table" onClick={() => this.props.content(<TraineeDetails id={t._id}/>)}>{moment(t.trainee_start_date).format('MMMM DD YYYY')}</p>,
+                    'Training End Date':<p className="editable_table" onClick={() => this.props.content(<TraineeDetails id={t._id}/>)}>{moment(t.trainee_end_date).format('MMMM DD YYYY')}</p>,
+                    'Bench Start Date':<p className="editable_table" onClick={() => this.props.content(<TraineeDetails id={t._id}/>)}>{moment(t.trainee_bench_start_date).format('MMMM DD YYYY')}</p>,
+                    'Bench End Date':<p className="editable_table" onClick={() => this.props.content(<TraineeDetails id={t._id}/>)}>{moment(t.trainee_bench_end_date).format('MMMM DD YYYY')}</p>,
                     
                     'Action':			
                     <div>
@@ -490,13 +489,15 @@ export default class ListTrainee extends Component {
 					   <CSVLink className="link" data={output} filename={"Admin_report_" + moment().format('MMMM YYYY') + ".csv"}><button className="qabtn">Download CSV <img src={download}></img></button></CSVLink>					   
                     </div>
                     <Collapse in={this.state.open}>
-                    <p>
-                        <br></br>
+                    <div className="filter_collapse">
                         <label>My Trainees</label> &nbsp;
                         <input type="checkbox" value="MyTrainees" onClick={this.onChangeMyTraineeFilter}/> &nbsp;&nbsp;
                         <label>Status</label> &nbsp;
                         <select onChange={this.onChangeStatusFilter}>
                             <option value="All">All</option>
+							<option value="Training">Training</option>
+							<option value="Bench">Bench</option>
+                            <option value="Incomplete">Incomplete</option>
                             <option value="Pending">Pending</option>
                             <option value="Incomplete">Incomplete</option>
                             <option value="Active">Active</option>
@@ -510,7 +511,7 @@ export default class ListTrainee extends Component {
                         <label>Show Suspended</label> &nbsp;
                         <input type="checkbox" value="Suspended" onClick={this.onChangeSuspendedFilter}/> &nbsp;&nbsp;
 						<button className="resetBtn" onClick={this.toggle}>Select Start Dates</button> &nbsp;&nbsp;
-                    </p>
+                    </div>
                     </Collapse>
                     </div>
                     <div id="resultsTable">
@@ -568,7 +569,6 @@ export default class ListTrainee extends Component {
                         </div>
                     <Collapse in={this.state.open}>
                     <p>
-                        <br></br>
                         <label>Status</label> &nbsp;
                         <select onChange={this.onChangeStatusFilter}>
                             <option value="All">All</option>

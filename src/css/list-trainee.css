@@ -3,7 +3,12 @@
     float:right;
     padding-right: 60px;
 }
-
+.filter_collapse{
+	width:90%;
+	height:100px;
+	margin-top:1%;
+	margin-left:-10%;
+}
 .link{
     color: white;
     text-decoration: none;

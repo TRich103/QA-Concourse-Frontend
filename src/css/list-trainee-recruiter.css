@@ -20,7 +20,9 @@ a.link:hover{
 #searchLogs {
     float: left;
 }
-
+.editable_table:hover{
+	cursor:pointer;
+}
 .ReactTable{
 	margin-left:0.5%;
 	width:100%;

@@ -199,12 +199,12 @@ export default class ListUser extends Component {
                     </div>
                     <Collapse in={this.state.open}>
                     <p>
-                        <br></br>
                         <label>Role</label> &nbsp;
                         <select onChange={this.onChangeRoleFilter}>
                             <option value="All">All</option>
                             <option value="Admin">Admin</option>
                             <option value="Recruiter">Recruiter</option>
+							<option value="Expense Manager">Expense Manager</option>
                             <option value="Finance">Finance</option>
                         </select>&nbsp;&nbsp;
                         <label>Show Suspended</label> &nbsp;
