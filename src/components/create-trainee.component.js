@@ -485,15 +485,8 @@ export default class CreateTrainee extends Component {
                                 <option value="Prefer Not to Say">Prefer not to say</option>
                             </select>
                         </div>
-                        <div className="gird-item"> 
-                            <label>Phone Number: </label>
-                            <input  type="number"
-                                    className="form-control"
-	                            maxLength={12}
-                                    value={this.state.trainee_phone}
-                                    onChange={this.onChangePhone}
-                                    required/>
-                        </div>
+					</div>
+					<div className="grid-container">
                         <div className="gird-item">
                             <label>Email: </label>
                             <input 
@@ -503,71 +496,8 @@ export default class CreateTrainee extends Component {
                                     onChange={this.onChangeTraineeEmail}
                                     required/>
                         </div>
-                        <div className="gird-item">
-                         <label>University Name:</label>
-                                    &nbsp;&nbsp;
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        value={this.state.uniName}
-                                        onChange={this.onChangeUniName}
-                                        />
-                                    </div>
-									
-                                    <div className="gird-item">
-                                    <label>Degree Name:</label>
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        value={this.state.degree}
-                                        onChange={this.onChangeDegree}
-                                        />
-                                    </div>
-                                    {/* <div id="uniDetails">
-                                    <label>Date Achieved:</label>
-                                    <DayPickerInput
-                                        placeholder="DD/MM/YYYY"
-                                        format="DD/MM/YYYY"
-                                        formatDate={formatDate}
-                                        value={this.state.date_achieved}
-                                        onDayChange={this.onChangeDateAchieved}
-                                    />
-                                    </div> */}
-                        {/* <div className="form-group"> 
-                            <label>Languages Spoken: </label>
-                            <input  type="text"
-                                    className="form-control"
-                                    value={this.state.languages}
-                                    onChange={this.onChangeLanguage}
-                                    required/>
-                        </div> */}
-                        <div className="gird-item">
-                            <label>Geo-Flex :</label>
-                            <select className="form-control" value={this.state.geoFlex} onChange={this.onChangeGeoFlex} required>
-                                <option selected value="Yes">Yes</option>
-                                <option value="No">No</option>
-                            </select>
-                        </div>
-                        <div className="gird-item">
-                            <label>Security Clearance :</label>
-                            <select className="form-control" value={this.state.clearance} onChange={this.onChangeClearance} required>
-                                <option selected value="None">None</option>
-                                <option value="BPSS">BPSS</option>
-                                <option value="SC">SC</option>
-                                <option value="DV">DV</option>
-                                <option value="NPPV3">NPPV3</option>
-                            </select>
-                        </div>
-                        <div className="grid-item">
-                            <label>Technology :</label>
-                            <CreatableSelect
-                            placeholder="Select technology"
-                            onChange={this.handleChange}
-                            options={this.state.tech}
-							
-                            />
-						</div>
-						&nbsp;
+					</div>
+					<div className="grid-container">
 						<div className="grid-item">
                             <label>Cohort / Intake :</label>
                             &nbsp;

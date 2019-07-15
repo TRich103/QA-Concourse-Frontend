@@ -73,7 +73,6 @@ export default class ListTrainee extends Component {
         this.onChangeMyTraineeFilter = this.onChangeMyTraineeFilter.bind(this);
         this.onChangeSuspendedFilter = this.onChangeSuspendedFilter.bind(this);
         this.handleExpensesClick = this.handleExpensesClick.bind(this);
-		this.suspendTrainee = this.suspendTrainee.bind(this);
     }
     
     componentDidMount() {
@@ -203,21 +202,6 @@ export default class ListTrainee extends Component {
         })
     }
 	
-	suspendTrainee(e){ 
-	let deleteToggle = '';
-    let deleteRoute = '';
-	 if(this.state.trainees.status === "Suspended"){
-                    deleteToggle = "Reactivate";
-                    deleteRoute = "reactivate";
-                }else{
-                      deleteToggle = "Suspend";
-                      deleteRoute = "delete";
-                }
-         if (window.confirm('Are you sure you wish to '+deleteToggle.toLowerCase()+' this trainee?'))
-         axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/'+deleteRoute+'/'+this.state.trainees._id, 
-		 {addedBy:this.state.currentUser.token._id})
-				.then(() => window.location.reload()) 
-		} 
 
     handleHistoryClick(e){
         this.props.content(<History/>)
@@ -266,7 +250,7 @@ export default class ListTrainee extends Component {
                 }
             })
         }
-        if(filter.status != 'All'){
+        if(filter.status !== 'All'){
             trainees = trainees.filter(function(trainee){
                 if(trainee.status == filter.status){
                     return trainee;
@@ -275,7 +259,7 @@ export default class ListTrainee extends Component {
             })
         }
 
-        if(filter.bursary != 'All'){
+        if(filter.bursary !== 'All'){
             trainees = trainees.filter(function(trainee){
                 if(trainee.bursary == filter.bursary){
                     return trainee;

@@ -11,6 +11,9 @@ import filterIcon from './icons/filter.svg';
 import mail from './icons/envelope.svg';
 import moment from 'moment';
 import QATable from '../components/components/table-component/qa-table.component';
+import CreateTrainee from "./create-trainee.component";
+
+import EditDates from './edit-dates.component.js';
 
 
 export default class ListTrainee extends Component {
@@ -120,9 +123,8 @@ export default class ListTrainee extends Component {
                             t.status = "Bench";
                         }
 		let row = {
-                'Cohort': t.trainee_intake,
+                'Cohort':t.trainee_intake,
                 'Name': t.trainee_fname +' '+ t.trainee_lname,
-                'Status': t.status,
                 'Recruited By': t.added_By,
 				'Bursary': t.bursary,
 				'Training Start Date':moment(t.trainee_start_date).format('MMMM DD YYYY'),
@@ -132,9 +134,10 @@ export default class ListTrainee extends Component {
 				
 				'Action':			
 				<div>
+				<td onClick={() => window.location.href = "/editDates/" + t._id}> {t.trainee_intake}</td>
 				<button className="actionBtn" onClick={() => { 
                  if (window.confirm('Are you sure you wish to delete this trainee?'))
-                  axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/delete/'+t._id,{addedBy:this.state.currentUser.token._id}).then(() => window.location.reload()) } }>
+                  axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/delete/'+t._id,{addedBy:this.state.currentUser.token._id}).then( ) } }>
                   Suspend<img src={close}></img>
                   </button>&nbsp;
                   <a href={"mailto:"+t.trainee_email}><button className="actionBtn">Email <img src={mail}></img></button> </a>
@@ -158,18 +161,25 @@ export default class ListTrainee extends Component {
                 }
             })
         }
-        if(filter.status != 'All'){
+        if(filter.status !== 'All'){
             trainees = trainees.filter(function(trainee){
-                if(trainee.status == filter.status){
+                if(trainee.status === filter.status){
                     return trainee;
                 }
 
             })
         }
-
-        if(filter.bursary != 'All'){
+		if(filter.pending === false){
             trainees = trainees.filter(function(trainee){
-                if(trainee.bursary == filter.bursary){
+                if(trainee.status === 'Training'||trainee.status === 'Bench'){
+                    return trainee;
+                }
+            })
+        }
+
+        if(filter.bursary !== 'All'){
+            trainees = trainees.filter(function(trainee){
+                if(trainee.bursary === filter.bursary){
                     return trainee;
                 }
 
@@ -210,7 +220,7 @@ export default class ListTrainee extends Component {
                     <img src={filterIcon}></img>
                     </button>
                     <div id="addUser">
-                        <Link className="link" to={"/create"}><button className="qabtn">Add Trainee <img src={add}></img></button></Link>
+					<Link className="link" to={"/create"}> <button className="qabtn" onClick={()=>{this.props.content(<CreateTrainee/>)}}>Create Trainee<img src={add}></img></button></Link>
                     </div>
                      <Collapse in={this.state.open}>
                     <p>
@@ -221,6 +231,8 @@ export default class ListTrainee extends Component {
                         <select onChange={this.onChangeStatusFilter}>
                             <option value="All">All</option>
                             <option value="Pending">Pending</option>
+							<option value="Training">Training</option>
+							<option value="Bench">Bench</option>
                             <option value="Incomplete">Incomplete</option>
                             <option value="Active">Active</option>
                         </select>&nbsp;&nbsp;
@@ -235,46 +247,7 @@ export default class ListTrainee extends Component {
                 </div>
                 <div id="resultsTable">
 				<QATable id="trainee-table" data={tableData}/>
-                <table className="table table-hover" style={{ marginTop: 20 }} >
-                    <thead>
-                        <tr>
-							<th>Cohort</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th><center>Status</center></th>
-                            <th>Recruited By</th>
-                            <th><center>Bursary</center></th>
-                            <th><center>Action</center></th>
-                        </tr>
-                    </thead>               
-                    <tbody>
-                        {trainees.map(t => {
-                            if(t.status != "Suspended"){
-                                return (
-                                    <tr className="trainees">
-										<td onClick={() => window.location.href = "/editDates/" + t._id}> {t.trainee_intake}</td>
-                                        <td onClick={() => window.location.href = "/editDates/" + t._id}> {t.trainee_fname}</td>
-                                        <td onClick={() => window.location.href = "/editDates/" + t._id}> {t.trainee_lname}</td>
-                                        <td onClick={() => window.location.href = "/editDates/" + t._id}> <center>{t.status}</center></td>
-                                        <td onClick={() => window.location.href = "/editDates/" + t._id}> {t.added_By}</td>
-                                        <td onClick={() => window.location.href = "/editDates/" + t._id}> <center>{t.bursary}</center></td>
-                                        <td>
-                                        <center><button className="actionBtn" onClick={() => { 
-                                                            if (window.confirm('Are you sure you wish to delete this trainee?'))
-                                                            axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/delete/'+t._id,{addedBy:this.state.currentUser.token._id}).then(() => window.location.reload()) } }>
-                                                            Suspend
-                                                            <img src={close}></img>
-                                        </button>&nbsp;
-                                        <a href={"mailto:"+t.trainee_email}><button className="actionBtn">Email <img src={mail}></img></button> </a>
-                                        </center>
-                                        </td>
-                                    </tr>
-                                );
-                            }
-                        })}
-                    </tbody>
-
-                </table>
+               
                 </div>
             </div>
             </div>
