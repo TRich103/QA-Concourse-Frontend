@@ -114,38 +114,6 @@ export default class ListTrainee extends Component {
 			{ 'header': 'Bench Start Date', 'width': 200 },{ 'header': 'Bench End Date', 'width': 200 }, { 'header': 'Action', 'width': 500 } ]
 		let rows = []
         const {open} = this.state;
-		trainees.map( t => {
-        if(t.status === 'Pending'|| t.status === 'Incomplete'){
-        }else if(moment(t.trainee_bench_start_date).isAfter(moment().format('MMMM YYYY'))){
-                            t.status = "Training";
-                        }
-                        else{
-                            t.status = "Bench";
-                        }
-		let row = {
-                'Cohort':t.trainee_intake,
-                'Name': t.trainee_fname +' '+ t.trainee_lname,
-                'Recruited By': t.added_By,
-				'Bursary': t.bursary,
-				'Training Start Date':moment(t.trainee_start_date).format('MMMM DD YYYY'),
-				'Training End Date':moment(t.trainee_end_date).format('MMMM DD YYYY'),
-				'Bench Start Date':moment(t.trainee_bench_start_date).format('MMMM DD YYYY'),
-				'Bench End Date':moment(t.trainee_bench_end_date).format('MMMM DD YYYY'),
-				
-				'Action':			
-				<div>
-				<button className="actionBtn" onClick={() => { 
-                 if (window.confirm('Are you sure you wish to delete this trainee?'))
-                  axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/delete/'+t._id,{addedBy:this.state.currentUser.token._id}).then( ) } }>
-                  Suspend<img src={close}></img>
-                  </button>&nbsp;
-                  <a href={"mailto:"+t.trainee_email}><button className="actionBtn">Email <img src={mail}></img></button> </a>
-				</div>,
-            }	
-			//Adds data to Rows
-            rows.push(row)
-		})
-		let tableData = { Headers: headers, Rows: rows };
         
         if(search.length > 0){
             trainees = trainees.filter(function(i){
@@ -192,6 +160,39 @@ export default class ListTrainee extends Component {
                 }
             })
         }
+
+        trainees.map( t => {
+            if(t.status === 'Pending'|| t.status === 'Incomplete'){
+            }else if(moment(t.trainee_bench_start_date).isAfter(moment().format('MMMM YYYY'))){
+                                t.status = "Training";
+                            }
+                            else{
+                                t.status = "Bench";
+                            }
+            let row = {
+                    'Cohort':t.trainee_intake,
+                    'Name': t.trainee_fname +' '+ t.trainee_lname,
+                    'Recruited By': t.added_By,
+                    'Bursary': t.bursary,
+                    'Training Start Date':moment(t.trainee_start_date).format('MMMM DD YYYY'),
+                    'Training End Date':moment(t.trainee_end_date).format('MMMM DD YYYY'),
+                    'Bench Start Date':moment(t.trainee_bench_start_date).format('MMMM DD YYYY'),
+                    'Bench End Date':moment(t.trainee_bench_end_date).format('MMMM DD YYYY'),
+                    
+                    'Action':			
+                    <div>
+                    <button className="actionBtn" onClick={() => { 
+                     if (window.confirm('Are you sure you wish to delete this trainee?'))
+                      axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/delete/'+t._id,{addedBy:this.state.currentUser.token._id}).then( ) } }>
+                      Suspend<img src={close}></img>
+                      </button>&nbsp;
+                      <a href={"mailto:"+t.trainee_email}><button className="actionBtn">Email <img src={mail}></img></button> </a>
+                    </div>,
+                }	
+                //Adds data to Rows
+                rows.push(row)
+            })
+            let tableData = { Headers: headers, Rows: rows };
 
 		if (this.state.currentUser.token.role === undefined){
 			return (
