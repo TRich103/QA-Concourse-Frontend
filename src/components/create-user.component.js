@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import AccessDenied from './modules/AccessDenied';
 import { authService } from './modules/authService';
+import ListUser from './list-user.component';
 
 import '../css/add-user.css';
 
@@ -137,7 +138,7 @@ export default class CreateUser extends Component {
             <div className="createUser" style={{marginLeft: 100, marginRight: 100}}>
                 
                 <form className="addForm" onSubmit={this.onSubmit}>
-                    <h3>Add User <center><button id="cancelBtn" onClick={() => { document.location.href = "/"; }}> ⭠ Back</button></center></h3>
+                    <h3>Add User <center><button id="cancelBtn" onClick={() => { this.props.content(<ListUser/>) }}> ⭠ Back</button></center></h3>
                     <div className="grid-container-user">
                         <div className="gird-item-user">
                             <label>First Name: </label>

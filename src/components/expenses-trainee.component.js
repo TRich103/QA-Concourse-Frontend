@@ -5,12 +5,14 @@ import { authService } from './modules/authService';
 import AccessDenied from './modules/AccessDenied';
 import { Button, ButtonGroup } from 'reactstrap';
 import close from './icons/close2.svg';
+import ListTrainee from './standalone-list-trainee.component';
 
 
 export default class TraineeExpenses extends Component {
 
     constructor(props) {
         super(props);
+        console.log(props);
 
         this.clearAll = this.clearAll.bind(this);
 
@@ -18,8 +20,8 @@ export default class TraineeExpenses extends Component {
             userType: '',
             recordOf: '',
             record: [],
-            //currentUser: authService.currentUserValue,
-            currentUser: {token: {role: "admin", status: "Active", _id: "5d0bb39bd2ba63099c621593"}},
+            currentUser: authService.currentUserValue,
+            //currentUser: {token: {role: "admin", status: "Active", _id: "5d0bb39bd2ba63099c621593"}},
             expArray: [],
             monthly_expenses: 0,
             expenseType: '',
@@ -68,7 +70,7 @@ export default class TraineeExpenses extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://' + process.env.REACT_APP_AWS_IP + ':4000/admin/getRecord/' + this.props.match.params.id)
+        axios.get('http://' + process.env.REACT_APP_AWS_IP + ':4000/admin/getRecord/' + this.props.id)
             .then(response => {
                 this.setState({ record: response.data });
                 console.log(this.state.record)
@@ -76,10 +78,10 @@ export default class TraineeExpenses extends Component {
             .catch(function (error) {
                 console.log(error);
             })
-        axios.get('http://' + process.env.REACT_APP_AWS_IP + ':4000/admin/staff/' + this.props.match.params.id)
+        axios.get('http://' + process.env.REACT_APP_AWS_IP + ':4000/admin/staff/' + this.props.id)
             .then(response => {
                 if (response.data === null) {
-                    axios.get('http://' + process.env.REACT_APP_AWS_IP + ':4000/trainee/' + this.props.match.params.id)
+                    axios.get('http://' + process.env.REACT_APP_AWS_IP + ':4000/trainee/' + this.props.id)
                         .then(response => {
                             if (response.data === null) {
                                 this.setState({ recordOf: 'Not Found', userType: 'User' });
@@ -97,7 +99,7 @@ export default class TraineeExpenses extends Component {
                 console.log(error);
             })
 
-        axios.get('http://' + process.env.REACT_APP_AWS_IP + ':4000/admin/getexp/'+this.props.match.params.id)
+        axios.get('http://' + process.env.REACT_APP_AWS_IP + ':4000/admin/getexp/'+this.props.id)
         .then(response => {
             response.data.monthly_expenses.map(expenses=>
                 {
@@ -111,6 +113,7 @@ export default class TraineeExpenses extends Component {
     };
 
     render() {
+        console.log(this.props.id);
         if (this.state.currentUser.token.role !== 'admin') {
             return (
                 <AccessDenied />
@@ -177,7 +180,7 @@ export default class TraineeExpenses extends Component {
                                                     <td>£{monthly_expenses.amount}</td>
                                                     <td><button className="actionBtn" onClick={() => { 
                                                             if (window.confirm('Are you sure you wish to delete this expense?'))
-                                                            axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/admin/removeExpenses/'+this.props.match.params.id, {"expenseType": monthly_expenses.type, "amount": monthly_expenses.amount, "location": index, "addedBy":this.state.currentUser.token._id}).then(() => window.location.reload()) } }>
+                                                            axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/admin/removeExpenses/'+this.props.id, {"expenseType": monthly_expenses.type, "amount": monthly_expenses.amount, "location": index, "addedBy":this.state.currentUser.token._id}).then(() => window.location.reload()) } }>
                                                             Delete
                                                             <img src={close}></img>
                                                             <img></img>
@@ -189,7 +192,7 @@ export default class TraineeExpenses extends Component {
                                 </table >
                             </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <ButtonGroup>
-                                    <Button type="submit" id="createExpenseBtn" style={{ marginBottom:30}} onClick={() => { document.location.href = "/"; }}>⭠ Back</Button>
+                                    <Button type="submit" id="createExpenseBtn" style={{ marginBottom:30}} onClick={() => {this.props.content(<ListTrainee/>)}}>⭠ Back</Button>
                             </ButtonGroup>
 
                         </div>

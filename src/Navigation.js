@@ -15,6 +15,7 @@ import { authService } from "./components/modules/authService";
 import axios from 'axios';
 import './css/navigation.css';
 import TopNavBar from './components/topNavBar.component.js';
+import Login from './components/login.component';
 
 export default class Navigation extends React.Component {
   constructor(props) {
@@ -86,7 +87,8 @@ export default class Navigation extends React.Component {
   logout() {
     authService.logout();
     if (!authService.currentUserValue) {
-      document.location.href = 'http://' + process.env.REACT_APP_AWS_IP + ':3000/login';
+      this.props.content(<Login/>);
+      //document.location.href = 'http://' + process.env.REACT_APP_AWS_IP + ':3000/login';
     }
 
   }
@@ -104,7 +106,7 @@ export default class Navigation extends React.Component {
               <Nav className="ml-auto" navbar>
                 <NavItem className="display_name">Logged in as: {this.state.trainee_fname} {this.state.trainee_lname} {this.state.staff_fname} {this.state.staff_lname}  |  </NavItem>
                 <NavItem>
-                  <Button id="logoutBtn" onClick={this.logout} href='/login'>
+                  <Button id="logoutBtn" onClick={this.logout}>
                     Logout
                   </Button>
                 </NavItem>
@@ -123,7 +125,7 @@ export default class Navigation extends React.Component {
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className="ml-auto" navbar>
-                <Button id="loginBtn" onClick={this.login} href='/login'>
+                <Button id="loginBtn" onClick={this.login}>
                   Login
                 </Button>
               </Nav>

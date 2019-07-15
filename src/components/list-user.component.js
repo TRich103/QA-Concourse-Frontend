@@ -14,6 +14,7 @@ import QATable from '../components/components/table-component/qa-table.component
 import List_User from './list-user.component.js';
 
 import CreateUser from './create-user.component';
+import UserRecord from './user-history.component';
 
 export default class ListUser extends Component {
     
@@ -155,7 +156,7 @@ export default class ListUser extends Component {
                                                 {deleteToggle}
                                                 <img src={close}></img>
                                             </button>}&nbsp;
-                                    <button className="actionBtn" value={u._id} onClick={this.handleHistoryClick}>View History <img src={history}></img></button>&nbsp;
+                                    <button className="actionBtn" value={u._id} onClick={()=>{this.props.content(<UserRecord id={u._id}/>)}}>View History <img src={history}></img></button>&nbsp;
                                     <a href={"mailto:" + u.email}><button className="actionBtn">Email <img src={mail}></img></button> </a>
                                     <button className="actionBtn" onClick={() => { 
                                                     axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/admin/send-email-staff/', {email: u.email})
@@ -194,7 +195,7 @@ export default class ListUser extends Component {
                     <img src={filterIcon}></img>
                     </button>
                     <div id="addUser">
-						<Link className="link" to={"/addUser"}> <button className="qabtn" onClick={()=>{this.props.content(<CreateUser/>)}}>Create User<img src={add}></img></button></Link>
+						<Link className="link"> <button className="qabtn" onClick={()=>{this.props.content(<CreateUser/>)}}>Create User<img src={add}></img></button></Link>
                     </div>
                     <Collapse in={this.state.open}>
                     <p>

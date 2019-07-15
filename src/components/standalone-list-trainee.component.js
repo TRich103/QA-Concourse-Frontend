@@ -27,9 +27,11 @@ import CreateTrainee from "./create-trainee.component";
 import TraineeSettings from "./TraineeSettings.component";
 import EditDates from "./edit-dates.component";
 import EditTrainee from "./edit-trainee.component";
-import userExpense from "./expenses-trainee.component"
+import UserExpense from "./expenses-trainee.component"
 import { Button, ButtonGroup } from 'reactstrap';
 import History from './user-history.component.js';
+import UserRecord from './user-history.component';
+import TraineeDetails from './trainee-details.component';
 
 export default class ListTrainee extends Component {
     
@@ -398,9 +400,8 @@ export default class ListTrainee extends Component {
                      if (window.confirm('Are you sure you wish to '+deleteToggle.toLowerCase()+' this trainee?'))
                       axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/'+deleteRoute+'/'+t._id, {addedBy:this.state.currentUser.token._id}).then(() => window.location.reload()) } }>
                       {deleteToggle} <img src={close}></img></button>&nbsp;
-                    <button className="actionBtn" value={t._id} onClick={this.handleHistoryClick}>View History <img src={history}></img></button>&nbsp;
-                    <button className="actionBtn" value={t._id} onClick={()=>{this.props.content(<userExpense/>)}}>Expenses<img src={addmoney}></img></button> &nbsp; 
-                    <button className="actionBtn" value={t._id} onClick={this.handleExpensesClick}> Expenses <img src={addmoney}></img></button>&nbsp;
+                    <button className="actionBtn" value={t._id} onClick={()=>{this.props.content(<UserRecord id={t._id}/>)}}>View History <img src={history}></img></button>&nbsp;
+                    <button className="actionBtn" value={t._id} onClick={()=>{this.props.content(<UserExpense id={t._id}/>)}}>Expenses<img src={addmoney}></img></button> &nbsp; 
                      <a href={"mailto:"+t.trainee_email}><button className="actionBtn">Email <img src={mail}></img></button> </a>
                      <button className="actionBtn" onClick={() => { 
                            axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/send-email/', {trainee_email: t.trainee_email}).then(() => window.alert("Email Sent!")) } }>
@@ -425,7 +426,7 @@ export default class ListTrainee extends Component {
                     
                     'Action':			
                     <div>
-                    <button className="actionBtn" onClick={() => window.location.href = "/trainee-details/" + t._id}> View Details <img src={eye}></img></button>&nbsp;
+                    <button className="actionBtn" onClick={() => this.props.content(<TraineeDetails id={t._id}/>)}> View Details <img src={eye}></img></button>&nbsp;
                     <a href={"mailto:"+t.trainee_email}><button className="actionBtn">Email <img src={mail}></img></button> </a>
                     </div>,
                 }
@@ -484,8 +485,8 @@ export default class ListTrainee extends Component {
                         </ModalBody>
                     </Modal>
                     <div id="addUser">
-						<Link className="link" to={"/create"}> <button className="qabtn" onClick={()=>{this.props.content(<CreateTrainee/>)}}>Create Trainee<img src={add}></img></button></Link>
-                       	<Link className="link" to={"/trainee-settings"}> <button className="qabtn" onClick={()=>{this.props.content(<TraineeSettings/>)}}>Settings<img src={settings}></img></button></Link>
+						<Link className="link"> <button className="qabtn" onClick={()=>{this.props.content(<CreateTrainee/>)}}>Create Trainee<img src={add}></img></button></Link>
+                       	<Link className="link"> <button className="qabtn" onClick={()=>{this.props.content(<TraineeSettings/>)}}>Settings<img src={settings}></img></button></Link>
 					   <CSVLink className="link" data={output} filename={"Admin_report_" + moment().format('MMMM YYYY') + ".csv"}><button className="qabtn">Download CSV <img src={download}></img></button></CSVLink>					   
                     </div>
                     <Collapse in={this.state.open}>

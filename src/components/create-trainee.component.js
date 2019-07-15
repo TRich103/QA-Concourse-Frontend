@@ -16,6 +16,8 @@ import MomentLocaleUtils, {
   } from 'react-day-picker/moment';
 import CreatableSelect from 'react-select/creatable';
 import QAForm2 from "./components/form-component/qa-form.component";
+import ListTrainee from "./standalone-list-trainee.component";
+import ListTrainee2 from "./list-trainee.component";
 
 export default class CreateTrainee extends Component {
     
@@ -67,7 +69,8 @@ export default class CreateTrainee extends Component {
             bankHolidays: true,
             form_cancel: false,
             addTech: false,
-            addIntake: false
+            addIntake: false,
+            back: <ListTrainee/>
         }
     }
 	
@@ -106,7 +109,10 @@ export default class CreateTrainee extends Component {
             this.setState({
                 intakes: response.data
             });
-        });   
+        });
+        if(this.state.currentUser.token.role === 'recruiter'){
+            this.setState({back : <ListTrainee2/>});
+        }
     }
     
     onChangeTraineeFname(e) {
@@ -456,7 +462,7 @@ export default class CreateTrainee extends Component {
             <div className="createTrainee">
                 <form className="createTraineeForm" onSubmit={this.onSubmit}>
                     <h3 className="title">Add Trainee</h3>
-                    <div><center><button id="cancelBtn" onClick={() => {this.state.form_cancel = true; document.location.href = "/"; }}>Cancel</button></center></div>
+                    <div><center><button id="cancelBtn" onClick={() => {this.state.form_cancel = true; this.props.content(this.state.back);; }}>Cancel</button></center></div>
                     <div className="grid-container">
                         <div className="gird-item"> 
                             <label>First Name: </label>

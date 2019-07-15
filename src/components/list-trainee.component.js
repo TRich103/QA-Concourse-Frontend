@@ -220,7 +220,7 @@ export default class ListTrainee extends Component {
                     <img src={filterIcon}></img>
                     </button>
                     <div id="addUser">
-					<Link className="link" to={"/create"}> <button className="qabtn" onClick={()=>{this.props.content(<CreateTrainee/>)}}>Create Trainee<img src={add}></img></button></Link>
+					<Link className="link"> <button className="qabtn" onClick={()=>{this.props.content(<CreateTrainee/>)}}>Create Trainee<img src={add}></img></button></Link>
                     </div>
                      <Collapse in={this.state.open}>
                     <p>

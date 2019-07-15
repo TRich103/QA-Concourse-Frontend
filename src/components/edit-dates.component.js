@@ -10,6 +10,7 @@ import Collapse from 'react-bootstrap/Collapse'
 
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
+import ListTrainee from './list-trainee.component';
 
 import {
     formatDate,
@@ -117,7 +118,7 @@ export default class EditDates extends Component {
     }
 	
     componentDidMount() {
-        axios.get('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/'+this.props.match.params.id)
+        axios.get('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/'+this.props.id)
             .then(response => {
                 console.log(response);
                 
@@ -222,15 +223,15 @@ export default class EditDates extends Component {
 		
         console.log(obj);
         console.log(bursary);
-        axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/editDates/'+this.props.match.params.id, obj)
+        axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/editDates/'+this.props.id, obj)
             .then(res => {console.log(res.data);
                           this.props.history.push('/');
                           window.location.reload();});
-		axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/daysToWork/'+this.props.match.params.id, workingDays)
+		axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/daysToWork/'+this.props.id, workingDays)
             .then(res => {console.log(res.data);
                           this.props.history.push('/');
                           window.location.reload();});
-        axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/editBursary/'+this.props.match.params.id, bursary)
+        axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/editBursary/'+this.props.id, bursary)
                 .then(res => {console.log(res.data);
                              this.props.history.push('/');
                              window.location.reload();});                 
@@ -247,7 +248,7 @@ export default class EditDates extends Component {
             <div className="QATable">
                 <form className="edit-form" onSubmit={this.onSubmit}>
                     <div className="all-edit-box">
-                        <center><button type="button" id="cancelBtn" onClick={() => { document.location.href = "/"; }}>Cancel</button></center>
+                        <center><button type="button" id="cancelBtn" onClick={() => {this.props.content(<ListTrainee/>)}}>Cancel</button></center>
 					<div className="form-group"> 
                         <label>First Name: </label>
                         <input  type="text"

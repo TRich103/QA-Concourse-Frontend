@@ -52,12 +52,14 @@ export default class topNavBar extends React.Component {
             // Pass on our props
             <div id="top-nav-bar">
             <ul>
-                <li><a className="sidebar_btn" onClick={() => { document.location.href = "/"; }}>Home</a></li>
+                <li><a className="sidebar_btn" onClick={() => {this.props.content()}}>Home</a></li>
                 <li><a id="HelperGuide" target="_new" className="sidebar_btn" href="https://docs.google.com/document/d/1AXQ9NMtyfb5IkY0sDhafANRjIISliqCThlpj8kq99LA/edit">User Guide</a></li>
                 
                 {changePassVisible ?
                                 <li>
-                                <a className="sidebar_btn" onClick={()=>{this.props.content(<ChangePasswordStaff/>)}}>Change Password </a>
+                                <a className="sidebar_btn" onClick={()=>{
+                                    this.props.content(<ChangePasswordStaff/>);
+                                    }}>Change Password </a>
                         </li> : ""
                 }
                 </ul>

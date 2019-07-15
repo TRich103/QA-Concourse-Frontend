@@ -8,24 +8,27 @@ import QAGenericTable from './components/table-component/qa-table.component';
 import SearchBar from './components/search-bar-component/searchBar.component';
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 import DayPicker, { DateUtils } from 'react-day-picker';
+import ListUser from './list-user.component';
+import ListTrainee from './standalone-list-trainee.component';
 
 export default class UserRecord extends Component {
     
     constructor(props) {
         super(props);
-			
+		console.log(props);
         this.state = {
             userType: '',
             recordOf: '',
             record: [],
-            currentUser: {token: {role: "admin", status: "Active", _id: "5d0bb39bd2ba63099c621593"}},
-            //currentUser: authService.currentUserValue, //for testing purposes this needs to be changed
+            //currentUser: {token: {role: "admin", status: "Active", _id: "5d0bb39bd2ba63099c621593"}},
+            currentUser: authService.currentUserValue, //for testing purposes this needs to be changed
             searchResults: [],
             modal: false,
             range:{
                 from: undefined,
                 to: undefined,
-            }
+            },
+            back:""
             };
             this.toggle = this.toggle.bind(this);
             this.handleDaysClicked = this.handleDaysClicked.bind(this);
@@ -67,7 +70,7 @@ export default class UserRecord extends Component {
         });
       }
     componentDidMount() {
-        axios.get('http://'+process.env.REACT_APP_AWS_IP+':4000/admin/getRecord/'+this.props.match.params.id)
+        axios.get('http://'+process.env.REACT_APP_AWS_IP+':4000/admin/getRecord/'+this.props.id)
             .then(response => {
                 this.setState({record: response.data,
                     searchResults: response.data
@@ -77,21 +80,21 @@ export default class UserRecord extends Component {
             .catch(function (error){
                 console.log(error);
             })
-        axios.get('http://'+process.env.REACT_APP_AWS_IP+':4000/admin/staff/'+this.props.match.params.id)
+        axios.get('http://'+process.env.REACT_APP_AWS_IP+':4000/admin/staff/'+this.props.id)
              .then(response => {
                 if(response.data === null){
-                    axios.get('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/'+this.props.match.params.id)
+                    axios.get('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/'+this.props.id)
                          .then(response =>{
                             if(response.data === null){
                                 this.setState({recordOf: 'Not Found', userType: 'User'});
                             }
                             else{
-                                this.setState({recordOf: response.data.trainee_email, userType: 'Trainee'});
+                                this.setState({recordOf: response.data.trainee_email, userType: 'Trainee', back: <ListTrainee/>});
                             }
                          })
                 }
                 else{
-                    this.setState({recordOf: response.data.email, userType:'Staff'});
+                    this.setState({recordOf: response.data.email, userType:'Staff', back: <ListUser/>});
                 }
             })
             .catch(function (error){
@@ -152,7 +155,7 @@ export default class UserRecord extends Component {
                 <div className="historyTable">
                         <div className="QASearchBar">
                             <h2>{userType} History- {recordOf}</h2>
-                            <h3><center><button id="cancelBtn" onClick={() => { document.location.href = "/"; }}>⭠ Back</button></center></h3>
+                            <h3><center><button id="cancelBtn" onClick={() => {this.props.content(this.state.back)}}>⭠ Back</button></center></h3>
                             <div id="logbox">
                                 <label id="searchLogs">Search Logs :</label><SearchBar search={this.search} /><button className="resetBtn" onClick={this.toggle}>Select Start Dates</button>
                             </div>

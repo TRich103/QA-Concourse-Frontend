@@ -29,7 +29,7 @@ export default class TraineeDetails extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/'+this.props.match.params.id)
+        axios.get('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/'+this.props.id)
             .then(response => {
                 console.log(response.data);
                 this.setState({
@@ -55,7 +55,7 @@ export default class TraineeDetails extends Component {
 
     onSubmit(e) {
         
-        this.props.history.push('/edit/'+this.props.match.params.id);
+        this.props.history.push('/edit/'+this.props.id);
     }
 
 render() {
@@ -86,7 +86,7 @@ render() {
             </div>
 
         )
-	} else if(this.state.currentUser.token._id === this.props.match.params.id && this.state.trainee_bursary === "True") {
+	} else if(this.state.currentUser.token._id === this.props.id && this.state.trainee_bursary === "True") {
 		return (
 		<div className="details">
             <div className="detailsDiv">
@@ -116,7 +116,7 @@ render() {
                 </div>
             </div>
         );
-    }else if(this.state.currentUser.token._id === this.props.match.params.id){
+    }else if(this.state.currentUser.token._id === this.props.id){
         return(
             <div className="details">
             <div className="detailsDiv">
