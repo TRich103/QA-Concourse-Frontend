@@ -1,6 +1,7 @@
 import React from "react";
 import { authService } from './modules/authService';
 import "../css/navBar.css";
+import ChangePasswordStaff from './change-password-staff.component';
 
 
 export default class topNavBar extends React.Component {
@@ -56,7 +57,7 @@ export default class topNavBar extends React.Component {
                 
                 {changePassVisible ?
                                 <li>
-                                <a className="sidebar_btn" onClick={this.handlePasswordStaff}>Change Password </a>
+                                <a className="sidebar_btn" onClick={()=>{this.props.content(<ChangePasswordStaff/>)}}>Change Password </a>
                         </li> : ""
                 }
                 </ul>
