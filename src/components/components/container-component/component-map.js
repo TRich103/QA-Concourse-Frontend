@@ -1,6 +1,6 @@
 import { AdminHome, Admin1, Admin2, Admin3, Admin4, Admin5, Admin6,
          RecruiterHome, Recruiter1, Recruiter2, Recruiter3, Recruiter4, Recruiter5, Recruiter6 } from'./placeholder-components';
-import Login from './login.component'
+
 import React, { Component }  from 'react';
 import GenericDiv from '../table-component/generic-div.component';
 import SearchContainer from '../search-bar-component/searchContainer.component';
@@ -9,7 +9,9 @@ import ButtonDiv from '../text-button-component/button-div.component';
 import ApartmentList from '../apartment-display-component/apartment-list.component';
 import CalendarDiv from '../calendar-component/generic-div.component';
 import QAForm from '../form-component/qa-form.component'
-
+//No login
+import Login from './login.component';
+import ChangePassword from "../../change-password-trainee.component";
 //Admin
 import ListTrainee from '../../standalone-list-trainee.component.js';
 import TraineeSettings from '../../TraineeSettings.component';
@@ -27,17 +29,10 @@ export const myConfig =
     "recruiter": {
         "home": <RecruiterTrainee/>,
         "buttons": [
-                        {'name': 'Home', 'content': <RecruiterTrainee/>},
+                        {'name': 'Bursary', 'content': <RecruiterTrainee/>},
 						{'name': 'Change Password', 'content':<PasswordStaff/>}
                    ],
-        "dropdowns":[
-                        {   'name': 'Bursary',
-                            'content':[
-                                        {'name': 'Create Trainees', 'content': <CreateTrainee/>},
-                                        {'name': 'View Trainees', 'content': <RecruiterTrainee/>}
-                                    ]
-                        },
-                    ],
+        "dropdowns":[],
         "side": [
                         {'name': 'Trainees', 'content': <RecruiterTrainee/>},
                    ],
@@ -68,5 +63,17 @@ export const myConfig =
 						{'name': 'Trainees', 'content': <ListTrainee/>},
 						{'name': 'Cost Report', 'content': <CostReports/>}
                    ],
-    }
+    },
+	"expense manager": {
+		"home": <ListTrainee/>,
+		"buttons": [
+					{'name': 'Bursary', 'content': <ListTrainee/>},
+					{'name': 'Change Password', 'content':<PasswordStaff/>}
+		],
+		"dropdowns":[],
+		"side": [
+					{'name': 'Trainees', 'content': <ListTrainee/>},
+		]
+		
+	}
 }

@@ -587,48 +587,7 @@ export default class ListTrainee extends Component {
                 </div>
                 <div id="resultsTable">
 				<QATable id="trainee-table" data={tableData}/>
-                <table className="table table-hover" style={{ marginTop: 20 }} >
-                    <thead>
-                        <tr>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th><center>Status</center></th>
-                            <th><center>Bursary</center></th>
-							<th><center>Start Date</center></th>
-                            <th><center>Payment This Month</center></th>
-                            <th><center>Action</center></th>
-                        </tr>
-                    </thead>               
-                    <tbody>
-                        {trainees.map(t => {
-                            let expenses = 0;
-                            t.monthly_expenses.map(expense => {
-                                expenses += +Number(expense.amount).toFixed(2);
-                            })
-							if(this.state.currentUser.token.role === 'finance'){
-                                if(t.status != "Suspended"){
-                                    return (
-                                        <tr className="trainees">
-                                            <td onClick={() => window.location.href = "/trainee-details/" + t._id}> {t.trainee_fname}</td>
-                                            <td onClick={() => window.location.href = "/trainee-details/" + t._id}> {t.trainee_lname}</td>
-                                            <td onClick={() => window.location.href = "/trainee-details/" + t._id}> <center>{t.status}</center></td>
-                                            <td onClick={() => window.location.href = "/trainee-details/" + t._id}> <center>{t.bursary}</center></td>
-											<td onClick={() => window.location.href = "/trainee-details/" + t._id}> <center>{moment(t.trainee_start_date).format('MMMM Do YYYY')}</center></td>
-                                            <td onClick={() => window.location.href = "/trainee-details/" + t._id}> <center>£{Number(t.bursary_amount * t.trainee_days_worked + expenses).toFixed(2)}</center></td>
-                                            <td> 
-                                                <center>
-                                                <button className="actionBtn" onClick={() => window.location.href = "/trainee-details/" + t._id}> View Details <img src={eye}></img></button>&nbsp;
-                                                <a href={"mailto:"+t.trainee_email}><button className="actionBtn">Email <img src={mail}></img></button> </a>
-                                                </center>
-                                            </td>
-                                        </tr>
-                                    );
-                                }
-							}
-                        })}
-                    </tbody>
 
-                </table>
                 </div>
             </div>
         );

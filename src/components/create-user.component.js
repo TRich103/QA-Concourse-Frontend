@@ -184,8 +184,11 @@ export default class CreateUser extends Component {
                         <DropdownItem onClick={this.changeUserRole}>
                                 Admin
                         </DropdownItem>
-                        </DropdownMenu>
-                        </Dropdown>
+						<DropdownItem onClick={this.changeUserRole}>
+						expense manager
+						</DropdownItem>
+                       </DropdownMenu>
+                      </Dropdown>
                     <br></br>
 					</div>
              </div>

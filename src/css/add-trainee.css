@@ -1,9 +1,16 @@
 .createTrainee{
-	width:80%;
+	width:90%;
 	height:900px;
 	margin-left:auto;
 	margin-right:auto;
     background-color: white;
+}
+.css-2b097c-container{
+}
+.gird-item-bursary{
+	margin-top:1%;
+	width:40%;
+	height:80px;
 }
 
 .createTraineeForm{
@@ -16,6 +23,11 @@
 .DayPickerInput-Overlay {
     top: -332px;
 }
+.intake-item{
+	margin-top:4%;
+	width:100%;
+	margin-left:50px;
+}
 
 .title{
     margin-left: 5%;
@@ -23,24 +35,31 @@
 
 .grid-container{
   display: grid;
+  width:100%;
   grid-template-columns: auto auto auto;
   padding: 10px;
 }
 .gird-item{
   border: none;
+  width:100%;
   padding: 20px;
   font-size: 16px;
 }
 .grid-dates{
 	border: none;
-	position:center;
-	float:left;
-	margin-left:10%;
+	width:100%;
 	padding: 20px;
 }
+.create-trainee-functions{
+	margin-top:5%;
+	
+}
+
 .grid-wrapper{
+	width:50%;
+	float:left;
 	display:grid;
-	  grid-template-columns: auto auto auto auto auto;
+	  grid-template-columns: auto auto;
 	  padding:10px;
 }
 .text-input-fields {
@@ -48,7 +67,17 @@
     margin-left: auto;
     margin-right: auto;
 }
-
+#create_trainee_pg_btn{
+	background-color: #005b72;
+	margin-top:1%;
+	width: 30%;
+	text-transform: capitalize;
+	font-family: "Roboto", sans-serif;
+}
+#create_trainee_pg_btn:hover{
+	color:#005b72;
+    background-color: white;
+}
 #createTraineeBtn {
 	background-color: #005b72;
 	width: 30%;

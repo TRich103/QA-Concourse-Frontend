@@ -334,11 +334,9 @@ export default class CreateTrainee extends Component {
     
     onSubmit(e) {
         e.preventDefault();
-
         var alertDeterminer;
-        
+		
         if (this.state.form_cancel === false) {
-
             if (this.state.trainee_start_date === '' || this.state.trainee_end_date === '') {
                 alertDeterminer = "blankdates";
             }
@@ -488,6 +486,7 @@ export default class CreateTrainee extends Component {
 					</div>
 					<div className="grid-container">
                         <div className="gird-item">
+					
                             <label>Email: </label>
                             <input 
                                     type="email" 
@@ -496,20 +495,17 @@ export default class CreateTrainee extends Component {
                                     onChange={this.onChangeTraineeEmail}
                                     required/>
                         </div>
-					</div>
-					<div className="grid-container">
 						<div className="grid-item">
-                            <label>Cohort / Intake :</label>
-                            &nbsp;
+						<div className="intake-item">
+                            <label>Cohort / Intake: </label>
                             <CreatableSelect
                             placeholder="Select or Create a new Intake"
                             onChange={this.handleCohort}
                             options={this.state.intakes}
-                            />
+							/>
+							</div>
                         </div>
 					</div>
-                   
-				   <div className="grid-container-bursary">
 				   <div className="gird-item-bursary">
                         <label> Bursary: </label>
 						&nbsp;&nbsp;
@@ -526,8 +522,8 @@ export default class CreateTrainee extends Component {
                                     required/>
                     </div>
                     </Collapse>
-					</div>
-					</div>
+				</div>
+	
 			<div className="grid-wrapper">                
 					<div className="grid-dates" >
                         <label> Training Start Date</label>
@@ -608,8 +604,10 @@ export default class CreateTrainee extends Component {
 				</div>
 				<div>
                     <div>
+						<div className="create-trainee-functions">
                         <input id="createTraineeBtn" type="submit" value="Add Trainee" className="btn btn-primary" />
-                    </div>
+						</div>
+					</div>
 				</div>
                 </form>
             </div>
