@@ -361,7 +361,9 @@ export default class ListTrainee extends Component {
         trainees.map( t => {
             if(t.status === 'Pending'|| t.status === 'Incomplete'){
             }else if(moment(t.trainee_bench_start_date).isAfter(moment().format('MMMM YYYY'))){
-                                t.status = "Training";
+                                if(t.status !== "Suspended"){
+                                    t.status = "Training";
+                                }
                             }
                             else{
                                 t.status = "Bench";
@@ -374,7 +376,7 @@ export default class ListTrainee extends Component {
               t.monthly_expenses.map(expense =>{
                       expenses += +Number(expense.amount).toFixed(2);
                     })
-                    if(this.state.trainees.status === "Suspended"){
+                    if(t.status === "Suspended"){
                         deleteToggle = "Reactivate";
                         deleteRoute = "reactivate";
                     }else{
