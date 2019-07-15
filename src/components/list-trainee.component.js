@@ -9,6 +9,9 @@ import add from './icons/person-add.svg';
 import close from './icons/close2.svg';
 import filterIcon from './icons/filter.svg';
 import mail from './icons/envelope.svg';
+import moment from 'moment';
+import QATable from '../components/components/table-component/qa-table.component';
+
 
 export default class ListTrainee extends Component {
     
@@ -102,8 +105,45 @@ export default class ListTrainee extends Component {
         let filter = this.state.filter;
         let recruiterName = this.state.recruiterName;
         let deleteToggle = '';
+		let headers = [{ 'header': 'Cohort', 'width': 100 }, { 'header': 'Name', 'width': 100 },
+            { 'header': 'Recruited By', 'width': 100 }, { 'header': 'Bursary', 'width': 100 },
+			{ 'header': 'Training Start Date', 'width': 200 }, { 'header': 'Training End Date', 'width': 200 },
+			{ 'header': 'Bench Start Date', 'width': 200 },{ 'header': 'Bench End Date', 'width': 200 }, { 'header': 'Action', 'width': 500 } ]
+		let rows = []
         const {open} = this.state;
-
+		trainees.map( t => {
+        if(t.status === 'Pending'|| t.status === 'Incomplete'){
+        }else if(moment(t.trainee_bench_start_date).isAfter(moment().format('MMMM YYYY'))){
+                            t.status = "Training";
+                        }
+                        else{
+                            t.status = "Bench";
+                        }
+		let row = {
+                'Cohort': t.trainee_intake,
+                'Name': t.trainee_fname +' '+ t.trainee_lname,
+                'Status': t.status,
+                'Recruited By': t.added_By,
+				'Bursary': t.bursary,
+				'Training Start Date':moment(t.trainee_start_date).format('MMMM DD YYYY'),
+				'Training End Date':moment(t.trainee_end_date).format('MMMM DD YYYY'),
+				'Bench Start Date':moment(t.trainee_bench_start_date).format('MMMM DD YYYY'),
+				'Bench End Date':moment(t.trainee_bench_end_date).format('MMMM DD YYYY'),
+				
+				'Action':			
+				<div>
+				<button className="actionBtn" onClick={() => { 
+                 if (window.confirm('Are you sure you wish to delete this trainee?'))
+                  axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/delete/'+t._id,{addedBy:this.state.currentUser.token._id}).then(() => window.location.reload()) } }>
+                  Suspend<img src={close}></img>
+                  </button>&nbsp;
+                  <a href={"mailto:"+t.trainee_email}><button className="actionBtn">Email <img src={mail}></img></button> </a>
+				</div>,
+            }	
+			//Adds data to Rows
+            rows.push(row)
+		})
+		let tableData = { Headers: headers, Rows: rows };
         
         if(search.length > 0){
             trainees = trainees.filter(function(i){
@@ -172,7 +212,7 @@ export default class ListTrainee extends Component {
                     <div id="addUser">
                         <Link className="link" to={"/create"}><button className="qabtn">Add Trainee <img src={add}></img></button></Link>
                     </div>
-                    <Collapse in={this.state.open}>
+                     <Collapse in={this.state.open}>
                     <p>
                         <br></br>
                         <label>My Trainees</label> &nbsp;
@@ -194,6 +234,7 @@ export default class ListTrainee extends Component {
                     </Collapse>
                 </div>
                 <div id="resultsTable">
+				<QATable id="trainee-table" data={tableData}/>
                 <table className="table table-hover" style={{ marginTop: 20 }} >
                     <thead>
                         <tr>

@@ -3,7 +3,6 @@
     background-color: white;
     width:100%;
 }
-
 #addUser{
     float:right;
     padding: 5px;
@@ -29,10 +28,10 @@ a.link:hover{
     }
 	
 .ReactTable.-striped .rt-tr.-odd{
-    background-color: aliceblue;
+    background-color: rgb(0,64,80,10%);
 }
 .ReactTable.-highlight .rt-tbody :not(.-padRow).rt-tr:hover{
-	background-color:#c6e4ff ;
+	    background: rgb(0, 64, 80,30%);
 }
 
 #addUser .qabtn{

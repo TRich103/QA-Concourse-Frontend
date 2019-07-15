@@ -410,8 +410,10 @@ export default class ListTrainee extends Component {
                     
                     'Action':			
                     <div>
-                     <button className="actionBtn" onClick={() => this.suspendTrainee(t._id)}>{deleteToggle}<img src={close}></img>
-                    </button>&nbsp;
+					<button className="actionBtn" onClick={() => { 
+                     if (window.confirm('Are you sure you wish to '+deleteToggle.toLowerCase()+' this trainee?'))
+                      axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/'+deleteRoute+'/'+t._id, {addedBy:this.state.currentUser.token._id}).then(() => window.location.reload()) } }>
+                      {deleteToggle} <img src={close}></img></button>&nbsp;
                     <button className="actionBtn" value={t._id} onClick={this.handleHistoryClick}>View History <img src={history}></img></button>&nbsp;
                     <button className="actionBtn" value={t._id} onClick={()=>{this.props.content(<userExpense/>)}}>Expenses<img src={addmoney}></img></button> &nbsp; 
                     <button className="actionBtn" value={t._id} onClick={this.handleExpensesClick}> Expenses <img src={addmoney}></img></button>&nbsp;
