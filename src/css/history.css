@@ -34,7 +34,21 @@ height:600px;
 	margin-right:5%;
 }
 
-
+.expense_button{
+	margin-left:5% !important;
+	margin-right:-5% !important;
+	width:5% !important;
+	background-color:#004050 !important;
+	margin-bottom:10px;
+}
+.expense_button:hover{
+	background-color: white !important;
+	color: #004050 !important;
+    border: 1px solid #004050 !important;
+}
+.btn-group{
+	margin-bottom:10px;
+}
 .ReactTable .tr-th, .ReactTable .rt-td {
     white-space: unset
 }

@@ -2,9 +2,8 @@
 	color:black !important;
 }
 .navbar-light .navbar-nav .nav-link:hover{
-	background-color:white;
-	border-radius: 25px;
-	color:;
+	background-color:#d6d8da;
+	color:Black;
 }
 .display_name{
 	margin-top:8px;

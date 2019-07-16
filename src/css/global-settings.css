@@ -4,24 +4,22 @@
 }
 
 .gSTitle{
-	margin: auto;
+	margin-right:auto;
+	margin-left:auto;
+	margin-top:2%;
 	font-family: "Roboto", sans-serif;
-	font-size: 40px;
-	box-shadow: 5px 10px #004050;
-opacity: 0.8;
+	opacity: 0.8;
 	border-radius: 5px;
 	width: 50%;
-	
 }
-
+.trainee-settings-wrapper{
+	height:400px;
+	width:100%;
+}
 #gS{
-	height: 200px;
-	color: white;
-	background-color: #457581; 
+	height: 300px;
+	color: black;
 	padding: 20px;
-	border-left: solid 5px #457581;
-	border-top: solid 5px #457581;
-	border-right: solid 5px #457581;
 	border-top-right-radius: 30px;
 	border-top-left-radius: 30px;
 }

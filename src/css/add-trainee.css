@@ -7,7 +7,53 @@
 }
 .css-2b097c-container{
 }
-
+.grid-item-name{
+	margin-top:4%;	
+}
+.gird-item-email{
+	width:90%;
+}
+.gird-item-bursary-title{
+	width:50%;
+	height:60px;
+	margin-top:7%;
+}
+.gird-item-bursary-change{
+	margin-left:-55%;
+	width:50%;
+	height:100px;
+}
+.grid-wrapper-dates{
+	width:40%;
+	margin-left:-4%;
+	float:left;
+	display:grid;
+	grid-template-columns: auto auto;
+	padding:10px;
+}
+.grid-item-days-working{
+	width:50%;
+	margin-top:3%;
+	margin-left:5%;
+	float:left;
+	height:100px;
+}
+.intake-item-change{
+	width:90%;
+}
+.gird-item-intake{
+	width:40%;
+}
+.update-title{
+	width:20%;
+	margin-left:5%;
+	height:50px;
+	float:left;
+}
+.update-cancel-btn{
+	width:50%;
+	float:left;
+}
 .gird-item-bursary{
 	margin-top:1%;
 	width:40%;

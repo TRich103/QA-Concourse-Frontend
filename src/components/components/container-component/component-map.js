@@ -23,6 +23,9 @@ import CreateTrainee from "../../create-trainee.component";
 //Recruiter
 import RecruiterTrainee from '../../list-trainee.component.js';
 
+//trainee
+import TraineeDetails from '../../trainee-details.component';
+
 export const myConfig =
 {
     "null": <Login/>,
@@ -74,6 +77,15 @@ export const myConfig =
 		"side": [
 					{'name': 'Trainees', 'content': <ListTrainee/>},
 		]
+		
+	},
+	"trainee": {
+		"home": <TraineeDetails/>,
+		"buttons": [
+					{'name': 'Home', 'content': <TraineeDetails/>},
+		],
+		"dropdowns":[],
+		"side": []
 		
 	}
 }

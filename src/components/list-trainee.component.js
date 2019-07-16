@@ -173,15 +173,15 @@ export default class ListTrainee extends Component {
 					}
                }
             let row = {
-                    'Cohort':t.trainee_intake,
-                    'Name': t.trainee_fname +' '+ t.trainee_lname,
-                    'Recruited By': t.added_By,
-                    'Bursary': t.bursary,
-                    'Training Start Date':moment(t.trainee_start_date).format('MMMM DD YYYY'),
-                    'Training End Date':moment(t.trainee_end_date).format('MMMM DD YYYY'),
-                    'Bench Start Date':moment(t.trainee_bench_start_date).format('MMMM DD YYYY'),
-                    'Bench End Date':moment(t.trainee_bench_end_date).format('MMMM DD YYYY'),
-                    
+                    'Cohort':<p className="editable_table" onClick={() => this.props.content(<EditDates id={t._id}/>)}>{t.trainee_intake}</p>,
+                    'Name': <p className="editable_table" onClick={() => this.props.content(<EditDates id={t._id}/>)}>{t.trainee_fname +' '+ t.trainee_lname}</p>,
+                    'Recruited By': <p className="editable_table" onClick={() => this.props.content(<EditDates id={t._id}/>)}>{t.added_By}</p>,
+                    'Payment This Month':<p className="editable_table" onClick={() => this.props.content(<EditDates id={t._id}/>)}>{'£'+Number(t.bursary_amount * t.trainee_days_worked ).toFixed(2)}</p>,
+                    'Training Start Date':<p className="editable_table" onClick={() => this.props.content(<EditDates id={t._id}/>)}>{moment(t.trainee_start_date).format('MMMM DD YYYY')}</p>,
+                    'Training End Date':<p className="editable_table" onClick={() => this.props.content(<EditDates id={t._id}/>)}>{moment(t.trainee_end_date).format('MMMM DD YYYY')}</p>,
+                    'Bench Start Date':<p className="editable_table" onClick={() => this.props.content(<EditDates id={t._id}/>)}>{moment(t.trainee_bench_start_date).format('MMMM DD YYYY')}</p>,
+                    'Bench End Date':<p className="editable_table" onClick={() => this.props.content(<EditDates id={t._id}/>)}>{moment(t.trainee_bench_end_date).format('MMMM DD YYYY')}</p>,
+
                     'Action':			
                     <div>
                     <button className="actionBtn" onClick={() => { 

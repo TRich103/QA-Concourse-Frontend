@@ -6,6 +6,7 @@ import AccessDenied from './modules/AccessDenied';
 import { Button, ButtonGroup } from 'reactstrap';
 import close from './icons/close2.svg';
 import ListTrainee from './standalone-list-trainee.component';
+import QATable from '../components/components/table-component/qa-table.component';
 
 
 export default class TraineeExpenses extends Component {
@@ -113,7 +114,6 @@ export default class TraineeExpenses extends Component {
     };
 
     render() {
-        console.log(this.props.id);
         if (this.state.currentUser.token.role !== 'admin') {
             return (
                 <AccessDenied />
@@ -124,6 +124,31 @@ export default class TraineeExpenses extends Component {
             let userType = this.state.userType;
             let other = this.state.other;
             const { expArray, monthly_expenses, expenseType } = this.state;
+			let headers = [
+			{ 'header': 'Expense', 'width': 550 },
+			{ 'header': 'Amount', 'width': 500 },
+			{ 'header': 'Actions', 'width': 500 }
+		]
+		let rows = []
+		
+		expArray.map((monthly_expenses, index) => {
+			 let row ={
+				 'Expense':monthly_expenses.type,
+				 'Amount': '£'+ monthly_expenses.amount,
+				 'Actions': 
+				 <div>
+				 <button className="actionBtn" onClick={() => { 
+                      if (window.confirm('Are you sure you wish to delete this expense?'))
+                      axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/admin/removeExpenses/'+this.props.id, {"expenseType": monthly_expenses.type, "amount": monthly_expenses.amount, "location": index, "addedBy":this.state.currentUser.token._id}).then(() => window.location.reload()) } }>
+                      Delete
+                      <img src={close}></img>
+                      <img></img>
+                      </button>
+				 </div>
+			 }
+			 rows.push(row)
+		 })
+			let tableData = { Headers: headers, Rows: rows }
             return (
                 <div className="BigBox">
                     <div className="QAtable">
@@ -154,6 +179,7 @@ export default class TraineeExpenses extends Component {
                                     <option value="Taxi Fares">Taxi Fares</option>
                                     <option value="Training Materials">Training Materials</option>
                                 </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							
                                 <ButtonGroup>  <Button type="submit" id="createExpenseBtn" onClick={this.onSave}>Add</Button> </ButtonGroup>
                                 {other ? 
                                 <div id="OtherInput">
@@ -163,38 +189,9 @@ export default class TraineeExpenses extends Component {
                                     placeholder="Enter Expense Type Here"
                                     />
                                 </div>:""}
-                                <table id="logTable" className="table table-striped" style={{ marginTop: 20 }} >
-                                    <thead>
-                                        <tr>
-                                            <th>Expenses</th>
-                                            <th>Amount(£)</th>
-                                            <th>Actions</th>
-                                        </tr>
-
-                                    </thead>
-                                    <tbody>
-                                        {expArray.map((monthly_expenses, index) => {
-                                            return (
-                                                <tr>
-                                                    <td>{monthly_expenses.type}</td>
-                                                    <td>£{monthly_expenses.amount}</td>
-                                                    <td><button className="actionBtn" onClick={() => { 
-                                                            if (window.confirm('Are you sure you wish to delete this expense?'))
-                                                            axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/admin/removeExpenses/'+this.props.id, {"expenseType": monthly_expenses.type, "amount": monthly_expenses.amount, "location": index, "addedBy":this.state.currentUser.token._id}).then(() => window.location.reload()) } }>
-                                                            Delete
-                                                            <img src={close}></img>
-                                                            <img></img>
-                                        </button></td>
-                                                </tr>
-                                            );
-                                        })}
-                                    </tbody>
-                                </table >
-                            </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <ButtonGroup>
-                                    <Button type="submit" id="createExpenseBtn" style={{ marginBottom:30}} onClick={() => {this.props.content(<ListTrainee/>)}}>⭠ Back</Button>
-                            </ButtonGroup>
-
+								<Button type="submit" className="expense_button" onClick={() => {this.props.content(<ListTrainee/>)}}>⭠ Back</Button>
+								<QATable id="trainee-table" data={tableData}/>
+                            </div>
                         </div>
                     </div>
                 </div>

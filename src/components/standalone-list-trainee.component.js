@@ -357,7 +357,10 @@ export default class ListTrainee extends Component {
         }
 
         trainees.map( t => {
-            if(moment(t.trainee_bench_start_date).isAfter(moment().format('MMMM YYYY'))){
+			if (t.status !== "Active"){
+				t.status = t.status
+			}
+            else if(moment(t.trainee_bench_start_date).isAfter(moment().format('MMMM YYYY'))){
                                 if(t.status !== "Suspended"){
                                     t.status = "Training";
                                 }
@@ -410,11 +413,10 @@ export default class ListTrainee extends Component {
                 }	
                 //Adds data to Rows
                 rows.push(row)				
-            }else {
+            }else if(this.state.currentUser.token.role === 'finance') {
                 let row = {
                     'Cohort':<p className="editable_table" onClick={() => this.props.content(<TraineeDetails id={t._id}/>)}>{ t.trainee_intake}</p>,
 					'Name':<p className="editable_table" onClick={() => this.props.content(<TraineeDetails id={t._id}/>)}>{t.trainee_fname +' '+ t.trainee_lname}</p>,
-                    'Status': <p className="editable_table" onClick={() => this.props.content(<TraineeDetails id={t._id}/>)}>{t.status}</p>,
                     'Recruited By': <p className="editable_table" onClick={() => this.props.content(<TraineeDetails id={t._id}/>)}>{t.added_By}</p>,
                     'Bursary': <p className="editable_table" onClick={() => this.props.content(<TraineeDetails id={t._id}/>)}>{t.bursary}</p>,
                     'Payment This Month':<p className="editable_table" onClick={() => this.props.content(<TraineeDetails id={t._id}/>)}>{'£'+Number(t.bursary_amount * t.trainee_days_worked ).toFixed(2)}</p>,
@@ -431,9 +433,28 @@ export default class ListTrainee extends Component {
                 }
                 //Adds data to Rows
                 rows.push(row)	
-            }
-                
-            })
+            }else{
+				let row = {
+                    'Cohort':<p className="editable_table" onClick={() => this.props.content(<TraineeDetails id={t._id}/>)}>{ t.trainee_intake}</p>,
+					'Name':<p className="editable_table" onClick={() => this.props.content(<TraineeDetails id={t._id}/>)}>{t.trainee_fname +' '+ t.trainee_lname}</p>,
+                    'Recruited By': <p className="editable_table" onClick={() => this.props.content(<TraineeDetails id={t._id}/>)}>{t.added_By}</p>,
+                    'Bursary': <p className="editable_table" onClick={() => this.props.content(<TraineeDetails id={t._id}/>)}>{t.bursary}</p>,
+                    'Payment This Month':<p className="editable_table" onClick={() => this.props.content(<TraineeDetails id={t._id}/>)}>{'£'+Number(t.bursary_amount * t.trainee_days_worked ).toFixed(2)}</p>,
+                    'Training Start Date':<p className="editable_table" onClick={() => this.props.content(<TraineeDetails id={t._id}/>)}>{moment(t.trainee_start_date).format('MMMM DD YYYY')}</p>,
+                    'Training End Date':<p className="editable_table" onClick={() => this.props.content(<TraineeDetails id={t._id}/>)}>{moment(t.trainee_end_date).format('MMMM DD YYYY')}</p>,
+                    'Bench Start Date':<p className="editable_table" onClick={() => this.props.content(<TraineeDetails id={t._id}/>)}>{moment(t.trainee_bench_start_date).format('MMMM DD YYYY')}</p>,
+                    'Bench End Date':<p className="editable_table" onClick={() => this.props.content(<TraineeDetails id={t._id}/>)}>{moment(t.trainee_bench_end_date).format('MMMM DD YYYY')}</p>,
+                    
+                    'Action':			
+                     <div>
+                    <button className="actionBtn" value={t._id} onClick={()=>{this.props.content(<UserExpense id={t._id}/>)}}>Expenses<img src={addmoney}></img></button> &nbsp; 
+                     <a href={"mailto:"+t.trainee_email}><button className="actionBtn">Email <img src={mail}></img></button> </a>        
+                    </div>,
+				}
+				//Adds data to Rows
+                rows.push(row)	
+			}      
+          })
             let tableData = { Headers: headers, Rows: rows }
 
 		if (this.state.currentUser.token.role === undefined){
@@ -499,7 +520,6 @@ export default class ListTrainee extends Component {
 							<option value="Bench">Bench</option>
                             <option value="Incomplete">Incomplete</option>
                             <option value="Pending">Pending</option>
-                            <option value="Incomplete">Incomplete</option>
                             <option value="Active">Active</option>
                         </select>&nbsp;&nbsp;
                         <label>Bursary</label> &nbsp;

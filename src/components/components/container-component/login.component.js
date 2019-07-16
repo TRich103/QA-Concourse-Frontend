@@ -5,6 +5,7 @@ import axios from 'axios';
 import { authService } from "./modules/authService";
 import decode from "jwt-decode";
 import {Button} from 'reactstrap';
+import ForgotPass from '../../forgot-password.component';
 import './css/Header.css';
 import "./css/Login.css";
 
@@ -33,10 +34,6 @@ export default class Login extends Component {
             psw: event.target.value
         })
     }
-	
-	forgotPassword (){
-		document.location.href = 'http://'+process.env.REACT_APP_AWS_IP+':3000/forgotPassword';
-	}
 
     onSubmit = event => {
         event.preventDefault();
@@ -93,7 +90,7 @@ export default class Login extends Component {
                     <Button id="loginBtn" type="submit" className="btn" value="Login">
                         Login
                     </Button>
-					<button className="forgotBtn" onClick={this.forgotPassword}>FORGOT PASSWORD?</button> 
+					<button className="forgotBtn" onClick={() => {this.props.content(<ForgotPass/>)}}>FORGOT PASSWORD?</button> 
                 </form>
             </div>
         )

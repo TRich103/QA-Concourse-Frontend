@@ -61,15 +61,14 @@ export default class TraineeSettings extends Component{
         )
     }
     render(){
-        console.log(this.state)
         return(
-            <div className="QAtable" id="gSFrame">
-                <div className="QASearchBar">
-                <h3> <div className="gSTitle">Global settings for Trainees </div></h3>
-                </div>
-            <div className="createTrainee" style={{marginLeft: 0, marginRight: 0}}>
+		<div>
+         <div className="gSTitle">
+		 <h3> Global settings for Trainees </h3>
+		 </div>
+			<div className="trainee-settings-wrapper">
                     <form id="gS" className="createTraineeForm" onSubmit={this.onSubmit}>
-                    <div >
+                    <div>
 						<label className="gSLabel"> Pay for Bank Holidays: </label> 
 						&nbsp;&nbsp;
 						<input type="checkbox" id="bursaryValue" checked={this.state.bank_holidays} onClick={this.onClickBankHolidays}/>
@@ -87,13 +86,10 @@ export default class TraineeSettings extends Component{
                                 onChange={this.onChangeBursaryAmount}
                                 required/>
                     </div>
-                        <div>
-
                         <input type="submit" value="Update settings" id="gSUpdateBtn" />
-                    </div>
                 </form>
-            </div>
-            </div>
+			</div>
+		</div>
         );
     }
     

@@ -8,45 +8,75 @@
     border-radius: 4px; 
     text-align: left;
 }
+.edit-details{
+	width:90%;
+	height:550px;
+	text-align: left;
+}
+.edit-trainee-form-group{
+	width:80%;
+	margin-bottom:2%;	
+	margin-left:4%;
+}
+.trainee-bank-details-edit{
+	float:left;
+	width:40%;
+	height:500px;
+}
+.personal_details{
+	width:40%;
+	height:400px;
+	float:left;
+	margin-left:5%;
+	margin-bottom:1%;
+}
+.edit-trainee-form-button{
+	margin-left:10%;
+}
+.form-button-editable{
 
+}
 .trainee_table tr:nth-child(even) {
     background-color: aliceblue;
 }
 
 .heading{
-    padding-top: 2%;
-    background-color: white;
-    width:90%;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
+    padding-top: 1%;
+	background-color:white !important;
+    width:100%;
+	margin-bottom:1%;
+    float:left;
     border-radius: 4px;
 }
-.details{
-    padding-bottom: 5%;
+.heading-details{
+    padding-top: 1%;
+	background-color:white !important;
+    width:20%;
+    float:left;
+    border-radius: 4px;
 }
-
-#detailstbody{
-    width: 80%;
-    padding-left: 100px;
-    padding-right: 100px;
-    border-top:0px;
+.profile-upload{
+	width:40%;
+	float:right;
+	height:500px;
 }
 
 .form-control-other{
 	width: 40%;
 }
-
 .detailsDiv{
     margin: auto;
-    height:90%;
-    width: 70%;
-    background-color: transparent;
-    padding-top: 5%;
-    padding-bottom: 3%;
-    font-size: 25px; 
+    height:700px;
+	float:left;
+    width: 45%;
+	margin-left:4%;
+    font-size: 18px; 
+	text-align: left;
 }
-
+.editing-buttons{
+	width:100%;
+	margin-left:1%;
+}
 .edit-btn{
     border:1px solid transparent;
     background-color: #004050;

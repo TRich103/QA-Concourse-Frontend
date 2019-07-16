@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import AccessDenied from './modules/AccessDenied';
 import { authService } from './modules/authService';
-import '../css/edit-list-trainee.css';
+import '../css/trainee-details.css';
 import ok from './icons/ok.svg';
 import close from './icons/close.svg';
-
+import TraineeDetails from './trainee-details.component.js';
 
 export default class EditTrainee extends Component {
     
@@ -19,6 +19,9 @@ export default class EditTrainee extends Component {
         this.onChangeTraineeSort = this.onChangeTraineeSort.bind(this);
         this.onChangeTraineeBankName = this.onChangeTraineeBankName.bind(this);
         this.onChangeTraineeBankBranch = this.onChangeTraineeBankBranch.bind(this);
+		this.onChangeTraineeDegree = this.onChangeTraineeDegree.bind(this);
+		this.onChangeTraineeNumber = this.onChangeTraineeNumber.bind(this);
+		this.onChangeTraineeUniName = this.onChangeTraineeUniName.bind(this);
 		
         this.onSubmit = this.onSubmit.bind(this);
 
@@ -29,6 +32,9 @@ export default class EditTrainee extends Component {
             trainee_bank_name: '',
             trainee_bank_branch: '',
             trainee_account_no: '',
+			trainee_phone:'',
+			trainee_degree:'',
+			trainee_uniName:'',
             trainee_sort_code: '',
             similar_codes: [],
             show_matching_bank: false,
@@ -43,7 +49,7 @@ export default class EditTrainee extends Component {
     }
     
     componentDidMount() {
-        axios.get('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/'+this.props.match.params.id)
+        axios.get('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/'+this.props.id)
             .then(response => {
                 console.log(response.data);
                 if(response.data.bursary==="True"){
@@ -52,6 +58,9 @@ export default class EditTrainee extends Component {
                         trainee_lname: response.data.trainee_lname,
                         trainee_email: response.data.trainee_email,
                         trainee_bank_name: response.data.trainee_bank_name,
+						trainee_phone:response.data.trainee_phone,
+						trainee_degree:response.data.trainee_degree,
+						trainee_uniName:response.data.trainee_uniName,
                         trainee_account_no: response.data.trainee_account_no,
                         trainee_sort_code: response.data.trainee_sort_code,
                         trainee_bursary: response.data.bursary
@@ -62,6 +71,9 @@ export default class EditTrainee extends Component {
                         trainee_lname: response.data.trainee_lname,
                         trainee_email: response.data.trainee_email,
                         trainee_bursary: response.data.bursary,
+						trainee_phone:response.data.trainee_phone,
+						trainee_degree:response.data.trainee_degree,
+						trainee_uniName:response.data.trainee_uniName,
                         trainee_bank_name: " ",
                         trainee_account_no: " ",
                         trainee_sort_code: " "
@@ -79,7 +91,23 @@ export default class EditTrainee extends Component {
             trainee_fname: e.target.value
         });
     }
+	onChangeTraineeUniName(e){
+		this.setState({
+			trainee_uniName:e.target.value
+		})
+	}
+	
+	onChangeTraineeDegree(e){
+		this.setState({
+			trainee_degree:e.target.value
+		})
+	}
     
+	onChangeTraineeNumber(e){
+		this.setState({
+			trainee_phone:e.target.value
+		})
+	}
     onChangeTraineeLname(e) {
         this.setState({
             trainee_lname: e.target.value
@@ -209,6 +237,9 @@ export default class EditTrainee extends Component {
             trainee_fname: this.state.trainee_fname,
             trainee_lname: this.state.trainee_lname,
             trainee_email: this.state.trainee_email,
+			trainee_degree: this.state.trainee_degree,
+			trainee_uniName:this.state.trainee_uniName,
+			trainee_phone: this.state.trainee_phone,
             trainee_bank_name: this.state.trainee_bank_name,
             trainee_account_no: this.state.trainee_account_no,
             trainee_sort_code: this.state.trainee_sort_code
@@ -227,29 +258,28 @@ export default class EditTrainee extends Component {
                 Branch: this.state.trainee_bank_branch.toUpperCase()
             }
             if(this.state.show_non_matching_bank == true){
-                axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/update/'+this.props.match.params.id, updated_trainee)
+                axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/update/'+this.props.id, updated_trainee)
                 .then(res => {
                     console.log(res.data);
                     console.log(new_bank);
                     axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/addBank/', new_bank)
                     .then(res => {
                         console.log(res.data);
-                        this.props.history.push('/trainee-details/'+this.props.match.params.id);
+                        this.props.content(<TraineeDetails id={this.state.currentUser.token._id}/>);
                     });
                 });
             }
             else{
-                axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/update/'+this.props.match.params.id, updated_trainee)
+                axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/update/'+this.props.id, updated_trainee)
                 .then(res => {
                     console.log(res.data);
-                    this.props.history.push('/trainee-details/'+this.props.match.params.id);
+                    this.props.content(<TraineeDetails id={this.state.currentUser.token._id}/>);
                 });
             }
         }else{
-            axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/update/'+this.props.match.params.id, updated_trainee)
+            axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/update/'+this.props.id, updated_trainee)
                 .then(res => {
-                    console.log(res.data);
-                    this.props.history.push('/trainee-details/'+this.props.match.params.id);
+					this.props.content(<TraineeDetails id={this.state.currentUser.token._id}/>);
                 });
         }
     }
@@ -258,16 +288,21 @@ export default class EditTrainee extends Component {
         const {show_matching_bank} = this.state;
         const {show_non_matching_bank} = this.state;
 		
-		if(this.state.currentUser.token.role !== undefined){
+		if(this.state.currentUser.token.role !== "trainee"){
 			return (
 			<AccessDenied/>
         );
         }else if(this.state.trainee_bursary==="False"){
             return(
-                <div className="QATable">
-                <form className="edit-form" onSubmit={this.onSubmit}>
-                    <div className="all-edit-box">
-					<div className="form-group"> 
+           <div className="details">
+			<div className="heading">
+				<div className="heading-details">
+					<h1>Your Details</h1>
+				</div>
+			</div>
+                <form className="edit-details" onSubmit={this.onSubmit}>
+				<div className="personal_details">
+					<div className="edit-trainee-form-group"> 
                         <label>First Name: </label>
                         <input  type="text"
                                 className="form-control"
@@ -275,15 +310,8 @@ export default class EditTrainee extends Component {
                                 onChange={this.onChangeTraineeFname}
                                 />
                     </div>
-                     <div className="form-group"> 
-                        <label>Last Name: </label>
-                        <input  type="text"
-                                className="form-control"
-                                value={this.state.trainee_lname}
-                                onChange={this.onChangeTraineeLname}
-                                />
-                    </div>           
-                    <div className="form-group">
+                      
+                    <div className="edit-trainee-form-group">
                         <label>Email: </label>
                         <input 
                                 type="text" 
@@ -292,9 +320,49 @@ export default class EditTrainee extends Component {
                                 onChange={this.onChangeTraineeEmail}
                                 />
                     </div>
+					 <div className="edit-trainee-form-group">
+                        <label>University</label>
+                        <input 
+                                type="text" 
+                                className="form-control"
+                                value={this.state.trainee_uniName}
+                                onChange={this.onChangeTraineeUniName}
+                                />
+                    </div>
+					 <div className="edit-trainee-form-group">
+                        <label>Degree</label>
+                        <input 
+                                type="text" 
+                                className="form-control"
+                                value={this.state.trainee_degree}
+                                onChange={this.onChangeTraineeDegree}
+                                />
+                    </div>
+					</div>
+					<div className="trainee-bank-details-edit">
+					<div className="edit-trainee-form-group"> 
+                        <label>Last Name: </label>
+                        <input  type="text"
+                                className="form-control"
+                                value={this.state.trainee_lname}
+                                onChange={this.onChangeTraineeLname}
+                                />
+                    </div>      
+						<div className="edit-trainee-form-group">
+                        <label>Phone Number: </label>
+                        <input 
+                                type="number" 
+								maxLength='15'
+                                className="form-control"
+                                value={this.state.trainee_phone}
+                                onChange={this.onChangeTraineeNumber}
+                                />
+                    </div>
+					</div>		
                     <br />
-                    <div className="form-group">
-                        <input id="updateBtn" type="submit" value="Update" className="btn btn-primary"/>
+                    <div  className="form-button-editable">
+						<div className="edit-trainee-form-button">
+                            <input id="updateBtn" type="submit" value="Update" className="btn btn-primary" />
                     </div>
 					</div>
 				</form>
@@ -303,10 +371,15 @@ export default class EditTrainee extends Component {
             );
 		}else{
         return (
-            <div className="QATable">
-                <form className="edit-form" onSubmit={this.onSubmit}>
-                    <div className="all-edit-box">
-					<div className="form-group"> 
+            <div className="details">
+			<div className="heading">
+				<div className="heading-details">
+					<h1>Your Details</h1>
+				</div>
+			</div>
+                <form className="edit-details" onSubmit={this.onSubmit}>
+				<div className="personal_details">
+					<div className="edit-trainee-form-group"> 
                         <label>First Name: </label>
                         <input  type="text"
                                 className="form-control"
@@ -314,15 +387,8 @@ export default class EditTrainee extends Component {
                                 onChange={this.onChangeTraineeFname}
                                 />
                     </div>
-                     <div className="form-group"> 
-                        <label>Last Name: </label>
-                        <input  type="text"
-                                className="form-control"
-                                value={this.state.trainee_lname}
-                                onChange={this.onChangeTraineeLname}
-                                />
-                    </div>           
-                    <div className="form-group">
+                      
+                    <div className="edit-trainee-form-group">
                         <label>Email: </label>
                         <input 
                                 type="text" 
@@ -331,7 +397,45 @@ export default class EditTrainee extends Component {
                                 onChange={this.onChangeTraineeEmail}
                                 />
                     </div>
-                    <div className="form-group">
+					 <div className="edit-trainee-form-group">
+                        <label>University</label>
+                        <input 
+                                type="text" 
+                                className="form-control"
+                                value={this.state.trainee_uniName}
+                                onChange={this.onChangeTraineeUniName}
+                                />
+                    </div>
+					 <div className="edit-trainee-form-group">
+                        <label>Degree</label>
+                        <input 
+                                type="text" 
+                                className="form-control"
+                                value={this.state.trainee_degree}
+                                onChange={this.onChangeTraineeDegree}
+                                />
+                    </div>
+					</div>
+					<div className="trainee-bank-details-edit">
+					<div className="edit-trainee-form-group"> 
+                        <label>Last Name: </label>
+                        <input  type="text"
+                                className="form-control"
+                                value={this.state.trainee_lname}
+                                onChange={this.onChangeTraineeLname}
+                                />
+                    </div>      
+						<div className="edit-trainee-form-group">
+                        <label>Phone Number: </label>
+                        <input 
+                                type="number" 
+								maxLength='15'
+                                className="form-control"
+                                value={this.state.trainee_phone}
+                                onChange={this.onChangeTraineeNumber}
+                                />
+                    </div>					
+                    <div className="edit-trainee-form-group">
                         <label>Sort Code: </label>
                         <br />
                         <div className="validated-field-container">
@@ -348,7 +452,7 @@ export default class EditTrainee extends Component {
                         </div>
                         
                     </div>
-                    <div className="form-group"> 
+                    <div className="edit-trainee-form-group"> 
                         <label>Account Number: </label>
                         <br />
                         <div className="validated-field-container">
@@ -366,18 +470,18 @@ export default class EditTrainee extends Component {
                     </div>
                     {show_matching_bank ?
                         <div>
-                        <div className="form-group"> 
+                        <div className="edit-trainee-form-group"> 
                             <label>Bank Name: </label> <br></br>
                             <label>{this.state.trainee_bank_name}</label>
                         </div>
-                        <div className="form-group"> 
+                        <div className="edit-trainee-form-group"> 
                             <label>Bank Address: </label> <br></br>
                             <label>{this.state.trainee_bank_branch}</label>                              
                         </div>
                         </div>
                     : ""}
                     {show_non_matching_bank ?
-                        <div className="form-group" >
+                        <div className="edit-trainee-form-group">
                             <div>Sort code not found, similar sort codes shown below:</div>
                             {this.state.similar_codes.map((code, index) => (
                                 <div key={index}>- {code}</div>
@@ -405,9 +509,10 @@ export default class EditTrainee extends Component {
                                 />                                
                         </div>
                     : ""}
-
+					</div>
                     <br />
-                    <div className="form-group">
+					<div  className="form-button-editable">
+				<div className="edit-trainee-form-button">
                             <input id="updateBtn" type="submit" value="Update" className="btn btn-primary" />
                     </div>
 					</div>

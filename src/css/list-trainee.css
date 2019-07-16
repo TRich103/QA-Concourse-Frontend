@@ -3,9 +3,19 @@
     float:right;
     padding-right: 60px;
 }
+.nav-link:hover{
+	background-color:#e6e6e7;
+	cursor:pointer;
+}
+.navbar-light .navbar-nav .nav-link:hover{
+	background-image:linear-gradient(to bottom,#f3f2f2 0,#d6d8da 101%) !important;
+	cursor:pointer;
+	color:Black !important;
+}
+
 .filter_collapse{
 	width:90%;
-	height:100px;
+	height:48px;
 	margin-top:1%;
 	margin-left:-10%;
 }

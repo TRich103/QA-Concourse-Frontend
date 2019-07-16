@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import AccessDenied from './modules/AccessDenied';
 import { authService } from './modules/authService';
-import '../css/edit-list-trainee.css';
 import "react-datepicker/dist/react-datepicker.css";
+import '../css/add-trainee.css';
 import momentBusinessDays from 'moment-business-days';
 import moment from 'moment';
 import Collapse from 'react-bootstrap/Collapse'
+
+import CreatableSelect from 'react-select/creatable';
 
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
@@ -30,6 +32,7 @@ export default class EditDates extends Component {
         this.onChangeBenchEndDate = this.onChangeBenchEndDate.bind(this);
 		this.onChangeWorkingDays = this.onChangeWorkingDays.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+		this.onSelectGender = this.onSelectGender.bind(this);
         this.onChangeBursaryAmount = this.onChangeBursaryAmount.bind(this);
         this.onClickBursary = this.onClickBursary.bind(this);
 		
@@ -42,6 +45,8 @@ export default class EditDates extends Component {
 			trainee_phone:'',
 			trainee_degree:'',
             trainee_start_date: '',
+			intakes:[],
+			intake:'',
 			trainee_chosenTech:'',
             trainee_end_date: '',
 			trainee_intake:'',
@@ -74,6 +79,12 @@ export default class EditDates extends Component {
 			trainee_bench_end_date: benchEndDate
 		})	
 	}
+	
+	onSelectGender = (e) =>{
+        this.setState({
+            trainee_gender: e.target.value
+        })
+    }
 
     onChangeStartDate = (startDate) =>{
         this.setState({
@@ -132,7 +143,10 @@ export default class EditDates extends Component {
 					trainee_bench_end_date: new Date(response.data.trainee_bench_end_date),
                     trainee_days_worked: response.data.trainee_days_worked,
                     trainee_bursary: response.data.bursary,
-                    bursary_amount: response.data.bursary_amount
+                    bursary_amount: response.data.bursary_amount,
+					trainee_intake: response.data.trainee_intake,
+					trainee_gender:response.data.trainee_gender
+					
                 })
 
                 if(response.data.bursary === 'True'){
@@ -164,7 +178,44 @@ export default class EditDates extends Component {
             trainee_fname: e.target.value
         });
     }
-    
+	 handleCohort = (newValue) => {
+        if(newValue === null){
+            this.setState({
+                intake: 'empty'
+            })
+        }else{
+            this.setState({
+                intake: newValue.value
+            }, ()=>{
+                console.log('INPUT INTAKE')
+                console.log(this.state.intake);  
+            });
+            this.checkIfIntake();
+        }
+        console.log(this.state.currentUser);
+        console.log(this.state.recruiterName)
+    }
+	
+    checkIfIntake(){
+        let intake = this.state.intake;
+        let intakes = this.state.intakes;
+        //checks to see if intake value exists
+        for(var i = 0; i < intakes.length; i++){
+            if(intakes[i].value === intake){
+                this.setState({
+                    addIntake: false
+                })
+                console.log('set as false');
+            }
+            else{
+                this.setState({
+                    addIntake: true
+                });
+                console.log('set as true');
+                break;
+            }
+        }
+    }
     onChangeTraineeLname(e) {
         this.setState({
             trainee_lname: e.target.value
@@ -220,21 +271,30 @@ export default class EditDates extends Component {
             trainee_bursary_amount: this.state.bursary_amount,
             addedBy: this.state.currentUser.token._id
         }
+		const updated_trainee = {
+			trainee_gender:this.state.trainee_gender,
+			trainee_intake:this.state.intake
+		}
 		
         console.log(obj);
         console.log(bursary);
+		console.log(updated_trainee);
+		axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/update/'+this.props.id, updated_trainee)
+                .then(res => {
+					this.props.content(<ListTrainee/>);
+				});
         axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/editDates/'+this.props.id, obj)
             .then(res => {console.log(res.data);
-                          this.props.history.push('/');
-                          window.location.reload();});
+                          this.props.content(<ListTrainee/>);
+                         });
 		axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/daysToWork/'+this.props.id, workingDays)
             .then(res => {console.log(res.data);
-                          this.props.history.push('/');
-                          window.location.reload();});
+                          this.props.content(<ListTrainee/>);
+						  });
         axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/editBursary/'+this.props.id, bursary)
                 .then(res => {console.log(res.data);
-                             this.props.history.push('/');
-                             window.location.reload();});                 
+                             this.props.content(<ListTrainee/>);
+							 });                 
     }
 	
 }
@@ -245,11 +305,12 @@ export default class EditDates extends Component {
         const {bursary} = this.state;
 		if(this.state.currentUser.token.role === 'admin' || this.state.currentUser.token.role === 'recruiter'){
         return (
-            <div className="QATable">
-                <form className="edit-form" onSubmit={this.onSubmit}>
-                    <div className="all-edit-box">
-                        <center><button type="button" id="cancelBtn" onClick={() => {this.props.content(<ListTrainee/>)}}>Cancel</button></center>
-					<div className="form-group"> 
+            <div className="createTrainee">
+                <form className="createTraineeForm" onSubmit={this.onSubmit}>
+				<h3 className="update-title">Update Trainee</h3>
+                    <div className="update-cancel-btn"><center><button type="button" id="cancelBtn" onClick={() => {this.props.content(<ListTrainee/>)}}>Cancel</button></center></div>
+                    <div className="grid-container">
+					<div className="grid-item-name"> 
                         <label>First Name: </label>
                         <input  type="text"
                                 className="form-control"
@@ -258,7 +319,7 @@ export default class EditDates extends Component {
                                 disabled
                                 />
                     </div>
-                     <div className="form-group"> 
+                     <div className="gird-item"> 
                         <label>Last Name: </label>
                         <input  type="text"
                                 className="form-control"
@@ -267,7 +328,18 @@ export default class EditDates extends Component {
                                 disabled
                                 />
                     </div>           
-                    <div className="form-group">
+					<div className="gird-item">
+                            <label>Gender: </label>
+                            <select value={this.state.trainee_gender} className="form-control" onChange={this.onSelectGender} required>
+                                <option selected value="">Select gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Prefer Not to Say">Prefer not to say</option>
+                            </select>
+                        </div>
+					</div>
+					<div className="grid-container">
+                    <div className="gird-item-email">
                         <label>Email: </label>
                         <input 
                                 type="text" 
@@ -277,15 +349,25 @@ export default class EditDates extends Component {
                                 disabled
                                 />
                     </div>
-					
-                    <div className="form-group">
+					<div className="grid-item-intake">
+						<div className="intake-item-change">
+                            <label>Cohort / Intake: </label>
+                            <CreatableSelect
+                            placeholder="Select or Create a new Intake"
+                            onChange={this.handleCohort}
+                            options={this.state.intakes}
+							/>
+							</div>
+                        </div>
+					</div>
+					<div className="grid-container">
+                    <div className="gird-item-bursary-title">
                         <label>Bursary: </label>    
                         &nbsp;&nbsp;
                         <input type="checkbox" id="bursaryValue" checked={this.state.open} onClick={this.onClickBursary}/>
                     </div>
-
                     <Collapse in={this.state.open}>
-                    <div className="form-group">
+                    <div className="gird-item-bursary-change">
                         <label>Bursary Amount:</label>
                         <br />
 						&nbsp;&nbsp;
@@ -298,8 +380,9 @@ export default class EditDates extends Component {
                                     required/>
                     </div>
                     </Collapse>
-
-                    <div id="bursaryDates">
+					</div>
+                    <div className="grid-wrapper-dates">                
+					<div className="grid-dates" >
                     <label> Training Start Date : </label>
                     <br></br>
                         <DayPickerInput
@@ -316,7 +399,7 @@ export default class EditDates extends Component {
                             }}
                         />
                     </div>
-                    <div id="bursaryDates">
+                    <div className="grid-dates" >
                         <label> Training End Date : </label>
                         <br></br>
                             <DayPickerInput
@@ -334,7 +417,7 @@ export default class EditDates extends Component {
                             />
 							
                     </div>
-					 <div id="bursaryDates">
+					 <div className="grid-dates" >
                         <label> Bench start Date : </label>
                         <br></br>
                             <DayPickerInput
@@ -353,7 +436,7 @@ export default class EditDates extends Component {
                             />
 							
                     </div>
-					<div id="bursaryDates">
+					<div className="grid-dates">
                         <label> Bench End Date : </label>
                         <br></br>
                             <DayPickerInput
@@ -371,8 +454,10 @@ export default class EditDates extends Component {
                                 }}
                             />
                     </div>
+				</div>
+				<div>
                     {bursary ?
-                        <div className="form-group">
+                        <div className="grid-item-days-working">
                         <label>Amount of working days to be paid this month:</label>
 						<br></br>
                         <input 

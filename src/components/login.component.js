@@ -54,7 +54,7 @@ export default class Login extends Component {
                     var status = res.data.user.status;
                     console.log("STATUS: "+status);
                     if(status !== "Suspended"){
-                        if (typeof res.data.user.role === "undefined") {
+                        if (typeof res.data.user.role === "trainee") {
                             document.location.href = 'http://'+process.env.REACT_APP_AWS_IP+':3000/trainee-details/' + res.data.user._id
                             token.token = decode(res.data.token);
                             localStorage.setItem('currentUser', JSON.stringify(token));
