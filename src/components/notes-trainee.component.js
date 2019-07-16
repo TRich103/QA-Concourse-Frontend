@@ -6,7 +6,6 @@ import AccessDenied from './modules/AccessDenied';
 import { Button, ButtonGroup } from 'reactstrap';
 import close from './icons/close2.svg';
 
-
 export default class TraineeNotes extends Component {
 
     constructor(props) {
@@ -112,6 +111,8 @@ export default class TraineeNotes extends Component {
                                     <thead>
                                         <tr>
                                             <th>Notes</th>
+                                            <th>Added By</th>
+                                            <th>Actions</th>
                                         </tr>
 
                                     </thead>
@@ -120,6 +121,18 @@ export default class TraineeNotes extends Component {
                                             return (
                                                 <tr>
                                                     <td>{note.note}</td>
+                                                    <td>{note.addedBy}</td>
+                                                    <td>
+                                                    <center>
+                                                        <button className="actionBtn" onClick={() => {
+                                                                            if (window.confirm('Are you sure you wish to delete this note?'))
+                                                                            axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/admin/removeNotes/'+this.props.match.params.id, {"note": note.note, "location": index, "addedBy":this.state.currentUser.token._id}).then(() => window.location.reload()) } }>
+                                                                            Delete
+                                                                            <img src={close}></img>
+                                                                            <img></img>
+                                                        </button>
+                                                    </center>
+                                                    </td>
                                                 </tr>
                                             );
                                         })}
