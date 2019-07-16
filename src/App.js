@@ -26,6 +26,7 @@ import ForgotPass from "./components/forgot-password.component";
 import UserRecord from "./components/user-history.component";
 import Privacy from "./components/priv-notice.component";
 import TraineeExpenses from "./components/expenses-trainee.component";
+import TraineeNotes from "./components/notes-trainee.component";
 import PasswordStaff from './components/admin-staff-password';
 import "./css/Login.css";
 
@@ -73,6 +74,8 @@ class App extends Component {
          <Route path="/history/:id" component={UserRecord} />
          <Route path="/trainee-settings" component={TraineeSettings}/>
          <Route path="/expenses/:id" component={TraineeExpenses} />
+         <Route path="/notes/:id" component={TraineeNotes} />
+
          <Route path="/update-mypassword-staff/:id" component={PasswordStaff} />
          <div data-keyboard="false">
            <Privacy/>

@@ -13,6 +13,7 @@ import eye from './icons/eye.svg';
 import settings from './icons/settings.svg';
 import addmoney from './icons/add.svg';
 import mail from './icons/envelope.svg';
+import notes from './icons/envelope.svg';
 //new imports
 import "react-datepicker/dist/react-datepicker.css";
 import { CSVLink } from "react-csv";
@@ -200,6 +201,10 @@ export default class ListTrainee extends Component {
     handleExpensesClick(e){
         window.location.href="expenses/"+e.target.value
     }
+
+    handleNotesClick(e){
+            window.location.href="notes/"+e.target.value
+        }
 
     toggle() {
         this.setState(prevState => ({
@@ -511,6 +516,8 @@ export default class ListTrainee extends Component {
                                                 </button>&nbsp;
                                                 <button className="actionBtn" value={t._id} onClick={this.handleHistoryClick}>View History <img src={history}></img></button>&nbsp;
                                                 <button className="actionBtn" value={t._id} onClick={this.handleExpensesClick}> Expenses <img src={addmoney}></img></button>&nbsp;
+                                                <button className="actionBtn" value={t._id} onClick={this.handleNotesClick}> Notes <img src={notes}></img></button>&nbsp;
+
                                                 <a href={"mailto:"+t.trainee_email}><button className="actionBtn">Email <img src={mail}></img></button> </a>
                                                 <button className="actionBtn" onClick={() => { 
                                                                 axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/send-email/', {trainee_email: t.trainee_email}).then(() => window.alert("Email Sent!")) } }>
