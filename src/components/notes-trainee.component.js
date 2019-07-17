@@ -5,6 +5,7 @@ import { authService } from './modules/authService';
 import AccessDenied from './modules/AccessDenied';
 import { Button, ButtonGroup } from 'reactstrap';
 import close from './icons/close2.svg';
+import edit from './icons/add.svg';
 
 export default class TraineeNotes extends Component {
 
@@ -111,7 +112,6 @@ export default class TraineeNotes extends Component {
                                     <thead>
                                         <tr>
                                             <th>Notes</th>
-                                            <th>Added By</th>
                                             <th>Actions</th>
                                         </tr>
 
@@ -121,9 +121,8 @@ export default class TraineeNotes extends Component {
                                             return (
                                                 <tr>
                                                     <td>{note.note}</td>
-                                                    <td>{note.addedBy}</td>
                                                     <td>
-                                                    <center>
+
                                                         <button className="actionBtn" onClick={() => {
                                                                             if (window.confirm('Are you sure you wish to delete this note?'))
                                                                             axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/admin/removeNotes/'+this.props.match.params.id, {"note": note.note, "location": index, "addedBy":this.state.currentUser.token._id}).then(() => window.location.reload()) } }>
@@ -131,7 +130,17 @@ export default class TraineeNotes extends Component {
                                                                             <img src={close}></img>
                                                                             <img></img>
                                                         </button>
-                                                    </center>
+                                                        &nbsp;
+                                                        <button className="actionBtn" onClick={() => {
+                                                                            let newNote = prompt("Edit the note:", "" );
+                                                                            if(newNote !== null){
+                                                                            axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/admin/updateNotes/'+this.props.match.params.id, {"note": note.note, "newNote": newNote, "location": index, "addedBy":this.state.currentUser.token._id}).then(() => window.location.reload())
+                                                                            }}}>
+                                                                            Edit
+                                                                            <img src={edit}></img>
+                                                                            <img></img>
+                                                        </button>
+                                                   
                                                     </td>
                                                 </tr>
                                             );
