@@ -57,6 +57,7 @@ export default class EditDates extends Component {
 			trainee_days_worked: '',
             currentUser: authService.currentUserValue,
             bankHolidays: 'True',
+			back: <ListTrainee/>
         }
     }
 	
@@ -279,7 +280,7 @@ export default class EditDates extends Component {
         console.log(obj);
         console.log(bursary);
 		console.log(updated_trainee);
-		axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/update/'+this.props.id, updated_trainee)
+		axios.post('http://'+process.env.REACT_APP_AWS_IP+':4000/trainee/editDates/'+this.props.id, updated_trainee)
                 .then(res => {
 					this.props.content(<ListTrainee/>);
 				});
@@ -316,7 +317,7 @@ export default class EditDates extends Component {
                                 className="form-control"
                                 value={this.state.trainee_fname}
                                 onChange={this.onChangeTraineeFname}
-                                disabled
+                                
                                 />
                     </div>
                      <div className="gird-item"> 
@@ -325,7 +326,7 @@ export default class EditDates extends Component {
                                 className="form-control"
                                 value={this.state.trainee_lname}
                                 onChange={this.onChangeTraineeLname}
-                                disabled
+                                
                                 />
                     </div>           
 					<div className="gird-item">
@@ -346,7 +347,7 @@ export default class EditDates extends Component {
                                 className="form-control"
                                 value={this.state.trainee_email}
                                 onChange={this.onChangeTraineeEmail}
-                                disabled
+                                
                                 />
                     </div>
 					<div className="grid-item-intake">
