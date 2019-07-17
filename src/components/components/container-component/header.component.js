@@ -4,6 +4,7 @@ import { Navbar, NavbarBrand, Nav, NavItem, NavDropdown, Button } from 'react-bo
 import * as _ from 'lodash';
 import { authService } from "./modules/authService";
 import axios from 'axios';
+import PasswordStaff from '../../admin-staff-password';
 import UserProfile from '../../user_profile/user-details.component.js';
 import TraineeProfile from '../../trainee-details.component.js'
 import './css/Header.css';
@@ -69,9 +70,9 @@ export default class Navigation extends React.Component {
   }
   profile(){
 	  if(this.state.currentUser.token.role === 'trainee'){
-		  
+		  this.props.content(<TraineeProfile/>)
 	  }else{
-		  
+		  this.props.content(<UserProfile/>)
 	  }
   }
   render() {
@@ -109,11 +110,10 @@ export default class Navigation extends React.Component {
 			  })}
 			  </Nav>
 			  <Nav>
-			  <div className="menu" onClick={()=>{this.props.content(<UserProfile/>)}}></div>
+			  <div className="menu" onClick={this.profile}></div>
 			   <NavDropdown title={displayName} className="login-dropdown">
 					<NavDropdown.Item onClick={this.profile} >Profile</NavDropdown.Item>
-					<NavDropdown.Item onClick={this.profile} >Change Password</NavDropdown.Item>
-					<NavDropdown.Item onClick={this.profile} >Settings</NavDropdown.Item>
+					<NavDropdown.Item onClick={()=>{this.props.content(<PasswordStaff/>)}} >Change Password</NavDropdown.Item>
                 </NavDropdown>  
 				<NavItem>
 				<Button id="logoutBtn" onClick={this.logout} href='/login'>

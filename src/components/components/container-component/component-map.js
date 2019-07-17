@@ -1,6 +1,5 @@
 import { AdminHome, Admin1, Admin2, Admin3, Admin4, Admin5, Admin6,
          RecruiterHome, Recruiter1, Recruiter2, Recruiter3, Recruiter4, Recruiter5, Recruiter6 } from'./placeholder-components';
-
 import React, { Component }  from 'react';
 import GenericDiv from '../table-component/generic-div.component';
 import SearchContainer from '../search-bar-component/searchContainer.component';
