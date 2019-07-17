@@ -109,7 +109,7 @@ export default class Navigation extends React.Component {
 			  })}
 			  </Nav>
 			  <Nav>
-			  <div className="menu" onClick={()=>{this.props(<UserProfile id={this.state.currentUser.token._id}/>)}}></div>
+			  <div className="menu" onClick={()=>{this.props.content(<UserProfile/>)}}></div>
 			   <NavDropdown title={displayName} className="login-dropdown">
 					<NavDropdown.Item onClick={this.profile} >Profile</NavDropdown.Item>
 					<NavDropdown.Item onClick={this.profile} >Change Password</NavDropdown.Item>

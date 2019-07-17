@@ -12,14 +12,18 @@
 .dropdown-menu.show{
 	width:109% !important;
 	margin-left:-5%;
+	margin-top:5%;
 	padding:5px 5px!important;
 	background-color:#d6d8da !important;
 	font-size:16px;
 	z-index:2;
 }
+.dropdown-item{
+	padding:0px 0px!important;
+}
 .dropdown-item:hover{
-background: rgb(0, 64, 80,30%)!important;
-	padding:5px 5px!important;
+	background: rgb(0, 64, 80,30%)!important;
+	padding:0px 0px!important;
 }
 .menu{
     border:1px solid rgb(0, 64, 80,30%);    
