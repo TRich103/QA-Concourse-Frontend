@@ -45,6 +45,7 @@ export const myConfig =
         "buttons": [
 						{'name': 'Change Password', 'content':<PasswordStaff/>},
 						{'name': 'Bursary', 'content':<ListTrainee/>},
+						{'name': 'Apartment', 'content':<ListTrainee/>},
 						{'name': 'User Managment', 'content':<ListUser/>},
 						
                    ],
@@ -88,4 +89,8 @@ export const myConfig =
 		"side": []
 		
 	}
+}
+export const ChangePass =
+{
+    "null": <ChangePassword/>,
 }

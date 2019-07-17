@@ -5,6 +5,20 @@
 	margin-right:auto;
     background-color: white;
 }
+.updateTrainee{
+	width:90%;
+	height:900px;
+	margin-left:auto;
+	margin-right:auto;
+    background-color: white;
+}
+.updateTraineeForm{
+	height: 895px;
+    width: 100%;
+    padding-top: 1%;
+    padding-bottom: 5%;
+	
+}
 .css-2b097c-container{
 }
 .grid-item-name{
@@ -45,10 +59,11 @@
 	width:40%;
 }
 .update-title{
-	width:20%;
-	margin-left:5%;
-	height:50px;
-	float:left;
+	width:30%;
+	font-size:25px;
+	height:20px;
+	margin-top:1%;
+	margin-left:-9%;
 }
 .update-cancel-btn{
 	width:60%;

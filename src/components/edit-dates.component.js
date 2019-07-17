@@ -302,13 +302,14 @@ export default class EditDates extends Component {
 
 
     render() {
+		let name = this.state.trainee_fname + ' ' + this.state.trainee_lname
         console.log(this.state.bursary)
         const {bursary} = this.state;
 		if(this.state.currentUser.token.role === 'admin' || this.state.currentUser.token.role === 'recruiter'){
         return (
-            <div className="createTrainee">
-                <form className="createTraineeForm" onSubmit={this.onSubmit}>
-				<h3 className="update-title">Update Trainee</h3>
+            <div className="updateTrainee">
+                <form className="updateTraineeForm" onSubmit={this.onSubmit}>
+				<h3 className="update-title">Trainee: {name} </h3>
                     <div className="update-cancel-btn"><center><button type="button" id="cancelBtn" onClick={() => {this.state.form_cancel = true; this.props.content(this.state.back);;}}>Cancel</button></center></div>
                     <div className="grid-container">
 					<div className="grid-item-name"> 
@@ -317,7 +318,7 @@ export default class EditDates extends Component {
                                 className="form-control"
                                 value={this.state.trainee_fname}
                                 onChange={this.onChangeTraineeFname}
-                                
+                                disabled
                                 />
                     </div>
                      <div className="gird-item"> 
@@ -326,7 +327,7 @@ export default class EditDates extends Component {
                                 className="form-control"
                                 value={this.state.trainee_lname}
                                 onChange={this.onChangeTraineeLname}
-                                
+                                disabled
                                 />
                     </div>           
 					<div className="gird-item">
@@ -347,7 +348,7 @@ export default class EditDates extends Component {
                                 className="form-control"
                                 value={this.state.trainee_email}
                                 onChange={this.onChangeTraineeEmail}
-                                
+                                disabled
                                 />
                     </div>
 					<div className="grid-item-intake">
@@ -471,7 +472,9 @@ export default class EditDates extends Component {
                     : ""}
                     <br />
                     <div className="form-group">
-                            <input id="updateBtn" type="submit" value="Update" className="btn btn-primary" /> &nbsp;
+						<input id="updateBtn" type="submit" value="Update" className="btn btn-primary" /> &nbsp;
+						{/*<button type="button" id="cancelBtn" onClick={() => {this.state.form_cancel = true; this.props.content(this.state.back);;}}>Additional Information</button>
+						  */}
                     </div>
 					</div>
 				</form>

@@ -38,7 +38,7 @@ function App() {
     return (
       <Router>
           <div className="App">
-			<Route path="/changePassword/:token" component={ChangePassword} />
+			<Route exact path="/changePassword/:token" component={ChangePassword} />
 			<Route path="/changePasswordStaff/:token" component={ChangePasswordStaff} />
 			<Route path="/forgotPassword" component={ForgotPass} />
             <Container path='/login' role='' links={myConfig}/>
