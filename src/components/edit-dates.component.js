@@ -308,7 +308,7 @@ export default class EditDates extends Component {
             <div className="createTrainee">
                 <form className="createTraineeForm" onSubmit={this.onSubmit}>
 				<h3 className="update-title">Update Trainee</h3>
-                    <div className="update-cancel-btn"><center><button type="button" id="cancelBtn" onClick={() => {this.props.content(<ListTrainee/>)}}>Cancel</button></center></div>
+                    <div className="update-cancel-btn"><center><button type="button" id="cancelBtn" onClick={() => {this.state.form_cancel = true; this.props.content(this.state.back);;}}>Cancel</button></center></div>
                     <div className="grid-container">
 					<div className="grid-item-name"> 
                         <label>First Name: </label>
