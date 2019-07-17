@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Navbarr from './navbar.component';
-import Header from'./header.component';
+import Navigation from'./header.component';
 import { authService } from './modules/authService'
 import * as _ from 'lodash';
 import SideBar from './sideBar.component';
@@ -40,19 +40,23 @@ export default class NavbarDisplay extends Component {
 
         if(this.state.role === ''){
             render = <div>
-                        <Header/>
+                        <Navigation/>
                         {this.state.content}
                     </div>
         }
         else{
             render = <div>
                         <div id="fixed">
-                            <Header/>
-                            <Navbarr
+                            <Navigation
+							role={this.state.role}
+                            content={this.changeContent}
+                            links={this.props.links}
+							/>
+							{/* <Navbarr
                                 role={this.state.role}
                                 content={this.changeContent}
                                 links={this.props.links}
-                            />
+                            />*/}
                         </div>
                         <div className="sideBarNarrow"></div>
                         <div id='outer-container'>

@@ -17,9 +17,9 @@
 
 #page-wrap{ 
     position: absolute;
-    margin-top: 122px;
+    margin-top: 70px;
     transform: translate3d(60px, 0px, 0px);
-    width: 95%;
+    width: 96%;
     overflow-wrap: break-word;
 }
 

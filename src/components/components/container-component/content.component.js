@@ -12,8 +12,11 @@ export default class Content extends Component {
     }
 
     render() {
+		const styles={
+			margin:'20px',
+		}
         return (
-            <div>
+            <div style={styles}>
                 {React.cloneElement(this.props.children, { content: this.props.content })}
             </div>
         );

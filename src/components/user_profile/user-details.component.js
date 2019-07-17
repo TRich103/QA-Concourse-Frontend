@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { CSVLink } from "react-csv";
-import AccessDenied from './modules/AccessDenied';
-import { authService } from './modules/authService';
+import AccessDenied from '../modules/AccessDenied';
+import { authService } from '../modules/authService';
 import moment from 'moment';
-import '../css/trainee-details.css';
+import '../../css/trainee-details.css';
 //import routes from '../../../QA-Concourse-Backend/routes/image_routes';
 export default class UserDetails extends Component {
     

@@ -1,17 +1,11 @@
 import React from 'react';
 import logo from './QA_logo.png';
-
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  Button
-} from 'reactstrap';
+import { Navbar, NavbarBrand, Nav, NavItem, NavDropdown, Button } from 'react-bootstrap'; 
+import * as _ from 'lodash';
 import { authService } from "./modules/authService";
 import axios from 'axios';
+import UserProfile from '../../user_profile/user-details.component.js';
+import TraineeProfile from '../../trainee-details.component.js'
 import './css/Header.css';
 
 export default class Navigation extends React.Component {
@@ -19,12 +13,14 @@ export default class Navigation extends React.Component {
     super(props);
 
     this.logout = this.logout.bind(this);
+	this.profile = this.profile.bind(this);
+	
     this.state = {
       currentUser: authService.currentUserValue,
       token: '',
       id: '',
       staff_fname: '',
-	    staff_lname: '',
+	  staff_lname: '',
       trainee_fname: '',
       trainee_lname: ''
     };
@@ -71,20 +67,56 @@ export default class Navigation extends React.Component {
   logout() {
     authService.logout();
   }
-  
+  profile(){
+	  if(this.state.currentUser.token.role === 'trainee'){
+		  
+	  }else{
+		  
+	  }
+  }
   render() {
-
+	  
+	let role = this.props.role 
+	
     if (this.state.currentUser) {
-      console.log(this.state)
+      let Tname = this.state.trainee_fname + ' ' + this.state.trainee_lname;
+	  let Sname = this.state.staff_fname + ' ' + this.state.staff_lname;
+	  let displayName;
+	  if(this.state.currentUser.token.role === 'trainee'){
+		  displayName = Tname;
+	  }
+	  else{
+		  displayName = Sname;
+	  }
       return (
         <div id='bar'>
-		    <div id="navigation-bar">
+		<div id="navigation-bar">
           <Navbar color="light" light expand="md">
             <NavbarBrand href="/"><img src={logo} alt="QA logo" width="60px" /></NavbarBrand>
-              <Nav className="ml-auto" navbar>
-                <NavItem className="display_name">Logged in as: {this.state.trainee_fname} {this.state.trainee_lname} {this.state.staff_fname} {this.state.staff_lname}  |  </NavItem>
-                <NavItem>
-                  <Button id="logoutBtn" onClick={this.logout} href='/login'>
+             <Nav className="mr-auto" navbar>
+			  {this.props.links[role].buttons.map(button => {
+				  return <Nav.Link onclick={() => this.props.content(button.content)}>{button.name}</Nav.Link>
+			  })}
+			  {this.props.links[role].dropdowns.map(dropdown => {
+				  return (
+				  <NavDropdown title={dropdown.name} id="basic-nav-dropdown">
+					  {dropdown.content.map(content =>{
+						  return <NavDropdown.Item onClick={() => this.props.content(content.content)}>{content.name}
+						  </NavDropdown.Item>
+					  })}
+				   </NavDropdown>
+				  )
+			  })}
+			  </Nav>
+			  <Nav>
+			  <div className="menu" onClick={()=>{this.props(<UserProfile id={this.state.currentUser.token._id}/>)}}></div>
+			   <NavDropdown title={displayName} className="login-dropdown">
+					<NavDropdown.Item onClick={this.profile} >Profile</NavDropdown.Item>
+					<NavDropdown.Item onClick={this.profile} >Change Password</NavDropdown.Item>
+					<NavDropdown.Item onClick={this.profile} >Settings</NavDropdown.Item>
+                </NavDropdown>  
+				<NavItem>
+				<Button id="logoutBtn" onClick={this.logout} href='/login'>
                     Logout
                   </Button>
                 </NavItem>
